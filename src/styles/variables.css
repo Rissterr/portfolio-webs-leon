@@ -1,0 +1,46 @@
+/* ============================================================
+   DESIGN TOKENS — Portfolio Personal
+   Importar en index.css con: @import './styles/variables.css';
+   ============================================================ */
+
+:root {
+  /* Colores base */
+  --bg: #05071A;
+  --bg2: #080B22;
+  --txt: #E7ECFB;
+  --muted: #9AA6C8;
+  --line: rgba(255, 255, 255, 0.08);
+
+  /* Azules de marca */
+  --blue: #427BD8;
+  --blue2: #92BBFF;
+  --ice: #C5EBFF;
+
+  /* Gradientes de tarjetas */
+  --card: linear-gradient(to bottom, rgba(15, 16, 37, 0.55), rgba(19, 15, 35, 0.55));
+  --card-blue: linear-gradient(to bottom, rgba(27, 38, 66, 0.6), rgba(28, 48, 96, 0.6));
+
+  /* Tipografía */
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Espaciado */
+  --section-padding: 110px;
+  --wrap-max: 1200px;
+  --wrap-padding: 24px;
+
+  /* Radios */
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 20px;
+  --radius-pill: 100px;
+
+  /* Sombras glass */
+  --shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 24px 50px -30px rgba(0, 0, 0, 0.8);
+  --shadow-card-hover: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 30px 60px -28px rgba(40, 80, 170, 0.55);
+
+  /* Transiciones */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-normal: 0.4s;
+  --duration-slow: 0.7s;
+}
