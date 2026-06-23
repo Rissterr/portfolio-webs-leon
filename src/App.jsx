@@ -36,6 +36,9 @@ const CSS = `
 @media (prefers-reduced-motion: reduce){
   .reveal{opacity:1;transform:none;transition:none}
   .marquee__track{animation:none !important}
+  .hero__glow, .hero__aurora, .hero__interactive-glow, .ambient-glow { animation:none !important; transition:none !important; }
+  .phone { animation:none !important; }
+  .mscale i { animation:none !important; }
 }
 
 /* ---- typography ---- */
@@ -94,6 +97,10 @@ const CSS = `
 }
 .btn:hover {
   transform: scale(1.02);
+}
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
 }
 .btn:focus-visible {
   outline: 2px solid #8EC1FF;
@@ -177,7 +184,7 @@ const CSS = `
 }
 
 /* ---- nav ---- */
-.nav{ position:fixed; top:0; left:0; right:0; z-index:50; transition:all .3s ease; }
+.nav{ position:fixed; top:0; left:0; right:0; z-index:50; transition:background .3s ease, border-color .3s ease, box-shadow .3s ease; }
 .nav__inner{ display:flex; align-items:center; justify-content:space-between;
   max-width:1200px; margin:0 auto; padding:16px 24px; }
 .nav.scrolled .nav__inner{ background:rgba(8,11,34,.7); backdrop-filter:blur(14px);
