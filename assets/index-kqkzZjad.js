@@ -1068,9 +1068,8 @@ Error generating stack: `+e.message+`
   font-family:var(--display); font-size:17px; padding:20px 22px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
 .q__ic{ flex:none; width:26px; height:26px; display:grid; place-items:center; transition:transform .3s, color .3s; }
 .q.open .q__ic{ color:#92BBFF; transform:scale(1.1); }
-.q__body{ display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows .4s cubic-bezier(.16,1,.3,1), opacity .3s ease; }
-.q.open .q__body{ grid-template-rows:1fr; opacity:1; }
-.q__body-inner{ overflow:hidden; min-height:0; }
+.q__body{ max-height:0; overflow:hidden; opacity:0; transition:max-height .4s cubic-bezier(.16,1,.3,1), opacity .3s ease; }
+.q.open .q__body{ max-height:400px; opacity:1; }
 .q__body-inner p{ color:var(--muted); padding:0 22px 22px; font-size:15px; line-height:1.6; }
 .faq__cta{ text-align:center; margin-top:28px; color:var(--muted); font-size:15px; }
 .faq__cta a{ color:#92BBFF; text-decoration:none; border-bottom:1px solid rgba(146,187,255,.4); transition:color .2s, border-color .2s; }
