@@ -197,6 +197,10 @@ const CSS = `
 
 /* ---- nav ---- */
 .nav{ position:fixed; top:0; left:0; right:0; z-index:50; transition:all .3s ease; }
+.nav::before{ content:''; position:absolute; inset:0; opacity:0; transition:opacity .3s ease;
+  background:linear-gradient(to bottom, rgba(5,7,26,.9), rgba(5,7,26,.55) 70%, transparent);
+  pointer-events:none; z-index:-1; }
+.nav.scrolled::before{ opacity:1; }
 .nav__inner{ display:flex; align-items:center; justify-content:space-between;
   max-width:1200px; margin:0 auto; padding:16px 24px; }
 .nav.scrolled .nav__inner{ background:rgba(8,11,34,.7); backdrop-filter:blur(14px);
@@ -784,6 +788,7 @@ const CSS = `
   max-width: 560px;
   margin: 36px auto 0;
   aspect-ratio: 1/1;
+  overflow: hidden;
 }
 
 /* Quadrant text blocks */
@@ -934,7 +939,7 @@ const CSS = `
 /* Scroll-driven rays moving inward along each axis */
 .hq__ray {
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   pointer-events: none;
   transition: transform 0.04s linear;
 }
@@ -2140,39 +2145,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* CALCULADORA DE PRECIO */}
-      <section className="section wrap" id="calculadora">
-        <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Calcula tu precio</span></Reveal>
-          <Reveal delay={100}><h2 className="display">¿Cuánto cuesta tu web?</h2></Reveal>
-          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin:"0 auto" }}>Marca lo que necesitas y te decimos el precio ahora — sin llamadas, sin esperar presupuesto.</Reveal>
-        </div>
-        <Reveal delay={200} className="calc-card">
-          <div className="calc-chips">
-            {[
-              { k:"reservas", label:"Reservas o citas online" },
-              { k:"tienda", label:"Vender productos online" },
-              { k:"ads", label:"Aparecer en Google / publicidad" },
-            ].map(({k,label}) => (
-              <button key={k} className={`calc-chip ${calcNeeds.includes(k) ? "calc-chip--on" : ""}`} onClick={() => toggleNeed(k)}>
-                <span className="calc-chip__check">{calcNeeds.includes(k) ? "✓" : "+"}</span>{label}
-              </button>
-            ))}
-          </div>
-          <div className="calc-result">
-            <div className="calc-result__label">Precio estimado</div>
-            <div className="calc-result__num">desde <b>{calcTotal.toLocaleString("es-ES")}<span>€</span></b></div>
-            <div className="calc-result__sub">Web base incluida · pago único</div>
-            <a
-              className="price-cta price-cta--pro"
-              href={`mailto:hola@leonwebs.es?subject=${encodeURIComponent("Presupuesto León Webs")}&body=${encodeURIComponent(`Hola, he usado la calculadora y me interesa una web desde ${calcTotal}€.\n\nNecesito: ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas online",tienda:"Tienda online",ads:"Publicidad/Google"}[k])).join(", ") : "Web básica"}.\n\nMi negocio es: `)}`}
-            >
-              Pedir este presupuesto →
-            </a>
-          </div>
-        </Reveal>
-      </section>
-
       {/* PRECIOS Y SERVICIOS */}
       <section className="section wrap" id="precios" style={{ overflow:"visible" }}>
         <div className="ambient-glow" />
@@ -2232,6 +2204,39 @@ export default function App() {
 
         <Reveal delay={200} style={{textAlign:"center",marginTop:28}}>
           <p style={{color:"var(--muted)",fontSize:13}}>¿No sabes cuál necesitas? <a href="#contact" style={{color:"#92BBFF",textDecoration:"none"}}>Cuéntanos tu caso — es gratis →</a></p>
+        </Reveal>
+      </section>
+
+      {/* CALCULADORA DE PRECIO */}
+      <section className="section wrap" id="calculadora">
+        <div className="shead">
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Calcula tu precio</span></Reveal>
+          <Reveal delay={100}><h2 className="display">¿Cuánto cuesta tu web?</h2></Reveal>
+          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin:"0 auto" }}>Marca lo que necesitas y te decimos el precio ahora — sin llamadas, sin esperar presupuesto.</Reveal>
+        </div>
+        <Reveal delay={200} className="calc-card">
+          <div className="calc-chips">
+            {[
+              { k:"reservas", label:"Reservas o citas online" },
+              { k:"tienda", label:"Vender productos online" },
+              { k:"ads", label:"Aparecer en Google / publicidad" },
+            ].map(({k,label}) => (
+              <button key={k} className={`calc-chip ${calcNeeds.includes(k) ? "calc-chip--on" : ""}`} onClick={() => toggleNeed(k)}>
+                <span className="calc-chip__check">{calcNeeds.includes(k) ? "✓" : "+"}</span>{label}
+              </button>
+            ))}
+          </div>
+          <div className="calc-result">
+            <div className="calc-result__label">Precio estimado</div>
+            <div className="calc-result__num">desde <b>{calcTotal.toLocaleString("es-ES")}<span>€</span></b></div>
+            <div className="calc-result__sub">Web base incluida · pago único</div>
+            <a
+              className="price-cta price-cta--pro"
+              href={`mailto:hola@leonwebs.es?subject=${encodeURIComponent("Presupuesto León Webs")}&body=${encodeURIComponent(`Hola, he usado la calculadora y me interesa una web desde ${calcTotal}€.\n\nNecesito: ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas online",tienda:"Tienda online",ads:"Publicidad/Google"}[k])).join(", ") : "Web básica"}.\n\nMi negocio es: `)}`}
+            >
+              Pedir este presupuesto →
+            </a>
+          </div>
         </Reveal>
       </section>
 
