@@ -323,7 +323,7 @@ Error generating stack: `+e.message+`
 /* ---- calculadora ---- */
 .calc-card{ margin-top:40px; display:grid; grid-template-columns:1fr 300px; gap:0;
   background:rgba(255,255,255,.03); border:1px solid rgba(146,187,255,.18); border-radius:24px;
-  overflow:hidden; box-shadow:0 0 60px -25px rgba(66,123,216,.3); }
+  overflow:hidden; box-shadow:0 0 60px -25px rgba(66,123,216,.3); min-height:400px; }
 .calc-chips{ display:flex; flex-direction:column; gap:12px; padding:36px; }
 .calc-chip{ display:flex; align-items:center; gap:14px; text-align:left; width:100%;
   padding:16px 20px; border-radius:14px; background:rgba(255,255,255,.03);
@@ -335,7 +335,7 @@ Error generating stack: `+e.message+`
   background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15); font-size:13px; color:var(--muted); transition:.25s; }
 .calc-chip--on .calc-chip__check{ background:linear-gradient(135deg,#427BD8,#92BBFF); border-color:transparent; color:#05071A; font-weight:700; }
 .calc-result{ background:rgba(66,123,216,.08); border-left:1px solid rgba(146,187,255,.15);
-  padding:36px 28px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  padding:36px 28px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; }
 .calc-result__label{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
 .calc-result__num{ font-family:var(--display); font-size:20px; color:#fff; }
 .calc-result__num b{ font-size:44px; display:block; line-height:1.1; }
