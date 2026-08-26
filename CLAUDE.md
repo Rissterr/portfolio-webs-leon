@@ -11,16 +11,27 @@ Portfolio/landing de agencia de diseño web dirigida a pequeños negocios (SMB) 
 
 ## Despliegue
 
-Hosting: **Surge.sh** (gratuito), cuenta `vipbarberleon@gmail.com`.
+Hosting actual: **GitHub Pages**, repo público `Rissterr/portfolio-webs-leon`, publicado desde la rama `gh-pages`.
+
+```bash
+npm run build -- --base=/portfolio-webs-leon/
+npx gh-pages -d dist -m "mensaje del cambio"
+```
+
+URL en producción: **https://rissterr.github.io/portfolio-webs-leon/**
+
+Importante: como la web vive en una subcarpeta (`/portfolio-webs-leon/`), todas las rutas a `public/assets/...` en el código deben ser **relativas** (`assets/foo.png`, sin `/` inicial) — si se usa una ruta absoluta (`/assets/foo.png`) las imágenes se rompen en este hosting. `index.html` (favicon, script de entrada) no necesita tocarse: Vite reescribe esas rutas automáticamente con `--base`.
+
+Cada cambio de código requiere `npm run build -- --base=/portfolio-webs-leon/` + `npx gh-pages -d dist` para publicarse — no hay CI/CD automático. La CDN de GitHub Pages puede tardar 1-3 minutos en servir la versión nueva tras el despliegue.
+
+### Histórico: Surge.sh (pendiente de recuperar)
+
+Antes se usaba **Surge.sh**, cuenta `vipbarberleon@gmail.com`, dominio `leon-webs.surge.sh`. Se perdió el acceso (contraseña olvidada) y se migró a GitHub Pages como solución rápida. Si se recupera el acceso a Surge (contactando con support@surge.sh) y se quiere volver a usar ese dominio:
 
 ```bash
 npm run build
 npx surge dist leon-webs.surge.sh
 ```
-
-URL en producción: **https://leon-webs.surge.sh**
-
-Cada cambio de código requiere `npm run build` + `npx surge dist leon-webs.surge.sh` para publicarse — no hay CI/CD automático.
 
 ## Estructura
 

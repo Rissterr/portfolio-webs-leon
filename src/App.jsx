@@ -405,7 +405,7 @@ const CSS = `
   transform: translateX(-50%);
   width: min(1700px, 150vw);
   height: min(950px, 78vh);
-  background-image: url('/assets/hero-bg-blue.png');
+  background-image: url('assets/hero-bg-blue.png');
   background-size: cover;
   background-position: center top;
   pointer-events: none;
@@ -1701,27 +1701,27 @@ function Btn({ glossy = false, children, href = "#", className = "", ...rest }) 
 /* ---------- data ---------- */
 const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
 const PROJECTS = [
-  { n: "PowerPulse",       img: "/assets/proj-powerpulse.webp"   },
-  { n: "Actualizar IA",    img: "/assets/proj-actualizaria.webp" },
-  { n: "Lex León",         img: "/assets/proj-lexleon.webp"      },
-  { n: "Nova Estética",    img: "/assets/proj-novaest.webp"      },
-  { n: "León Properties",  img: "/assets/proj-properties.webp"  },
-  { n: "León Suites",      img: "/assets/proj-hotel.webp"        },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp"   },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp" },
+  { n: "Lex León",         img: "assets/proj-lexleon.webp"      },
+  { n: "Nova Estética",    img: "assets/proj-novaest.webp"      },
+  { n: "León Properties",  img: "assets/proj-properties.webp"  },
+  { n: "León Suites",      img: "assets/proj-hotel.webp"        },
 ];
 const CASES = [
-  { n: "PowerPulse",       img: "/assets/proj-powerpulse.webp",   url: "#", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Actualizar IA",    img: "/assets/proj-actualizaria.webp", url: "#", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
-  { n: "Lex León",         img: "/assets/proj-lexleon.webp",      url: "#", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Nova Estética",    img: "/assets/proj-novaest.webp",      url: "#", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "León Properties",  img: "/assets/proj-properties.webp",  url: "#", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "León Suites",      img: "/assets/proj-hotel.webp",        url: "#", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp",   url: "#", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp", url: "#", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { n: "Lex León",         img: "assets/proj-lexleon.webp",      url: "#", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "Nova Estética",    img: "assets/proj-novaest.webp",      url: "#", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "León Properties",  img: "assets/proj-properties.webp",  url: "#", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "León Suites",      img: "assets/proj-hotel.webp",        url: "#", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
 ];
 const TESTI = [
-  { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "/assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
+  { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
   { n: "Masam",          r: "Diseñador Senior",            img: null,                    t: "Transformó por completo nuestra web anticuada. Visualmente impactante y la experiencia de usuario es de otro nivel." },
   { n: "Saleh",          r: "Experto SEO",                  img: null,                    t: "El diseño y las ventas eran nuestro punto débil — esto cubrió ese hueco. La mejora en nuestras métricas fue real." },
-  { n: "Marco King",     r: "Fundador, Reels Studio",       img: "/assets/testi-4.png",  t: "Atento, comunicativo y resultados excepcionales. No dudaría en volver a colaborar." },
-  { n: "Nadia Clarke",   r: "Tech & IT",                    img: "/assets/testi-5.png",  t: "Maestría con animaciones e interacciones complejas que dieron vida a toda la web." },
+  { n: "Marco King",     r: "Fundador, Reels Studio",       img: "assets/testi-4.png",  t: "Atento, comunicativo y resultados excepcionales. No dudaría en volver a colaborar." },
+  { n: "Nadia Clarke",   r: "Tech & IT",                    img: "assets/testi-5.png",  t: "Maestría con animaciones e interacciones complejas que dieron vida a toda la web." },
   { n: "Orange",         r: "Vendedor",                     img: null,                    t: "Integró herramientas externas y animaciones personalizadas a la perfección. Atención al detalle impresionante." },
 ];
 const SERVICES_HELP = [
@@ -1961,7 +1961,7 @@ export default function App() {
         <div className="wrap">
         <div className="about__inner">
           <div className="about__photo hide-m">
-            <img src="/assets/avatar-color.webp" alt="León Webs" onError={e=>{e.target.style.display='none'}} />
+            <img src="assets/avatar-color.webp" alt="León Webs" onError={e=>{e.target.style.display='none'}} />
           </div>
           <div className="about__content">
             <div className="shead" style={{ textAlign:"left", alignItems:"flex-start" }}>
@@ -2066,7 +2066,7 @@ export default function App() {
           <div className="hq__hub">
             <div className="hq__ava">
               <img
-                src="/assets/avatar-color.webp"
+                src="assets/avatar-color.webp"
                 alt="Avatar"
                 loading="lazy"
               />
