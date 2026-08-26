@@ -295,16 +295,16 @@ Error generating stack: `+e.message+`
 .price-card--pro{ border-color:rgba(146,187,255,.45); background:rgba(66,123,216,.08);
   box-shadow:0 0 0 1px rgba(146,187,255,.15), 0 20px 60px -20px rgba(66,123,216,.45); }
 .price-more{ font-size:11.5px; color:#92BBFF; margin-top:8px; font-weight:600; }
-.ads-card{ display:flex; align-items:center; gap:24px; margin-top:24px; padding:28px 32px;
+.ads-card{ display:flex; align-items:center; justify-content:center; gap:24px; margin-top:24px; padding:28px 32px;
   background:rgba(255,255,255,.03); border:1px solid rgba(146,187,255,.18); border-radius:20px; }
 .ads-card__icon{ width:52px; height:52px; border-radius:14px; flex-shrink:0;
   background:rgba(66,123,216,.14); border:1px solid rgba(146,187,255,.25);
   display:flex; align-items:center; justify-content:center; color:#92BBFF; }
 .ads-card__icon svg{ width:24px; height:24px; }
-.ads-card__body{ flex:1; }
+.ads-card__body{ text-align:center; }
 .ads-card__body h3{ font-family:var(--display); font-size:18px; color:#fff; margin-bottom:6px; }
-.ads-card__body p{ font-size:13.5px; color:var(--muted); line-height:1.5; margin-bottom:10px; max-width:560px; }
-.ads-card__feats{ display:flex; flex-wrap:wrap; gap:8px 16px; }
+.ads-card__body p{ font-size:13.5px; color:var(--muted); line-height:1.5; margin-bottom:10px; max-width:560px; margin-left:auto; margin-right:auto; }
+.ads-card__feats{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 16px; }
 .ads-card__feats span{ font-size:12px; color:#92BBFF; }
 
 /* ---- servicios (resumen) ---- */
@@ -342,6 +342,7 @@ Error generating stack: `+e.message+`
 .calc-result__num span{ font-size:22px; color:#92BBFF; }
 .calc-result__sub{ font-size:12px; color:var(--muted); margin:8px 0 20px; }
 .calc-result .price-cta{ margin-top:0; width:100%; }
+.ads-card .price-cta{ margin-top:0; }
 .price-badge{ position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#427BD8,#92BBFF); color:#fff; font-size:11px; font-weight:700; padding:4px 14px; border-radius:999px; white-space:nowrap; }
 .price-label{ font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:12px; }
 .price-launch{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700;
@@ -360,7 +361,7 @@ Error generating stack: `+e.message+`
 .price-divider{ height:1px; background:rgba(255,255,255,.08); margin-bottom:16px; }
 .price-feat{ display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--muted); padding:5px 0; line-height:1.4; }
 .price-feat .ic{ width:18px; height:18px; font-size:11px; margin-top:1px; }
-.price-cta{ display:block; margin-top:20px; padding:13px; border-radius:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:#fff; font-size:14px; font-weight:600; text-align:center; text-decoration:none; transition:background .2s; }
+.price-cta{ display:block; margin-top:auto; padding:13px; border-radius:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:#fff; font-size:14px; font-weight:600; text-align:center; text-decoration:none; transition:background .2s; }
 .price-cta:hover{ background:rgba(255,255,255,.12); }
 .price-cta--pro{ background:linear-gradient(135deg,rgba(66,123,216,.7),rgba(40,90,180,.6)); border-color:rgba(146,187,255,.4); }
 .price-cta--pro:hover{ background:linear-gradient(135deg,rgba(66,123,216,.9),rgba(40,90,180,.8)); }
