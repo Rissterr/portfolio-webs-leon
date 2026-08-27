@@ -997,9 +997,9 @@ Error generating stack: `+e.message+`
 
 /* ---- case studies grid ---- */
 .cases{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:52px; }
-.case{ border-radius:18px; overflow:hidden; position:relative; aspect-ratio:4/3; isolation:isolate;
+.case{ border-radius:18px; overflow:hidden; position:relative; isolation:isolate;
   border:1px solid rgba(255,255,255,.10); background:var(--cardBlue); cursor:pointer;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12); display:flex;
   transition:border-color .5s, box-shadow .5s, transform .5s cubic-bezier(.16,1,.3,1); }
 .case:hover{ transform:translateY(-4px); border-color:rgba(146,187,255,.4);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 26px 50px -22px rgba(40,80,170,.5); }
@@ -1010,8 +1010,8 @@ Error generating stack: `+e.message+`
           mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude; opacity:0.25; transition:opacity .5s; }
 .case:hover::before{ opacity:1; }
-.case__img{ position:absolute; inset:0; z-index:1; transition:transform .6s cubic-bezier(.16,1,.3,1);
-  width:100%; height:100%; object-fit:contain; object-position:center; display:block; }
+.case__img{ position:relative; z-index:1; transition:transform .6s cubic-bezier(.16,1,.3,1);
+  width:100%; height:auto; display:block; }
 .case:hover .case__img{ transform:scale(1.06); }
 /* case bottom overlay with name */
 .case__meta{ position:absolute; left:0; right:0; bottom:0; padding:20px; z-index:5;
