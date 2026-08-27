@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "leon-webs-preview",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "C:\\Users\\Gaming Dopp\\Documents\\Claude\\Webs Leon\\.claude\\run-preview.cmd"],
+      "port": 4173
+    },
+    {
+      "name": "leon-webs-dev",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+      "runtimeArgs": ["run", "dev", "--", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}

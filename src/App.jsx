@@ -264,12 +264,12 @@ const CSS = `
 .about__photo img{ width:100%; height:100%; object-fit:cover; object-position:top center;
   transition:transform .6s cubic-bezier(.16,1,.3,1); }
 .about__photo:hover img{ transform:scale(1.05); }
-.about__content{ text-align:left; display:flex; flex-direction:column; height:100%; }
-.about__content .shead{ margin-bottom:0; text-align:left; max-width:none; }
+.about__content{ text-align:center; display:flex; flex-direction:column; align-items:center; height:100%; }
+.about__content .shead{ margin-bottom:0; text-align:center; align-items:center; max-width:none; }
 .about__content .shead h2{ margin-bottom:0; font-size:clamp(22px,2.8vw,32px); line-height:1.15; }
-.about__content .lead{ text-align:left; max-width:100%; font-size:15.5px; margin-bottom:20px !important; }
+.about__content .lead{ text-align:center; max-width:100%; font-size:15.5px; margin-bottom:20px !important; }
 /* ---- about cards ---- */
-.about__cards{ display:flex; flex-direction:column; gap:10px; max-width:100%; margin:0; text-align:left; flex:1; }
+.about__cards{ display:flex; flex-direction:column; align-items:stretch; align-self:stretch; gap:10px; max-width:100%; margin:0; text-align:left; flex:1; }
 .about__card{ display:flex; align-items:flex-start; gap:14px; padding:14px 18px;
   background:rgba(255,255,255,.03);
   border:1px solid rgba(146,187,255,.13); border-left:3px solid rgba(146,187,255,.5);
@@ -296,16 +296,16 @@ const CSS = `
 .price-card--pro{ border-color:rgba(146,187,255,.45); background:rgba(66,123,216,.08);
   box-shadow:0 0 0 1px rgba(146,187,255,.15), 0 20px 60px -20px rgba(66,123,216,.45); }
 .price-more{ font-size:11.5px; color:#92BBFF; margin-top:8px; font-weight:600; }
-.ads-card{ display:flex; align-items:center; gap:24px; margin-top:24px; padding:28px 32px;
+.ads-card{ display:flex; align-items:center; justify-content:center; gap:24px; margin-top:24px; padding:28px 32px;
   background:rgba(255,255,255,.03); border:1px solid rgba(146,187,255,.18); border-radius:20px; }
 .ads-card__icon{ width:52px; height:52px; border-radius:14px; flex-shrink:0;
   background:rgba(66,123,216,.14); border:1px solid rgba(146,187,255,.25);
   display:flex; align-items:center; justify-content:center; color:#92BBFF; }
 .ads-card__icon svg{ width:24px; height:24px; }
-.ads-card__body{ flex:1; }
+.ads-card__body{ text-align:center; }
 .ads-card__body h3{ font-family:var(--display); font-size:18px; color:#fff; margin-bottom:6px; }
-.ads-card__body p{ font-size:13.5px; color:var(--muted); line-height:1.5; margin-bottom:10px; max-width:560px; }
-.ads-card__feats{ display:flex; flex-wrap:wrap; gap:8px 16px; }
+.ads-card__body p{ font-size:13.5px; color:var(--muted); line-height:1.5; margin-bottom:10px; max-width:560px; margin-left:auto; margin-right:auto; }
+.ads-card__feats{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 16px; }
 .ads-card__feats span{ font-size:12px; color:#92BBFF; }
 
 /* ---- servicios (resumen) ---- */
@@ -324,7 +324,7 @@ const CSS = `
 /* ---- calculadora ---- */
 .calc-card{ margin-top:40px; display:grid; grid-template-columns:1fr 300px; gap:0;
   background:rgba(255,255,255,.03); border:1px solid rgba(146,187,255,.18); border-radius:24px;
-  overflow:hidden; box-shadow:0 0 60px -25px rgba(66,123,216,.3); }
+  overflow:hidden; box-shadow:0 0 60px -25px rgba(66,123,216,.3); min-height:400px; }
 .calc-chips{ display:flex; flex-direction:column; gap:12px; padding:36px; }
 .calc-chip{ display:flex; align-items:center; gap:14px; text-align:left; width:100%;
   padding:16px 20px; border-radius:14px; background:rgba(255,255,255,.03);
@@ -336,13 +336,14 @@ const CSS = `
   background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15); font-size:13px; color:var(--muted); transition:.25s; }
 .calc-chip--on .calc-chip__check{ background:linear-gradient(135deg,#427BD8,#92BBFF); border-color:transparent; color:#05071A; font-weight:700; }
 .calc-result{ background:rgba(66,123,216,.08); border-left:1px solid rgba(146,187,255,.15);
-  padding:36px 28px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  padding:36px 28px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; }
 .calc-result__label{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
 .calc-result__num{ font-family:var(--display); font-size:20px; color:#fff; }
 .calc-result__num b{ font-size:44px; display:block; line-height:1.1; }
 .calc-result__num span{ font-size:22px; color:#92BBFF; }
 .calc-result__sub{ font-size:12px; color:var(--muted); margin:8px 0 20px; }
 .calc-result .price-cta{ margin-top:0; width:100%; }
+.ads-card .price-cta{ margin-top:0; }
 .price-badge{ position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#427BD8,#92BBFF); color:#fff; font-size:11px; font-weight:700; padding:4px 14px; border-radius:999px; white-space:nowrap; }
 .price-label{ font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:12px; }
 .price-launch{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700;
@@ -361,7 +362,7 @@ const CSS = `
 .price-divider{ height:1px; background:rgba(255,255,255,.08); margin-bottom:16px; }
 .price-feat{ display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--muted); padding:5px 0; line-height:1.4; }
 .price-feat .ic{ width:18px; height:18px; font-size:11px; margin-top:1px; }
-.price-cta{ display:block; margin-top:20px; padding:13px; border-radius:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:#fff; font-size:14px; font-weight:600; text-align:center; text-decoration:none; transition:background .2s; }
+.price-cta{ display:block; margin-top:auto; padding:13px; border-radius:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:#fff; font-size:14px; font-weight:600; text-align:center; text-decoration:none; transition:background .2s; }
 .price-cta:hover{ background:rgba(255,255,255,.12); }
 .price-cta--pro{ background:linear-gradient(135deg,rgba(66,123,216,.7),rgba(40,90,180,.6)); border-color:rgba(146,187,255,.4); }
 .price-cta--pro:hover{ background:linear-gradient(135deg,rgba(66,123,216,.9),rgba(40,90,180,.8)); }
@@ -372,7 +373,7 @@ const CSS = `
 .hero__shot:nth-child(odd){ background:linear-gradient(135deg,#1a1b4b,#2d1f6e); }
 .hero__shot:nth-child(even){ background:linear-gradient(135deg,#0d2b45,#1a4a7c); }
 .hero__shot b{ font-size:10px; color:#fff; font-weight:600; line-height:1.2; position:relative; z-index:1; }
-.hero__shot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero__shot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
 
 /* social proof row */
 .hero__trust{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:18px; }
@@ -785,8 +786,8 @@ const CSS = `
 .hq__wrap {
   position: relative;
   width: 100%;
-  max-width: 560px;
-  margin: 36px auto 0;
+  max-width: 812px;
+  margin: 52px auto 0;
   aspect-ratio: 1/1;
   overflow: hidden;
 }
@@ -806,18 +807,18 @@ const CSS = `
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 22px 18px;
-  gap: 8px;
+  padding: 32px 26px;
+  gap: 12px;
   position: relative;
 }
-.hq__q.tl { justify-content: flex-end; align-items: flex-end; text-align: right; padding-right: 32px; padding-bottom: 32px; }
-.hq__q.tr { justify-content: flex-end; align-items: flex-start; text-align: left;  padding-left: 32px;  padding-bottom: 32px; }
-.hq__q.bl { justify-content: flex-start; align-items: flex-end; text-align: right; padding-right: 32px; padding-top: 32px; }
-.hq__q.br { justify-content: flex-start; align-items: flex-start; text-align: left;  padding-left: 32px;  padding-top: 32px; }
+.hq__q.tl { justify-content: flex-end; align-items: flex-end; text-align: right; padding-right: 46px; padding-bottom: 46px; }
+.hq__q.tr { justify-content: flex-end; align-items: flex-start; text-align: left;  padding-left: 46px;  padding-bottom: 46px; }
+.hq__q.bl { justify-content: flex-start; align-items: flex-end; text-align: right; padding-right: 46px; padding-top: 46px; }
+.hq__q.br { justify-content: flex-start; align-items: flex-start; text-align: left;  padding-left: 46px;  padding-top: 46px; }
 
 .hq__icon {
-  width: 32px;
-  height: 32px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(146,187,255,0.25);
@@ -827,19 +828,19 @@ const CSS = `
   flex-shrink: 0;
   backdrop-filter: blur(4px);
 }
-.hq__icon svg { width: 16px; height: 16px; opacity: 0.65; }
+.hq__icon svg { width: 23px; height: 23px; opacity: 0.65; }
 .hq__h {
   font-family: var(--display);
-  font-size: 15px;
+  font-size: 22px;
   font-weight: 600;
   color: #d4dcf5;
   line-height: 1.3;
 }
 .hq__p {
-  font-size: 13px;
+  font-size: 19px;
   color: var(--muted);
   line-height: 1.55;
-  max-width: 200px;
+  max-width: 290px;
 }
 
 /* Glow on quadrant text rows (tr/bl = blue diagonal) */
@@ -885,8 +886,8 @@ const CSS = `
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
   z-index: 5;
-  width: 76px;
-  height: 76px;
+  width: 110px;
+  height: 110px;
 }
 
 /* Concentric pulse and rotating dashboard rings */
@@ -904,11 +905,11 @@ const CSS = `
   --r-dur: 50s;
   animation-direction: reverse;
 }
-.hq__ring:nth-child(1) { width: 110px; height: 110px; --r-dur: 35s; }
-.hq__ring:nth-child(2) { width: 170px; height: 170px; --r-dur: 50s; }
-.hq__ring:nth-child(3) { width: 240px; height: 240px; --r-dur: 70s; }
-.hq__ring:nth-child(4) { width: 320px; height: 320px; --r-dur: 90s; }
-.hq__ring:nth-child(5) { width: 410px; height: 410px; --r-dur: 110s; }
+.hq__ring:nth-child(1) { width: 160px; height: 160px; --r-dur: 35s; }
+.hq__ring:nth-child(2) { width: 247px; height: 247px; --r-dur: 50s; }
+.hq__ring:nth-child(3) { width: 348px; height: 348px; --r-dur: 70s; }
+.hq__ring:nth-child(4) { width: 464px; height: 464px; --r-dur: 90s; }
+.hq__ring:nth-child(5) { width: 595px; height: 595px; --r-dur: 110s; }
 
 @keyframes ringRotate {
   from { transform: translate(-50%,-50%) rotate(0deg); }
@@ -917,19 +918,19 @@ const CSS = `
 
 /* Avatar circle with breathing neon glow */
 .hq__ava {
-  width: 76px;
-  height: 76px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid rgba(146,187,255,0.45);
-  box-shadow: 0 0 0 6px rgba(66,123,216,0.12), 0 0 30px rgba(66,123,216,0.35);
+  box-shadow: 0 0 0 9px rgba(66,123,216,0.12), 0 0 44px rgba(66,123,216,0.35);
   position: relative;
   z-index: 2;
   animation: avaPulse 6s ease-in-out infinite;
 }
 @keyframes avaPulse {
-  0%, 100% { box-shadow: 0 0 0 6px rgba(66,123,216,0.12), 0 0 30px rgba(66,123,216,0.35); }
-  50% { box-shadow: 0 0 0 10px rgba(66,123,216,0.18), 0 0 45px rgba(66,123,216,0.55); }
+  0%, 100% { box-shadow: 0 0 0 9px rgba(66,123,216,0.12), 0 0 44px rgba(66,123,216,0.35); }
+  50% { box-shadow: 0 0 0 14px rgba(66,123,216,0.18), 0 0 65px rgba(66,123,216,0.55); }
 }
 .hq__ava img { width: 100%; height: 100%; object-fit: cover;
   filter:grayscale(1); transition:filter .6s ease; }
@@ -997,7 +998,7 @@ const CSS = `
 
 /* ---- case studies grid ---- */
 .cases{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:52px; }
-.case{ border-radius:18px; overflow:hidden; position:relative; aspect-ratio:4/3; isolation:isolate;
+.case{ border-radius:18px; overflow:hidden; position:relative; aspect-ratio:16/9; isolation:isolate;
   border:1px solid rgba(255,255,255,.10); background:var(--cardBlue); cursor:pointer;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
   transition:border-color .5s, box-shadow .5s, transform .5s cubic-bezier(.16,1,.3,1); }
@@ -1066,10 +1067,12 @@ const CSS = `
 .q.open::before{ opacity:1; }
 .q__head{ width:100%; text-align:left; background:none; border:none; color:var(--txt); cursor:pointer;
   font-family:var(--display); font-size:17px; padding:20px 22px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
-.q__ic{ flex:none; width:26px; height:26px; display:grid; place-items:center; transition:transform .3s; }
-.q.open .q__ic{ transform:rotate(45deg); }
-.q__body{ max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.16,1,.3,1); }
-.q__body p{ color:var(--muted); padding:0 22px 22px; font-size:15px; line-height:1.6; }
+.q__ic{ flex:none; width:26px; height:26px; display:grid; place-items:center; transition:transform .3s, color .3s; }
+.q.open .q__ic{ color:#92BBFF; transform:scale(1.1); }
+.q__body p{ color:var(--muted); padding:0 22px 22px; font-size:15px; line-height:1.6; margin:0; }
+.faq__cta{ text-align:center; margin-top:28px; color:var(--muted); font-size:15px; }
+.faq__cta a{ color:#92BBFF; text-decoration:none; border-bottom:1px solid rgba(146,187,255,.4); transition:color .2s, border-color .2s; }
+.faq__cta a:hover{ color:#fff; border-color:#fff; }
 
 /* ---- footer ---- */
 /* ---- section divider ---- */
@@ -1243,15 +1246,16 @@ const CSS = `
   .hq__q{
     background:rgba(255,255,255,.04);
     border:1px solid rgba(146,187,255,.15);
-    border-radius:14px; padding:16px 14px;
-    gap:8px; align-items:flex-start; text-align:left;
+    border-radius:14px; padding:18px 16px;
+    gap:9px; align-items:flex-start; text-align:left;
   }
   .hq__q.tl,.hq__q.tr,.hq__q.bl,.hq__q.br{
-    padding:16px 14px; align-items:flex-start; text-align:left;
+    padding:18px 16px; align-items:flex-start; text-align:left;
   }
-  .hq__h{ font-size:13px; line-height:1.3; }
-  .hq__p{ font-size:12px; line-height:1.45; max-width:100%; }
-  .hq__icon{ width:32px; height:32px; }
+  .hq__h{ font-size:15px; line-height:1.3; }
+  .hq__p{ font-size:13.5px; line-height:1.45; max-width:100%; }
+  .hq__icon{ width:38px; height:38px; }
+  .hq__icon svg{ width:19px; height:19px; }
 
   /* --- CASOS --- */
   .cases{
@@ -1658,7 +1662,7 @@ function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, 
       {visibleFeats.map((f,i)=>(
         <div key={i} className="price-feat"><span className="ic ic--v" style={{flexShrink:0}}>✓</span>{f}</div>
       ))}
-      {feats.length > 3 && <div className="price-more">{open ? "Ver menos ▲" : `+${feats.length-3} más — toca para ver ▼`}</div>}
+      {feats.length > 3 && <div className="price-more">{open ? "Ver menos ▲" : `+${feats.length-3} más, toca para ver ▼`}</div>}
       <a href="#contact" className={`price-cta ${pro ? "price-cta--pro" : ""}`} onClick={e=>e.stopPropagation()}>{cta}</a>
     </Reveal>
   );
@@ -1701,25 +1705,25 @@ function Btn({ glossy = false, children, href = "#", className = "", ...rest }) 
 /* ---------- data ---------- */
 const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
 const PROJECTS = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp"   },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp" },
-  { n: "Lex León",         img: "assets/proj-lexleon.webp"      },
-  { n: "Nova Estética",    img: "assets/proj-novaest.webp"      },
-  { n: "León Properties",  img: "assets/proj-properties.webp"  },
-  { n: "León Suites",      img: "assets/proj-hotel.webp"        },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.png"   },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png"  },
+  { n: "Lex León",         img: "assets/proj-lexleon.png"      },
+  { n: "Nova Estética",    img: "assets/proj-novaest.png"      },
+  { n: "León Properties",  img: "assets/proj-properties.png"  },
+  { n: "León Suites",      img: "assets/proj-hotel.png"        },
 ];
 const CASES = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp",   url: "#", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp", url: "#", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
-  { n: "Lex León",         img: "assets/proj-lexleon.webp",      url: "#", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Nova Estética",    img: "assets/proj-novaest.webp",      url: "#", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "León Properties",  img: "assets/proj-properties.webp",  url: "#", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "León Suites",      img: "assets/proj-hotel.webp",        url: "#", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.png",    url: "#", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png",  url: "#", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { n: "Lex León",         img: "assets/proj-lexleon.png",       url: "#", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "Nova Estética",    img: "assets/proj-novaest.png",       url: "#", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "León Properties",  img: "assets/proj-properties.png",   url: "#", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "León Suites",      img: "assets/proj-hotel.png",         url: "#", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
 ];
 const TESTI = [
   { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
   { n: "Masam",          r: "Diseñador Senior",            img: null,                    t: "Transformó por completo nuestra web anticuada. Visualmente impactante y la experiencia de usuario es de otro nivel." },
-  { n: "Saleh",          r: "Experto SEO",                  img: null,                    t: "El diseño y las ventas eran nuestro punto débil — esto cubrió ese hueco. La mejora en nuestras métricas fue real." },
+  { n: "Saleh",          r: "Experto SEO",                  img: null,                    t: "El diseño y las ventas eran nuestro punto débil, y esto cubrió ese hueco. La mejora en nuestras métricas fue real." },
   { n: "Marco King",     r: "Fundador, Reels Studio",       img: "assets/testi-4.png",  t: "Atento, comunicativo y resultados excepcionales. No dudaría en volver a colaborar." },
   { n: "Nadia Clarke",   r: "Tech & IT",                    img: "assets/testi-5.png",  t: "Maestría con animaciones e interacciones complejas que dieron vida a toda la web." },
   { n: "Orange",         r: "Vendedor",                     img: null,                    t: "Integró herramientas externas y animaciones personalizadas a la perfección. Atención al detalle impresionante." },
@@ -1731,12 +1735,12 @@ const SERVICES_HELP = [
   { k: "04", h: "Atraer, convertir, crecer", p: "Webs que atraen visitantes, los convierten y disparan tu crecimiento." },
 ];
 const FAQS = [
-  { q: "¿Cuánto tarda en verse un aumento en ventas?", a: "Depende del punto de partida, pero nuestros clientes suelen notar más consultas en las primeras semanas. Una web bien orientada a ventas trabaja 24h para ti." },
-  { q: "¿Qué incluye exactamente el servicio?", a: "Diseño web, copy persuasivo, estructura de conversión y estrategia — todo en un solo proyecto. No necesitas contratar a 4 personas distintas." },
-  { q: "¿Por qué no me vale con una web barata o un Wix?", a: "Una web bonita que no vende es dinero tirado. Nosotros diseñamos para que cada sección guíe al visitante a contactarte o comprar — eso no lo hace una plantilla." },
-  { q: "¿Tengo que saber de tecnología o diseño?", a: "Para nada. Tú nos cuentas tu negocio y lo que quieres conseguir — nosotros nos encargamos de todo lo demás." },
-  { q: "¿Cuánto cuesta?", a: "Depende del proyecto. Primero hablamos gratis, entendemos tu situación y te damos un presupuesto claro. Sin sorpresas." },
-  { q: "¿Cómo empezamos?", a: "Escríbenos o reserva una llamada de 30 minutos — gratuita y sin compromiso. En esa llamada ya te decimos si podemos ayudarte y cómo." },
+  { q: "¿Tenéis planes cerrados?", a: "Sí. Tenemos planes pensados para diferentes necesidades y presupuestos, pero también podemos adaptar el proyecto si necesitas algo específico." },
+  { q: "¿Cuánto cuesta una página web?", a: "Nuestros proyectos parten desde 450 €. El precio final depende de las páginas, funcionalidades y necesidades del negocio. También puedes utilizar nuestro calculador para obtener una estimación." },
+  { q: "¿Cuánto tardáis en hacerla?", a: "Una web estándar puede estar lista aproximadamente en 2 semanas. Definimos estructura, contenido y objetivos desde el inicio para mantener el proyecto ágil." },
+  { q: "¿Trabajáis con negocios que ya tienen web?", a: "Sí. Analizamos la web actual, detectamos oportunidades de mejora y planteamos cambios orientados a convertir más visitas en contactos, reservas o ventas." },
+  { q: "¿Os encargáis del mantenimiento?", a: "Sí. Podemos encargarnos de actualizaciones, cambios y mejoras después del lanzamiento para que la web siga evolucionando con el negocio." },
+  { q: "¿Puedo pedir algo personalizado?", a: "Claro. Los planes son un punto de partida. Podemos adaptar el proyecto a las necesidades concretas de cada negocio." },
 ];
 
 /* ---------- page ---------- */
@@ -1870,7 +1874,7 @@ export default function App() {
             </div>
           </div>
           <Reveal delay={120}><h1 className="display h-grad">Consigue 3 veces más clientes</h1></Reveal>
-          <Reveal delay={220} className="lead hide-m" as="p">Webs diseñadas para negocios activos en León que quieren escalar. Barbería, clínica, asesoría, hotel — en 2 semanas tu web genera ventas nuevas.</Reveal>
+          <Reveal delay={220} className="lead hide-m" as="p">Webs diseñadas para negocios activos en León que quieren escalar. Barbería, clínica, asesoría, hotel; en 2 semanas tu web genera ventas nuevas.</Reveal>
           <Reveal delay={320}><Btn glossy href="#contact">Ver cómo escalamos</Btn></Reveal>
           <Reveal delay={400} className="hero__trust">
             <div className="hero__avatars">
@@ -1964,7 +1968,7 @@ export default function App() {
             <img src="assets/avatar-color.webp" alt="León Webs" onError={e=>{e.target.style.display='none'}} />
           </div>
           <div className="about__content">
-            <div className="shead" style={{ textAlign:"left", alignItems:"flex-start" }}>
+            <div className="shead" style={{ textAlign:"center", alignItems:"center" }}>
               <Reveal className="eyebrow" as="div"><span className="dot" /><span>Por qué somos diferentes</span></Reveal>
               <Reveal delay={100}><h2 className="display">Escalamos negocios que ya funcionan</h2></Reveal>
             </div>
@@ -2079,7 +2083,7 @@ export default function App() {
               { pos:"tl", h:"Web que convierte", p:"Cada sección guía al visitante hacia la venta.", svg:<><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/><path d="M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></> },
               { pos:"tr", h:"Copy que vende", p:"Palabras que convencen a tu cliente antes de llamarte.", svg:<polygon points="5 3 19 12 5 21 5 3"/> },
               { pos:"bl", h:"Imagen de confianza", p:"Tu web transmite profesionalidad desde el primer segundo.", svg:<><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/></> },
-              { pos:"br", h:"Estrategia de ventas", p:"No solo la web — te decimos qué poner y cómo decirlo.", svg:<><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></> },
+              { pos:"br", h:"Estrategia de ventas", p:"No solo la web, también te decimos qué poner y cómo decirlo.", svg:<><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></> },
             ].map(({pos,h,p,svg}, i) => (
               <PilarCard key={i} pos={pos} h={h} p={p} svg={svg} />
             ))}
@@ -2203,7 +2207,7 @@ export default function App() {
         </Reveal>
 
         <Reveal delay={200} style={{textAlign:"center",marginTop:28}}>
-          <p style={{color:"var(--muted)",fontSize:13}}>¿No sabes cuál necesitas? <a href="#contact" style={{color:"#92BBFF",textDecoration:"none"}}>Cuéntanos tu caso — es gratis →</a></p>
+          <p style={{color:"var(--muted)",fontSize:13}}>¿No sabes cuál necesitas? <a href="#contact" style={{color:"#92BBFF",textDecoration:"none"}}>Cuéntanos tu caso, es gratis →</a></p>
         </Reveal>
       </section>
 
@@ -2212,7 +2216,7 @@ export default function App() {
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Calcula tu precio</span></Reveal>
           <Reveal delay={100}><h2 className="display">¿Cuánto cuesta tu web?</h2></Reveal>
-          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin:"0 auto" }}>Marca lo que necesitas y te decimos el precio ahora — sin llamadas, sin esperar presupuesto.</Reveal>
+          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin:"0 auto" }}>Marca lo que necesitas y te decimos el precio ahora, sin llamadas, sin esperar presupuesto.</Reveal>
         </div>
         <Reveal delay={200} className="calc-card">
           <div className="calc-chips">
@@ -2250,12 +2254,13 @@ export default function App() {
           {FAQS.map((f, i) => (
             <Reveal key={i} delay={i * 50} className={`q ${open === i ? "open" : ""}`}>
               <button className="q__head" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
-                {f.q}<span className="q__ic">＋</span>
+                {f.q}<span className="q__ic">{open === i ? "−" : "+"}</span>
               </button>
-              <div className="q__body" style={{ maxHeight: open === i ? 200 : 0 }}><p>{f.a}</p></div>
+              {open === i && <div className="q__body"><p>{f.a}</p></div>}
             </Reveal>
           ))}
         </div>
+        <p className="faq__cta">¿Tienes otra pregunta? <a href="#contact">Hablemos de tu proyecto</a></p>
       </section>
 
       {/* CONTACT CTA */}
@@ -2276,7 +2281,7 @@ export default function App() {
         <div className="wrap footer__grid">
           <div style={{ maxWidth: 280 }}>
             <div className="nav__brand" style={{ marginBottom: 12 }}>León Webs</div>
-            <p className="hide-m" style={{ color: "var(--muted)", fontSize: 14, lineHeight: 1.6 }}>Escalamos negocios activos en León. Barbería, clínica, asesor, hotel — si ya vendes offline, te ayudamos a vender 3× más online.</p>
+            <p className="hide-m" style={{ color: "var(--muted)", fontSize: 14, lineHeight: 1.6 }}>Escalamos negocios activos en León. Barbería, clínica, asesor, hotel; si ya vendes offline, te ayudamos a vender tres veces más online.</p>
           </div>
           <div className="foot-cols">
             <div>
