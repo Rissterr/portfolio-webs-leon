@@ -372,7 +372,7 @@ Error generating stack: `+e.message+`
 .hero__shot:nth-child(odd){ background:linear-gradient(135deg,#1a1b4b,#2d1f6e); }
 .hero__shot:nth-child(even){ background:linear-gradient(135deg,#0d2b45,#1a4a7c); }
 .hero__shot b{ font-size:10px; color:#fff; font-weight:600; line-height:1.2; position:relative; z-index:1; }
-.hero__shot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero__shot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
 
 /* social proof row */
 .hero__trust{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:18px; }
@@ -1011,7 +1011,7 @@ Error generating stack: `+e.message+`
   -webkit-mask-composite:xor; mask-composite:exclude; opacity:0.25; transition:opacity .5s; }
 .case:hover::before{ opacity:1; }
 .case__img{ position:absolute; inset:0; z-index:1; transition:transform .6s cubic-bezier(.16,1,.3,1);
-  width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  width:100%; height:100%; object-fit:contain; object-position:center; display:block; }
 .case:hover .case__img{ transform:scale(1.06); }
 /* case bottom overlay with name */
 .case__meta{ position:absolute; left:0; right:0; bottom:0; padding:20px; z-index:5;
