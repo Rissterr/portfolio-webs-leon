@@ -268,7 +268,7 @@ Error generating stack: `+e.message+`
 .about__content .shead h2{ margin-bottom:0; font-size:clamp(22px,2.8vw,32px); line-height:1.15; }
 .about__content .lead{ text-align:center; max-width:100%; font-size:15.5px; margin-bottom:20px !important; }
 /* ---- about cards ---- */
-.about__cards{ display:flex; flex-direction:column; align-items:center; gap:10px; max-width:100%; margin:0; text-align:left; flex:1; }
+.about__cards{ display:flex; flex-direction:column; align-items:stretch; align-self:stretch; gap:10px; max-width:100%; margin:0; text-align:left; flex:1; }
 .about__card{ display:flex; align-items:flex-start; gap:14px; padding:14px 18px;
   background:rgba(255,255,255,.03);
   border:1px solid rgba(146,187,255,.13); border-left:3px solid rgba(146,187,255,.5);
