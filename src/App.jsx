@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
+// respeta el subpath del hosting (ej. GitHub Pages en /portfolio-webs-leon/)
+const BASE = import.meta.env.BASE_URL;
+const homeHref = (hash) => `${BASE}${hash}`;
+
 /* ============================================================
    PORTFOLIO — recreación fiel de iqtidartara.framer.website
    Tokens extraídos en vivo. Movimiento nativo (IntersectionObserver
@@ -2442,9 +2446,9 @@ function PlanShell({ eyebrow, children }) {
         <div className="nav__inner">
           <div className="nav__brand"><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>León Webs</Link></div>
           <div className="nav__links">
-            <a href="/#work">Trabajos</a><a href="/#precios">Servicios</a><a href="/#about">Nosotros</a><a href="/#faq">FAQ</a>
+            <a href={homeHref("#work")}>Trabajos</a><a href={homeHref("#precios")}>Servicios</a><a href={homeHref("#about")}>Nosotros</a><a href={homeHref("#faq")}>FAQ</a>
           </div>
-          <div className="nav__cta"><Btn href="/#contact">Ver cómo escalamos</Btn></div>
+          <div className="nav__cta"><Btn href={homeHref("#contact")}>Ver cómo escalamos</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú"><span/><span/><span/></button>
         </div>
       </nav>
@@ -2452,9 +2456,9 @@ function PlanShell({ eyebrow, children }) {
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)}>✕</button>
           <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
-          <a href="/#precios" onClick={() => setMenuOpen(false)}>Servicios</a>
-          <a href="/#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
-          <div style={{marginTop:24, width:"80%"}}><Btn glossy href="/#contact" onClick={() => setMenuOpen(false)}>Hablamos gratis</Btn></div>
+          <a href={homeHref("#precios")} onClick={() => setMenuOpen(false)}>Servicios</a>
+          <a href={homeHref("#faq")} onClick={() => setMenuOpen(false)}>FAQ</a>
+          <div style={{marginTop:24, width:"80%"}}><Btn glossy href={homeHref("#contact")} onClick={() => setMenuOpen(false)}>Hablamos gratis</Btn></div>
         </div>
       )}
 
@@ -2468,7 +2472,7 @@ function PlanShell({ eyebrow, children }) {
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href="/#work">Trabajos</a><a href="/#precios">Servicios</a><a href="/#about">Nosotros</a><a href="/#faq">FAQ</a>
+              <a href={homeHref("#work")}>Trabajos</a><a href={homeHref("#precios")}>Servicios</a><a href={homeHref("#about")}>Nosotros</a><a href={homeHref("#faq")}>FAQ</a>
             </div>
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
@@ -2503,7 +2507,7 @@ function PlanArranque() {
             <div className="plan-price-pill__meta"><span>✓ Pago único</span><span>Sin suscripciones</span></div>
           </PlanCard>
           <div className="plan-cta-row">
-            <Btn glossy href="/#contact">Contratar ahora →</Btn>
+            <Btn glossy href={homeHref("#contact")}>Contratar ahora →</Btn>
             <a className="plan-btn-ghost" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
               <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
               Consultar por WhatsApp
@@ -2564,7 +2568,7 @@ function PlanCrecimiento() {
             </div>
           </PlanCard>
         </div>
-        <Btn glossy href="/#contact">Empezar proyecto ahora</Btn>
+        <Btn glossy href={homeHref("#contact")}>Empezar proyecto ahora</Btn>
       </section>
 
       <section>
@@ -2628,7 +2632,7 @@ function PorHoras() {
           <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
           <h3>¿Necesitas un cambio rápido?</h3>
           <p>Cuéntanos qué necesitas y nos ponemos manos a la obra.</p>
-          <a href="/#contact" className="plan-highlight-cta">Solicitar Presupuesto →</a>
+          <a href={homeHref("#contact")} className="plan-highlight-cta">Solicitar Presupuesto →</a>
         </div>
         <PlanCard className="plan-span-4">
           <PlanFeatureIcon><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></PlanFeatureIcon>
@@ -2662,7 +2666,7 @@ function TiendaOnline() {
             <span style={{ display: "block", fontFamily: "var(--display)", fontSize: 26, fontWeight: 800, color: "#fff" }}>Desde 1.200€</span>
             <span style={{ fontSize: 12, color: "var(--muted)" }}>El precio final se ajusta al volumen de tu catálogo</span>
           </div>
-          <Btn glossy href="/#contact">Configurar mi tienda →</Btn>
+          <Btn glossy href={homeHref("#contact")}>Configurar mi tienda →</Btn>
         </div>
       </section>
 
@@ -2715,7 +2719,7 @@ function TiendaOnline() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/plan-arranque" element={<PlanArranque />} />
