@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 /* ============================================================
    PORTFOLIO — recreación fiel de iqtidartara.framer.website
@@ -296,6 +297,9 @@ const CSS = `
 .price-card--pro{ border-color:rgba(146,187,255,.45); background:rgba(66,123,216,.08);
   box-shadow:0 0 0 1px rgba(146,187,255,.15), 0 20px 60px -20px rgba(66,123,216,.45); }
 .price-more{ font-size:11.5px; color:#92BBFF; margin-top:8px; font-weight:600; }
+.price-detail-link{ display:block; text-align:center; font-size:12.5px; color:#92BBFF; text-decoration:none;
+  margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08); font-weight:600; transition:color .2s; }
+.price-detail-link:hover{ color:#C5EBFF; }
 .ads-card{ display:flex; align-items:center; justify-content:center; gap:24px; margin-top:24px; padding:28px 32px;
   background:rgba(255,255,255,.03); border:1px solid rgba(146,187,255,.18); border-radius:20px; }
 .ads-card__icon{ width:52px; height:52px; border-radius:14px; flex-shrink:0;
@@ -1350,6 +1354,100 @@ const CSS = `
   .hero h1{ font-size:24px; }
   .hq__grid{ grid-template-columns:1fr; }
 }
+
+/* ---- páginas de detalle de plan ---- */
+.plan-page .nav{ position:sticky; top:0; }
+.plan-main{ position:relative; z-index:2; padding:56px 24px 100px; display:flex; flex-direction:column; gap:90px; }
+.plan-hero{ display:flex; gap:56px; align-items:center; flex-wrap:wrap; }
+.plan-hero__text{ flex:1; min-width:320px; display:flex; flex-direction:column; gap:22px; }
+.plan-hero__text .eyebrow{ width:fit-content; }
+.plan-hero__text h1{ font-size:clamp(34px,5vw,52px); margin:0; }
+.plan-hero__badge{ display:inline-flex; align-items:center; gap:10px; background:rgba(0,0,0,.4); backdrop-filter:blur(20px);
+  padding:12px 20px; border-radius:999px; border:1px solid rgba(255,255,255,.1); color:#fff; font-size:14px; font-weight:600;
+  flex:1; min-width:280px; justify-content:center; }
+
+.plan-card{ position:relative; overflow:hidden; border-radius:20px; border:1px solid rgba(255,255,255,.09);
+  background:linear-gradient(to bottom, rgba(15,16,37,.55), rgba(19,15,35,.55));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 24px 50px -30px rgba(0,0,0,.8);
+  transition:background .5s ease,border-color .5s ease,box-shadow .5s ease,transform .4s cubic-bezier(.16,1,.3,1); padding:32px; }
+.plan-card:hover{ background:linear-gradient(to bottom, rgba(66,123,216,.16), rgba(28,48,96,.16));
+  border-color:rgba(146,187,255,.4); box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 30px 60px -28px rgba(40,80,170,.5);
+  transform:translateY(-4px); }
+.plan-card__glow{ position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(350px circle at var(--mx,50%) var(--my,50%), rgba(142,193,255,.14), transparent 70%);
+  opacity:var(--hovered,0); transition:opacity .5s ease; }
+.plan-card__border{ position:absolute; inset:0; border-radius:inherit; padding:1px; pointer-events:none; z-index:1;
+  background:linear-gradient(120deg,transparent 25%,rgba(146,187,255,.55) 50%,transparent 75%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:var(--hovered,.25); transition:opacity .5s; }
+.plan-card__inner{ position:relative; z-index:2; display:block; }
+.plan-card h3{ font-family:var(--display); font-size:21px; font-weight:600; color:#fff; margin:0 0 10px; }
+.plan-card h4{ font-family:var(--display); font-size:17px; font-weight:600; color:#E7ECFB; margin:0 0 8px; }
+.plan-card p{ color:var(--muted); line-height:1.6; margin:0; font-size:15px; }
+
+.plan-feat-icon{ width:48px; height:48px; border-radius:13px; background:rgba(66,123,216,.14); border:1px solid rgba(146,187,255,.25);
+  display:flex; align-items:center; justify-content:center; color:#92BBFF; margin-bottom:18px; flex-shrink:0; }
+.plan-feat-icon svg{ width:20px; height:20px; }
+
+.plan-price-pill .plan-card__inner{ display:flex; align-items:flex-end; gap:18px; }
+.plan-price-pill{ padding:22px; }
+.plan-price-pill__num{ font-family:var(--display); font-size:38px; font-weight:800; color:#fff; line-height:1; }
+.plan-price-pill__num span{ font-size:20px; }
+.plan-price-pill__meta{ display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--muted); }
+.plan-price-pill__meta span:first-child{ color:#92BBFF; font-weight:600; }
+.plan-price-pill--pro{ background:linear-gradient(to bottom, rgba(27,38,66,.6), rgba(28,48,96,.6)); }
+.plan-price-pill--pro .plan-price-pill__num{ font-size:44px; }
+
+.plan-cta-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+.plan-btn-ghost{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:#E7ECFB; font-weight:500;
+  padding:16px 30px; border-radius:100px; background:rgba(255,255,255,.05); border:.5px solid rgba(255,255,255,.08);
+  transition:transform .2s,background .2s; }
+.plan-btn-ghost:hover{ transform:scale(1.02); background:rgba(255,255,255,.08); }
+.plan-btn-ghost .plan-feat-icon{ width:24px; height:24px; margin:0; background:none; border:none; }
+.plan-btn-ghost .plan-feat-icon svg{ width:16px; height:16px; }
+
+.plan-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:20px; margin-top:16px; }
+.plan-span-4{ grid-column:span 4; } .plan-span-5{ grid-column:span 5; } .plan-span-6{ grid-column:span 6; }
+.plan-span-7{ grid-column:span 7; } .plan-span-8{ grid-column:span 8; } .plan-span-12{ grid-column:span 12; }
+
+.plan-included-box{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:20px; padding:36px; }
+.plan-included-box h4{ font-size:13px; font-weight:600; color:var(--muted); margin:0 0 24px; text-align:center;
+  font-family:var(--display); letter-spacing:.06em; text-transform:uppercase; }
+.plan-included-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.plan-included-grid div{ display:flex; align-items:center; gap:10px; color:var(--muted); font-size:14px; font-weight:500; }
+.plan-included-grid span{ width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+  display:flex; align-items:center; justify-content:center; color:#92BBFF; font-weight:700; flex-shrink:0; }
+
+.plan-highlight-card{ grid-column:span 5; position:relative; overflow:hidden;
+  background:linear-gradient(135deg,rgba(66,123,216,.85),rgba(40,90,180,.85)); border:1px solid rgba(146,187,255,.3);
+  border-radius:20px; padding:36px; display:flex; flex-direction:column; align-items:center; text-align:center; justify-content:center;
+  box-shadow:0 0 60px -25px rgba(66,123,216,.5); }
+.plan-highlight-card .plan-feat-icon{ background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.2); color:#fff; width:60px; height:60px; }
+.plan-highlight-card h3{ color:#fff; }
+.plan-highlight-card p{ color:rgba(255,255,255,.9); margin-bottom:20px; }
+.plan-highlight-cta{ text-decoration:none; width:100%; color:#050505; font-weight:600; background:linear-gradient(180deg,#fff,#F5F9FF);
+  padding:14px; border-radius:100px; display:block; transition:transform .2s; }
+.plan-highlight-cta:hover{ transform:scale(1.02); }
+
+.plan-pill-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+.plan-pill-row span{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.15); padding:6px 12px; border-radius:10px; font-size:12px; }
+
+.plan-price-table .plan-card__inner{ display:block; }
+.plan-price-table__row{ display:flex; justify-content:space-between; padding-bottom:18px; border-bottom:1px solid rgba(255,255,255,.1); margin-bottom:18px; }
+.plan-price-table__row div{ display:flex; flex-direction:column; gap:5px; }
+.plan-price-table__row span{ color:var(--muted); font-size:11px; text-transform:uppercase; font-weight:600; }
+.plan-price-table__row b{ color:#E7ECFB; font-size:16px; }
+.plan-price-table__amt{ font-size:24px; color:#fff; }
+
+@media(max-width:768px){
+  .plan-main{ padding:40px 16px 70px; gap:56px; }
+  .plan-hero{ gap:28px; }
+  .plan-grid{ gap:12px; }
+  .plan-span-4,.plan-span-5,.plan-span-6,.plan-span-7,.plan-span-8,.plan-span-12{ grid-column:span 12; }
+  .plan-highlight-card{ grid-column:span 12; }
+  .plan-included-grid{ grid-template-columns:1fr 1fr; }
+  .plan-card{ padding:24px; }
+}
 `;
 
 /* ---------- helpers ---------- */
@@ -1647,7 +1745,7 @@ function PilarCard({ pos, h, p, svg }) {
   );
 }
 
-function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, pro, delay }) {
+function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, pro, delay, detailHref }) {
   const [open, setOpen] = useState(false);
   const visibleFeats = open ? feats : feats.slice(0, 3);
   return (
@@ -1664,12 +1762,15 @@ function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, 
         <div key={i} className="price-feat"><span className="ic ic--v" style={{flexShrink:0}}>✓</span>{f}</div>
       ))}
       {feats.length > 3 && <div className="price-more">{open ? "Ver menos ▲" : `+${feats.length-3} más, toca para ver ▼`}</div>}
+      {detailHref && (
+        <Link to={detailHref} className="price-detail-link" onClick={e=>e.stopPropagation()}>Ver detalle completo →</Link>
+      )}
       <a href="#contact" className={`price-cta ${pro ? "price-cta--pro" : ""}`} onClick={e=>e.stopPropagation()}>{cta}</a>
     </Reveal>
   );
 }
 
-function Btn({ glossy = false, children, href = "#", className = "", ...rest }) {
+function Btn({ glossy = false, children, href = "#", to = null, className = "", ...rest }) {
   const [coords, setCoords] = useState({ x: 50, y: 50 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -1680,9 +1781,12 @@ function Btn({ glossy = false, children, href = "#", className = "", ...rest }) 
     setCoords({ x, y });
   };
 
+  const Tag = to ? Link : "a";
+  const navProp = to ? { to } : { href };
+
   return (
-    <a
-      href={href}
+    <Tag
+      {...navProp}
       className={`btn ${glossy ? "btn--glossy" : ""} ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -1699,7 +1803,7 @@ function Btn({ glossy = false, children, href = "#", className = "", ...rest }) 
       {glossy && <span className="btn__bglow" />}
       <span className="btn__core" />
       <span className="btn__label">{children}</span>
-    </a>
+    </Tag>
   );
 }
 
@@ -1745,7 +1849,7 @@ const FAQS = [
 ];
 
 /* ---------- page ---------- */
-export default function App() {
+function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(1);
@@ -2164,25 +2268,25 @@ export default function App() {
               label: "Plan Arranque", badge: null,
               launch: "Oferta de lanzamiento", old: "650€", num: "450", sub: "Pago único · lista en 1 semana",
               feats: ["Web con plantilla profesional adaptada a tu negocio","Textos, fotos y colores de tu marca","Botón directo a WhatsApp","Optimizada para móvil","Soporte 15 días"],
-              cta: "Quiero arrancar", pro:false
+              cta: "Quiero arrancar", pro:false, detailHref: "/plan-arranque"
             },
             {
               label: "Plan Crecimiento", badge: "Más elegido",
               launch: "Oferta de lanzamiento", old: "1.100€", num: "750", sub: "Pago único · lista en 2 semanas",
               feats: ["Todo lo de Plan Arranque","Sección de reservas o formulario avanzado","Testimonios y galería de trabajos","Google My Business optimizado","Seguimiento 1 mes + ajustes","SEO básico local"],
-              cta: "Quiero crecer", pro:true
+              cta: "Quiero crecer", pro:true, detailHref: "/plan-crecimiento"
             },
             {
               label: "Tienda Online", badge: null,
               launch: "Oferta de lanzamiento", old: "1.800€", num: "1.200", sub: "Pago único · según catálogo",
               feats: ["Catálogo de productos con fotos","Carrito y pago online (Stripe/Bizum)","Gestión de pedidos simple","Panel para añadir productos tú mismo","Soporte 30 días"],
-              cta: "Quiero mi tienda", pro:false
+              cta: "Quiero mi tienda", pro:false, detailHref: "/tienda-online"
             },
             {
               label: "Por Horas", badge: null,
               launch: null, old: null, num: "35", suffix:"€/hora", sub: "Mínimo 2 horas · sin permanencia",
               feats: ["Cambios y mantenimiento en tu web actual","Ajustes de diseño o contenido puntuales","Nuevas secciones o funciones sueltas","Sin compromiso mensual","Facturamos solo lo trabajado"],
-              cta: "Pedir presupuesto", pro:false
+              cta: "Pedir presupuesto", pro:false, detailHref: "/por-horas"
             },
           ].map((p, i) => (
             <ServiceCard key={i} {...p} delay={i*80} />
@@ -2298,5 +2402,327 @@ export default function App() {
         <div className="wrap" style={{ color: "var(--muted)", fontSize: 13, marginTop: 40 }}>© {new Date().getFullYear()} León Webs. Todos los derechos reservados.</div>
       </footer>
     </div>
+  );
+}
+
+/* ---------- páginas de detalle de plan ---------- */
+function PlanCard({ children, style = {}, className = "", as: Tag = "div", ...rest }) {
+  const ref = useRef(null);
+  const [vars, setVars] = useState({ "--mx": "50%", "--my": "50%", "--hovered": 0 });
+  const handleMove = (e) => {
+    const rect = ref.current.getBoundingClientRect();
+    setVars({
+      "--mx": `${((e.clientX - rect.left) / rect.width) * 100}%`,
+      "--my": `${((e.clientY - rect.top) / rect.height) * 100}%`,
+      "--hovered": 1,
+    });
+  };
+  const handleLeave = () => setVars(v => ({ ...v, "--hovered": 0 }));
+  return (
+    <Tag ref={ref} className={`plan-card ${className}`} style={{ ...style, ...vars }}
+      onMouseMove={handleMove} onMouseLeave={handleLeave} {...rest}>
+      <span className="plan-card__glow" />
+      <span className="plan-card__border" />
+      <span className="plan-card__inner">{children}</span>
+    </Tag>
+  );
+}
+
+function PlanShell({ eyebrow, children }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  return (
+    <div className="site plan-page">
+      <Starfield />
+      <div className="site-ambient" />
+      <div className="grid-overlay" />
+      <div className="grid-overlay__spot" />
+      <style>{CSS}</style>
+
+      <nav className="nav scrolled">
+        <div className="nav__inner">
+          <div className="nav__brand"><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>León Webs</Link></div>
+          <div className="nav__links">
+            <a href="/#work">Trabajos</a><a href="/#precios">Servicios</a><a href="/#about">Nosotros</a><a href="/#faq">FAQ</a>
+          </div>
+          <div className="nav__cta"><Btn href="/#contact">Ver cómo escalamos</Btn></div>
+          <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú"><span/><span/><span/></button>
+        </div>
+      </nav>
+      {menuOpen && (
+        <div className="nav__mobile-menu">
+          <button className="close-btn" onClick={() => setMenuOpen(false)}>✕</button>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
+          <a href="/#precios" onClick={() => setMenuOpen(false)}>Servicios</a>
+          <a href="/#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
+          <div style={{marginTop:24, width:"80%"}}><Btn glossy href="/#contact" onClick={() => setMenuOpen(false)}>Hablamos gratis</Btn></div>
+        </div>
+      )}
+
+      <main className="plan-main wrap">{children}</main>
+
+      <footer className="footer">
+        <div className="wrap footer__grid">
+          <div style={{ maxWidth: 280 }}>
+            <div className="nav__brand" style={{ marginBottom: 12 }}>León Webs</div>
+          </div>
+          <div className="foot-cols">
+            <div>
+              <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
+              <a href="/#work">Trabajos</a><a href="/#precios">Servicios</a><a href="/#about">Nosotros</a><a href="/#faq">FAQ</a>
+            </div>
+            <div>
+              <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
+              <a href="mailto:hola@leonwebs.es">hola@leonwebs.es</a><a href="#">Instagram</a><a href="#">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+        <div className="wrap" style={{ color: "var(--muted)", fontSize: 13, marginTop: 40 }}>© {new Date().getFullYear()} León Webs. Todos los derechos reservados.</div>
+      </footer>
+    </div>
+  );
+}
+
+function PlanFeatureIcon({ children }) {
+  return (
+    <span className="plan-feat-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{children}</svg>
+    </span>
+  );
+}
+
+function PlanArranque() {
+  return (
+    <PlanShell>
+      <section className="plan-hero">
+        <div className="plan-hero__text">
+          <div className="eyebrow"><span className="dot" /><span>Ideal para empezar</span></div>
+          <h1 className="display h-grad">Plan Arranque</h1>
+          <p className="lead">Lanza tu presencia digital en una semana. Una solución completa, profesional y optimizada para convertir visitantes en clientes, sin complicaciones técnicas.</p>
+          <PlanCard className="plan-price-pill" style={{ width: "fit-content" }}>
+            <div className="plan-price-pill__num">450<span>€</span></div>
+            <div className="plan-price-pill__meta"><span>✓ Pago único</span><span>Sin suscripciones</span></div>
+          </PlanCard>
+          <div className="plan-cta-row">
+            <Btn glossy href="/#contact">Contratar ahora →</Btn>
+            <a className="plan-btn-ghost" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
+              <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+        <div className="plan-hero__badge">
+          <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
+          <span>Entrega en 1 semana</span>
+        </div>
+      </section>
+
+      <section>
+        <div className="shead"><h2 className="display">¿Qué incluye el Plan Arranque?</h2><p className="lead" style={{margin:"0 auto"}}>Todo lo necesario para una presencia digital impecable y orientada a resultados.</p></div>
+        <div className="plan-grid">
+          <PlanCard className="plan-span-8">
+            <PlanFeatureIcon><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></PlanFeatureIcon>
+            <h3>Plantilla Profesional Adaptada</h3>
+            <p>Seleccionamos y adaptamos una estructura de alta conversión que se alinea con la identidad y objetivos de tu negocio. Diseño responsive garantizado.</p>
+          </PlanCard>
+          <PlanCard className="plan-span-4">
+            <PlanFeatureIcon><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></PlanFeatureIcon>
+            <h3>Colores de Marca</h3>
+            <p>Implementación exacta de tu paleta corporativa para una identidad visual cohesiva.</p>
+          </PlanCard>
+          <PlanCard className="plan-span-5">
+            <PlanFeatureIcon><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></PlanFeatureIcon>
+            <h3>Textos y Fotos</h3>
+            <p>Integración de tu contenido optimizado para web, junto con imágenes de alta calidad.</p>
+          </PlanCard>
+          <PlanCard className="plan-span-7">
+            <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
+            <h3>Botón Directo a WhatsApp</h3>
+            <p>Facilita el contacto inmediato. Un botón flotante estratégico que conecta a tus visitantes con tu atención al cliente.</p>
+          </PlanCard>
+        </div>
+      </section>
+    </PlanShell>
+  );
+}
+
+function PlanCrecimiento() {
+  return (
+    <PlanShell>
+      <section style={{ textAlign: "center" }}>
+        <div className="eyebrow" style={{ margin: "0 auto 22px" }}><span className="dot" /><span>Plan Más Elegido</span></div>
+        <h1 className="display h-grad" style={{ fontSize: "clamp(36px,5vw,60px)" }}>Plan Crecimiento</h1>
+        <p className="lead" style={{ margin: "0 auto 40px" }}>La solución definitiva para negocios que buscan escalar. Incluye funcionalidades avanzadas de reserva, captura de leads de alta conversión y un diseño que transmite autoridad inmediata.</p>
+        <div className="plan-cta-row" style={{ justifyContent: "center", marginBottom: 40 }}>
+          <PlanCard className="plan-price-pill plan-price-pill--pro">
+            <div className="plan-price-pill__num">750<span>€</span></div>
+            <div className="plan-price-pill__meta"><span>Pago único.</span><span>Sin cuotas ocultas.</span></div>
+          </PlanCard>
+          <PlanCard className="plan-price-pill plan-price-pill--pro">
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <PlanFeatureIcon><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></PlanFeatureIcon>
+              <div style={{ textAlign: "left" }}><span style={{ display: "block", color: "var(--muted)", fontSize: 12 }}>Entrega en</span><b style={{ color: "#C5EBFF", fontSize: 18 }}>2 semanas</b></div>
+            </div>
+          </PlanCard>
+        </div>
+        <Btn glossy href="/#contact">Empezar proyecto ahora</Btn>
+      </section>
+
+      <section>
+        <div className="shead"><h2 className="display">Todo lo del Plan Arranque, y mucho más.</h2><p className="lead" style={{margin:"0 auto"}}>Diseñado específicamente para automatizar procesos y generar confianza inmediata en tus visitantes.</p></div>
+        <div className="plan-grid">
+          <PlanCard className="plan-span-12">
+            <PlanFeatureIcon><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></PlanFeatureIcon>
+            <h3>Formularios Avanzados y Reservas</h3>
+            <p>Captura leads cualificados con formularios multi-paso o integra un sistema de reservas directo en tu web. Sincronización con tu calendario.</p>
+          </PlanCard>
+          <PlanCard className="plan-span-6">
+            <PlanFeatureIcon><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></PlanFeatureIcon>
+            <h3>Galería de Trabajos</h3>
+            <p>Muestra tu portafolio con un diseño premium tipo grid asimétrico.</p>
+          </PlanCard>
+          <PlanCard className="plan-span-6">
+            <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
+            <h3>Sección Testimonios</h3>
+            <p>Aumenta la conversión con pruebas sociales y tarjetas de reseñas.</p>
+          </PlanCard>
+          <div className="plan-span-12 plan-included-box">
+            <h4>También incluye la base del Plan Arranque</h4>
+            <div className="plan-included-grid">
+              {["Diseño Responsive","SEO Básico","Dominio y Hosting (1 año)","Integración WhatsApp"].map((t,i)=>(
+                <div key={i}><span>✓</span>{t}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </PlanShell>
+  );
+}
+
+function PorHoras() {
+  return (
+    <PlanShell>
+      <section className="shead">
+        <div className="eyebrow" style={{ margin: "0 auto 22px" }}><span className="dot" /><span>Agilidad y Precisión</span></div>
+        <h1 className="display" style={{ fontSize: "clamp(30px,4.5vw,46px)" }}>Servicio <span className="h-grad">Por Horas</span></h1>
+        <p className="lead" style={{ margin: "0 auto" }}>Flexibilidad total para proyectos dinámicos. Sin compromisos a largo plazo, solo resultados rápidos y eficientes.</p>
+      </section>
+
+      <div className="plan-grid">
+        <PlanCard className="plan-span-7">
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
+            <PlanFeatureIcon><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></PlanFeatureIcon>
+            <h2 style={{ margin: 0 }}>Tarifa Flexible</h2>
+          </div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 26 }}>
+            <span style={{ fontFamily: "var(--display)", fontSize: 48, fontWeight: 800, color: "#fff" }}>35€</span>
+            <span style={{ color: "var(--muted)" }}>/ hora</span>
+          </div>
+          <div className="plan-included-grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+            {["Mínimo 2 horas","Sin permanencia","Estimaciones previas","Entrega acelerada"].map((t,i)=>(
+              <div key={i} style={{ background: "rgba(255,255,255,.03)", border: "1px solid rgba(255,255,255,.05)", borderRadius: 10, padding: 12 }}><span style={{color:"#92BBFF",fontWeight:700,marginRight:8}}>✓</span>{t}</div>
+            ))}
+          </div>
+        </PlanCard>
+        <div className="plan-span-5 plan-highlight-card">
+          <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
+          <h3>¿Necesitas un cambio rápido?</h3>
+          <p>Cuéntanos qué necesitas y nos ponemos manos a la obra.</p>
+          <a href="/#contact" className="plan-highlight-cta">Solicitar Presupuesto →</a>
+        </div>
+        <PlanCard className="plan-span-4">
+          <PlanFeatureIcon><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></PlanFeatureIcon>
+          <h4>Mantenimiento</h4>
+          <p>Actualizaciones de CMS, resolución de bugs, optimización de velocidad y ajustes técnicos.</p>
+        </PlanCard>
+        <PlanCard className="plan-span-4">
+          <PlanFeatureIcon><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></PlanFeatureIcon>
+          <h4>Diseño y Contenido</h4>
+          <p>Modificaciones visuales puntuales, copy, rediseño de componentes y nuevos assets.</p>
+        </PlanCard>
+        <PlanCard className="plan-span-4">
+          <PlanFeatureIcon><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></PlanFeatureIcon>
+          <h4>Nuevas Funciones</h4>
+          <p>Nuevas secciones, integración de APIs ligeras, formularios avanzados o landing pages.</p>
+        </PlanCard>
+      </div>
+    </PlanShell>
+  );
+}
+
+function TiendaOnline() {
+  return (
+    <PlanShell>
+      <section className="shead" style={{ maxWidth: 780 }}>
+        <div className="eyebrow" style={{ margin: "0 auto 20px" }}><span className="dot" /><span>Plan E-commerce</span></div>
+        <h1 className="display h-grad" style={{ fontSize: "clamp(28px,4vw,42px)" }}>Expande tus fronteras con una Tienda Online de alto rendimiento</h1>
+        <p className="lead" style={{ margin: "0 auto 24px" }}>Diseñada para escalar. Catálogos visuales impactantes, pagos seguros e integrados, y una gestión de pedidos que simplifica tu día a día.</p>
+        <div className="plan-cta-row" style={{ justifyContent: "center" }}>
+          <div style={{ textAlign: "right" }}>
+            <span style={{ display: "block", fontFamily: "var(--display)", fontSize: 26, fontWeight: 800, color: "#fff" }}>Desde 1.200€</span>
+            <span style={{ fontSize: 12, color: "var(--muted)" }}>El precio final se ajusta al volumen de tu catálogo</span>
+          </div>
+          <Btn glossy href="/#contact">Configurar mi tienda →</Btn>
+        </div>
+      </section>
+
+      <section>
+        <div className="shead" style={{ textAlign: "left", margin: "0 0 32px" }}><h2 className="display" style={{fontSize:28}}>Arquitectura de Conversión</h2><p className="lead">Funcionalidades core diseñadas para maximizar ventas y minimizar fricción.</p></div>
+        <div className="plan-grid">
+          <PlanCard className="plan-span-8">
+            <PlanFeatureIcon><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></PlanFeatureIcon>
+            <h3>Catálogo Visual Dinámico</h3>
+            <p>Galerías de productos optimizadas para velocidad de carga y visualización en alta resolución.</p>
+          </PlanCard>
+          <PlanCard className="plan-span-4">
+            <PlanFeatureIcon><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></PlanFeatureIcon>
+            <h3>Pagos Sin Fricción</h3>
+            <p>Integración nativa con las pasarelas más fiables.</p>
+            <div className="plan-pill-row"><span>Stripe</span><span>Bizum</span><span>Transf.</span></div>
+          </PlanCard>
+          <PlanCard className="plan-span-4">
+            <PlanFeatureIcon><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></PlanFeatureIcon>
+            <h3>Gestión Centralizada</h3>
+            <p>Panel de control para administrar stock, envíos y comunicación con el cliente.</p>
+          </PlanCard>
+          <PlanCard className="plan-span-8">
+            <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
+            <h3>Experiencia de Carrito Fluida</h3>
+            <p>Evitamos el abandono de carritos con un flujo de compra lógico y adaptado a móviles.</p>
+          </PlanCard>
+        </div>
+      </section>
+
+      <section style={{ borderTop: "1px solid rgba(255,255,255,.08)", paddingTop: 56 }}>
+        <div style={{ display: "flex", gap: 48, flexWrap: "wrap", alignItems: "center" }}>
+          <div style={{ flex: 1, minWidth: 300 }}>
+            <h2 className="display" style={{ fontSize: 28, marginBottom: 16 }}>Arquitectura que escala con tu inventario</h2>
+            <p className="lead" style={{ marginBottom: 20 }}>El precio base de 1.200€ incluye una estructura robusta preparada para ventas. La inversión final se adapta a la complejidad y volumen de tu catálogo.</p>
+            {["Carga masiva de productos (CSV/API)","Optimización automática de imágenes","Estructura SEO técnica integrada"].map((t,i)=>(
+              <div key={i} style={{ display: "flex", gap: 10, marginBottom: 10, color: "#E7ECFB", fontWeight: 500 }}><span style={{color:"#92BBFF"}}>✓</span>{t}</div>
+            ))}
+          </div>
+          <PlanCard className="plan-price-table" style={{ flex: 1, minWidth: 300 }}>
+            <div className="plan-price-table__row"><div><span>Base Tecnológica</span><b>Core Tienda Online</b></div><b className="plan-price-table__amt">1.200€</b></div>
+            <div className="plan-price-table__row" style={{opacity:.75}}><div><span>Variable</span><b>Volumen de Catálogo</b></div><span>A presupuestar</span></div>
+            <div className="plan-price-table__row" style={{opacity:.75, borderBottom:"none"}}><div><span>Opcional</span><b>Migración de datos</b></div><span>Consultar</span></div>
+          </PlanCard>
+        </div>
+      </section>
+    </PlanShell>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/plan-arranque" element={<PlanArranque />} />
+        <Route path="/plan-crecimiento" element={<PlanCrecimiento />} />
+        <Route path="/por-horas" element={<PorHoras />} />
+        <Route path="/tienda-online" element={<TiendaOnline />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
