@@ -369,11 +369,12 @@ const CSS = `
 
 /* strip dentro del hero (solo móvil) */
 .hero__strip{ display:none; }
-.hero__shot{ width:210px; height:148px; border-radius:12px; flex:none; overflow:hidden; border:1px solid rgba(255,255,255,.1); background:linear-gradient(135deg,#1b2650,#1c3060); display:flex; align-items:flex-end; padding:10px; position:relative; box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 24px 48px -20px rgba(0,0,0,.7); }
+.hero__shot{ width:230px; height:129px; border-radius:12px; flex:none; overflow:hidden; border:1px solid rgba(255,255,255,.1); background:linear-gradient(135deg,#1b2650,#1c3060); display:flex; align-items:flex-end; padding:10px; position:relative; box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 24px 48px -20px rgba(0,0,0,.7); }
 .hero__shot:nth-child(odd){ background:linear-gradient(135deg,#1a1b4b,#2d1f6e); }
 .hero__shot:nth-child(even){ background:linear-gradient(135deg,#0d2b45,#1a4a7c); }
+.hero__shot::after{ content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(transparent 45%, rgba(5,7,26,.85)); pointer-events:none; }
 .hero__shot b{ font-size:10px; color:#fff; font-weight:600; line-height:1.2; position:relative; z-index:1; }
-.hero__shot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.hero__shot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
 
 /* social proof row */
 .hero__trust{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:18px; }
@@ -1705,20 +1706,20 @@ function Btn({ glossy = false, children, href = "#", className = "", ...rest }) 
 /* ---------- data ---------- */
 const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
 const PROJECTS = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.png"   },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png"  },
-  { n: "Lex León",         img: "assets/proj-lexleon.png"      },
-  { n: "Nova Estética",    img: "assets/proj-novaest.png"      },
-  { n: "León Properties",  img: "assets/proj-properties.png"  },
-  { n: "León Suites",      img: "assets/proj-hotel.png"        },
+  { n: "PowerPulse",       img: "assets/proj-hotel.png"        },
+  { n: "Actualizar IA",    img: "assets/proj-properties.png"   },
+  { n: "Lex León",         img: "assets/proj-novaest.png"      },
+  { n: "Nova Estética",    img: "assets/proj-lexleon.png"      },
+  { n: "León Properties",  img: "assets/proj-actualizaria.png" },
+  { n: "León Suites",      img: "assets/proj-powerpulse.png"   },
 ];
 const CASES = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.png",    url: "#", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png",  url: "#", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
-  { n: "Lex León",         img: "assets/proj-lexleon.png",       url: "#", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Nova Estética",    img: "assets/proj-novaest.png",       url: "#", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "León Properties",  img: "assets/proj-properties.png",   url: "#", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "León Suites",      img: "assets/proj-hotel.png",         url: "#", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "PowerPulse",       img: "assets/proj-hotel.png",         url: "#", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Actualizar IA",    img: "assets/proj-properties.png",    url: "#", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { n: "Lex León",         img: "assets/proj-novaest.png",       url: "#", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "Nova Estética",    img: "assets/proj-lexleon.png",       url: "#", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "León Properties",  img: "assets/proj-actualizaria.png",  url: "#", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "León Suites",      img: "assets/proj-powerpulse.png",    url: "#", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
 ];
 const TESTI = [
   { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
