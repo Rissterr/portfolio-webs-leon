@@ -42,6 +42,18 @@ public/assets/      # Imágenes: proyectos, testimonios, avatar, fondos
 
 `App.jsx` es deliberadamente un único archivo grande (100K+). No se ha dividido en componentes/archivos separados — mantener ese patrón salvo que se pida explícitamente refactorizar.
 
+## Rutas / react-router
+
+El proyecto usa `react-router-dom` con `BrowserRouter` (NO `HashRouter` — la web ya usa `#ancla` en todas partes para scroll interno de la home, así que HashRouter chocaría con eso). El `basename` del router es dinámico: `<BrowserRouter basename={import.meta.env.BASE_URL}>`, así funciona igual en la raíz (Surge) que en una subcarpeta (`/portfolio-webs-leon/` en GitHub Pages) sin tocar código.
+
+Rutas actuales:
+- `/` → `HomePage` (la landing principal, todo el contenido original)
+- `/plan-arranque`, `/plan-crecimiento`, `/por-horas`, `/tienda-online` → páginas de detalle de cada plan, enlazadas desde las tarjetas de precio ("Ver detalle completo →"). Reutilizan el mismo sistema visual (fondo con puntos + glow que sigue el cursor, `PlanCard`, `Btn`) que el resto de la web mediante el componente compartido `PlanShell`.
+
+Los enlaces DESDE las páginas de detalle HACIA anclas de la home (`#contact`, `#faq`, etc.) usan `<a href={homeHref("#ancla")}>` (navegación real de navegador, no `<Link>` de react-router) — necesario porque bajo `BrowserRouter` un `<Link to="/#contact">` no hace scroll automático al ancla tras el cambio de ruta. El helper `homeHref()` (definido cerca del top del archivo) añade el `BASE_URL` correcto según el hosting.
+
+**Como el sitio usa `BrowserRouter`, cualquier hosting estático necesita servir `index.html` para rutas no encontradas** (para que recargar `/plan-arranque` directamente no dé 404). Ya está resuelto con un script `postbuild` en `package.json` que copia `dist/index.html` a `dist/200.html` (convención de Surge) y `dist/404.html` (truco estándar de GitHub Pages) automáticamente en cada build.
+
 ## Reglas de diseño y flujo de trabajo establecidas
 
 - **Cliente objetivo**: dueños de pequeños negocios en León sin conocimientos técnicos. El copy debe ser simple, directo, sin jerga, y centrado en resultados de venta (no en "diseño bonito").
