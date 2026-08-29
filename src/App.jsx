@@ -1366,9 +1366,18 @@ const CSS = `
 .plan-hero__text{ flex:1; min-width:320px; display:flex; flex-direction:column; gap:22px; }
 .plan-hero__text .eyebrow{ width:fit-content; }
 .plan-hero__text h1{ font-size:clamp(34px,5vw,52px); margin:0; }
-.plan-hero__badge{ display:inline-flex; align-items:center; gap:10px; background:rgba(0,0,0,.4); backdrop-filter:blur(20px);
-  padding:12px 20px; border-radius:999px; border:1px solid rgba(255,255,255,.1); color:#fff; font-size:14px; font-weight:600;
-  flex:1; min-width:280px; justify-content:center; }
+.plan-hero__shot{ position:relative; flex:1; min-width:320px; border-radius:20px; overflow:hidden;
+  border:1px solid rgba(255,255,255,.09); aspect-ratio:4/3;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 24px 50px -30px rgba(0,0,0,.8);
+  animation:float 6s ease-in-out infinite; }
+.plan-hero__shot img{ width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
+.plan-hero__shot::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(5,7,26,.85), transparent 55%); pointer-events:none; }
+.plan-hero__shot-badge{ position:absolute; left:24px; bottom:24px; z-index:2; display:inline-flex; align-items:center; gap:10px;
+  background:rgba(0,0,0,.5); backdrop-filter:blur(20px); padding:12px 20px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.1); color:#fff; font-size:14px; font-weight:600; }
+.plan-hero__shot-badge .plan-feat-icon{ width:28px; height:28px; margin:0; background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.2); }
+.plan-hero__shot-badge .plan-feat-icon svg{ width:14px; height:14px; }
+@keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
 
 .plan-card{ position:relative; overflow:hidden; border-radius:20px; border:1px solid rgba(255,255,255,.09);
   background:linear-gradient(to bottom, rgba(15,16,37,.55), rgba(19,15,35,.55));
@@ -2531,9 +2540,12 @@ function PlanArranque() {
             </a>
           </div>
         </div>
-        <div className="plan-hero__badge">
-          <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
-          <span>Entrega en 1 semana</span>
+        <div className="plan-hero__shot">
+          <img src="assets/plan-arranque-ejemplo.png" alt="Ejemplo de web entregada — VIP Barber Shop León" loading="lazy" />
+          <div className="plan-hero__shot-badge">
+            <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
+            <span>Entrega en 1 semana</span>
+          </div>
         </div>
       </section>
 
