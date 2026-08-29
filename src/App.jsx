@@ -1750,11 +1750,8 @@ function PilarCard({ pos, h, p, svg }) {
 }
 
 function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, pro, delay, detailHref }) {
-  const [open, setOpen] = useState(false);
-  const visibleFeats = open ? feats : feats.slice(0, 3);
   return (
-    <Reveal delay={delay} className={`price-card ${pro ? "price-card--pro" : ""} ${open ? "price-card--open" : ""}`}
-      onClick={() => setOpen(o => !o)}>
+    <Reveal delay={delay} className={`price-card ${pro ? "price-card--pro" : ""}`}>
       {badge && <div className="price-badge">{badge}</div>}
       <div className="price-label">{label}</div>
       {launch && <div className="price-launch">{launch}</div>}
@@ -1762,14 +1759,14 @@ function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, 
       <div className="price-num">{!suffix && "desde "}<b>{num}{suffix ? "" : <span>€</span>}</b>{suffix && <span style={{fontSize:16}}>{suffix}</span>}</div>
       <div className="price-sub">{sub}</div>
       <div className="price-divider" />
-      {visibleFeats.map((f,i)=>(
+      {feats.map((f,i)=>(
         <div key={i} className="price-feat"><span className="ic ic--v" style={{flexShrink:0}}>✓</span>{f}</div>
       ))}
-      {feats.length > 3 && <div className="price-more">{open ? "Ver menos ▲" : `+${feats.length-3} más, toca para ver ▼`}</div>}
-      {detailHref && (
-        <Link to={detailHref} className="price-detail-link" onClick={e=>e.stopPropagation()}>Ver detalle completo →</Link>
+      {detailHref ? (
+        <Link to={detailHref} className={`price-cta ${pro ? "price-cta--pro" : ""}`}>{cta}</Link>
+      ) : (
+        <a href={homeHref("#contact")} className={`price-cta ${pro ? "price-cta--pro" : ""}`}>{cta}</a>
       )}
-      <a href="#contact" className={`price-cta ${pro ? "price-cta--pro" : ""}`} onClick={e=>e.stopPropagation()}>{cta}</a>
     </Reveal>
   );
 }
@@ -2463,6 +2460,26 @@ function PlanShell({ eyebrow, children }) {
       )}
 
       <main className="plan-main wrap">{children}</main>
+
+      {/* DOCK DE ACCIONES — solo móvil */}
+      <div className="dock">
+        <a className="dock__btn" href="tel:+34600000000">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Llamar
+        </a>
+        <a className="dock__btn" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          WhatsApp
+        </a>
+        <a className="dock__btn" href={homeHref("#calculadora")}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="12" x2="8" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="16" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="12" y1="16" x2="12" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+          Presupuesto
+        </a>
+        <a className="dock__btn dock__btn--main" href={homeHref("#contact")}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Agendar
+        </a>
+      </div>
 
       <footer className="footer">
         <div className="wrap footer__grid">
