@@ -319,13 +319,13 @@ const CSS = `
 /* ---- servicios (resumen) ---- */
 .svc-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:44px; }
 .svc-card{ background:rgba(255,255,255,.03); border:1px solid rgba(146,187,255,.15); border-radius:18px;
-  padding:26px 22px; transition:border-color .3s,background .3s,box-shadow .3s,transform .3s; }
+  padding:12px; overflow:hidden; transition:border-color .3s,background .3s,box-shadow .3s,transform .3s; }
 .svc-card:hover{ border-color:rgba(146,187,255,.35); background:rgba(146,187,255,.06);
   box-shadow:0 14px 40px -18px rgba(66,123,216,.4); transform:translateY(-3px); }
-.svc-card__icon{ width:44px; height:44px; border-radius:12px; margin-bottom:16px;
-  background:rgba(66,123,216,.14); border:1px solid rgba(146,187,255,.25);
-  display:flex; align-items:center; justify-content:center; color:#92BBFF; }
-.svc-card__icon svg{ width:21px; height:21px; }
+.svc-card__image{ display:block; width:100%; height:122px; object-fit:cover; object-position:center; border-radius:11px;
+  border:1px solid rgba(146,187,255,.14); background:#070b1c; filter:saturate(.88) contrast(1.04); transition:filter .35s ease,transform .45s cubic-bezier(.16,1,.3,1); }
+.svc-card:hover .svc-card__image{ filter:saturate(1.08) contrast(1.06) brightness(1.08); transform:scale(1.025); }
+.svc-card__body{ padding:16px 10px 10px; }
 .svc-card h4{ font-family:var(--display); font-size:16px; color:#fff; margin-bottom:8px; }
 .svc-card p{ font-size:13.5px; color:var(--muted); line-height:1.5; }
 
@@ -1310,9 +1310,9 @@ const CSS = `
 
   /* --- SERVICIOS --- */
   .svc-grid{ grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }
-  .svc-card{ padding:18px 16px; }
-  .svc-card__icon{ width:36px; height:36px; margin-bottom:12px; }
-  .svc-card__icon svg{ width:17px; height:17px; }
+  .svc-card{ padding:10px; }
+  .svc-card__image{ height:84px; border-radius:10px; }
+  .svc-card__body{ padding:12px 6px 8px; }
   .svc-card h4{ font-size:14px; }
   .svc-card p{ font-size:12.5px; }
 
@@ -1831,20 +1831,20 @@ function Btn({ glossy = false, children, href = "#", to = null, className = "", 
 /* ---------- data ---------- */
 const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
 const PROJECTS = [
-  { n: "PowerPulse",       img: "assets/proj-hotel.png"        },
-  { n: "Actualizar IA",    img: "assets/proj-properties.png"   },
-  { n: "Lex León",         img: "assets/proj-novaest.png"      },
-  { n: "Nova Estética",    img: "assets/proj-lexleon.png"      },
-  { n: "León Properties",  img: "assets/proj-actualizaria.png" },
-  { n: "León Suites",      img: "assets/proj-powerpulse.png"   },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.png"   },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png" },
+  { n: "Lex León",         img: "assets/proj-lexleon.png"      },
+  { n: "Nova Estética",    img: "assets/proj-novaest.png"      },
+  { n: "León Properties",  img: "assets/proj-properties.png"   },
+  { n: "León Suites",      img: "assets/proj-hotel.png"        },
 ];
 const CASES = [
-  { n: "PowerPulse",       img: "assets/proj-hotel.png",         url: "#", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Actualizar IA",    img: "assets/proj-properties.png",    url: "#", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
-  { n: "Lex León",         img: "assets/proj-novaest.png",       url: "#", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Nova Estética",    img: "assets/proj-lexleon.png",       url: "#", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "León Properties",  img: "assets/proj-actualizaria.png",  url: "#", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "León Suites",      img: "assets/proj-powerpulse.png",    url: "#", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.png",    url: "#contact", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png",  url: "#contact", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { n: "Lex León",         img: "assets/proj-lexleon.png",       url: "#contact", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "Nova Estética",    img: "assets/proj-novaest.png",       url: "#contact", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "León Properties",  img: "assets/proj-properties.png",    url: "#contact", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "León Suites",      img: "assets/proj-hotel.png",         url: "#contact", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
 ];
 const TESTI = [
   { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
