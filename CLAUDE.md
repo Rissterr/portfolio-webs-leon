@@ -69,3 +69,28 @@ Los enlaces DESDE las páginas de detalle HACIA anclas de la home (`#contact`, `
 ## Contacto / WhatsApp
 
 Los botones de "Llamar" / "WhatsApp" en el dock móvil usan un número de marcador de posición (`+34600000000`) — **pendiente de reemplazar por el número real del negocio**.
+
+## Imágenes: siempre optimizar a WebP antes de subir
+
+Hubo un incidente real donde varias imágenes nuevas se subieron directamente en PNG a resolución completa (1.2-1.8MB cada una, ~19MB en total solo esas) sin comprimir, lo que habría hecho la web muy lenta en móvil. Se corrigió convirtiendo todo a WebP con ffmpeg:
+```bash
+ffmpeg -y -i archivo.png -vf "scale=ANCHO:-1" -quality 82 -update 1 archivo.webp
+```
+Anchos usados: 700px para tarjetas pequeñas, 900px para capturas de proyecto, 1200-1600px para imágenes de hero. Resultado: 44MB → ~1MB en `public/assets/`. **Cualquier imagen nueva que se añada debe pasar por este proceso antes de commitear** — nunca subir un PNG/JPG de más de ~200-300KB sin comprimir primero. Las imágenes viejas sin optimizar y sin usar se movieron a `_revisar_assets/` en la raíz del proyecto (no se borraron).
+
+## Auditoría general — estado a 30/08/2026
+
+**Corregido en la última auditoría:**
+- 6 imágenes de proyectos que estaban completamente cruzadas (cada nombre mostraba la captura de otro proyecto)
+- 6 enlaces "Ver →" de proyectos que eran muertos (`href="#"`) — ahora llevan a contacto
+- `<title>` de la página seguía siendo "portfolio-dev" (el genérico de Vite) — ahora tiene título, descripción y Open Graph reales
+- `lang="en"` en el HTML de una web en español — corregido a `lang="es"`
+- 44MB de imágenes sin optimizar — reducido a ~1MB
+
+**Pendiente antes de considerar la web lista para entregar a un cliente real:**
+1. Número de teléfono/WhatsApp real (ahora mismo es un placeholder +34600000000)
+2. Testimonios reales de clientes de León (ahora son de otro portfolio, con nombres extranjeros)
+3. Página legal: Aviso Legal, Política de Privacidad y Política de Cookies — obligatorias en España para cualquier web con formulario de contacto (LOPD/RGPD). Ahora mismo no existen.
+4. Decidir dominio definitivo (GitHub Pages actual vs Surge vs comprar leonwebs.es) — el og:image y las URLs canónicas están fijadas a la URL de GitHub Pages actual, hay que actualizarlas si cambia
+5. Enlaces de Instagram/LinkedIn en el footer siguen siendo `#` (no hay cuentas reales enlazadas)
+6. robots.txt y sitemap.xml no existen (no crítico para una web pequeña, pero ayuda al SEO)
