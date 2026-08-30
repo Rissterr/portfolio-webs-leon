@@ -415,7 +415,7 @@ const CSS = `
   transform: translateX(-50%);
   width: min(1700px, 150vw);
   height: min(950px, 78vh);
-  background-image: url('assets/hero-bg-blue.png');
+  background-image: url('assets/hero-bg-blue.webp');
   background-size: cover;
   background-position: center top;
   pointer-events: none;
@@ -1840,27 +1840,27 @@ function Btn({ glossy = false, children, href = "#", to = null, className = "", 
 /* ---------- data ---------- */
 const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
 const PROJECTS = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.png"   },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png" },
-  { n: "Lex León",         img: "assets/proj-lexleon.png"      },
-  { n: "Nova Estética",    img: "assets/proj-novaest.png"      },
-  { n: "León Properties",  img: "assets/proj-properties.png"   },
-  { n: "León Suites",      img: "assets/proj-hotel.png"        },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp"   },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp" },
+  { n: "Lex León",         img: "assets/proj-lexleon.webp"      },
+  { n: "Nova Estética",    img: "assets/proj-novaest.webp"      },
+  { n: "León Properties",  img: "assets/proj-properties.webp"   },
+  { n: "León Suites",      img: "assets/proj-hotel.webp"        },
 ];
 const CASES = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.png",    url: "#contact", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.png",  url: "#contact", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
-  { n: "Lex León",         img: "assets/proj-lexleon.png",       url: "#contact", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Nova Estética",    img: "assets/proj-novaest.png",       url: "#contact", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "León Properties",  img: "assets/proj-properties.png",    url: "#contact", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "León Suites",      img: "assets/proj-hotel.png",         url: "#contact", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp",    url: "#contact", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp",  url: "#contact", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { n: "Lex León",         img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "Nova Estética",    img: "assets/proj-novaest.webp",       url: "#contact", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "León Properties",  img: "assets/proj-properties.webp",    url: "#contact", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "León Suites",      img: "assets/proj-hotel.webp",         url: "#contact", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
 ];
 const TESTI = [
   { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
   { n: "Masam",          r: "Diseñador Senior",            img: null,                    t: "Transformó por completo nuestra web anticuada. Visualmente impactante y la experiencia de usuario es de otro nivel." },
   { n: "Saleh",          r: "Experto SEO",                  img: null,                    t: "El diseño y las ventas eran nuestro punto débil, y esto cubrió ese hueco. La mejora en nuestras métricas fue real." },
-  { n: "Marco King",     r: "Fundador, Reels Studio",       img: "assets/testi-4.png",  t: "Atento, comunicativo y resultados excepcionales. No dudaría en volver a colaborar." },
-  { n: "Nadia Clarke",   r: "Tech & IT",                    img: "assets/testi-5.png",  t: "Maestría con animaciones e interacciones complejas que dieron vida a toda la web." },
+  { n: "Marco King",     r: "Fundador, Reels Studio",       img: "assets/testi-4.webp",  t: "Atento, comunicativo y resultados excepcionales. No dudaría en volver a colaborar." },
+  { n: "Nadia Clarke",   r: "Tech & IT",                    img: "assets/testi-5.webp",  t: "Maestría con animaciones e interacciones complejas que dieron vida a toda la web." },
   { n: "Orange",         r: "Vendedor",                     img: null,                    t: "Integró herramientas externas y animaciones personalizadas a la perfección. Atención al detalle impresionante." },
 ];
 const SERVICES_HELP = [
@@ -2145,10 +2145,10 @@ function HomePage() {
         </div>
         <div className="svc-grid">
           {[
-            { image:"assets/service-web-design.png", alt:"Portátil mostrando una página web profesional", h:"Diseño web", p:"Web profesional adaptada a tu negocio, lista para vender en 1-2 semanas." },
-            { image:"assets/service-ecommerce.png", alt:"Móvil y producto para una tienda online", h:"Tienda online", p:"Catálogo, carrito y pago online para vender tus productos 24/7." },
-            { image:"assets/service-hourly-support.png", alt:"Reloj y panel de código para soporte por horas", h:"Por horas", p:"Cambios, ajustes o funciones sueltas sin contrato ni permanencia." },
-            { image:"assets/service-local-visibility.png", alt:"Negocio local visible en mapas y buscadores", h:"Publicidad y Google", p:"Google My Business, campañas Ads y SEO local para que te encuentren." },
+            { image:"assets/service-web-design.webp", alt:"Portátil mostrando una página web profesional", h:"Diseño web", p:"Web profesional adaptada a tu negocio, lista para vender en 1-2 semanas." },
+            { image:"assets/service-ecommerce.webp", alt:"Móvil y producto para una tienda online", h:"Tienda online", p:"Catálogo, carrito y pago online para vender tus productos 24/7." },
+            { image:"assets/service-hourly-support.webp", alt:"Reloj y panel de código para soporte por horas", h:"Por horas", p:"Cambios, ajustes o funciones sueltas sin contrato ni permanencia." },
+            { image:"assets/service-local-visibility.webp", alt:"Negocio local visible en mapas y buscadores", h:"Publicidad y Google", p:"Google My Business, campañas Ads y SEO local para que te encuentren." },
           ].map(({image,alt,h,p}, i) => (
             <Reveal key={i} delay={i*80} className="svc-card">
               <img className="svc-card__image" src={image} alt={alt} loading="lazy" />
@@ -2560,7 +2560,7 @@ function PlanArranque() {
           </div>
         </div>
         <div className="plan-hero__shot">
-          <img src="assets/plan-arranque-ejemplo.png" alt="Ejemplo de web entregada — VIP Barber Shop León" loading="lazy" />
+          <img src="assets/plan-arranque-ejemplo.webp" alt="Ejemplo de web entregada — VIP Barber Shop León" loading="lazy" />
           <div className="plan-hero__shot-badge">
             <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
             <span>Entrega en 1 semana</span>
@@ -2572,19 +2572,19 @@ function PlanArranque() {
         <div className="shead"><h2 className="display">¿Qué incluye el Plan Arranque?</h2><p className="lead" style={{margin:"0 auto"}}>Todo lo necesario para una presencia digital impecable y orientada a resultados.</p></div>
         <div className="plan-grid">
           <PlanCard className="plan-span-8 plan-card--with-image">
-            <img className="plan-card__image" src="assets/plan-arranque-template.png" alt="Portátil con una página web profesional" loading="lazy" />
+            <img className="plan-card__image" src="assets/plan-arranque-template.webp" alt="Portátil con una página web profesional" loading="lazy" />
             <div className="plan-card__content"><h3>Plantilla Profesional Adaptada</h3><p>Seleccionamos y adaptamos una estructura de alta conversión que se alinea con la identidad y objetivos de tu negocio. Diseño responsive garantizado.</p></div>
           </PlanCard>
           <PlanCard className="plan-span-4 plan-card--with-image">
-            <img className="plan-card__image" src="assets/plan-arranque-brand-colours.png" alt="Muestrario de colores de marca" loading="lazy" />
+            <img className="plan-card__image" src="assets/plan-arranque-brand-colours.webp" alt="Muestrario de colores de marca" loading="lazy" />
             <div className="plan-card__content"><h3>Colores de Marca</h3><p>Implementación exacta de tu paleta corporativa para una identidad visual cohesiva.</p></div>
           </PlanCard>
           <PlanCard className="plan-span-5 plan-card--with-image">
-            <img className="plan-card__image" src="assets/plan-arranque-content.png" alt="Cuaderno, cámara y fotografías para crear contenidos" loading="lazy" />
+            <img className="plan-card__image" src="assets/plan-arranque-content.webp" alt="Cuaderno, cámara y fotografías para crear contenidos" loading="lazy" />
             <div className="plan-card__content"><h3>Textos y Fotos</h3><p>Integración de tu contenido optimizado para web, junto con imágenes de alta calidad.</p></div>
           </PlanCard>
           <PlanCard className="plan-span-7 plan-card--with-image">
-            <img className="plan-card__image" src="assets/plan-arranque-contact.png" alt="Móvil con una notificación de mensaje" loading="lazy" />
+            <img className="plan-card__image" src="assets/plan-arranque-contact.webp" alt="Móvil con una notificación de mensaje" loading="lazy" />
             <div className="plan-card__content"><h3>Botón Directo a WhatsApp</h3><p>Facilita el contacto inmediato. Un botón flotante estratégico que conecta a tus visitantes con tu atención al cliente.</p></div>
           </PlanCard>
         </div>
