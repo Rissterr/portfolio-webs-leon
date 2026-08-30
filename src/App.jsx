@@ -1379,21 +1379,27 @@ const CSS = `
 .plan-hero__shot-badge .plan-feat-icon svg{ width:14px; height:14px; }
 @keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
 
-.plan-card{ position:relative; overflow:hidden; border-radius:20px; border:1px solid rgba(255,255,255,.09);
-  background:linear-gradient(to bottom, rgba(15,16,37,.55), rgba(19,15,35,.55));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 24px 50px -30px rgba(0,0,0,.8);
-  transition:background .5s ease,border-color .5s ease,box-shadow .5s ease,transform .4s cubic-bezier(.16,1,.3,1); padding:32px; }
-.plan-card:hover{ background:linear-gradient(to bottom, rgba(66,123,216,.16), rgba(28,48,96,.16));
-  border-color:rgba(146,187,255,.4); box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 30px 60px -28px rgba(40,80,170,.5);
-  transform:translateY(-4px); }
+.plan-card{ position:relative; isolation:isolate; overflow:hidden; border-radius:20px; border:1px solid rgba(183,213,255,.16);
+  background:linear-gradient(135deg,rgba(31,42,76,.6) 0%,rgba(12,18,42,.72) 48%,rgba(19,35,73,.52) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(68,124,235,.09),0 18px 38px -26px rgba(0,0,0,.95),0 0 0 1px rgba(5,8,26,.36);
+  backdrop-filter:blur(20px) saturate(135%); -webkit-backdrop-filter:blur(20px) saturate(135%);
+  transform:perspective(900px) translateY(calc(var(--hovered,0) * -5px)) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)); transform-style:preserve-3d;
+  will-change:transform; transition:background .5s ease,border-color .5s ease,box-shadow .5s ease,transform .24s cubic-bezier(.16,1,.3,1); padding:32px; }
+.plan-card::before{ content:''; position:absolute; z-index:0; inset:-45%; pointer-events:none; opacity:.78;
+  background:radial-gradient(circle at 30% 28%,rgba(144,199,255,.19),transparent 17%),radial-gradient(circle at 71% 68%,rgba(66,118,255,.17),transparent 21%),radial-gradient(circle at 53% 45%,rgba(255,255,255,.08),transparent 13%);
+  filter:blur(14px); transform:scale(1.04); transition:opacity .55s ease; }
+.plan-card::after{ content:''; position:absolute; z-index:0; left:-12%; top:0; width:124%; height:48%; pointer-events:none;
+  background:linear-gradient(118deg,transparent 11%,rgba(255,255,255,.13) 36%,rgba(205,235,255,.035) 51%,transparent 69%); opacity:.52; transform:translateY(-26%) skewX(-18deg); }
+.plan-card:hover{ background:linear-gradient(135deg,rgba(45,73,131,.67),rgba(14,25,58,.8) 54%,rgba(34,70,139,.58));
+  border-color:rgba(174,213,255,.48); box-shadow:inset 0 1px 0 rgba(255,255,255,.26),inset 0 -1px 0 rgba(99,160,255,.17),0 30px 65px -30px rgba(31,91,211,.78),0 0 38px -16px rgba(102,174,255,.52); }
 .plan-card__glow{ position:absolute; inset:0; pointer-events:none; z-index:1;
-  background:radial-gradient(350px circle at var(--mx,50%) var(--my,50%), rgba(142,193,255,.14), transparent 70%);
-  opacity:var(--hovered,0); transition:opacity .5s ease; }
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(194,226,255,.27),rgba(93,160,255,.12) 25%,transparent 66%);
+  mix-blend-mode:screen; opacity:var(--hovered,0); transition:opacity .35s ease; }
 .plan-card__border{ position:absolute; inset:0; border-radius:inherit; padding:1px; pointer-events:none; z-index:1;
   background:linear-gradient(120deg,transparent 25%,rgba(146,187,255,.55) 50%,transparent 75%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;
   opacity:var(--hovered,.25); transition:opacity .5s; }
-.plan-card__inner{ position:relative; z-index:2; display:block; }
+.plan-card__inner{ position:relative; z-index:2; display:block; transform:translateZ(18px); }
 .plan-card h3{ font-family:var(--display); font-size:21px; font-weight:600; color:#fff; margin:0 0 10px; }
 .plan-card h4{ font-family:var(--display); font-size:17px; font-weight:600; color:#E7ECFB; margin:0 0 8px; }
 .plan-card p{ color:var(--muted); line-height:1.6; margin:0; font-size:15px; }
@@ -1408,8 +1414,13 @@ const CSS = `
 .plan-price-pill__num span{ font-size:20px; }
 .plan-price-pill__meta{ display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--muted); }
 .plan-price-pill__meta span:first-child{ color:#92BBFF; font-weight:600; }
-.plan-price-pill--pro{ background:linear-gradient(to bottom, rgba(27,38,66,.6), rgba(28,48,96,.6)); }
-.plan-price-pill--pro .plan-price-pill__num{ font-size:44px; }
+.plan-price-pill--pro{ border-color:rgba(146,187,255,.32); background:linear-gradient(132deg,rgba(53,86,154,.64),rgba(13,23,55,.82) 52%,rgba(34,66,135,.62)); box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 22px 46px -28px rgba(58,124,255,.78),0 0 32px -18px rgba(110,183,255,.7); }
+.plan-price-pill--pro .plan-price-pill__num{ font-size:44px; text-shadow:0 2px 20px rgba(186,220,255,.34); }
+.plan-growth-hero{ text-align:center; position:relative; }
+.plan-growth-hero::before{ content:''; position:absolute; width:min(680px,90vw); height:280px; left:50%; top:80px; transform:translateX(-50%); pointer-events:none; background:radial-gradient(ellipse,rgba(53,112,240,.16),transparent 68%); filter:blur(18px); z-index:-1; }
+.plan-growth-hero .plan-cta-row{ justify-content:center; margin-bottom:40px; }
+.plan-growth-hero .plan-price-pill{ min-width:230px; text-align:left; }
+.plan-growth-hero .plan-price-pill--pro:first-child{ min-width:270px; }
 
 .plan-cta-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
 .plan-btn-ghost{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:#E7ECFB; font-weight:500;
@@ -2424,10 +2435,12 @@ function PlanCard({ children, style = {}, className = "", as: Tag = "div", ...re
     setVars({
       "--mx": `${((e.clientX - rect.left) / rect.width) * 100}%`,
       "--my": `${((e.clientY - rect.top) / rect.height) * 100}%`,
+      "--tilt-x": `${((rect.height / 2 - (e.clientY - rect.top)) / rect.height) * 1.6}deg`,
+      "--tilt-y": `${(((e.clientX - rect.left) - rect.width / 2) / rect.width) * 1.6}deg`,
       "--hovered": 1,
     });
   };
-  const handleLeave = () => setVars(v => ({ ...v, "--hovered": 0 }));
+  const handleLeave = () => setVars(v => ({ ...v, "--hovered": 0, "--tilt-x": "0deg", "--tilt-y": "0deg" }));
   return (
     <Tag ref={ref} className={`plan-card ${className}`} style={{ ...style, ...vars }}
       onMouseMove={handleMove} onMouseLeave={handleLeave} {...rest}>
@@ -2581,7 +2594,7 @@ function PlanArranque() {
 function PlanCrecimiento() {
   return (
     <PlanShell>
-      <section style={{ textAlign: "center" }}>
+      <section className="plan-growth-hero">
         <div className="eyebrow" style={{ margin: "0 auto 22px" }}><span className="dot" /><span>Plan Más Elegido</span></div>
         <h1 className="display h-grad" style={{ fontSize: "clamp(36px,5vw,60px)" }}>Plan Crecimiento</h1>
         <p className="lead" style={{ margin: "0 auto 40px" }}>La solución definitiva para negocios que buscan escalar. Incluye funcionalidades avanzadas de reserva, captura de leads de alta conversión y un diseño que transmite autoridad inmediata.</p>
