@@ -1403,6 +1403,12 @@ const CSS = `
 .plan-card h3{ font-family:var(--display); font-size:21px; font-weight:600; color:#fff; margin:0 0 10px; }
 .plan-card h4{ font-family:var(--display); font-size:17px; font-weight:600; color:#E7ECFB; margin:0 0 8px; }
 .plan-card p{ color:var(--muted); line-height:1.6; margin:0; font-size:15px; }
+.plan-card--with-image{ padding:12px; }
+.plan-card__image{ display:block; width:100%; height:152px; object-fit:cover; object-position:center; border-radius:12px;
+  border:1px solid rgba(174,213,255,.16); background:#070b1c; filter:saturate(.82) contrast(1.03); transition:filter .4s ease,transform .5s cubic-bezier(.16,1,.3,1); }
+.plan-card--with-image:hover .plan-card__image{ filter:saturate(1.04) contrast(1.06) brightness(1.05); transform:scale(1.018); }
+.plan-card__content{ padding:22px 20px 18px; }
+.plan-card__content h3{ margin-bottom:9px; }
 
 .plan-feat-icon{ width:48px; height:48px; border-radius:13px; background:rgba(66,123,216,.14); border:1px solid rgba(146,187,255,.25);
   display:flex; align-items:center; justify-content:center; color:#92BBFF; margin-bottom:18px; flex-shrink:0; }
@@ -1471,6 +1477,9 @@ const CSS = `
   .plan-highlight-card{ grid-column:span 12; }
   .plan-included-grid{ grid-template-columns:1fr 1fr; }
   .plan-card{ padding:24px; }
+  .plan-card--with-image{ padding:10px; }
+  .plan-card__image{ height:126px; border-radius:11px; }
+  .plan-card__content{ padding:18px 14px 14px; }
 }
 `;
 
@@ -2136,17 +2145,14 @@ function HomePage() {
         </div>
         <div className="svc-grid">
           {[
-            { svg:<><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></>, h:"Diseño web", p:"Web profesional adaptada a tu negocio, lista para vender en 1-2 semanas." },
-            { svg:<><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></>, h:"Tienda online", p:"Catálogo, carrito y pago online para vender tus productos 24/7." },
-            { svg:<><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></>, h:"Por horas", p:"Cambios, ajustes o funciones sueltas sin contrato ni permanencia." },
-            { svg:<><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></>, h:"Publicidad y Google", p:"Google My Business, campañas Ads y SEO local para que te encuentren." },
-          ].map(({svg,h,p}, i) => (
+            { image:"assets/service-web-design.png", alt:"Portátil mostrando una página web profesional", h:"Diseño web", p:"Web profesional adaptada a tu negocio, lista para vender en 1-2 semanas." },
+            { image:"assets/service-ecommerce.png", alt:"Móvil y producto para una tienda online", h:"Tienda online", p:"Catálogo, carrito y pago online para vender tus productos 24/7." },
+            { image:"assets/service-hourly-support.png", alt:"Reloj y panel de código para soporte por horas", h:"Por horas", p:"Cambios, ajustes o funciones sueltas sin contrato ni permanencia." },
+            { image:"assets/service-local-visibility.png", alt:"Negocio local visible en mapas y buscadores", h:"Publicidad y Google", p:"Google My Business, campañas Ads y SEO local para que te encuentren." },
+          ].map(({image,alt,h,p}, i) => (
             <Reveal key={i} delay={i*80} className="svc-card">
-              <span className="svc-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{svg}</svg>
-              </span>
-              <h4>{h}</h4>
-              <p>{p}</p>
+              <img className="svc-card__image" src={image} alt={alt} loading="lazy" />
+              <div className="svc-card__body"><h4>{h}</h4><p>{p}</p></div>
             </Reveal>
           ))}
         </div>
@@ -2565,25 +2571,21 @@ function PlanArranque() {
       <section>
         <div className="shead"><h2 className="display">¿Qué incluye el Plan Arranque?</h2><p className="lead" style={{margin:"0 auto"}}>Todo lo necesario para una presencia digital impecable y orientada a resultados.</p></div>
         <div className="plan-grid">
-          <PlanCard className="plan-span-8">
-            <PlanFeatureIcon><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></PlanFeatureIcon>
-            <h3>Plantilla Profesional Adaptada</h3>
-            <p>Seleccionamos y adaptamos una estructura de alta conversión que se alinea con la identidad y objetivos de tu negocio. Diseño responsive garantizado.</p>
+          <PlanCard className="plan-span-8 plan-card--with-image">
+            <img className="plan-card__image" src="assets/plan-arranque-template.png" alt="Portátil con una página web profesional" loading="lazy" />
+            <div className="plan-card__content"><h3>Plantilla Profesional Adaptada</h3><p>Seleccionamos y adaptamos una estructura de alta conversión que se alinea con la identidad y objetivos de tu negocio. Diseño responsive garantizado.</p></div>
           </PlanCard>
-          <PlanCard className="plan-span-4">
-            <PlanFeatureIcon><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></PlanFeatureIcon>
-            <h3>Colores de Marca</h3>
-            <p>Implementación exacta de tu paleta corporativa para una identidad visual cohesiva.</p>
+          <PlanCard className="plan-span-4 plan-card--with-image">
+            <img className="plan-card__image" src="assets/plan-arranque-brand-colours.png" alt="Muestrario de colores de marca" loading="lazy" />
+            <div className="plan-card__content"><h3>Colores de Marca</h3><p>Implementación exacta de tu paleta corporativa para una identidad visual cohesiva.</p></div>
           </PlanCard>
-          <PlanCard className="plan-span-5">
-            <PlanFeatureIcon><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></PlanFeatureIcon>
-            <h3>Textos y Fotos</h3>
-            <p>Integración de tu contenido optimizado para web, junto con imágenes de alta calidad.</p>
+          <PlanCard className="plan-span-5 plan-card--with-image">
+            <img className="plan-card__image" src="assets/plan-arranque-content.png" alt="Cuaderno, cámara y fotografías para crear contenidos" loading="lazy" />
+            <div className="plan-card__content"><h3>Textos y Fotos</h3><p>Integración de tu contenido optimizado para web, junto con imágenes de alta calidad.</p></div>
           </PlanCard>
-          <PlanCard className="plan-span-7">
-            <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
-            <h3>Botón Directo a WhatsApp</h3>
-            <p>Facilita el contacto inmediato. Un botón flotante estratégico que conecta a tus visitantes con tu atención al cliente.</p>
+          <PlanCard className="plan-span-7 plan-card--with-image">
+            <img className="plan-card__image" src="assets/plan-arranque-contact.png" alt="Móvil con una notificación de mensaje" loading="lazy" />
+            <div className="plan-card__content"><h3>Botón Directo a WhatsApp</h3><p>Facilita el contacto inmediato. Un botón flotante estratégico que conecta a tus visitantes con tu atención al cliente.</p></div>
           </PlanCard>
         </div>
       </section>
