@@ -1486,6 +1486,30 @@ const CSS = `
   .plan-card--template .plan-card__image,.plan-card--brand .plan-card__image,.plan-card--content .plan-card__image,.plan-card--contact .plan-card__image{ height:126px; aspect-ratio:auto; }
   .plan-card__content{ padding:18px 14px 14px; }
 }
+
+/* ---- páginas legales ---- */
+.legal-page{ max-width:760px; margin:0 auto; }
+.legal-page__body h3{ font-family:var(--display); font-size:19px; color:#fff; margin:32px 0 12px; }
+.legal-page__body h3:first-child{ margin-top:0; }
+.legal-page__body p{ color:var(--muted); line-height:1.7; font-size:15px; margin-bottom:14px; }
+.legal-page__body ul{ color:var(--muted); line-height:1.7; font-size:15px; margin:0 0 14px 20px; }
+.legal-page__body li{ margin-bottom:6px; }
+.legal-page__body strong{ color:#dbe4ff; }
+.legal-page__body a{ color:#92BBFF; }
+
+/* ---- aviso de cookies ---- */
+.cookie-banner{ position:fixed; left:16px; right:16px; bottom:16px; z-index:70; max-width:560px; margin:0 auto;
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  background:rgba(10,13,36,.95); backdrop-filter:blur(16px); border:1px solid rgba(146,187,255,.2);
+  border-radius:16px; padding:18px 20px; box-shadow:0 20px 50px -20px rgba(0,0,0,.7); }
+.cookie-banner p{ flex:1; min-width:200px; font-size:13px; color:var(--muted); line-height:1.5; margin:0; }
+.cookie-banner p a{ color:#92BBFF; text-decoration:underline; }
+.cookie-banner__btn{ flex-shrink:0; background:linear-gradient(180deg,#fff,#F5F9FF); color:#050505; font-weight:600;
+  font-size:13px; padding:10px 20px; border-radius:100px; border:none; cursor:pointer; }
+@media(max-width:640px){
+  .cookie-banner{ left:10px; right:10px; bottom:80px; padding:14px 16px; flex-direction:column; align-items:stretch; text-align:left; }
+  .cookie-banner__btn{ width:100%; }
+}
 `;
 
 /* ---------- helpers ---------- */
@@ -2431,7 +2455,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className="wrap" style={{ color: "var(--muted)", fontSize: 13, marginTop: 40 }}>© {new Date().getFullYear()} León Webs. Todos los derechos reservados.</div>
+        <div className="wrap" style={{ color: "var(--muted)", fontSize: 13, marginTop: 40, display:"flex", gap:20, flexWrap:"wrap", justifyContent:"space-between", alignItems:"center" }}><span>© {new Date().getFullYear()} León Webs. Todos los derechos reservados.</span><span style={{display:"flex",gap:16}}><Link to="/aviso-legal" style={{color:"var(--muted)"}}>Aviso legal</Link><Link to="/privacidad" style={{color:"var(--muted)"}}>Privacidad</Link><Link to="/cookies" style={{color:"var(--muted)"}}>Cookies</Link></span></div>
       </footer>
     </div>
   );
@@ -2530,7 +2554,7 @@ function PlanShell({ eyebrow, children }) {
             </div>
           </div>
         </div>
-        <div className="wrap" style={{ color: "var(--muted)", fontSize: 13, marginTop: 40 }}>© {new Date().getFullYear()} León Webs. Todos los derechos reservados.</div>
+        <div className="wrap" style={{ color: "var(--muted)", fontSize: 13, marginTop: 40, display:"flex", gap:20, flexWrap:"wrap", justifyContent:"space-between", alignItems:"center" }}><span>© {new Date().getFullYear()} León Webs. Todos los derechos reservados.</span><span style={{display:"flex",gap:16}}><Link to="/aviso-legal" style={{color:"var(--muted)"}}>Aviso legal</Link><Link to="/privacidad" style={{color:"var(--muted)"}}>Privacidad</Link><Link to="/cookies" style={{color:"var(--muted)"}}>Cookies</Link></span></div>
       </footer>
     </div>
   );
@@ -2766,15 +2790,115 @@ function TiendaOnline() {
   );
 }
 
+/* ---------- páginas legales ---------- */
+function LegalPage({ title, updated, children }) {
+  return (
+    <PlanShell>
+      <section className="legal-page">
+        <div className="eyebrow"><span className="dot" /><span>Información legal</span></div>
+        <h1 className="display" style={{ fontSize: "clamp(28px,4vw,42px)", margin: "18px 0 8px" }}>{title}</h1>
+        <p style={{ color: "var(--muted)", fontSize: 13, marginBottom: 40 }}>Última actualización: {updated}</p>
+        <div className="legal-page__body">{children}</div>
+      </section>
+    </PlanShell>
+  );
+}
+
+function AvisoLegal() {
+  return (
+    <LegalPage title="Aviso Legal" updated="30 de agosto de 2026">
+      <p><strong>Aviso:</strong> este apartado contiene datos de ejemplo (marcados entre corchetes) que León Webs debe sustituir por los datos reales del negocio antes de publicar la web a clientes.</p>
+      <h3>1. Datos del titular</h3>
+      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE), se informa:</p>
+      <ul>
+        <li>Titular: [Nombre completo o razón social]</li>
+        <li>NIF/CIF: [Número de identificación fiscal]</li>
+        <li>Domicilio: [Dirección completa, León, España]</li>
+        <li>Correo electrónico: hola@leonwebs.es</li>
+      </ul>
+      <h3>2. Objeto</h3>
+      <p>Este sitio web tiene como finalidad presentar los servicios de diseño y desarrollo web ofrecidos por León Webs a negocios de León y alrededores.</p>
+      <h3>3. Condiciones de uso</h3>
+      <p>El acceso a este sitio web es gratuito y no requiere registro previo. El usuario se compromete a hacer un uso adecuado de los contenidos y a no emplearlos para fines ilícitos.</p>
+      <h3>4. Propiedad intelectual</h3>
+      <p>Los textos, imágenes y diseños de esta web son propiedad de León Webs o de sus clientes (en el caso de las capturas de proyectos mostradas a modo de ejemplo), salvo que se indique lo contrario. Queda prohibida su reproducción sin autorización.</p>
+      <h3>5. Legislación aplicable</h3>
+      <p>Las presentes condiciones se rigen por la legislación española.</p>
+    </LegalPage>
+  );
+}
+
+function Privacidad() {
+  return (
+    <LegalPage title="Política de Privacidad" updated="30 de agosto de 2026">
+      <h3>1. Responsable del tratamiento</h3>
+      <p>León Webs es el responsable del tratamiento de los datos que puedas facilitarnos a través de este sitio web. Puedes contactar en hola@leonwebs.es.</p>
+      <h3>2. Qué datos tratamos</h3>
+      <p>Esta web <strong>no tiene formularios que envíen datos a un servidor propio</strong>. Los botones de contacto (calculadora de precio, "Agendar", "Ver cómo escalamos", etc.) abren tu programa de correo o WhatsApp con un mensaje ya redactado — los datos que decidas escribir ahí se envían directamente a nuestra bandeja de correo o WhatsApp personal, no se almacenan en ninguna base de datos de León Webs.</p>
+      <p>Si nos escribes por correo o WhatsApp, trataremos los datos que nos facilites (nombre, negocio, teléfono, email) únicamente para responder a tu consulta y, si sigues adelante, para gestionar el proyecto contratado.</p>
+      <h3>3. Finalidad y legitimación</h3>
+      <p>Tratamos tus datos de contacto en base al consentimiento que nos das al escribirnos voluntariamente, con la finalidad de atender tu consulta o gestionar el servicio contratado.</p>
+      <h3>4. Conservación</h3>
+      <p>Conservamos los datos de contacto mientras dure la relación comercial y, posteriormente, durante los plazos legalmente exigibles.</p>
+      <h3>5. Tus derechos</h3>
+      <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a hola@leonwebs.es.</p>
+      <h3>6. Servicios de terceros</h3>
+      <p>Esta web carga las tipografías Outfit e Inter desde Google Fonts, lo que implica una conexión a servidores de Google al visitar la página (puede registrar tu dirección IP). No usamos cookies propias de seguimiento ni herramientas de analítica en este momento.</p>
+    </LegalPage>
+  );
+}
+
+function Cookies() {
+  return (
+    <LegalPage title="Política de Cookies" updated="30 de agosto de 2026">
+      <h3>¿Qué son las cookies?</h3>
+      <p>Las cookies son pequeños archivos que algunas webs guardan en tu navegador para recordar información sobre tu visita.</p>
+      <h3>Cookies que usa esta web</h3>
+      <p><strong>Esta web no instala cookies propias de seguimiento ni de analítica.</strong> Únicamente se produce lo siguiente:</p>
+      <ul>
+        <li><strong>Google Fonts:</strong> al cargar la página se solicitan las tipografías Outfit e Inter directamente desde los servidores de Google, lo que puede implicar una conexión con Google y el registro técnico de tu IP por su parte, sin que León Webs tenga acceso a esos datos.</li>
+      </ul>
+      <h3>Cómo desactivar las cookies</h3>
+      <p>Puedes configurar tu navegador para bloquear o eliminar cookies en cualquier momento desde su apartado de ajustes de privacidad. Bloquear la carga de Google Fonts no afecta al funcionamiento de la web, solo puede cambiar ligeramente el aspecto de las letras.</p>
+      <h3>Actualizaciones</h3>
+      <p>Si en el futuro incorporamos herramientas de analítica o publicidad que sí usen cookies, actualizaremos esta página y solicitaremos tu consentimiento antes de activarlas.</p>
+    </LegalPage>
+  );
+}
+
+function CookieBanner() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem("lw_cookies_ok")) setVisible(true);
+    } catch (e) { setVisible(true); }
+  }, []);
+  const accept = () => {
+    try { localStorage.setItem("lw_cookies_ok", "1"); } catch (e) {}
+    setVisible(false);
+  };
+  if (!visible) return null;
+  return (
+    <div className="cookie-banner">
+      <p>Usamos únicamente las tipografías de Google Fonts para mostrar la web correctamente — no hay cookies de seguimiento ni analítica. Más info en nuestra <Link to="/cookies">Política de Cookies</Link>.</p>
+      <button className="cookie-banner__btn" onClick={accept}>Entendido</button>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <CookieBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/plan-arranque" element={<PlanArranque />} />
         <Route path="/plan-crecimiento" element={<PlanCrecimiento />} />
         <Route path="/por-horas" element={<PorHoras />} />
         <Route path="/tienda-online" element={<TiendaOnline />} />
+        <Route path="/aviso-legal" element={<AvisoLegal />} />
+        <Route path="/privacidad" element={<Privacidad />} />
+        <Route path="/cookies" element={<Cookies />} />
       </Routes>
     </BrowserRouter>
   );
