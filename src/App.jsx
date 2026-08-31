@@ -1409,6 +1409,10 @@ const CSS = `
 .plan-card--with-image:hover .plan-card__image{ filter:saturate(1.04) contrast(1.06) brightness(1.05); transform:scale(1.018); }
 .plan-card__content{ padding:22px 20px 18px; }
 .plan-card__content h3{ margin-bottom:9px; }
+.plan-card--template .plan-card__image{ height:auto; aspect-ratio:2.46/1; }
+.plan-card--brand .plan-card__image{ height:auto; aspect-ratio:1.38/1; }
+.plan-card--content .plan-card__image{ height:auto; aspect-ratio:1.54/1; }
+.plan-card--contact .plan-card__image{ height:auto; aspect-ratio:2.15/1; }
 
 .plan-feat-icon{ width:48px; height:48px; border-radius:13px; background:rgba(66,123,216,.14); border:1px solid rgba(146,187,255,.25);
   display:flex; align-items:center; justify-content:center; color:#92BBFF; margin-bottom:18px; flex-shrink:0; }
@@ -1479,6 +1483,7 @@ const CSS = `
   .plan-card{ padding:24px; }
   .plan-card--with-image{ padding:10px; }
   .plan-card__image{ height:126px; border-radius:11px; }
+  .plan-card--template .plan-card__image,.plan-card--brand .plan-card__image,.plan-card--content .plan-card__image,.plan-card--contact .plan-card__image{ height:126px; aspect-ratio:auto; }
   .plan-card__content{ padding:18px 14px 14px; }
 }
 `;
@@ -1840,20 +1845,20 @@ function Btn({ glossy = false, children, href = "#", to = null, className = "", 
 /* ---------- data ---------- */
 const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
 const PROJECTS = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp"   },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp" },
-  { n: "Lex León",         img: "assets/proj-lexleon.webp"      },
-  { n: "Nova Estética",    img: "assets/proj-novaest.webp"      },
-  { n: "León Properties",  img: "assets/proj-properties.webp"   },
-  { n: "León Suites",      img: "assets/proj-hotel.webp"        },
+  { n: "PowerPulse",       img: "assets/proj-hotel.webp"        },
+  { n: "Actualizar IA",    img: "assets/proj-properties.webp"   },
+  { n: "Lex León",         img: "assets/proj-novaest.webp"      },
+  { n: "Nova Estética",    img: "assets/proj-lexleon.webp"      },
+  { n: "León Properties",  img: "assets/proj-actualizaria.webp" },
+  { n: "León Suites",      img: "assets/proj-powerpulse.webp"   },
 ];
 const CASES = [
-  { n: "PowerPulse",       img: "assets/proj-powerpulse.webp",    url: "#contact", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Actualizar IA",    img: "assets/proj-actualizaria.webp",  url: "#contact", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
-  { n: "Lex León",         img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Nova Estética",    img: "assets/proj-novaest.webp",       url: "#contact", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "León Properties",  img: "assets/proj-properties.webp",    url: "#contact", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "León Suites",      img: "assets/proj-hotel.webp",         url: "#contact", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "PowerPulse",       img: "assets/proj-hotel.webp",         url: "#contact", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Actualizar IA",    img: "assets/proj-properties.webp",    url: "#contact", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { n: "Lex León",         img: "assets/proj-novaest.webp",       url: "#contact", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "Nova Estética",    img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "León Properties",  img: "assets/proj-actualizaria.webp",  url: "#contact", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "León Suites",      img: "assets/proj-powerpulse.webp",    url: "#contact", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
 ];
 const TESTI = [
   { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
@@ -2571,19 +2576,19 @@ function PlanArranque() {
       <section>
         <div className="shead"><h2 className="display">¿Qué incluye el Plan Arranque?</h2><p className="lead" style={{margin:"0 auto"}}>Todo lo necesario para una presencia digital impecable y orientada a resultados.</p></div>
         <div className="plan-grid">
-          <PlanCard className="plan-span-8 plan-card--with-image">
+          <PlanCard className="plan-span-8 plan-card--with-image plan-card--template">
             <img className="plan-card__image" src="assets/plan-arranque-template.webp" alt="Portátil con una página web profesional" loading="lazy" />
             <div className="plan-card__content"><h3>Plantilla Profesional Adaptada</h3><p>Seleccionamos y adaptamos una estructura de alta conversión que se alinea con la identidad y objetivos de tu negocio. Diseño responsive garantizado.</p></div>
           </PlanCard>
-          <PlanCard className="plan-span-4 plan-card--with-image">
+          <PlanCard className="plan-span-4 plan-card--with-image plan-card--brand">
             <img className="plan-card__image" src="assets/plan-arranque-brand-colours.webp" alt="Muestrario de colores de marca" loading="lazy" />
             <div className="plan-card__content"><h3>Colores de Marca</h3><p>Implementación exacta de tu paleta corporativa para una identidad visual cohesiva.</p></div>
           </PlanCard>
-          <PlanCard className="plan-span-5 plan-card--with-image">
+          <PlanCard className="plan-span-5 plan-card--with-image plan-card--content">
             <img className="plan-card__image" src="assets/plan-arranque-content.webp" alt="Cuaderno, cámara y fotografías para crear contenidos" loading="lazy" />
             <div className="plan-card__content"><h3>Textos y Fotos</h3><p>Integración de tu contenido optimizado para web, junto con imágenes de alta calidad.</p></div>
           </PlanCard>
-          <PlanCard className="plan-span-7 plan-card--with-image">
+          <PlanCard className="plan-span-7 plan-card--with-image plan-card--contact">
             <img className="plan-card__image" src="assets/plan-arranque-contact.webp" alt="Móvil con una notificación de mensaje" loading="lazy" />
             <div className="plan-card__content"><h3>Botón Directo a WhatsApp</h3><p>Facilita el contacto inmediato. Un botón flotante estratégico que conecta a tus visitantes con tu atención al cliente.</p></div>
           </PlanCard>
