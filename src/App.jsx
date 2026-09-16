@@ -70,27 +70,34 @@ const CSS = `
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 18px;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 6px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(142, 193, 255, 0.38);
-  background: linear-gradient(180deg, rgba(149, 170, 255, 0.12) 0%, rgba(142, 193, 255, 0.05) 50%, rgba(197, 235, 255, 0.08) 100%);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 8px 24px -10px rgba(66, 123, 216, 0.4);
+  border: 1px solid rgba(146, 187, 255, 0.28);
+  background: rgba(10, 16, 42, 0.75);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  color: #C5EBFF;
+  letter-spacing: 0.02em;
 }
-.eyebrow span {
-  background: linear-gradient(0deg, #95AAFF, #8EC1FF 50%, #C5EBFF);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.eyebrow > span:not(.dot) {
+  color: #C5EBFF;
 }
-.dot{ width:7px; height:7px; border-radius:50%; background:#8EC1FF;
-  box-shadow:0 0 10px #8EC1FF; animation:dotPulse 2.4s ease-in-out infinite; }
-@keyframes dotPulse{
-  0%,100%{ box-shadow:0 0 6px #8EC1FF; transform:scale(1); }
-  50%{ box-shadow:0 0 16px #8EC1FF, 0 0 30px rgba(142,193,255,.4); transform:scale(1.2); }
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00D4FF;
+  box-shadow: 0 0 8px #00D4FF;
+  flex-shrink: 0;
+  display: inline-block;
+  animation: dotPulse 2.4s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 4px #00D4FF; transform: scale(1); opacity: 0.85; }
+  50% { box-shadow: 0 0 12px #00D4FF, 0 0 18px rgba(0, 212, 255, 0.6); transform: scale(1.15); opacity: 1; }
 }
 .kicker{ color:var(--muted); font-size:14px; letter-spacing:.04em; text-transform:uppercase; }
 .lead{ color:var(--muted); font-size:18px; line-height:1.6; max-width:620px; }
