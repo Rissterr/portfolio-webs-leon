@@ -560,10 +560,15 @@ const CSS = `
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
           mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
 .marquee__track{ display:flex; gap:20px; width:max-content;
-  animation:marquee var(--dur,38s) linear infinite; }
+  animation:marquee var(--dur,38s) linear infinite;
+  will-change:transform; }
 .marquee:hover .marquee__track{ animation-play-state:paused; }
-.marquee--rev .marquee__track{ animation-direction:reverse; }
+.marquee--rev .marquee__track, .marquee--right .marquee__track{ 
+  animation:marqueeRight var(--dur,55s) linear infinite; 
+  will-change:transform;
+}
 @keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes marqueeRight{ from{transform:translateX(-50%)} to{transform:translateX(0)} }
 
 /* project strip cards */
 .shot{
@@ -2190,9 +2195,9 @@ function HomePage() {
       {/* PROJECT STRIP MARQUEE */}
       <div className="section strip-section" style={{ padding: "30px 0 60px", overflow: "visible" }} id="work">
         <div className="ambient-glow" />
-        <div className="marquee" style={{ "--dur": "75s" }}>
+        <div className="marquee marquee--right" style={{ "--dur": "65s" }}>
           <div className="marquee__track">
-            {[...PROJECTS, ...PROJECTS].map((p, i) => (
+            {[...PROJECTS, ...PROJECTS, ...PROJECTS, ...PROJECTS].map((p, i) => (
               <div className="shot" key={i}>
                 <img className="shot__img" src={p.img} alt={p.n} loading="lazy" onError={e=>e.target.style.display='none'} />
                 <b>{p.n}</b>
