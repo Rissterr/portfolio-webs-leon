@@ -609,9 +609,22 @@ const CSS = `
           mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude; opacity:0.25; transition:opacity .5s; }
 .shot:hover::before{ opacity:1; }
-.shot b{ position:absolute; left:16px; bottom:14px; z-index:5; font-family:var(--display);
-  font-weight:600; opacity:.9;
-  text-shadow:0 1px 8px rgba(0,0,0,.8); }
+.shot b{ 
+  position:absolute; left:14px; bottom:14px; z-index:5; font-family:var(--display);
+  font-weight:600; font-size:13.5px; color:#fff;
+  padding:6px 14px; border-radius:999px;
+  background:rgba(5, 7, 26, 0.78);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(146, 187, 255, 0.28);
+  box-shadow:0 4px 16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15);
+  letter-spacing:0.02em;
+  transition:border-color .35s ease, transform .35s ease, background .35s ease;
+}
+.shot:hover b{
+  border-color:rgba(197, 235, 255, 0.65);
+  background:rgba(8, 12, 36, 0.9);
+  transform:translateY(-2px);
+}
 
 /* brands */
 .brand{ font-family:var(--display); font-weight:700; font-size:22px; color:#7E8BB5;
