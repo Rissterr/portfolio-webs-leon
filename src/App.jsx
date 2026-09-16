@@ -1623,11 +1623,550 @@ const CSS = `
 .plan-price-pill__meta span:first-child{ color:#92BBFF; font-weight:600; }
 .plan-price-pill--pro{ border-color:rgba(146,187,255,.32); background:linear-gradient(132deg,rgba(53,86,154,.64),rgba(13,23,55,.82) 52%,rgba(34,66,135,.62)); box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 22px 46px -28px rgba(58,124,255,.78),0 0 32px -18px rgba(110,183,255,.7); }
 .plan-price-pill--pro .plan-price-pill__num{ font-size:44px; text-shadow:0 2px 20px rgba(186,220,255,.34); }
-.plan-growth-hero{ text-align:center; position:relative; }
-.plan-growth-hero::before{ content:''; position:absolute; width:min(680px,90vw); height:280px; left:50%; top:80px; transform:translateX(-50%); pointer-events:none; background:radial-gradient(ellipse,rgba(53,112,240,.16),transparent 68%); filter:blur(18px); z-index:-1; }
-.plan-growth-hero .plan-cta-row{ justify-content:center; margin-bottom:40px; }
-.plan-growth-hero .plan-price-pill{ min-width:230px; text-align:left; }
-.plan-growth-hero .plan-price-pill--pro:first-child{ min-width:270px; }
+
+/* ---- NUEVO SHOWCASE HERO PLAN CRECIMIENTO ---- */
+.growth-showcase-wrap {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  overflow: visible;
+}
+.growth-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 24px;
+  border-bottom: 1px solid rgba(146, 187, 255, 0.12);
+  margin-bottom: 36px;
+}
+.growth-top-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--display);
+}
+.growth-top-logo {
+  font-weight: 800;
+  font-size: 18px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.growth-top-logo span.badge-lw {
+  background: linear-gradient(135deg, #0084FF, #00D4FF);
+  color: #05071a;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 900;
+}
+.growth-top-slogan {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-left: 1px solid rgba(146, 187, 255, 0.2);
+  padding-left: 12px;
+}
+.growth-top-steps {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.growth-top-steps span.active-step {
+  color: #C5EBFF;
+  background: rgba(0, 132, 255, 0.16);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.35);
+}
+
+.growth-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1.35fr 0.75fr;
+  gap: 36px;
+  align-items: center;
+  position: relative;
+}
+
+/* Columna Izquierda */
+.growth-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+.growth-kicker {
+  color: #00D4FF;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.growth-title {
+  font-family: var(--display);
+  font-size: clamp(38px, 4.4vw, 56px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.growth-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #F0F5FF;
+  line-height: 1.35;
+  margin: 0;
+}
+.growth-desc {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 6px;
+}
+.growth-meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 8px 0;
+}
+.growth-meta-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(180deg, rgba(20, 36, 75, 0.65) 0%, rgba(10, 18, 42, 0.8) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.28);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 12px 28px -10px rgba(0,0,0,0.5);
+  backdrop-filter: blur(14px);
+}
+.growth-meta-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 132, 255, 0.18);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C5EBFF;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px -3px rgba(0, 132, 255, 0.4);
+}
+.growth-meta-icon svg { width: 22px; height: 22px; }
+.growth-meta-body { display: flex; flex-direction: column; gap: 2px; }
+.growth-meta-body b { font-family: var(--display); font-size: 22px; color: #fff; line-height: 1.1; }
+.growth-meta-body span.sub { font-size: 12px; color: #92BBFF; font-weight: 600; }
+.growth-meta-body span.hint { font-size: 11px; color: var(--muted); }
+
+.growth-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #0077FF 0%, #0055E5 100%);
+  color: #fff;
+  font-family: var(--body);
+  font-size: 16.5px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 100px;
+  border: 1px solid rgba(146, 215, 255, 0.5);
+  box-shadow: 0 12px 32px -6px rgba(0, 102, 255, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease, filter 0.2s;
+  cursor: pointer;
+}
+.growth-cta-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 40px -4px rgba(0, 102, 255, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  filter: brightness(1.08);
+}
+.growth-trust-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.growth-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #D6E4FF;
+  font-weight: 500;
+}
+.growth-trust-item span.ic-chk {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0, 132, 255, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.5);
+  color: #00D4FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10.5px;
+  font-weight: 900;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+/* Columna Central - Mockups */
+.growth-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+}
+.growth-note-top {
+  position: absolute;
+  top: -36px;
+  right: 20%;
+  font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
+  font-style: italic;
+  font-size: 19px;
+  color: #C5EBFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+}
+.growth-note-top svg { width: 34px; height: 34px; transform: rotate(10deg); color: #8EC1FF; }
+
+.growth-mockup-stage {
+  position: relative;
+  width: 100%;
+  perspective: 1200px;
+}
+.growth-tablet {
+  width: 90%;
+  background: #090d20;
+  border: 4px solid #1c264a;
+  border-radius: 24px;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85), 0 0 50px -10px rgba(0, 102, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  overflow: hidden;
+  position: relative;
+  transform: rotateY(-6deg) rotateX(4deg);
+  transition: transform 0.5s cubic-bezier(.16,1,.3,1);
+}
+.growth-tablet:hover {
+  transform: rotateY(-2deg) rotateX(2deg) translateY(-4px);
+}
+.tablet-screen {
+  background: linear-gradient(180deg, #0e152f 0%, #080c1e 100%);
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tablet-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.tablet-logo { font-size: 12px; font-weight: 800; color: #fff; font-family: var(--display); }
+.tablet-links { display: flex; gap: 10px; font-size: 9px; color: var(--muted); }
+.tablet-cta { font-size: 9px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 3px 8px; color: #fff; }
+
+.tablet-hero-box {
+  background: radial-gradient(circle at 50% 30%, rgba(30, 60, 130, 0.35), transparent 70%), rgba(255,255,255,0.02);
+  border: 1px solid rgba(146, 187, 255, 0.15);
+  border-radius: 14px;
+  padding: 20px 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tablet-pill {
+  align-self: flex-start;
+  font-size: 9px;
+  font-weight: 700;
+  color: #92BBFF;
+  background: rgba(66, 123, 216, 0.2);
+  border: 1px solid rgba(146, 187, 255, 0.3);
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+.tablet-hero-box h4 { font-family: var(--display); font-size: 18px; color: #fff; margin: 0; font-weight: 700; line-height: 1.2; }
+.tablet-hero-box p { font-size: 11px; color: var(--muted); margin: 0; line-height: 1.4; max-width: 240px; }
+.tablet-btn-small {
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 600;
+  background: #0084FF;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 6px 14px;
+  margin-top: 4px;
+}
+.tablet-metrics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.tablet-metric-item { display: flex; flex-direction: column; gap: 2px; }
+.tablet-metric-item b { font-size: 12px; color: #fff; font-family: var(--display); }
+.tablet-metric-item span { font-size: 8.5px; color: var(--muted); }
+
+/* Phone Mockup */
+.growth-phone {
+  position: absolute;
+  right: -10px;
+  bottom: -24px;
+  width: 215px;
+  background: #050716;
+  border: 3.5px solid #25335e;
+  border-radius: 28px;
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.95), 0 0 40px -5px rgba(0, 132, 255, 0.45);
+  overflow: hidden;
+  z-index: 5;
+  transform: rotateY(-3deg) rotateX(2deg);
+  transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+}
+.growth-phone:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+.phone-screen {
+  padding: 14px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(180deg, #0c1228 0%, #050816 100%);
+}
+.phone-header {
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  font-family: var(--display);
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: 6px;
+}
+.phone-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(146, 187, 255, 0.2);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.phone-card-title { font-size: 11px; font-weight: 700; color: #fff; }
+.phone-card-sub { font-size: 9px; color: var(--muted); line-height: 1.3; }
+.phone-days {
+  display: flex;
+  gap: 3px;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+.phone-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 8px;
+  color: var(--muted);
+  padding: 3px 2px;
+  border-radius: 6px;
+  flex: 1;
+}
+.phone-day b { font-size: 9px; color: #dbe4ff; }
+.phone-day.active {
+  background: #0084FF;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 132, 255, 0.6);
+}
+.phone-day.active b { color: #fff; }
+.phone-times {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.phone-time {
+  font-size: 8px;
+  color: #C5EBFF;
+  background: rgba(255,255,255,0.05);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+}
+.phone-time:first-child { border-color: rgba(0, 132, 255, 0.5); background: rgba(0, 132, 255, 0.15); }
+.phone-btn {
+  background: #0084FF;
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  border: none;
+  border-radius: 100px;
+  padding: 7px;
+  width: 100%;
+  box-shadow: 0 4px 14px rgba(0, 132, 255, 0.5);
+  cursor: pointer;
+}
+.phone-secure { font-size: 7.5px; color: var(--muted); text-align: center; }
+
+/* Columna Derecha - Tarjetas de métricas */
+.growth-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  align-items: flex-start;
+}
+.growth-arrow-svg {
+  position: absolute;
+  right: -20px;
+  top: -40px;
+  width: 160px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+.growth-stat-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(16, 32, 70, 0.75) 0%, rgba(8, 16, 40, 0.88) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: 0 16px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -8px rgba(0, 132, 255, 0.35), inset 0 1px 0 rgba(255,255,255,0.18);
+  backdrop-filter: blur(16px);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.growth-stat-card:hover {
+  transform: translateX(4px) translateY(-2px);
+  border-color: rgba(0, 212, 255, 0.7);
+  box-shadow: 0 20px 50px -12px rgba(0, 132, 255, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.growth-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 132, 255, 0.22);
+  border: 1px solid rgba(0, 212, 255, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00D4FF;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px rgba(0, 132, 255, 0.4);
+}
+.growth-stat-icon svg { width: 22px; height: 22px; }
+.growth-stat-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+.growth-stat-num { font-family: var(--display); font-size: 24px; font-weight: 800; color: #fff; line-height: 1; letter-spacing: -0.01em; }
+.growth-stat-label { font-size: 13px; color: #92BBFF; font-weight: 600; }
+
+.growth-note-bot {
+  font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
+  font-style: italic;
+  font-size: 19px;
+  color: #C5EBFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  align-self: flex-end;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+}
+.growth-note-bot svg { width: 30px; height: 30px; color: #8EC1FF; }
+
+/* Barra de 5 Pilares Inferior */
+.growth-pillars-bar {
+  margin-top: 48px;
+  background: linear-gradient(180deg, rgba(20, 36, 75, 0.55) 0%, rgba(10, 18, 42, 0.75) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.25);
+  border-radius: 24px;
+  padding: 24px 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 20px 50px -20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(16px);
+}
+.growth-pillar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+.growth-pillar-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 132, 255, 0.18);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00D4FF;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px -2px rgba(0, 132, 255, 0.35);
+}
+.growth-pillar-icon svg { width: 20px; height: 20px; }
+.growth-pillar-text { display: flex; flex-direction: column; gap: 2px; }
+.growth-pillar-text b { font-family: var(--display); font-size: 14.5px; color: #fff; font-weight: 700; line-height: 1.2; }
+.growth-pillar-text span { font-size: 11.5px; color: var(--muted); line-height: 1.3; }
+
+/* Responsive adjustments */
+@media(max-width: 1024px) {
+  .growth-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .growth-pillars-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width: 640px) {
+  .growth-meta-row {
+    grid-template-columns: 1fr;
+  }
+  .growth-pillars-bar {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+  .growth-top-steps {
+    display: none;
+  }
+  .growth-tablet {
+    width: 100%;
+    transform: none;
+  }
+  .growth-phone {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 260px;
+    margin: 16px auto 0;
+    transform: none;
+  }
+}
 
 .plan-cta-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
 .plan-btn-ghost{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:#E7ECFB; font-weight:500;
@@ -2841,51 +3380,357 @@ function PlanArranque() {
 function PlanCrecimiento() {
   return (
     <PlanShell>
-      <section className="plan-growth-hero">
-        <div className="eyebrow" style={{ margin: "0 auto 22px" }}><span className="dot" /><span>Plan Más Elegido</span></div>
-        <h1 className="display h-grad" style={{ fontSize: "clamp(36px,5vw,60px)" }}>Plan Crecimiento</h1>
-        <p className="lead" style={{ margin: "0 auto 40px" }}>La solución definitiva para negocios que buscan escalar. Incluye funcionalidades avanzadas de reserva, captura de leads de alta conversión y un diseño que transmite autoridad inmediata.</p>
-        <div className="plan-cta-row" style={{ justifyContent: "center", marginBottom: 40 }}>
-          <PlanCard className="plan-price-pill plan-price-pill--pro">
-            <div className="plan-price-pill__num">750<span>€</span></div>
-            <div className="plan-price-pill__meta"><span>Pago único.</span><span>Sin cuotas ocultas.</span></div>
-          </PlanCard>
-          <PlanCard className="plan-price-pill plan-price-pill--pro">
-            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <PlanFeatureIcon><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></PlanFeatureIcon>
-              <div style={{ textAlign: "left" }}><span style={{ display: "block", color: "var(--muted)", fontSize: 12 }}>Entrega en</span><b style={{ color: "#C5EBFF", fontSize: 18 }}>2 semanas</b></div>
+      <div className="growth-showcase-wrap">
+        {/* Micro-Nav Superior */}
+        <div className="growth-top-bar">
+          <div className="growth-top-brand">
+            <div className="growth-top-logo">
+              <span className="badge-lw">LW</span>
+              <span>León Webs</span>
             </div>
-          </PlanCard>
+            <span className="growth-top-slogan">Webs que hacen crecer negocios</span>
+          </div>
+          <div className="growth-top-steps">
+            <span>IDEAS</span>
+            <span>|</span>
+            <span>PLAN</span>
+            <span>|</span>
+            <span>ACCIÓN</span>
+            <span>|</span>
+            <span className="active-step">RESULTADOS</span>
+          </div>
         </div>
-        <Btn glossy href={homeHref("#contact")}>Empezar proyecto ahora</Btn>
-      </section>
 
-      <section>
-        <div className="shead"><h2 className="display">Todo lo del Plan Arranque, y mucho más.</h2><p className="lead" style={{margin:"0 auto"}}>Diseñado específicamente para automatizar procesos y generar confianza inmediata en tus visitantes.</p></div>
+        {/* Hero Principal en 3 Columnas */}
+        <div className="growth-grid">
+          {/* COLUMNA IZQUIERDA */}
+          <div className="growth-left">
+            <span className="growth-kicker">Más visibilidad. Más clientes. Más crecimiento.</span>
+            <h1 className="growth-title">Plan <span className="h-grad">Crecimiento</span></h1>
+            <p className="growth-subtitle">Convierte tu web en una herramienta real de crecimiento para tu negocio.</p>
+            <p className="growth-desc">Diseñada para atraer clientes, generar confianza y automatizar procesos clave como reservas, formularios o captación de leads.</p>
+
+            <div className="growth-meta-row">
+              <div className="growth-meta-card">
+                <div className="growth-meta-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                    <line x1="7" y1="7" x2="7.01" y2="7"/>
+                  </svg>
+                </div>
+                <div className="growth-meta-body">
+                  <b>750 €</b>
+                  <span className="sub">Pago único</span>
+                  <span className="hint">Sin sorpresas.</span>
+                </div>
+              </div>
+
+              <div className="growth-meta-card">
+                <div className="growth-meta-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <div className="growth-meta-body">
+                  <span className="hint">Entrega en</span>
+                  <b>2 semanas</b>
+                  <span className="sub">Tu negocio online, más rápido.</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 12, marginBottom: 8 }}>
+              <a href={homeHref("#contact")} className="growth-cta-btn">
+                <span>Empezar proyecto ahora</span>
+                <span style={{ fontSize: 18 }}>→</span>
+              </a>
+            </div>
+
+            <div className="growth-trust-row">
+              <div className="growth-trust-item">
+                <span className="ic-chk">✓</span>
+                <span>Sin cuotas ocultas</span>
+              </div>
+              <div className="growth-trust-item">
+                <span className="ic-chk">✓</span>
+                <span>Trato directo</span>
+              </div>
+              <div className="growth-trust-item">
+                <span className="ic-chk">✓</span>
+                <span>Resultados reales</span>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUMNA CENTRAL: MOCKUPS */}
+          <div className="growth-center">
+            <div className="growth-note-top">
+              <span>Una web que trabaja para ti</span>
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M5 5 C 15 25, 25 30, 35 32 M 28 25 L 35 32 L 32 38" />
+              </svg>
+            </div>
+
+            <div className="growth-mockup-stage">
+              {/* TABLET */}
+              <div className="growth-tablet">
+                <div className="tablet-screen">
+                  <div className="tablet-nav">
+                    <div className="tablet-logo">LW León Webs</div>
+                    <div className="tablet-links hide-m">
+                      <span>Inicio</span>
+                      <span>Servicios</span>
+                      <span>Proyectos</span>
+                      <span>Contacto</span>
+                    </div>
+                    <span className="tablet-cta">Solicitar presupuesto</span>
+                  </div>
+
+                  <div className="tablet-hero-box">
+                    <span className="tablet-pill">✦ TU NEGOCIO ONLINE</span>
+                    <h4>Convierte visitantes en clientes</h4>
+                    <p>Páginas web que atraen, convierten y hacen crecer tu negocio.</p>
+                    <button className="tablet-btn-small">Solicitar presupuesto →</button>
+                  </div>
+
+                  <div className="tablet-metrics">
+                    <div className="tablet-metric-item">
+                      <b>+120</b>
+                      <span>Proyectos realizados</span>
+                    </div>
+                    <div className="tablet-metric-item">
+                      <b>98%</b>
+                      <span>Clientes satisfechos</span>
+                    </div>
+                    <div className="tablet-metric-item">
+                      <b>+3 años</b>
+                      <span>Impulsando negocios</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PHONE MOCKUP EN PRIMER PLANO */}
+              <div className="growth-phone">
+                <div className="phone-screen">
+                  <div className="phone-header">LW León Webs</div>
+                  <div className="phone-card">
+                    <div className="phone-card-title">Reserva tu cita</div>
+                    <div className="phone-card-sub">Elige la fecha y hora que mejor te venga.</div>
+                    <div className="phone-days">
+                      <div className="phone-day"><span>Lun</span><b>10</b></div>
+                      <div className="phone-day"><span>Mar</span><b>11</b></div>
+                      <div className="phone-day"><span>Mié</span><b>12</b></div>
+                      <div className="phone-day active"><span>Jue</span><b>13</b></div>
+                      <div className="phone-day"><span>Vie</span><b>14</b></div>
+                    </div>
+                    <div className="phone-times">
+                      <div className="phone-time">09:00</div>
+                      <div className="phone-time">10:30</div>
+                      <div className="phone-time">12:00</div>
+                      <div className="phone-time">16:00</div>
+                      <div className="phone-time">17:30</div>
+                      <div className="phone-time">19:00</div>
+                    </div>
+                    <button className="phone-btn">Reservar ahora</button>
+                    <span className="phone-secure">🔒 Proceso seguro</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUMNA DERECHA: MÉTRICAS Y GRÁFICO */}
+          <div className="growth-right">
+            <svg className="growth-arrow-svg" viewBox="0 0 100 160" fill="none">
+              <path d="M10 140 Q 40 80 85 20" stroke="url(#growthGrad)" strokeWidth="4" strokeLinecap="round" />
+              <path d="M65 15 L 90 18 L 85 45" fill="none" stroke="#00D4FF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              <defs>
+                <linearGradient id="growthGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="rgba(0, 132, 255, 0.2)" />
+                  <stop offset="100%" stopColor="#00D4FF" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <div className="growth-stat-card">
+              <div className="growth-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <div className="growth-stat-info">
+                <span className="growth-stat-num">+120%</span>
+                <span className="growth-stat-label">Más visitas</span>
+              </div>
+            </div>
+
+            <div className="growth-stat-card">
+              <div className="growth-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div className="growth-stat-info">
+                <span className="growth-stat-num">+70%</span>
+                <span className="growth-stat-label">Más clientes</span>
+              </div>
+            </div>
+
+            <div className="growth-stat-card">
+              <div className="growth-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <div className="growth-stat-info">
+                <span className="growth-stat-num">+45%</span>
+                <span className="growth-stat-label">Más reservas</span>
+              </div>
+            </div>
+
+            <div className="growth-note-bot">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M35 10 C 25 20, 15 25, 8 32 M 16 34 L 7 33 L 10 24" />
+              </svg>
+              <span>Tu negocio también puede crecer</span>
+            </div>
+          </div>
+        </div>
+
+        {/* FRANJA DE 5 PILARES INFERIOR */}
+        <div className="growth-pillars-bar">
+          <div className="growth-pillar-item">
+            <div className="growth-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <div className="growth-pillar-text">
+              <b>Diseño profesional</b>
+              <span>A medida de tu marca</span>
+            </div>
+          </div>
+
+          <div className="growth-pillar-item">
+            <div className="growth-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div className="growth-pillar-text">
+              <b>Captura de leads</b>
+              <span>Convierte visitantes en clientes</span>
+            </div>
+          </div>
+
+          <div className="growth-pillar-item">
+            <div className="growth-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div className="growth-pillar-text">
+              <b>Sistema de reservas</b>
+              <span>Automatiza tu negocio</span>
+            </div>
+          </div>
+
+          <div className="growth-pillar-item">
+            <div className="growth-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </div>
+            <div className="growth-pillar-text">
+              <b>SEO incluido</b>
+              <span>Más visibilidad en Google</span>
+            </div>
+          </div>
+
+          <div className="growth-pillar-item">
+            <div className="growth-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </div>
+            <div className="growth-pillar-text">
+              <b>Soporte técnico</b>
+              <span>Siempre a tu lado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* SECCIÓN DETALLADA DE CARACTERÍSTICAS */}
+      <section style={{ marginTop: 60 }}>
+        <div className="shead">
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Funcionalidades Clave</span></Reveal>
+          <Reveal delay={100}><h2 className="display">Todo lo necesario para que tu negocio facture más</h2></Reveal>
+          <Reveal delay={180} className="lead" as="p" style={{margin:"0 auto"}}>Diseñado específicamente para automatizar procesos y generar confianza inmediata en tus visitantes.</Reveal>
+        </div>
+
         <div className="plan-grid">
           <PlanCard className="plan-span-12">
             <PlanFeatureIcon><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></PlanFeatureIcon>
-            <h3>Formularios Avanzados y Reservas</h3>
-            <p>Captura leads cualificados con formularios multi-paso o integra un sistema de reservas directo en tu web. Sincronización con tu calendario.</p>
+            <h3>Sistema de Reservas y Formularios Multi-Paso</h3>
+            <p>Permite que tus clientes elijan servicio, fecha y hora directamente desde el móvil. Sincronización automática con Google Calendar y aviso instantáneo por WhatsApp o correo electrónico.</p>
           </PlanCard>
+
           <PlanCard className="plan-span-6">
             <PlanFeatureIcon><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></PlanFeatureIcon>
-            <h3>Galería de Trabajos</h3>
-            <p>Muestra tu portafolio con un diseño premium tipo grid asimétrico.</p>
+            <h3>Galería de Trabajos & Casos Reales</h3>
+            <p>Muestra tu portafolio con un diseño asimétrico tipo Liquid Glass que resalta tus mejores resultados y genera autoridad inmediata.</p>
           </PlanCard>
+
           <PlanCard className="plan-span-6">
             <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
-            <h3>Sección Testimonios</h3>
-            <p>Aumenta la conversión con pruebas sociales y tarjetas de reseñas.</p>
+            <h3>Testimonios y Reseñas de Confianza</h3>
+            <p>Aumenta la tasa de cierre con pruebas sociales verificadas de clientes de León, logrando que el visitante sienta tranquilidad antes de contactar.</p>
           </PlanCard>
+
           <div className="plan-span-12 plan-included-box">
-            <h4>También incluye la base del Plan Arranque</h4>
+            <h4>También incluye todo lo esencial</h4>
             <div className="plan-included-grid">
-              {["Diseño Responsive","SEO Básico","Dominio y Hosting (1 año)","Integración WhatsApp"].map((t,i)=>(
+              {["Diseño 100% Responsive para móviles","SEO Local en Google y Google Maps","Dominio y Hosting de alta velocidad (1 año)","Integración directa de WhatsApp","Optimización WebP ultrarrápida","Textos y copy orientados a vender"].map((t,i)=>(
                 <div key={i}><span>✓</span>{t}</div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* LLAMADA A LA ACCIÓN FINAL */}
+      <section style={{ textAlign: "center", marginTop: 40 }}>
+        <div style={{
+          background: "linear-gradient(135deg, rgba(20, 38, 80, 0.7) 0%, rgba(8, 16, 42, 0.9) 100%)",
+          border: "1px solid rgba(146, 187, 255, 0.35)",
+          borderRadius: 24,
+          padding: "48px 24px",
+          boxShadow: "0 20px 60px -20px rgba(0, 102, 255, 0.45)"
+        }}>
+          <h3 style={{ fontFamily: "var(--display)", fontSize: "clamp(26px, 3.5vw, 36px)", color: "#fff", marginBottom: 12 }}>¿Listo para dar el salto con el Plan Crecimiento?</h3>
+          <p style={{ color: "var(--muted)", maxWidth: 540, margin: "0 auto 28px", fontSize: 16 }}>En 2 semanas tu web estará lista para recibir visitas y convertirlas en clientes.</p>
+          <a href={homeHref("#contact")} className="growth-cta-btn">
+            <span>Solicitar Plan Crecimiento (750€) →</span>
+          </a>
         </div>
       </section>
     </PlanShell>
