@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 
 // respeta el subpath del hosting (ej. GitHub Pages en /portfolio-webs-leon/)
 const BASE = import.meta.env.BASE_URL;
@@ -623,10 +623,21 @@ const CSS = `
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(350px circle at var(--mx, 50%) var(--my, 50%), rgba(142, 193, 255, 0.10), transparent 70%);
+  z-index: 11;
+  background: radial-gradient(350px circle at var(--mx, 50%) var(--my, 50%), var(--sweep-color, rgba(142, 193, 255, 0.10)), transparent 70%);
   opacity: var(--hovered, 0);
   transition: opacity 0.5s ease;
+}
+.card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 12;
+  background: radial-gradient(circle var(--glare-size, 280px) at var(--mx, 50%) var(--my, 50%), var(--glare-color, rgba(146, 187, 255, 0.22)), transparent 70%);
+  mix-blend-mode: screen;
+  border-radius: inherit;
+  opacity: var(--hovered, 0);
+  transition: opacity 0.3s cubic-bezier(.16,1,.3,1);
 }
 /* crystalline edge: visible at rest, full on hover */
 .scard::before{ content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; z-index:3; pointer-events:none;
@@ -1220,14 +1231,14 @@ const CSS = `
   /* Ocultar marcas en móvil (poco valor, mucho espacio) */
   .brands{ display:none; }
 
-  /* --- COMPARACIÓN: 2 col side-by-side, texto compacto --- */
-  .cols{ grid-template-columns:1fr 1fr !important; gap:12px !important; }
+  /* --- COMPARACIÓN: apilada en 1 col, más legible --- */
+  .cols{ grid-template-columns:1fr !important; gap:16px !important; }
   .shead h2{ font-size:clamp(18px,5.5vw,26px); line-height:1.15; }
   .shead .lead{ font-size:13px !important; }
-  .col{ padding:14px; border-radius:14px; text-align:left; }
-  .col h3{ font-size:14px; margin-bottom:10px; text-align:center; }
-  .row{ font-size:11.5px; padding:6px 0; gap:5px; align-items:flex-start; line-height:1.35; }
-  .ic{ width:15px; height:15px; font-size:10px; flex-shrink:0; margin-top:1px; }
+  .col{ padding:20px; border-radius:16px; text-align:left; }
+  .col h3{ font-size:17px; margin-bottom:14px; text-align:left; }
+  .row{ font-size:14px; padding:9px 0; gap:8px; align-items:flex-start; line-height:1.4; }
+  .ic{ width:20px; height:20px; font-size:12px; flex-shrink:0; margin-top:1px; }
 
   /* --- SERVICIOS BENTO: 2 col, sin ilustraciones --- */
   .bento{ grid-template-columns:1fr 1fr !important; gap:12px !important; }
@@ -1488,7 +1499,8 @@ const CSS = `
 }
 
 /* ---- páginas legales ---- */
-.legal-page{ max-width:760px; margin:0 auto; }
+.legal-page{ max-width:760px; margin:0 auto; text-align:center; }
+.legal-page__body{ text-align:left; }
 .legal-page__body h3{ font-family:var(--display); font-size:19px; color:#fff; margin:32px 0 12px; }
 .legal-page__body h3:first-child{ margin-top:0; }
 .legal-page__body p{ color:var(--muted); line-height:1.7; font-size:15px; margin-bottom:14px; }
@@ -1751,6 +1763,7 @@ function TiltCard({ children, delay = 0, className = "", style = {}, as: Tag = "
       {...rest}
     >
       <span className="card__sweep" />
+      <span className="card-glare" />
       {children}
     </Tag>
   );
@@ -1911,10 +1924,13 @@ const FAQS = [
 function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
   const [calcNeeds, setCalcNeeds] = useState([]);
   const helpSectionRef = useRef(null);
+  const rayLRef = useRef(null);
+  const rayRRef = useRef(null);
+  const rayTRef = useRef(null);
+  const rayBRef = useRef(null);
 
   const CALC_ADDERS = { reservas: 150, tienda: 750, ads: 200 };
   const CALC_BASE = 450;
@@ -1922,8 +1938,15 @@ function HomePage() {
   const calcTotal = CALC_BASE + calcNeeds.reduce((s,k)=>s+CALC_ADDERS[k],0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", onScroll);
+    let lastScrolled = false;
+    const onScroll = () => {
+      const isScrolled = window.scrollY > 30;
+      if (isScrolled !== lastScrolled) {
+        lastScrolled = isScrolled;
+        setScrolled(isScrolled);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -1944,16 +1967,20 @@ function HomePage() {
       
       const sectionCenter = rect.top + rect.height / 2;
       const viewportCenter = windowHeight / 2;
-      
+
       const maxDist = windowHeight / 2;
       const dist = Math.max(0, Math.min(maxDist, sectionCenter - viewportCenter));
       const progress = dist / maxDist;
-      
-      setScrollProgress(progress);
+      const offset = `${progress * 100}%`;
+
+      if (rayLRef.current) rayLRef.current.style.setProperty("--ray-offset", offset);
+      if (rayRRef.current) rayRRef.current.style.setProperty("--ray-offset", offset);
+      if (rayTRef.current) rayTRef.current.style.setProperty("--ray-offset", offset);
+      if (rayBRef.current) rayBRef.current.style.setProperty("--ray-offset", offset);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -1987,7 +2014,7 @@ function HomePage() {
       {/* MENÚ MÓVIL */}
       {menuOpen && (
         <div className="nav__mobile-menu">
-          <button className="close-btn" onClick={() => setMenuOpen(false)}>✕</button>
+          <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
           <a href="#work" onClick={() => setMenuOpen(false)}>Trabajos</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Servicios</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>Nosotros</a>
@@ -2211,20 +2238,20 @@ function HomePage() {
 
           {/* scroll-driven rays */}
           <div
+            ref={rayLRef}
             className="hq__ray hq__ray--l"
-            style={{ "--ray-offset": `${scrollProgress * 100}%` }}
           />
           <div
+            ref={rayRRef}
             className="hq__ray hq__ray--r"
-            style={{ "--ray-offset": `${scrollProgress * 100}%` }}
           />
           <div
+            ref={rayTRef}
             className="hq__ray hq__ray--t"
-            style={{ "--ray-offset": `${scrollProgress * 100}%` }}
           />
           <div
+            ref={rayBRef}
             className="hq__ray hq__ray--b"
-            style={{ "--ray-offset": `${scrollProgress * 100}%` }}
           />
 
           {/* central hub avatar */}
@@ -2261,7 +2288,8 @@ function HomePage() {
         </div>
         <div className="cases">
           {CASES.map((c, i) => (
-            <TiltCard key={i} delay={(i % 3) * 90} className="case" as="a" href={c.url} target="_blank" rel="noopener noreferrer">
+            <TiltCard key={i} delay={(i % 3) * 90} className="case" as="a" href={c.url}
+              style={{ "--glare-color": c.glare, "--sweep-color": c.sweep, "--glare-size": "340px" }}>
               <img className="case__img" src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
               {c.cat && <span className="case__cat">{c.cat}</span>}
               <div className="case__meta"><b>{c.n}</b><span className="case__view">Ver →</span></div>
@@ -2508,7 +2536,7 @@ function PlanShell({ eyebrow, children }) {
       </nav>
       {menuOpen && (
         <div className="nav__mobile-menu">
-          <button className="close-btn" onClick={() => setMenuOpen(false)}>✕</button>
+          <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
           <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
           <a href={homeHref("#precios")} onClick={() => setMenuOpen(false)}>Servicios</a>
           <a href={homeHref("#faq")} onClick={() => setMenuOpen(false)}>FAQ</a>
@@ -2795,10 +2823,14 @@ function LegalPage({ title, updated, children }) {
   return (
     <PlanShell>
       <section className="legal-page">
-        <div className="eyebrow"><span className="dot" /><span>Información legal</span></div>
-        <h1 className="display" style={{ fontSize: "clamp(28px,4vw,42px)", margin: "18px 0 8px" }}>{title}</h1>
-        <p style={{ color: "var(--muted)", fontSize: 13, marginBottom: 40 }}>Última actualización: {updated}</p>
-        <div className="legal-page__body">{children}</div>
+        <Reveal className="eyebrow" as="div"><span className="dot" /><span>Información legal</span></Reveal>
+        <Reveal delay={80}><h1 className="display" style={{ fontSize: "clamp(28px,4vw,42px)", margin: "18px 0 8px" }}>{title}</h1></Reveal>
+        <Reveal delay={140}><p style={{ color: "var(--muted)", fontSize: 13, marginBottom: 40 }}>Última actualización: {updated}</p></Reveal>
+        <Reveal delay={200}>
+          <PlanCard className="legal-page__card">
+            <div className="legal-page__body">{children}</div>
+          </PlanCard>
+        </Reveal>
       </section>
     </PlanShell>
   );
@@ -2866,6 +2898,23 @@ function Cookies() {
   );
 }
 
+function NotFound() {
+  return (
+    <PlanShell eyebrow="Error 404">
+      <Reveal>
+        <PlanCard className="notfound-card" style={{ textAlign: "center", padding: "56px 32px" }}>
+          <div className="eyebrow" style={{ margin: "0 auto 18px" }}><span className="dot" /><span>Error 404</span></div>
+          <h1 style={{ fontSize: "clamp(32px,6vw,48px)", marginBottom: 12 }}>Página no encontrada</h1>
+          <p style={{ color: "var(--muted)", fontSize: 18, marginBottom: 32, maxWidth: 460, marginInline: "auto" }}>
+            Parece que este enlace no lleva a ningún sitio. Puede que la página se haya movido o que la dirección tenga un error.
+          </p>
+          <Btn glossy href={homeHref("")}>Volver al inicio</Btn>
+        </PlanCard>
+      </Reveal>
+    </PlanShell>
+  );
+}
+
 function CookieBanner() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -2886,9 +2935,18 @@ function CookieBanner() {
   );
 }
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ScrollToTop />
       <CookieBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -2899,6 +2957,7 @@ export default function App() {
         <Route path="/aviso-legal" element={<AvisoLegal />} />
         <Route path="/privacidad" element={<Privacidad />} />
         <Route path="/cookies" element={<Cookies />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

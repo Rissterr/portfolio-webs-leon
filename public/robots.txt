@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rissterr.github.io/portfolio-webs-leon/sitemap.xml

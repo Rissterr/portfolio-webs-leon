@@ -87,10 +87,21 @@ Anchos usados: 700px para tarjetas pequeñas, 900px para capturas de proyecto, 1
 - `lang="en"` en el HTML de una web en español — corregido a `lang="es"`
 - 44MB de imágenes sin optimizar — reducido a ~1MB
 
+**Corregido en la auditoría de 31/08/2026 (mínimo 10 problemas):**
+1. Página en blanco al visitar una URL inexistente — ahora hay una página 404 real (`NotFound`) con mensaje amable y botón de vuelta al inicio, más ruta comodín `<Route path="*">`
+2. Al navegar entre páginas (home → plan de detalle, etc.) el scroll no subía arriba — el usuario aterrizaba a mitad de la página nueva. Añadido componente `ScrollToTop` (usa `useLocation`, sube el scroll salvo que la navegación lleve a un `#ancla`)
+3. Las tarjetas de proyectos abrían `#contact` en una pestaña nueva (`target="_blank"`) — resto de una época en que `url` apuntaba a sitios externos reales. Corregido a navegación normal en la misma pestaña
+4. Faltaba `robots.txt` — creado
+5. Faltaba `sitemap.xml` — creado con las 8 rutas del sitio
+6. Faltaba `<link rel="canonical">` — añadido
+7. Faltaba `apple-touch-icon` para iOS — añadido
+8. Faltaban `og:url`, `twitter:title`, `twitter:description`, `twitter:image` — añadidos para que los enlaces compartidos en redes se vean bien
+9. El botón de cerrar (✕) del menú móvil no tenía `aria-label` — accesibilidad para lectores de pantalla, corregido
+10. Aviso Legal + Política de Privacidad + Política de Cookies + banner de consentimiento — ya cubierto en la sección anterior
+
 **Pendiente antes de considerar la web lista para entregar a un cliente real:**
-1. Número de teléfono/WhatsApp real (ahora mismo es un placeholder +34600000000)
+1. Número de teléfono/WhatsApp real (ahora mismo es un placeholder +34600000000, aparece en 5 sitios del código)
 2. Testimonios reales de clientes de León (ahora son de otro portfolio, con nombres extranjeros)
-3. Página legal: Aviso Legal, Política de Privacidad y Política de Cookies — obligatorias en España para cualquier web con formulario de contacto (LOPD/RGPD). Ahora mismo no existen.
-4. Decidir dominio definitivo (GitHub Pages actual vs Surge vs comprar leonwebs.es) — el og:image y las URLs canónicas están fijadas a la URL de GitHub Pages actual, hay que actualizarlas si cambia
-5. Enlaces de Instagram/LinkedIn en el footer siguen siendo `#` (no hay cuentas reales enlazadas)
-6. robots.txt y sitemap.xml no existen (no crítico para una web pequeña, pero ayuda al SEO)
+3. Decidir dominio definitivo (GitHub Pages actual vs Surge vs comprar leonwebs.es) — el og:image, og:url y la URL canónica están fijadas a la URL de GitHub Pages actual, hay que actualizarlas si cambia
+4. Enlaces de Instagram/LinkedIn en el footer siguen siendo `#` (no hay cuentas reales enlazadas)
+5. El historial de git conserva las imágenes PNG pesadas que ya se movieron fuera del árbol de trabajo — clonar el repo seguirá siendo lento hasta que se reescriba el historial (acción destructiva, requiere permiso explícito antes de tocarla)
