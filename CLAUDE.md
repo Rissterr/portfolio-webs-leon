@@ -99,6 +99,12 @@ Anchos usados: 700px para tarjetas pequeñas, 900px para capturas de proyecto, 1
 9. El botón de cerrar (✕) del menú móvil no tenía `aria-label` — accesibilidad para lectores de pantalla, corregido
 10. Aviso Legal + Política de Privacidad + Política de Cookies + banner de consentimiento — ya cubierto en la sección anterior
 
+**Mejoras visuales Antigravity integradas (Septiembre 2026):**
+- Acabado Liquid Glass en tarjetas de precios (`price-card`), servicios (`svc-card`) y calculadora (`calc-card`) con `backdrop-filter: blur(16-20px)` y refracción luminosa.
+- Calculadora de presupuesto interactiva con chips de selección reactivos, resplandor numérico y feedback dinámico.
+- Sección comparativa ("Web sin estrategia vs Con León Webs") potenciada con auras de neón magenta vs azul cian, bordes luminosos e iconos distintivos.
+- Dock móvil cristalino (`.dock`) con feedback táctil `:active`, haz de luz superior y saturación de desenfoque.
+
 **Pendiente antes de considerar la web lista para entregar a un cliente real:**
 1. Número de teléfono/WhatsApp real (ahora mismo es un placeholder +34600000000, aparece en 5 sitios del código)
 2. Testimonios reales de clientes de León (ahora son de otro portfolio, con nombres extranjeros)
