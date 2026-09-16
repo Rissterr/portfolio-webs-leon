@@ -111,82 +111,48 @@ const CSS = `
   padding: 14px 26px;
   border-radius: 100px;
   text-decoration: none;
-  background: rgba(12, 18, 42, 0.6);
-  border: 1px solid rgba(146, 187, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
   overflow: visible;
-  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 .6px 1.08px -.83px rgba(0,0,0,.05), 0 2.29px 4.12px -1.67px rgba(0,0,0,.05), 0 10px 18px -2.5px rgba(0,0,0,.05);
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1);
 }
 .btn:hover {
-  transform: scale(1.025);
-  border-color: rgba(146, 187, 255, 0.45);
-  box-shadow: 0 8px 28px -6px rgba(66, 123, 216, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
 }
 .btn:focus-visible {
   outline: 2px solid #8EC1FF;
   outline-offset: 3px;
 }
-/* (1) Glow detrás del botón (difuminado de 15px con foco dinámico) */
+/* (1) Glow detrás del botón (difuminado de 15px) */
 .btn__glow {
   position: absolute;
-  inset: -14px;
+  inset: -12px;
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;
-  filter: blur(14px);
-  background: radial-gradient(40% 60% at var(--mx, 50%) var(--my, 50%), rgba(100, 160, 255, 0.32) 0%, rgba(100, 160, 255, 0) 100%);
-  opacity: calc(0.35 + (var(--hovered, 0) * 0.65));
+  filter: blur(15px);
+  background: radial-gradient(35% 50% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: var(--hovered, 0);
   transition: opacity 0.3s ease;
 }
-/* Baliza y haz superior en el botón oscuro */
-.btn:not(.btn--glossy)::before {
-  content: '';
+/* (2) Brillo del borde (sweep) */
+.btn__sweep {
   position: absolute;
-  top: -1px;
-  left: 18%;
-  right: 18%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(146, 187, 255, 0.95) 50%, transparent);
-  border-radius: 100px;
-  filter: blur(0.5px);
-  z-index: 4;
-  pointer-events: none;
-}
-.btn:not(.btn--glossy)::after {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 24%;
-  right: 24%;
-  height: 16px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(146, 187, 255, 0.6), transparent 75%);
-  filter: blur(6px);
-  z-index: 0;
-  pointer-events: none;
-  animation: beaconGlow 3.5s ease-in-out infinite alternate;
-}
-@keyframes beaconGlow {
-  0% { opacity: 0.55; transform: scaleX(0.9); }
-  100% { opacity: 1; transform: scaleX(1.15); }
-}
-
-/* (2) Brillo del borde con rotación de luz continua (border beam) */
-.btn:not(.btn--glossy) .btn__sweep {
-  position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
   pointer-events: none;
   z-index: 1;
-  background: conic-gradient(from var(--a) at 50% 50%, transparent 260deg, rgba(146, 187, 255, 0.4) 300deg, rgba(255, 255, 255, 0.95) 330deg, transparent 360deg);
-  animation: spin 3.5s linear infinite;
-  opacity: calc(0.85 + (var(--hovered, 0) * 0.15));
+  background: radial-gradient(25% 50% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: var(--hovered, 0);
+  transition: opacity 0.3s ease;
 }
 /* (3) Núcleo del botón */
-.btn:not(.btn--glossy) .btn__core {
+.btn__core {
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: linear-gradient(180deg, #090d24 0%, #050718 100%);
+  background: #05071a;
   z-index: 2;
   pointer-events: none;
 }
@@ -197,7 +163,6 @@ const CSS = `
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 /* --- Variante Glossy (Botón Blanco/Holográfico del Hero) --- */
 .btn--glossy {
