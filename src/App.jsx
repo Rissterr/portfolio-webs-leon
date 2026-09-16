@@ -1700,34 +1700,43 @@ const CSS = `
 .growth-left {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   text-align: left;
 }
 .growth-kicker {
-  color: #00D4FF;
-  font-size: 12.5px;
-  font-weight: 800;
-  letter-spacing: 0.09em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: #C5EBFF;
+  background: rgba(66, 123, 216, 0.14);
+  border: 1px solid rgba(146, 187, 255, 0.32);
+  padding: 6px 14px;
+  border-radius: 100px;
+  width: fit-content;
+  box-shadow: 0 0 16px -4px rgba(66, 123, 216, 0.35);
 }
 .growth-title {
   font-family: var(--display);
   font-size: clamp(38px, 4.4vw, 56px);
   font-weight: 800;
   line-height: 1.05;
-  color: #fff;
+  color: #FFFFFF;
   letter-spacing: -0.02em;
   margin: 0;
 }
 .growth-subtitle {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 700;
-  color: #F0F5FF;
+  color: #FFFFFF;
   line-height: 1.35;
   margin: 0;
 }
 .growth-desc {
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.6;
   margin: 0 0 6px;
@@ -1740,48 +1749,54 @@ const CSS = `
 }
 .growth-meta-card {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  gap: 8px;
   background: linear-gradient(180deg, rgba(20, 36, 75, 0.65) 0%, rgba(10, 18, 42, 0.8) 100%);
-  border: 1px solid rgba(146, 187, 255, 0.28);
+  border: 1px solid rgba(146, 187, 255, 0.24);
   border-radius: 16px;
-  padding: 16px;
+  padding: 16px 18px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 12px 28px -10px rgba(0,0,0,0.5);
   backdrop-filter: blur(14px);
 }
-.growth-meta-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(0, 132, 255, 0.18);
-  border: 1px solid rgba(0, 212, 255, 0.4);
+.growth-meta-top {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #C5EBFF;
-  flex-shrink: 0;
-  box-shadow: 0 0 16px -3px rgba(0, 132, 255, 0.4);
+  justify-content: space-between;
 }
-.growth-meta-icon svg { width: 22px; height: 22px; }
-.growth-meta-body { display: flex; flex-direction: column; gap: 2px; }
-.growth-meta-body b { font-family: var(--display); font-size: 22px; color: #fff; line-height: 1.1; }
-.growth-meta-body span.sub { font-size: 12px; color: #92BBFF; font-weight: 600; }
-.growth-meta-body span.hint { font-size: 11px; color: var(--muted); }
+.growth-meta-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #C5EBFF;
+  background: rgba(66, 123, 216, 0.32);
+  border: 1px solid rgba(146, 187, 255, 0.35);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.growth-meta-icon-mini {
+  color: #92BBFF;
+  opacity: 0.85;
+}
+.growth-meta-icon-mini svg { width: 16px; height: 16px; }
+.growth-meta-body { display: flex; flex-direction: column; gap: 3px; }
+.growth-meta-body b { font-family: var(--display); font-size: 22px; color: #FFFFFF; line-height: 1.15; font-weight: 800; }
+.growth-meta-body span.sub { font-size: 12px; color: var(--muted); line-height: 1.4; }
 
 .growth-cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: linear-gradient(135deg, #0077FF 0%, #0055E5 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #0077FF 0%, #0052E0 100%);
+  color: #FFFFFF;
   font-family: var(--body);
-  font-size: 16.5px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   text-decoration: none;
   padding: 16px 32px;
   border-radius: 100px;
-  border: 1px solid rgba(146, 215, 255, 0.5);
+  border: 1px solid rgba(146, 215, 255, 0.55);
   box-shadow: 0 12px 32px -6px rgba(0, 102, 255, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease, filter 0.2s;
   cursor: pointer;
@@ -1803,7 +1818,7 @@ const CSS = `
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #D6E4FF;
+  color: var(--txt);
   font-weight: 500;
 }
 .growth-trust-item span.ic-chk {
@@ -1812,7 +1827,7 @@ const CSS = `
   border-radius: 50%;
   background: rgba(0, 132, 255, 0.2);
   border: 1px solid rgba(0, 212, 255, 0.5);
-  color: #00D4FF;
+  color: #38BDF8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1836,15 +1851,15 @@ const CSS = `
   font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
   font-style: italic;
   font-size: 19px;
-  color: #C5EBFF;
+  color: #38BDF8;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 6px;
   pointer-events: none;
   z-index: 10;
   text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
 }
-.growth-note-top svg { width: 34px; height: 34px; transform: rotate(10deg); color: #8EC1FF; }
+.growth-note-top svg { width: 24px; height: 24px; color: #38BDF8; }
 
 .growth-mockup-stage {
   position: relative;
@@ -1852,9 +1867,9 @@ const CSS = `
   perspective: 1200px;
 }
 .growth-tablet {
-  width: 90%;
+  width: 92%;
   background: #090d20;
-  border: 4px solid #1c264a;
+  border: 3px solid #1c264a;
   border-radius: 24px;
   box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85), 0 0 50px -10px rgba(0, 102, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
   overflow: hidden;
@@ -2028,9 +2043,9 @@ const CSS = `
 .growth-right {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   position: relative;
-  align-items: flex-start;
+  align-items: stretch;
 }
 .growth-arrow-svg {
   position: absolute;
@@ -2047,52 +2062,63 @@ const CSS = `
   z-index: 2;
   width: 100%;
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  gap: 6px;
   background: linear-gradient(135deg, rgba(16, 32, 70, 0.75) 0%, rgba(8, 16, 40, 0.88) 100%);
-  border: 1px solid rgba(0, 212, 255, 0.35);
-  border-radius: 18px;
-  padding: 16px 20px;
-  box-shadow: 0 16px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -8px rgba(0, 132, 255, 0.35), inset 0 1px 0 rgba(255,255,255,0.18);
+  border: 1px solid rgba(146, 187, 255, 0.22);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 16px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -8px rgba(0, 132, 255, 0.25), inset 0 1px 0 rgba(255,255,255,0.14);
   backdrop-filter: blur(16px);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .growth-stat-card:hover {
   transform: translateX(4px) translateY(-2px);
-  border-color: rgba(0, 212, 255, 0.7);
-  box-shadow: 0 20px 50px -12px rgba(0, 132, 255, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+  border-color: rgba(146, 187, 255, 0.5);
+  box-shadow: 0 20px 50px -12px rgba(0, 132, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.25);
 }
-.growth-stat-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(0, 132, 255, 0.22);
-  border: 1px solid rgba(0, 212, 255, 0.45);
+.growth-stat-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #00D4FF;
-  flex-shrink: 0;
-  box-shadow: 0 0 14px rgba(0, 132, 255, 0.4);
+  justify-content: space-between;
 }
-.growth-stat-icon svg { width: 22px; height: 22px; }
-.growth-stat-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
-.growth-stat-num { font-family: var(--display); font-size: 24px; font-weight: 800; color: #fff; line-height: 1; letter-spacing: -0.01em; }
-.growth-stat-label { font-size: 13px; color: #92BBFF; font-weight: 600; }
+.growth-stat-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--txt);
+}
+.growth-stat-icon-mini {
+  color: #92BBFF;
+  opacity: 0.85;
+}
+.growth-stat-icon-mini svg { width: 16px; height: 16px; }
+.growth-stat-num {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 800;
+  color: #38BDF8;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.growth-stat-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.3;
+}
 
 .growth-note-bot {
   font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
   font-style: italic;
-  font-size: 19px;
-  color: #C5EBFF;
+  font-size: 18px;
+  color: #38BDF8;
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
-  align-self: flex-end;
-  text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+  margin-top: 6px;
+  align-self: flex-start;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.35);
 }
-.growth-note-bot svg { width: 30px; height: 30px; color: #8EC1FF; }
+.growth-note-bot svg { width: 22px; height: 22px; color: #38BDF8; }
 
 /* Barra de 5 Pilares Inferior */
 .growth-pillars-bar {
@@ -3412,37 +3438,41 @@ function PlanCrecimiento() {
 
             <div className="growth-meta-row">
               <div className="growth-meta-card">
-                <div className="growth-meta-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
-                    <line x1="7" y1="7" x2="7.01" y2="7"/>
-                  </svg>
+                <div className="growth-meta-top">
+                  <span className="growth-meta-badge">Pago único</span>
+                  <div className="growth-meta-icon-mini">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                      <line x1="7" y1="7" x2="7.01" y2="7"/>
+                    </svg>
+                  </div>
                 </div>
                 <div className="growth-meta-body">
                   <b>750 €</b>
-                  <span className="sub">Pago único</span>
-                  <span className="hint">Sin sorpresas.</span>
+                  <span className="sub">Sin sorpresas ni mensualidades obligatorias.</span>
                 </div>
               </div>
 
               <div className="growth-meta-card">
-                <div className="growth-meta-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                  </svg>
+                <div className="growth-meta-top">
+                  <span className="growth-meta-badge">Fast Track</span>
+                  <div className="growth-meta-icon-mini">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                  </div>
                 </div>
                 <div className="growth-meta-body">
-                  <span className="hint">Entrega en</span>
-                  <b>2 semanas</b>
-                  <span className="sub">Tu negocio online, más rápido.</span>
+                  <b>Entrega en 2 semanas</b>
+                  <span className="sub">Tu negocio online, más rápido y listo para vender.</span>
                 </div>
               </div>
             </div>
 
             <div style={{ marginTop: 12, marginBottom: 8 }}>
               <a href={homeHref("#contact")} className="growth-cta-btn">
-                <span>Empezar proyecto ahora</span>
+                <span>EMPEZAR PROYECTO AHORA</span>
                 <span style={{ fontSize: 18 }}>→</span>
               </a>
             </div>
@@ -3454,11 +3484,11 @@ function PlanCrecimiento() {
               </div>
               <div className="growth-trust-item">
                 <span className="ic-chk">✓</span>
-                <span>Trato directo</span>
+                <span>Trato directo 1 a 1</span>
               </div>
               <div className="growth-trust-item">
                 <span className="ic-chk">✓</span>
-                <span>Resultados reales</span>
+                <span>Resultados medibles</span>
               </div>
             </div>
           </div>
@@ -3467,8 +3497,9 @@ function PlanCrecimiento() {
           <div className="growth-center">
             <div className="growth-note-top">
               <span>Una web que trabaja para ti</span>
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M5 5 C 15 25, 25 30, 35 32 M 28 25 L 35 32 L 32 38" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
               </svg>
             </div>
 
@@ -3555,54 +3586,58 @@ function PlanCrecimiento() {
             </svg>
 
             <div className="growth-stat-card">
-              <div className="growth-stat-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"/>
-                  <line x1="12" y1="20" x2="12" y2="4"/>
-                  <line x1="6" y1="20" x2="6" y2="14"/>
-                </svg>
+              <div className="growth-stat-header">
+                <span className="growth-stat-title">Tráfico cualificado</span>
+                <div className="growth-stat-icon-mini">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                  </svg>
+                </div>
               </div>
-              <div className="growth-stat-info">
-                <span className="growth-stat-num">+120%</span>
-                <span className="growth-stat-label">Más visitas</span>
-              </div>
+              <span className="growth-stat-num">+120%</span>
+              <span className="growth-stat-desc">Más visitas cualificadas</span>
             </div>
 
             <div className="growth-stat-card">
-              <div className="growth-stat-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
+              <div className="growth-stat-header">
+                <span className="growth-stat-title">Conversión de clientes</span>
+                <div className="growth-stat-icon-mini">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
               </div>
-              <div className="growth-stat-info">
-                <span className="growth-stat-num">+70%</span>
-                <span className="growth-stat-label">Más clientes</span>
-              </div>
+              <span className="growth-stat-num">+70%</span>
+              <span className="growth-stat-desc">Más clientes potenciales</span>
             </div>
 
             <div className="growth-stat-card">
-              <div className="growth-stat-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
+              <div className="growth-stat-header">
+                <span className="growth-stat-title">Eficiencia operativa</span>
+                <div className="growth-stat-icon-mini">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                </div>
               </div>
-              <div className="growth-stat-info">
-                <span className="growth-stat-num">+45%</span>
-                <span className="growth-stat-label">Más reservas</span>
-              </div>
+              <span className="growth-stat-num">+45%</span>
+              <span className="growth-stat-desc">Más reservas automáticas</span>
             </div>
 
             <div className="growth-note-bot">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M35 10 C 25 20, 15 25, 8 32 M 16 34 L 7 33 L 10 24" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"/>
+                <polyline points="5 12 12 5 19 12"/>
               </svg>
-              <span>Tu negocio también puede crecer</span>
+              <span>Tu negocio también puede crecer así</span>
             </div>
           </div>
         </div>
