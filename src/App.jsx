@@ -266,8 +266,8 @@ const CSS = `
 .about__photo{ border-radius:22px; overflow:hidden; aspect-ratio:3/4.6; position:relative; margin-top:6px;
   border:1px solid rgba(146,187,255,.22);
   box-shadow:0 24px 70px -24px rgba(66,123,216,.4), inset 0 1px 0 rgba(255,255,255,.1);
-  filter:saturate(.94) contrast(1.03); transition:box-shadow .5s ease, filter .5s ease, border-color .5s ease; }
-.about__photo:hover{ filter:saturate(1.15) contrast(1.05);
+  transition:box-shadow .5s ease, border-color .5s ease; }
+.about__photo:hover{
   border-color:rgba(146,187,255,.55);
   box-shadow:0 0 0 3px rgba(146,187,255,.2), 0 34px 90px -20px rgba(66,123,216,.6), inset 0 1px 0 rgba(255,255,255,.14); }
 .about__photo::after{ content:''; position:absolute; inset:0; z-index:2; pointer-events:none; border-radius:inherit;
@@ -275,8 +275,14 @@ const CSS = `
   opacity:0; transition:opacity .5s ease; }
 .about__photo:hover::after{ opacity:1; }
 .about__photo img{ width:100%; height:100%; object-fit:cover; object-position:top center;
-  transition:transform .6s cubic-bezier(.16,1,.3,1); }
-.about__photo:hover img{ transform:scale(1.05); }
+  filter:grayscale(1) brightness(0.82);
+  transition:transform .6s cubic-bezier(.16,1,.3,1), filter .6s cubic-bezier(.16,1,.3,1); }
+@media(hover:hover){
+  .about__photo:hover img{ filter:grayscale(0) brightness(1); transform:scale(1.04); }
+}
+@media(hover:none){
+  .about__photo img{ filter:grayscale(0) brightness(1); }
+}
 .about__content{ text-align:center; display:flex; flex-direction:column; align-items:center; height:100%; }
 .about__content .shead{ margin-bottom:0; text-align:center; align-items:center; max-width:none; }
 .about__content .shead h2{ margin-bottom:0; font-size:clamp(22px,2.8vw,32px); line-height:1.15; }
