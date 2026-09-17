@@ -17,31 +17,31 @@ const CSS = `
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root{
-  --bg:#05071A; --bg2:#080B22;
-  --txt:#E7ECFB; --muted:#9AA6C8; --line:rgba(255,255,255,.08);
-  --blue:#427BD8; --blue2:#92BBFF; --ice:#C5EBFF;
-  --card:linear-gradient(to bottom, rgba(15,16,37,0.55), rgba(19,15,35,0.55));
-  --cardBlue:linear-gradient(to bottom, rgba(27,38,66,0.6), rgba(28,48,96,0.6));
+  --bg:#050716; --bg2:#080E28;
+  --txt:#E8F0FE; --muted:#9AA6C8; --line:rgba(255,255,255,.08);
+  --blue:#1A73E8; --blue2:#8AB4F8; --ice:#C5EBFF; --cyan:#00D4FF;
+  --card:linear-gradient(to bottom, rgba(10,14,35,0.65), rgba(14,19,45,0.65));
+  --cardBlue:linear-gradient(to bottom, rgba(20,35,75,0.65), rgba(14,24,56,0.65));
   --display:'Outfit',sans-serif; --body:'Inter',sans-serif;
 }
 .site{ background:var(--bg); color:var(--txt); font-family:var(--body);
   position:relative; overflow-x:hidden; min-height:100vh; }
 .grid-overlay{
   position:fixed; inset:0; pointer-events:none; z-index:1;
-  background-image:radial-gradient(circle, rgba(146,187,255,.035) 1.2px, transparent 1.2px);
-  background-size:28px 28px;
+  background-image:radial-gradient(circle, rgba(138,180,248,.025) 1px, transparent 1px);
+  background-size:32px 32px;
 }
 .grid-overlay__spot{
   position:fixed; inset:0; pointer-events:none; z-index:1;
-  background-image:radial-gradient(circle, rgba(146,187,255,.3) 1.4px, transparent 1.4px);
-  background-size:28px 28px;
-  -webkit-mask-image:radial-gradient(circle 260px at var(--gmx,50vw) var(--gmy,40vh), black 0%, transparent 72%);
-  mask-image:radial-gradient(circle 260px at var(--gmx,50vw) var(--gmy,40vh), black 0%, transparent 72%);
+  background-image:radial-gradient(circle, rgba(0,212,255,.18) 1.2px, transparent 1.2px);
+  background-size:32px 32px;
+  -webkit-mask-image:radial-gradient(circle 240px at var(--gmx,50vw) var(--gmy,40vh), black 0%, transparent 72%);
+  mask-image:radial-gradient(circle 240px at var(--gmx,50vw) var(--gmy,40vh), black 0%, transparent 72%);
 }
 .site-ambient{
   position:fixed; left:50%; top:0; transform:translateX(-50%);
   width:min(1400px,150vw); height:100vh;
-  background:radial-gradient(ellipse 45% 35% at 50% 0%, rgba(0,90,255,.16), transparent 65%);
+  background:radial-gradient(ellipse 45% 35% at 50% 0%, rgba(26,115,232,.18), transparent 65%);
   filter:blur(90px); pointer-events:none; z-index:1; mix-blend-mode:screen;
 }
 @media(hover:none){ .grid-overlay__spot{ display:none; } }
@@ -2489,118 +2489,229 @@ function Starfield() {
     if (!ctx) return;
 
     let animationFrameId;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    let mouse = { x: -1000, y: -1000 };
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    // Mouse coordinates with smoothing
+    const mouse = { x: -2000, y: -2000, targetX: -2000, targetY: -2000, active: false };
     const handleMouseMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+      mouse.active = true;
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        mouse.targetX = e.touches[0].clientX;
+        mouse.targetY = e.touches[0].clientY;
+        mouse.active = true;
+      }
+    };
+    const handleMouseLeave = () => {
+      mouse.active = false;
+    };
 
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("mouseleave", handleMouseLeave);
 
     const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isMobile = window.innerWidth < 640;
-    const starCount = isReduced ? 30 : isMobile ? 50 : 260;
-    const stars = [];
+    const isMobile = width < 768;
 
-    for (let i = 0; i < starCount; i++) {
-      // capas de profundidad: lejos (pequeñas, tenues, lentas) -> cerca (grandes, brillantes, con glow)
-      const depth = Math.random();
-      const layer = depth < 0.45 ? 0 : depth < 0.78 ? 1 : 2;
-      const sizeByLayer = [1, 2, 3.6];
-      const alphaByLayer = [0.35, 0.6, 0.95];
-      const speedByLayer = [0.01, 0.025, 0.05];
-      const glowByLayer = [2, 6, 16];
-      stars.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        baseX: 0,
-        baseY: 0,
-        layer,
-        size: sizeByLayer[layer] * (0.7 + Math.random() * 0.6),
-        alpha: alphaByLayer[layer] * (0.7 + Math.random() * 0.5),
-        speed: speedByLayer[layer] * (0.6 + Math.random() * 0.8),
-        glow: glowByLayer[layer],
-        angle: Math.random() * Math.PI * 2,
-        color: Math.random() > 0.3 ? "#8EC1FF" : "#ffffff",
+    // Google Antigravity Color Palette
+    const PALETTE = [
+      { c: "#00D4FF", glow: "rgba(0, 212, 255, 0.8)", weight: 32 },  // Electric Cyan
+      { c: "#1A73E8", glow: "rgba(26, 115, 232, 0.7)", weight: 26 }, // Google Antigravity Blue
+      { c: "#4285F4", glow: "rgba(66, 133, 244, 0.7)", weight: 20 }, // Luminous Blue
+      { c: "#8AB4F8", glow: "rgba(138, 180, 248, 0.6)", weight: 14 },// Ice Blue
+      { c: "#C5EBFF", glow: "rgba(197, 235, 255, 0.9)", weight: 5 },  // Arctic Highlight
+      { c: "#FFFFFF", glow: "rgba(255, 255, 255, 0.95)", weight: 3 }, // White Core Spark
+    ];
+
+    const pickColor = () => {
+      const r = Math.random() * 100;
+      let acc = 0;
+      for (const p of PALETTE) {
+        acc += p.weight;
+        if (r <= acc) return p;
+      }
+      return PALETTE[0];
+    };
+
+    // 3D Spherical/Matrix Lattice Particles
+    const count = isReduced ? 50 : isMobile ? 90 : 280;
+    const particles = [];
+    const FOV = 480;
+
+    for (let i = 0; i < count; i++) {
+      const phi = Math.acos(-1 + (2 * i) / count);
+      const theta = Math.sqrt(count * Math.PI) * phi;
+      const sphereRadius = Math.min(width, height) * (0.35 + Math.random() * 0.75);
+
+      const ox = (Math.cos(theta) * Math.sin(phi) * sphereRadius) + (Math.random() - 0.5) * 200;
+      const oy = (Math.sin(theta) * Math.sin(phi) * sphereRadius * 0.65) + (Math.random() - 0.5) * 200;
+      const oz = (Math.cos(phi) * sphereRadius * 0.7) + (Math.random() * 320 - 110);
+
+      const colorData = pickColor();
+      const baseSize = 1.2 + Math.random() * 2.2;
+      const baseAlpha = 0.35 + Math.random() * 0.55;
+
+      particles.push({
+        x: ox, y: oy, z: oz,
+        origX: ox, origY: oy, origZ: oz,
+        vx: 0, vy: 0, vz: 0,
+        baseSize,
+        baseAlpha,
+        color: colorData.c,
+        glow: colorData.glow,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.008 + Math.random() * 0.012,
       });
-      stars[i].baseX = stars[i].x;
-      stars[i].baseY = stars[i].y;
     }
+
+    let time = 0;
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      for (let i = 0; i < starCount; i++) {
-        const s = stars[i];
+      if (mouse.active) {
+        mouse.x += (mouse.targetX - mouse.x) * 0.12;
+        mouse.y += (mouse.targetY - mouse.y) * 0.12;
+      } else {
+        mouse.x += (-2000 - mouse.x) * 0.05;
+        mouse.y += (-2000 - mouse.y) * 0.05;
+      }
 
-        if (!isReduced) {
-          s.angle += s.speed * 0.05;
-          s.baseX += Math.cos(s.angle) * s.speed;
-          s.baseY += Math.sin(s.angle) * s.speed;
+      time += 0.01;
+      const cx = width / 2;
+      const cy = height / 2;
 
-          if (s.baseX < 0) s.baseX = width;
-          if (s.baseX > width) s.baseX = 0;
-          if (s.baseY < 0) s.baseY = height;
-          if (s.baseY > height) s.baseY = 0;
+      const projected = [];
 
-          const dx = mouse.x - s.baseX;
-          const dy = mouse.y - s.baseY;
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        p.phase += p.speed;
+        const waveZ = Math.sin(p.phase + time) * 25;
+        const currentTargetZ = p.origZ + waveZ;
+
+        const currentZ = p.z;
+        const scale = FOV / (FOV + currentZ + 200);
+        if (scale <= 0) continue;
+
+        const screenX = cx + p.x * scale;
+        const screenY = cy + p.y * scale;
+
+        if (mouse.active) {
+          const dx = screenX - mouse.x;
+          const dy = screenY - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 100 + s.layer * 40;
-          const layerPush = 8 + s.layer * 12;
+          const maxDist = 260;
 
-          if (dist < maxDist) {
-            const force = (maxDist - dist) / maxDist;
-            const rx = (dx / dist) * force * layerPush;
-            const ry = (dy / dist) * force * layerPush;
-            s.x += (-rx - s.x + s.baseX) * 0.1;
-            s.y += (-ry - s.y + s.baseY) * 0.1;
-          } else {
-            s.x += (s.baseX - s.x) * 0.08;
-            s.y += (s.baseY - s.y) * 0.08;
+          if (dist < maxDist && dist > 1) {
+            const force = Math.pow((maxDist - dist) / maxDist, 1.6);
+            const angle = Math.atan2(dy, dx);
+            const swirl = angle + 0.35;
+
+            const pushMag = force * 65 * (1 + (1 - scale));
+            const pushX = Math.cos(swirl) * pushMag;
+            const pushY = Math.sin(swirl) * pushMag;
+
+            p.vx += pushX * 0.15;
+            p.vy += pushY * 0.15;
+            p.vz += force * 45;
           }
-
-          s.alpha += (Math.random() - 0.5) * 0.04;
-          if (s.alpha < 0.15) s.alpha = 0.15;
-          if (s.alpha > 1) s.alpha = 1;
-        } else {
-          s.x = s.baseX;
-          s.y = s.baseY;
         }
 
-        ctx.fillStyle = s.color;
-        ctx.globalAlpha = s.alpha;
-        // shadowBlur es muy costoso en móviles reales — solo en escritorio
-        if (!isMobile && s.glow > 0) {
-          ctx.shadowBlur = s.glow;
-          ctx.shadowColor = s.color;
+        p.vx += (p.origX - p.x) * 0.07;
+        p.vy += (p.origY - p.y) * 0.07;
+        p.vz += (currentTargetZ - p.z) * 0.07;
+
+        p.vx *= 0.84;
+        p.vy *= 0.84;
+        p.vz *= 0.84;
+
+        p.x += p.vx;
+        p.y += p.vy;
+        p.z += p.vz;
+
+        const renderRadius = Math.max(0.75, p.baseSize * scale * (p.z > p.origZ + 10 ? 1.3 : 1));
+        const depthAlpha = Math.max(0.12, Math.min(1, p.baseAlpha * scale * 1.3));
+
+        projected.push({
+          sx: screenX,
+          sy: screenY,
+          r: renderRadius,
+          alpha: depthAlpha,
+          color: p.color,
+          glow: p.glow,
+          scale,
+          z: p.z,
+        });
+      }
+
+      // Proximity filaments
+      ctx.lineWidth = 0.8;
+      const projLen = projected.length;
+      for (let i = 0; i < projLen; i += 2) {
+        const p1 = projected[i];
+        for (let j = i + 1; j < Math.min(i + 6, projLen); j++) {
+          const p2 = projected[j];
+          const dist = Math.hypot(p1.sx - p2.sx, p1.sy - p2.sy);
+          if (dist < 75) {
+            const lineAlpha = (1 - dist / 75) * 0.18 * Math.min(p1.alpha, p2.alpha);
+            ctx.strokeStyle = `rgba(66, 133, 244, ${lineAlpha})`;
+            ctx.beginPath();
+            ctx.moveTo(p1.sx, p1.sy);
+            ctx.lineTo(p2.sx, p2.sy);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particle nodes
+      for (let i = 0; i < projLen; i++) {
+        const pt = projected[i];
+        ctx.globalAlpha = pt.alpha;
+        ctx.fillStyle = pt.color;
+
+        if (pt.scale > 0.85 && !isMobile) {
+          ctx.shadowBlur = 8 * pt.scale;
+          ctx.shadowColor = pt.glow;
         } else {
           ctx.shadowBlur = 0;
         }
+
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.arc(pt.sx, pt.sy, pt.r, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.shadowBlur = 0;
 
-      if (!isReduced) {
-        animationFrameId = requestAnimationFrame(draw);
-      }
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+
+      animationFrameId = requestAnimationFrame(draw);
     };
 
     draw();
 
     return () => {
+      window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
@@ -2614,8 +2725,8 @@ function Starfield() {
         position: "fixed",
         inset: 0,
         pointerEvents: "none",
-        zIndex: -1,
-        opacity: 1,
+        zIndex: 0,
+        opacity: 0.95,
       }}
     />
   );
