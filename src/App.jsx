@@ -3211,21 +3211,21 @@ function HomePage() {
       <section className="section wrap" style={{ overflow: "visible" }}>
         <div className="ambient-glow" />
         <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>¿Tienes web pero no vendes suficiente?</span></Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>No diseñamos webs para rellenar internet</span></Reveal>
           <Reveal delay={100}><h2 className="display">La mayoría de webs no están hechas para vender</h2></Reveal>
-          <Reveal delay={180} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>La tuya sí puede estarlo. Esto es lo que cambia cuando trabajas con nosotros.</Reveal>
+          <Reveal delay={180} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>La tuya sí puede estarlo. Esto es lo que cambia cuando trabajas con estrategia e ingeniería real.</Reveal>
         </div>
         <div className="cols">
           <Reveal className="col col--no">
-            <h3>Web sin estrategia</h3>
-            {["Web bonita pero que no vende ni un euro", "El visitante llega y se va sin comprar ni llamar", "Nadie sabe bien cómo explicar lo que ofreces", "Diseño genérico que no transmite confianza", "Sin CTA claros ni estructura de conversión", "Dinero invertido sin saber si está funcionando"].map((t, i) => (
+            <h3>Web tradicional sin estrategia</h3>
+            {["Web bonita pero que no genera ni una llamada", "El visitante entra y se va sin comprar ni reservar", "Textos genéricos que nadie lee ni entiende", "Plantillas pesadas que tardan más de 4s en cargar", "Sin llamadas a la acción claras ni embudo de ventas", "Inversión a ciegas sin saber qué está funcionando"].map((t, i) => (
               <div className="row" key={i}><span className="ic ic--x">✕</span>{t}</div>
             ))}
           </Reveal>
           <Reveal delay={120} className="col col--yes">
             <span className="glow-side" />
-            <h3>Con León Webs</h3>
-            {["Web diseñada desde el primer píxel para vender", "Cada sección guía al visitante a contactarte o comprar", "Copy que explica tu valor y convence a tu cliente ideal", "Imagen profesional que genera confianza real", "CTAs estratégicos en cada punto de la página", "Sabes exactamente qué funciona y qué mejorar"].map((t, i) => (
+            <h3>Con León Webs (Estrategia + Conversión)</h3>
+            {["Arquitectura pensada desde el primer píxel para vender", "Cada sección guía al cliente a contactarte o reservar", "Copywriting persuasivo que transmite autoridad inmediata", "Velocidad ultrarrápida (<1s) y estética Liquid Glass 3D", "Optimización SEO Local y adaptación a búsquedas con IA", "Acompañamiento proactivo para seguir creciendo"].map((t, i) => (
               <div className="row" key={i} style={{ color: "#FFFFFF", fontWeight: 500 }}><span className="ic ic--v">✓</span>{t}</div>
             ))}
           </Reveal>
@@ -3249,24 +3249,24 @@ function HomePage() {
               <Reveal delay={100}><h2 className="display">Escalamos negocios que ya funcionan</h2></Reveal>
             </div>
             <Reveal delay={150} className="lead" as="p" style={{ margin: "0 0 28px" }}>
-              Trabajamos con negocios que ya generan ingresos: barberías, clínicas, asesorías. Convertimos su web en una herramienta que vende. Resultado real: una barbería en León pasó de 0 a más de 40 reservas online al mes en 6 semanas.
+              Trabajamos con negocios que ya generan ingresos: barberías, clínicas, asesorías y comercios locales. Convertimos su web en una herramienta que vende. Resultado real: una barbería en León pasó de 0 a más de 40 reservas online al mes en 6 semanas.
             </Reveal>
             <div className="about__cards">
           {[
             {
               svg: <><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></>,
-              t: "Auditoría de tu web actual",
-              d: "Vemos qué te está frenando y por qué no convierte."
+              t: "Auditoría estratégica",
+              d: "Detectamos exactamente qué frena tu captación de clientes."
             },
             {
               svg: <><path d="M13 10V3L4 14h7v7l9-11h-7z"/></>,
-              t: "Rediseño enfocado en ventas",
-              d: "Cada sección tiene un propósito claro: que contactes o compres."
+              t: "Ingeniería orientada a ventas",
+              d: "Cada estructura, sección y botón tiene un propósito comercial."
             },
             {
               svg: <><path d="M9 19V5m0 0L5 9m4-4l4-4"/></>,
-              t: "Seguimiento tras el lanzamiento",
-              d: "Ajustamos con datos reales, no con suposiciones."
+              t: "Acompañamiento Always On",
+              d: "Ajustes y optimización continua basada en datos reales."
             },
           ].map(({svg, t, d}, i) => (
             <AboutCard key={i} delay={i * 90} svg={svg} t={t} d={d} />
@@ -3282,14 +3282,14 @@ function HomePage() {
         <div className="ambient-glow" />
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Nuestros servicios</span></Reveal>
-          <Reveal delay={100}><h2 className="display">A qué nos dedicamos</h2></Reveal>
+          <Reveal delay={100}><h2 className="display">Sistemas digitales para vender más</h2></Reveal>
         </div>
         <div className="svc-grid">
           {[
-            { image:"assets/service-web-design.webp", alt:"Portátil mostrando una página web profesional", h:"Diseño web", p:"Web profesional adaptada a tu negocio, lista para vender en 1-2 semanas." },
-            { image:"assets/service-ecommerce.webp", alt:"Móvil y producto para una tienda online", h:"Tienda online", p:"Catálogo, carrito y pago online para vender tus productos 24/7." },
-            { image:"assets/service-hourly-support.webp", alt:"Reloj y panel de código para soporte por horas", h:"Por horas", p:"Cambios, ajustes o funciones sueltas sin contrato ni permanencia." },
-            { image:"assets/service-local-visibility.webp", alt:"Negocio local visible en mapas y buscadores", h:"Publicidad y Google", p:"Google My Business, campañas Ads y SEO local para que te encuentren." },
+            { image:"assets/service-web-design.webp", alt:"Portátil mostrando una página web profesional", h:"Diseño Web Estratégico", p:"Arquitectura de conversión, diseño editorial a medida y velocidad <1s para captar clientes desde el primer día." },
+            { image:"assets/service-ecommerce.webp", alt:"Móvil y producto para una tienda online", h:"Tienda Online (E-Commerce)", p:"Catálogo dinámico, pasarelas de pago en 1 clic (Stripe/Bizum) y experiencia de compra sin fricción 24/7." },
+            { image:"assets/service-local-visibility.webp", alt:"Negocio local visible en mapas y buscadores", h:"SEO Local & Google Maps", p:"Posicionamiento en Google y motores de búsqueda con IA para que te encuentren cuando busquen tus servicios." },
+            { image:"assets/service-hourly-support.webp", alt:"Reloj y panel de código para soporte por horas", h:"Orbit Care (Always On)", p:"Mantenimiento proactivo, seguridad, copias y horas mensuales para que tu web evolucione constantemente." },
           ].map(({image,alt,h,p}, i) => (
             <Reveal key={i} delay={i*80} className="svc-card">
               <img className="svc-card__image" src={image} alt={alt} loading="lazy" />
@@ -3427,35 +3427,60 @@ function HomePage() {
       <section className="section wrap" id="precios" style={{ overflow:"visible" }}>
         <div className="ambient-glow" />
         <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Servicios y precios</span></Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Servicios y planes</span></Reveal>
           <Reveal delay={100}><h2 className="display">Elige cómo quieres crecer</h2></Reveal>
-          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin:"0 auto" }}>Sin sorpresas. Toca cada tarjeta para ver el detalle completo.</Reveal>
+          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin:"0 auto" }}>Precios transparentes y cerrados. Toca cada tarjeta para ver el desglose completo.</Reveal>
         </div>
         <div className="pricing pricing--4">
           {[
             {
-              label: "Plan Arranque", badge: null,
+              label: "Plan Arranque", badge: "Presencia Inmediata",
               launch: "Oferta de lanzamiento", old: "650€", num: "450", sub: "Pago único · lista en 1 semana",
-              feats: ["Web con plantilla profesional adaptada a tu negocio","Textos, fotos y colores de tu marca","Botón directo a WhatsApp","Optimizada para móvil","Soporte 15 días"],
-              cta: "Quiero arrancar", pro:false, detailHref: "/plan-arranque"
+              feats: [
+                "Web corporativa a medida de alta velocidad (<1s)",
+                "Copywriting persuasivo y redacción de valor",
+                "Optimización SEO Local & Google Maps",
+                "Botón directo a WhatsApp y formulario seguro",
+                "Hosting NVMe + Dominio y SSL 1 año gratis"
+              ],
+              cta: "Quiero arrancar →", pro:false, detailHref: "/plan-arranque"
             },
             {
-              label: "Plan Crecimiento", badge: "Más elegido",
-              launch: "Oferta de lanzamiento", old: "1.100€", num: "750", sub: "Pago único · lista en 2 semanas",
-              feats: ["Todo lo de Plan Arranque","Sección de reservas o formulario avanzado","Testimonios y galería de trabajos","Google My Business optimizado","Seguimiento 1 mes + ajustes","SEO básico local"],
-              cta: "Quiero crecer", pro:true, detailHref: "/plan-crecimiento"
+              label: "Plan Crecimiento", badge: "Más elegido · Recomendado",
+              launch: "Máxima Conversión", old: "1.100€", num: "750", sub: "Pago único · lista en 2 semanas",
+              feats: [
+                "Todo lo de Plan Arranque",
+                "Hasta 8-10 páginas/landings por servicio",
+                "Sistema de reservas / citas online automatizado",
+                "Efectos visuales 3D & Liquid Glass interactivos",
+                "Google Analytics 4 y seguimiento de clientes",
+                "Seguimiento y optimización 30 días"
+              ],
+              cta: "Quiero crecer →", pro:true, detailHref: "/plan-crecimiento"
             },
             {
-              label: "Tienda Online", badge: null,
-              launch: "Oferta de lanzamiento", old: "1.800€", num: "1.200", sub: "Pago único · según catálogo",
-              feats: ["Catálogo de productos con fotos","Carrito y pago online (Stripe/Bizum)","Gestión de pedidos simple","Panel para añadir productos tú mismo","Soporte 30 días"],
-              cta: "Quiero mi tienda", pro:false, detailHref: "/tienda-online"
+              label: "Tienda Online", badge: "Venta Automatizada",
+              launch: "E-Commerce 360", old: "1.800€", num: "1.200", sub: "Pago único · según catálogo",
+              feats: [
+                "Catálogo dinámico con filtros avanzados",
+                "Pasarelas seguras (Stripe, Bizum, Apple Pay)",
+                "Recuperación automática de carritos",
+                "Facturación y cálculo de envíos en tiempo real",
+                "Panel de control intuitivo + formación"
+              ],
+              cta: "Quiero mi tienda →", pro:false, detailHref: "/tienda-online"
             },
             {
-              label: "Por Horas", badge: null,
-              launch: null, old: null, num: "35", suffix:"€/hora", sub: "Mínimo 2 horas · sin permanencia",
-              feats: ["Cambios y mantenimiento en tu web actual","Ajustes de diseño o contenido puntuales","Nuevas secciones o funciones sueltas","Sin compromiso mensual","Facturamos solo lo trabajado"],
-              cta: "Pedir presupuesto", pro:false, detailHref: "/por-horas"
+              label: "Orbit Care", badge: "Always On",
+              launch: "Acompañamiento Continuo", old: null, num: "35", suffix:"€/hora", sub: "Sin permanencia · Flexibilidad total",
+              feats: [
+                "Mantenimiento técnico y copias en la nube",
+                "Bolsa de horas para cambios y banners",
+                "Monitorización 24/7 y velocidad continua",
+                "Evolución y optimización SEO mensual",
+                "Facturación transparente por horas"
+              ],
+              cta: "Ver soporte →", pro:false, detailHref: "/por-horas"
             },
           ].map((p, i) => (
             <ServiceCard key={i} {...p} delay={i*80} />
