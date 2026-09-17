@@ -2506,8 +2506,14 @@ function Starfield() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Mouse coordinates with smoothing
-    const mouse = { x: -2000, y: -2000, targetX: -2000, targetY: -2000, active: false };
+    // Mouse tracking with inertia
+    const mouse = {
+      x: -2000,
+      y: -2000,
+      targetX: -2000,
+      targetY: -2000,
+      active: false,
+    };
     const handleMouseMove = (e) => {
       mouse.targetX = e.clientX;
       mouse.targetY = e.clientY;
@@ -2531,13 +2537,13 @@ function Starfield() {
     const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = width < 768;
 
-    // Google Antigravity Color Palette
+    // Google Antigravity Electric Color Palette
     const PALETTE = [
-      { c: "#00D4FF", weight: 35 }, // Electric Cyan
-      { c: "#8AB4F8", weight: 30 }, // Soft Ice Blue
-      { c: "#1A73E8", weight: 20 }, // Antigravity Blue
-      { c: "#4285F4", weight: 10 }, // Luminous Blue
-      { c: "#FFFFFF", weight: 5 },  // White Core Spark
+      { color: "#00D4FF", weight: 35 }, // Electric Cyan
+      { color: "#8AB4F8", weight: 30 }, // Soft Ice Blue
+      { color: "#1A73E8", weight: 20 }, // Antigravity Core Blue
+      { color: "#4285F4", weight: 10 }, // Bright Royal Blue
+      { color: "#E8F0FE", weight: 5 },  // White Highlight
     ];
 
     const pickColor = () => {
@@ -2545,131 +2551,204 @@ function Starfield() {
       let acc = 0;
       for (const p of PALETTE) {
         acc += p.weight;
-        if (r <= acc) return p.c;
+        if (r <= acc) return p.color;
       }
-      return PALETTE[0].c;
+      return PALETTE[0].color;
     };
 
-    // 3D Spherical/Matrix Lattice Particles (densidad rica y tamaño perfecto)
-    const count = isReduced ? 120 : isMobile ? 220 : 580;
-    const particles = [];
-    const FOV = 480;
+    // Build the 3D Sphere Lattice with Tangential Capsule Dashes
+    // Ring-based topology (latitudes and longitudes) exactly like Antigravity
+    const sphereRadius = Math.min(width, height) * (isMobile ? 0.65 : 0.46);
+    const numLatitudeRings = isMobile ? 18 : 28;
+    const points = [];
 
-    for (let i = 0; i < count; i++) {
-      const phi = Math.acos(-1 + (2 * i) / count);
-      const theta = Math.sqrt(count * Math.PI) * phi;
-      const sphereRadius = Math.min(width, height) * (0.35 + Math.random() * 0.85);
+    for (let r = 0; r < numLatitudeRings; r++) {
+      // phi from -PI/2 * 0.88 to +PI/2 * 0.88
+      const v = (r / (numLatitudeRings - 1)) * 2 - 1; // -1 to 1
+      const phi = Math.asin(v) * 0.92;
+      const ringRadius = sphereRadius * Math.cos(phi);
+      const ringY = sphereRadius * Math.sin(phi);
 
-      const ox = (Math.cos(theta) * Math.sin(phi) * sphereRadius) + (Math.random() - 0.5) * 220;
-      const oy = (Math.sin(theta) * Math.sin(phi) * sphereRadius * 0.7) + (Math.random() - 0.5) * 220;
-      const oz = (Math.cos(phi) * sphereRadius * 0.75) + (Math.random() * 340 - 120);
+      // Number of dashes in this latitude ring proportional to circumference
+      const circumference = 2 * Math.PI * ringRadius;
+      const step = isMobile ? 36 : 28;
+      const numPointsInRing = Math.max(8, Math.round(circumference / step));
 
-      const color = pickColor();
-      const baseSize = 0.85 + Math.random() * 0.95; // Puntos nítidos y perfectamente visibles
-      const baseAlpha = 0.28 + Math.random() * 0.45; // Buena presencia y brillo
+      for (let p = 0; p < numPointsInRing; p++) {
+        const theta = (p / numPointsInRing) * Math.PI * 2;
+        
+        // 3D Point on Sphere
+        const ox = ringRadius * Math.sin(theta);
+        const oy = ringY;
+        const oz = ringRadius * Math.cos(theta);
 
-      particles.push({
-        x: ox, y: oy, z: oz,
-        origX: ox, origY: oy, origZ: oz,
-        vx: 0, vy: 0, vz: 0,
-        baseSize,
-        baseAlpha,
-        color,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.006 + Math.random() * 0.01,
-      });
+        // Tangent vector along the latitude circle
+        const tx = Math.cos(theta);
+        const ty = 0;
+        const tz = -Math.sin(theta);
+
+        points.push({
+          ox, oy, oz,
+          x: ox, y: oy, z: oz,
+          tx, ty, tz,
+          vx: 0, vy: 0, vz: 0,
+          color: pickColor(),
+          baseLength: (isMobile ? 6 : 8.5) + (Math.random() * 3 - 1.5),
+          baseWidth: isMobile ? 1.8 : 2.4,
+          baseAlpha: 0.35 + Math.random() * 0.45,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.005 + Math.random() * 0.008,
+        });
+      }
     }
 
-    let time = 0;
+    let rotY = 0;
+    let rotX = 0.32; // Default tilt towards viewer
+    let smoothMouseX = width / 2;
+    let smoothMouseY = height / 2;
+    const FOV = 580;
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
+      // Smooth mouse
       if (mouse.active) {
+        smoothMouseX += (mouse.targetX - smoothMouseX) * 0.08;
+        smoothMouseY += (mouse.targetY - smoothMouseY) * 0.08;
         mouse.x += (mouse.targetX - mouse.x) * 0.12;
         mouse.y += (mouse.targetY - mouse.y) * 0.12;
       } else {
+        smoothMouseX += (width / 2 - smoothMouseX) * 0.03;
+        smoothMouseY += (height / 2 - smoothMouseY) * 0.03;
         mouse.x += (-2000 - mouse.x) * 0.05;
         mouse.y += (-2000 - mouse.y) * 0.05;
       }
 
-      time += 0.008;
+      // 3D Sphere Interactive Rotation
+      if (!isReduced) {
+        rotY += 0.0022; // continuous orbit
+      }
+      const targetRotX = 0.32 - ((smoothMouseY - height / 2) / height) * 0.45;
+      const targetRotY = rotY + ((smoothMouseX - width / 2) / width) * 0.65;
+      rotX += (targetRotX - rotX) * 0.05;
+
+      const cosX = Math.cos(rotX);
+      const sinX = Math.sin(rotX);
+      const cosY = Math.cos(targetRotY);
+      const sinY = Math.sin(targetRotY);
+
       const cx = width / 2;
-      const cy = height / 2;
+      const cy = height * (isMobile ? 0.48 : 0.5);
 
-      const projected = [];
+      const renderList = [];
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      for (let i = 0; i < points.length; i++) {
+        const pt = points[i];
 
-        p.phase += p.speed;
-        const waveZ = Math.sin(p.phase + time) * 20;
-        const currentTargetZ = p.origZ + waveZ;
+        // Harmonic micro-wave
+        pt.phase += pt.speed;
+        const wave = Math.sin(pt.phase) * 6;
 
-        const currentZ = p.z;
-        const scale = FOV / (FOV + currentZ + 200);
+        // Apply 3D Rotation to Base Coordinates
+        const posX = pt.ox;
+        const posY = pt.oy + wave;
+        const posZ = pt.oz;
+
+        // Y rotation
+        const x1 = posX * cosY + posZ * sinY;
+        const y1 = posY;
+        const z1 = -posX * sinY + posZ * cosY;
+
+        // X rotation (tilt)
+        const rx = x1;
+        const ry = y1 * cosX - z1 * sinX;
+        const rz = y1 * sinX + z1 * cosX;
+
+        // Apply 3D Rotation to Tangent Vector
+        const tx1 = pt.tx * cosY + pt.tz * sinY;
+        const ty1 = pt.ty;
+        const tz1 = -pt.tx * sinY + pt.tz * cosY;
+
+        const rtx = tx1;
+        const rty = ty1 * cosX - tz1 * sinX;
+
+        // Perspective projection
+        const scale = FOV / (FOV + rz + 240);
         if (scale <= 0) continue;
 
-        const screenX = cx + p.x * scale;
-        const screenY = cy + p.y * scale;
+        let screenX = cx + rx * scale;
+        let screenY = cy + ry * scale;
 
+        // Mouse Gravitational Warp & Interaction
         if (mouse.active) {
           const dx = screenX - mouse.x;
           const dy = screenY - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 210;
+          const maxDist = 190;
 
           if (dist < maxDist && dist > 1) {
-            const force = Math.pow((maxDist - dist) / maxDist, 1.7);
+            const force = Math.pow((maxDist - dist) / maxDist, 1.8);
             const angle = Math.atan2(dy, dx);
-            const swirl = angle + 0.3;
+            const push = force * 34 * scale;
 
-            const pushMag = force * 38 * (1 + (1 - scale));
-            const pushX = Math.cos(swirl) * pushMag;
-            const pushY = Math.sin(swirl) * pushMag;
-
-            p.vx += pushX * 0.14;
-            p.vy += pushY * 0.14;
-            p.vz += force * 28;
+            pt.vx += Math.cos(angle) * push * 0.12;
+            pt.vy += Math.sin(angle) * push * 0.12;
           }
         }
 
-        p.vx += (p.origX - p.x) * 0.065;
-        p.vy += (p.origY - p.y) * 0.065;
-        p.vz += (currentTargetZ - p.z) * 0.065;
+        // Spring restitution
+        pt.vx *= 0.86;
+        pt.vy *= 0.86;
+        screenX += pt.vx;
+        screenY += pt.vy;
 
-        p.vx *= 0.85;
-        p.vy *= 0.85;
-        p.vz *= 0.85;
+        // Tangent 2D Screen Angle
+        const tangentAngle = Math.atan2(rty, rtx);
 
-        p.x += p.vx;
-        p.y += p.vy;
-        p.z += p.vz;
+        // Dimensions scaled by depth
+        const dashLen = Math.max(3, pt.baseLength * scale);
+        const dashThick = Math.max(1.2, pt.baseWidth * scale);
 
-        const renderRadius = Math.max(0.65, p.baseSize * scale * 1.15);
-        const depthAlpha = Math.max(0.12, Math.min(0.85, p.baseAlpha * scale * 1.25));
+        // Depth-based luminosity (front points are bright & crisp, back points fade gently)
+        const depthNorm = (rz + sphereRadius) / (sphereRadius * 2); // 0 (front) to 1 (back)
+        const depthAlpha = Math.max(0.08, Math.min(0.92, pt.baseAlpha * (1.25 - depthNorm * 0.85)));
 
-        projected.push({
-          sx: screenX,
-          sy: screenY,
-          r: renderRadius,
+        renderList.push({
+          x: screenX,
+          y: screenY,
+          angle: tangentAngle,
+          length: dashLen,
+          width: dashThick,
+          color: pt.color,
           alpha: depthAlpha,
-          color: p.color,
+          z: rz,
         });
       }
 
-      // Renderizado nítido de partículas con presencia
-      for (let i = 0; i < projected.length; i++) {
-        const pt = projected[i];
-        ctx.globalAlpha = pt.alpha;
-        ctx.fillStyle = pt.color;
+      // Sort by Z for correct depth sorting (back to front)
+      renderList.sort((a, b) => b.z - a.z);
+
+      // Render Capsule / Dash Elements
+      for (let i = 0; i < renderList.length; i++) {
+        const item = renderList[i];
+        ctx.save();
+        ctx.translate(item.x, item.y);
+        ctx.rotate(item.angle);
+        ctx.globalAlpha = item.alpha;
+        ctx.fillStyle = item.color;
+
         ctx.beginPath();
-        ctx.arc(pt.sx, pt.sy, pt.r, 0, Math.PI * 2);
+        const r = item.width / 2;
+        const w = item.length;
+        const h = item.width;
+        // Rounded capsule dash
+        ctx.roundRect(-w / 2, -h / 2, w, h, r);
         ctx.fill();
+
+        ctx.restore();
       }
 
       ctx.globalAlpha = 1;
-
       animationFrameId = requestAnimationFrame(draw);
     };
 
@@ -2694,7 +2773,7 @@ function Starfield() {
         inset: 0,
         pointerEvents: "none",
         zIndex: 0,
-        opacity: 0.9,
+        opacity: 0.95,
       }}
     />
   );
