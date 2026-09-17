@@ -67,36 +67,55 @@ const CSS = `
   100% { background-position: -200% center; }
 }
 .eyebrow {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 9px;
   font-size: 13.5px;
   font-weight: 600;
-  padding: 6px 16px;
+  padding: 7px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(146, 187, 255, 0.28);
-  background: rgba(10, 16, 42, 0.75);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 24px -8px rgba(0, 0, 0, 0.6);
-  color: #C5EBFF;
+  border: 1px solid rgba(197, 235, 255, 0.35);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(146, 187, 255, 0.07) 45%, rgba(8, 14, 38, 0.68) 100%);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  box-shadow: 
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 0 rgba(146, 187, 255, 0.2),
+    0 10px 30px -6px rgba(0, 0, 0, 0.6),
+    0 0 24px -4px rgba(66, 123, 216, 0.4);
+  color: #FFFFFF;
   letter-spacing: 0.02em;
+  margin-bottom: 6px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.eyebrow:hover {
+  border-color: rgba(197, 235, 255, 0.65);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(146, 187, 255, 0.12) 45%, rgba(12, 20, 52, 0.75) 100%);
+  box-shadow: 
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 0 rgba(146, 187, 255, 0.3),
+    0 14px 36px -6px rgba(0, 0, 0, 0.7),
+    0 0 30px -2px rgba(66, 123, 216, 0.6);
+  transform: translateY(-2px);
 }
 .eyebrow > span:not(.dot) {
-  color: #C5EBFF;
+  color: #F0F7FF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 6.5px;
+  height: 6.5px;
   border-radius: 50%;
-  background: #00D4FF;
-  box-shadow: 0 0 8px #00D4FF;
+  background: #00F0FF;
+  box-shadow: 0 0 8px #00F0FF, 0 0 14px rgba(0, 240, 255, 0.7);
   flex-shrink: 0;
   display: inline-block;
   animation: dotPulse 2.4s ease-in-out infinite;
 }
 @keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 4px #00D4FF; transform: scale(1); opacity: 0.85; }
-  50% { box-shadow: 0 0 12px #00D4FF, 0 0 18px rgba(0, 212, 255, 0.6); transform: scale(1.15); opacity: 1; }
+  0%, 100% { box-shadow: 0 0 6px #00F0FF, 0 0 10px rgba(0, 240, 255, 0.5); transform: scale(1); opacity: 0.9; }
+  50% { box-shadow: 0 0 14px #00F0FF, 0 0 22px rgba(0, 240, 255, 0.85); transform: scale(1.2); opacity: 1; }
 }
 .kicker{ color:var(--muted); font-size:14px; letter-spacing:.04em; text-transform:uppercase; }
 .lead{ color:var(--muted); font-size:18px; line-height:1.6; max-width:620px; }
@@ -233,8 +252,8 @@ const CSS = `
   filter:blur(8px); pointer-events:none; }
 
 /* ---- hero ---- */
-.hero{ padding:170px 0 90px; text-align:center; }
-.hero h1{ font-size:clamp(40px,7vw,82px); margin:26px auto 22px; max-width:14ch; }
+.hero{ padding:140px 0 85px; text-align:center; }
+.hero h1{ font-size:clamp(40px,7vw,82px); margin:20px auto 22px; max-width:14ch; }
 .hero .lead{ margin:0 auto 34px; text-align:center; }
 
 /* ---- about section ---- */
