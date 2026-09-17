@@ -2530,14 +2530,13 @@ function Starfield() {
     const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = width < 768;
 
-    // Google Antigravity Color Palette
+    // Google Antigravity Color Palette (suave y sutil)
     const PALETTE = [
-      { c: "#00D4FF", glow: "rgba(0, 212, 255, 0.8)", weight: 32 },  // Electric Cyan
-      { c: "#1A73E8", glow: "rgba(26, 115, 232, 0.7)", weight: 26 }, // Google Antigravity Blue
-      { c: "#4285F4", glow: "rgba(66, 133, 244, 0.7)", weight: 20 }, // Luminous Blue
-      { c: "#8AB4F8", glow: "rgba(138, 180, 248, 0.6)", weight: 14 },// Ice Blue
-      { c: "#C5EBFF", glow: "rgba(197, 235, 255, 0.9)", weight: 5 },  // Arctic Highlight
-      { c: "#FFFFFF", glow: "rgba(255, 255, 255, 0.95)", weight: 3 }, // White Core Spark
+      { c: "#00D4FF", weight: 35 }, // Electric Cyan
+      { c: "#8AB4F8", weight: 30 }, // Soft Ice Blue
+      { c: "#1A73E8", weight: 20 }, // Antigravity Blue
+      { c: "#4285F4", weight: 10 }, // Luminous Blue
+      { c: "#FFFFFF", weight: 5 },  // Micro White Spark
     ];
 
     const pickColor = () => {
@@ -2545,13 +2544,13 @@ function Starfield() {
       let acc = 0;
       for (const p of PALETTE) {
         acc += p.weight;
-        if (r <= acc) return p;
+        if (r <= acc) return p.c;
       }
-      return PALETTE[0];
+      return PALETTE[0].c;
     };
 
-    // 3D Spherical/Matrix Lattice Particles
-    const count = isReduced ? 50 : isMobile ? 90 : 280;
+    // 3D Spherical/Matrix Lattice Particles (micro-puntos)
+    const count = isReduced ? 40 : isMobile ? 70 : 210;
     const particles = [];
     const FOV = 480;
 
@@ -2560,13 +2559,13 @@ function Starfield() {
       const theta = Math.sqrt(count * Math.PI) * phi;
       const sphereRadius = Math.min(width, height) * (0.35 + Math.random() * 0.75);
 
-      const ox = (Math.cos(theta) * Math.sin(phi) * sphereRadius) + (Math.random() - 0.5) * 200;
-      const oy = (Math.sin(theta) * Math.sin(phi) * sphereRadius * 0.65) + (Math.random() - 0.5) * 200;
-      const oz = (Math.cos(phi) * sphereRadius * 0.7) + (Math.random() * 320 - 110);
+      const ox = (Math.cos(theta) * Math.sin(phi) * sphereRadius) + (Math.random() - 0.5) * 180;
+      const oy = (Math.sin(theta) * Math.sin(phi) * sphereRadius * 0.65) + (Math.random() - 0.5) * 180;
+      const oz = (Math.cos(phi) * sphereRadius * 0.7) + (Math.random() * 300 - 100);
 
-      const colorData = pickColor();
-      const baseSize = 1.2 + Math.random() * 2.2;
-      const baseAlpha = 0.35 + Math.random() * 0.55;
+      const color = pickColor();
+      const baseSize = 0.45 + Math.random() * 0.65; // Micro-puntos super finos
+      const baseAlpha = 0.12 + Math.random() * 0.28; // Muy sutil y etéreo
 
       particles.push({
         x: ox, y: oy, z: oz,
@@ -2574,10 +2573,9 @@ function Starfield() {
         vx: 0, vy: 0, vz: 0,
         baseSize,
         baseAlpha,
-        color: colorData.c,
-        glow: colorData.glow,
+        color,
         phase: Math.random() * Math.PI * 2,
-        speed: 0.008 + Math.random() * 0.012,
+        speed: 0.006 + Math.random() * 0.01,
       });
     }
 
@@ -2587,14 +2585,14 @@ function Starfield() {
       ctx.clearRect(0, 0, width, height);
 
       if (mouse.active) {
-        mouse.x += (mouse.targetX - mouse.x) * 0.12;
-        mouse.y += (mouse.targetY - mouse.y) * 0.12;
+        mouse.x += (mouse.targetX - mouse.x) * 0.1;
+        mouse.y += (mouse.targetY - mouse.y) * 0.1;
       } else {
         mouse.x += (-2000 - mouse.x) * 0.05;
         mouse.y += (-2000 - mouse.y) * 0.05;
       }
 
-      time += 0.01;
+      time += 0.008;
       const cx = width / 2;
       const cy = height / 2;
 
@@ -2604,7 +2602,7 @@ function Starfield() {
         const p = particles[i];
 
         p.phase += p.speed;
-        const waveZ = Math.sin(p.phase + time) * 25;
+        const waveZ = Math.sin(p.phase + time) * 18;
         const currentTargetZ = p.origZ + waveZ;
 
         const currentZ = p.z;
@@ -2618,37 +2616,37 @@ function Starfield() {
           const dx = screenX - mouse.x;
           const dy = screenY - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 260;
+          const maxDist = 170;
 
           if (dist < maxDist && dist > 1) {
-            const force = Math.pow((maxDist - dist) / maxDist, 1.6);
+            const force = Math.pow((maxDist - dist) / maxDist, 1.8);
             const angle = Math.atan2(dy, dx);
-            const swirl = angle + 0.35;
+            const swirl = angle + 0.25;
 
-            const pushMag = force * 65 * (1 + (1 - scale));
+            const pushMag = force * 24 * (1 + (1 - scale));
             const pushX = Math.cos(swirl) * pushMag;
             const pushY = Math.sin(swirl) * pushMag;
 
-            p.vx += pushX * 0.15;
-            p.vy += pushY * 0.15;
-            p.vz += force * 45;
+            p.vx += pushX * 0.12;
+            p.vy += pushY * 0.12;
+            p.vz += force * 20;
           }
         }
 
-        p.vx += (p.origX - p.x) * 0.07;
-        p.vy += (p.origY - p.y) * 0.07;
-        p.vz += (currentTargetZ - p.z) * 0.07;
+        p.vx += (p.origX - p.x) * 0.06;
+        p.vy += (p.origY - p.y) * 0.06;
+        p.vz += (currentTargetZ - p.z) * 0.06;
 
-        p.vx *= 0.84;
-        p.vy *= 0.84;
-        p.vz *= 0.84;
+        p.vx *= 0.86;
+        p.vy *= 0.86;
+        p.vz *= 0.86;
 
         p.x += p.vx;
         p.y += p.vy;
         p.z += p.vz;
 
-        const renderRadius = Math.max(0.75, p.baseSize * scale * (p.z > p.origZ + 10 ? 1.3 : 1));
-        const depthAlpha = Math.max(0.12, Math.min(1, p.baseAlpha * scale * 1.3));
+        const renderRadius = Math.max(0.4, p.baseSize * scale);
+        const depthAlpha = Math.max(0.06, Math.min(0.45, p.baseAlpha * scale));
 
         projected.push({
           sx: screenX,
@@ -2656,50 +2654,19 @@ function Starfield() {
           r: renderRadius,
           alpha: depthAlpha,
           color: p.color,
-          glow: p.glow,
-          scale,
-          z: p.z,
         });
       }
 
-      // Proximity filaments
-      ctx.lineWidth = 0.8;
-      const projLen = projected.length;
-      for (let i = 0; i < projLen; i += 2) {
-        const p1 = projected[i];
-        for (let j = i + 1; j < Math.min(i + 6, projLen); j++) {
-          const p2 = projected[j];
-          const dist = Math.hypot(p1.sx - p2.sx, p1.sy - p2.sy);
-          if (dist < 75) {
-            const lineAlpha = (1 - dist / 75) * 0.18 * Math.min(p1.alpha, p2.alpha);
-            ctx.strokeStyle = `rgba(66, 133, 244, ${lineAlpha})`;
-            ctx.beginPath();
-            ctx.moveTo(p1.sx, p1.sy);
-            ctx.lineTo(p2.sx, p2.sy);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particle nodes
-      for (let i = 0; i < projLen; i++) {
+      // Renderizado limpio de micro-puntos sin halos pesados
+      for (let i = 0; i < projected.length; i++) {
         const pt = projected[i];
         ctx.globalAlpha = pt.alpha;
         ctx.fillStyle = pt.color;
-
-        if (pt.scale > 0.85 && !isMobile) {
-          ctx.shadowBlur = 8 * pt.scale;
-          ctx.shadowColor = pt.glow;
-        } else {
-          ctx.shadowBlur = 0;
-        }
-
         ctx.beginPath();
         ctx.arc(pt.sx, pt.sy, pt.r, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      ctx.shadowBlur = 0;
       ctx.globalAlpha = 1;
 
       animationFrameId = requestAnimationFrame(draw);
@@ -2726,7 +2693,7 @@ function Starfield() {
         inset: 0,
         pointerEvents: "none",
         zIndex: 0,
-        opacity: 0.95,
+        opacity: 0.75,
       }}
     />
   );
