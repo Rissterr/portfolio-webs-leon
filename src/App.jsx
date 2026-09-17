@@ -54,7 +54,6 @@ const CSS = `
 .reveal.in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion: reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .marquee__track{animation:none !important}
 }
 
 /* ---- typography ---- */
@@ -583,94 +582,53 @@ const CSS = `
 .marquee{ overflow:hidden; position:relative; padding:12px 0;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
           mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
-.marquee__track{ display:flex; gap:20px; width:max-content;
+.marquee__track{ display:flex; gap:22px; width:max-content;
   animation:marquee var(--dur,38s) linear infinite;
   will-change:transform; }
-.marquee:hover .marquee__track{ animation-play-state:paused; }
 .marquee--rev .marquee__track, .marquee--right .marquee__track{ 
-  animation:marqueeRight var(--dur,55s) linear infinite; 
+  animation:marqueeRight var(--dur,45s) linear infinite; 
   will-change:transform;
 }
-@keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
-@keyframes marqueeRight{ from{transform:translateX(-50%)} to{transform:translateX(0)} }
+@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@keyframes marqueeRight{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
 
 /* project strip cards */
 .shot{
-  width:420px; height:280px; border-radius:18px; flex:none; overflow:hidden;
-  border:1px solid rgba(255,255,255,.10); position:relative; isolation:isolate;
-  background:linear-gradient(135deg,#1b2650,#1c3060);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 24px 48px -20px rgba(0,0,0,.7);
-  transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .5s, box-shadow .5s;
+  width:320px; height:195px; border-radius:16px; flex:none; overflow:hidden;
+  border:1px solid rgba(146,187,255,0.22); position:relative; isolation:isolate;
+  background:rgba(10,14,35,0.85);
+  display:flex; align-items:flex-end; padding:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.15), 0 20px 45px -18px rgba(0,0,0,0.8);
+  transition:transform .4s cubic-bezier(.16,1,.3,1), border-color .4s, box-shadow .4s;
 }
-.shot:nth-child(1),.shot:nth-child(11){ background:linear-gradient(135deg,#1a1b4b,#2d1f6e); }
-.shot:nth-child(2),.shot:nth-child(12){ background:linear-gradient(135deg,#0d2b45,#1a4a7c); }
-.shot:nth-child(3),.shot:nth-child(13){ background:linear-gradient(135deg,#1a2e1a,#1f5c3f); }
-.shot:nth-child(4),.shot:nth-child(14){ background:linear-gradient(135deg,#3a1a2a,#6b2040); }
-.shot:nth-child(5),.shot:nth-child(15){ background:linear-gradient(135deg,#1a1520,#3d2060); }
-.shot:nth-child(6),.shot:nth-child(16){ background:linear-gradient(135deg,#2a1a10,#6b3a18); }
-.shot:nth-child(7),.shot:nth-child(17){ background:linear-gradient(135deg,#0d2020,#1a4a4a); }
-.shot:nth-child(8),.shot:nth-child(18){ background:linear-gradient(135deg,#1f2010,#4a5020); }
-.shot:nth-child(9),.shot:nth-child(19){ background:linear-gradient(135deg,#20100d,#60281a); }
-.shot:nth-child(10),.shot:nth-child(20){ background:linear-gradient(135deg,#1a0d20,#40186b); }
+.shot:hover{
+  transform:translateY(-4px);
+  border-color:rgba(146,187,255,0.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.25), 0 26px 50px -18px rgba(66,123,216,0.45);
+}
 .shot__img{
   position:absolute; inset:0; z-index:1;
   width:100%; height:100%; object-fit:cover; object-position:center top;
-  display:block; transition:transform .6s cubic-bezier(.16,1,.3,1);
+  display:block; opacity:0.88;
+  transition:opacity .4s ease, transform .6s cubic-bezier(.16,1,.3,1);
 }
-.shot:hover .shot__img{ transform:scale(1.05); }
-.shot:hover{ transform:translateY(-4px); border-color:rgba(146,187,255,.4);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 26px 50px -22px rgba(40,80,170,.5); }
-/* mockup grid pattern */
-.shot::after{ content:''; position:absolute; inset:0; z-index:2;
-  background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-  background-size:24px 24px;
-  pointer-events:none;
-}
-/* top-glow radial */
-.shot::before{ content:''; position:absolute; inset:0; z-index:3;
-  background:radial-gradient(120% 80% at 50% 0%,rgba(146,187,255,.18),transparent 60%); }
-/* crystalline edge glint — visible at rest, full on hover */
-.shot::before{ content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; z-index:4; pointer-events:none;
-  background:linear-gradient(115deg, transparent 25%, rgba(197,235,255,.65) 50%, transparent 75%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude; opacity:0.25; transition:opacity .5s; }
-.shot:hover::before{ opacity:1; }
-@keyframes marquee{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
-@keyframes marqueeRight{ 0%{ transform:translateX(-50%); } 100%{ transform:translateX(0); } }
-
-/* project shot */
-.shot{ width:260px; height:150px; border-radius:14px; flex:none; overflow:hidden;
-  border:1px solid rgba(146,187,255,0.18); background:rgba(10,14,35,0.85);
-  display:flex; align-items:flex-end; padding:12px; position:relative;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.15), 0 20px 40px -20px rgba(0,0,0,0.8);
-  transition:border-color .35s ease, transform .35s ease, box-shadow .35s ease; }
-.shot:hover{
-  border-color:rgba(146,187,255,0.45);
-  transform:translateY(-3px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.25), 0 25px 50px -18px rgba(66,123,216,0.45);
-}
-.shot__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  opacity:0.85; transition:opacity .4s ease, transform .5s cubic-bezier(.16,1,.3,1); }
-.shot:hover .shot__img{ opacity:1; transform:scale(1.04); }
+.shot:hover .shot__img{ opacity:1; transform:scale(1.05); }
 .shot b{
-  position:relative; z-index:2; font-size:12.5px; font-family:var(--display);
+  position:relative; z-index:2; font-size:13px; font-family:var(--display);
   color:#FFFFFF; font-weight:600;
-  background:rgba(6, 9, 28, 0.75);
+  background:rgba(6, 9, 28, 0.82);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-  padding:5px 12px;
+  padding:6px 14px;
   border-radius:100px;
-  border:1px solid rgba(146, 187, 255, 0.35);
-  box-shadow:0 4px 16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15);
+  border:1px solid rgba(146, 187, 255, 0.4);
+  box-shadow:0 4px 16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.18);
   letter-spacing:0.02em;
   transition:border-color .35s ease, transform .35s ease, background .35s ease;
 }
 .shot:hover b{
-  border-color:rgba(197, 235, 255, 0.65);
-  background:rgba(8, 12, 36, 0.9);
+  border-color:rgba(197, 235, 255, 0.75);
+  background:rgba(8, 12, 36, 0.95);
   transform:translateY(-2px);
 }
 
@@ -3005,7 +2963,7 @@ function HomePage() {
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Para negocios que YA venden</span></Reveal>
           {/* Strip de proyectos visible solo en móvil, dentro del hero */}
           <div className="hero__strip show-m">
-            <div className="marquee" style={{ "--dur": "40s" }}>
+            <div className="marquee" style={{ "--dur": "28s" }}>
               <div className="marquee__track">
                 {[...PROJECTS, ...PROJECTS].map((p, i) => (
                   <div className="hero__shot" key={i}>
@@ -3049,7 +3007,7 @@ function HomePage() {
       {/* PROJECT STRIP MARQUEE */}
       <div className="section strip-section" style={{ padding: "30px 0 60px", overflow: "visible" }} id="work">
         <div className="ambient-glow" />
-        <div className="marquee marquee--right" style={{ "--dur": "65s" }}>
+        <div className="marquee marquee--right" style={{ "--dur": "38s" }}>
           <div className="marquee__track">
             {[...PROJECTS, ...PROJECTS, ...PROJECTS, ...PROJECTS].map((p, i) => (
               <div className="shot" key={i}>
@@ -3065,7 +3023,7 @@ function HomePage() {
       <div className="section brands" style={{ padding: "40px 0" }}>
         <div className="brands__glow" />
         <Reveal className="kicker" style={{ textAlign: "center", marginBottom: 34, position: "relative" }}>Negocios que ya confían en nosotros</Reveal>
-        <div className="marquee" style={{ "--dur": "52s", position: "relative" }}>
+        <div className="marquee" style={{ "--dur": "34s", position: "relative" }}>
           <div className="marquee__track" style={{ gap: 56 }}>
             {[...BRANDS, ...BRANDS].map((b, i) => <div className="brand" key={i}>{b}</div>)}
           </div>
@@ -3254,7 +3212,7 @@ function HomePage() {
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Clientes que ya venden más</span></Reveal>
           <Reveal delay={100} className="hide-m"><h2 className="display">Lo que dicen los que ya lo comprobaron</h2></Reveal>
         </div>
-        <div className="marquee" style={{ "--dur": "75s", marginTop: 40 }}>
+        <div className="marquee" style={{ "--dur": "42s", marginTop: 40 }}>
           <div className="marquee__track">
             {[...TESTI, ...TESTI].map((t, i) => (
               <div className="tcard" key={i}>
@@ -3270,7 +3228,7 @@ function HomePage() {
             ))}
           </div>
         </div>
-        <div className="marquee marquee--rev testi-row2" style={{ "--dur": "90s", marginTop: 20 }}>
+        <div className="marquee marquee--rev testi-row2" style={{ "--dur": "48s", marginTop: 20 }}>
           <div className="marquee__track">
             {[...TESTI.slice().reverse(), ...TESTI.slice().reverse()].map((t, i) => (
               <div className="tcard" key={i}>
