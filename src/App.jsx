@@ -3694,11 +3694,10 @@ function PlanCrecimiento() {
               </div>
             </div>
 
-            <div style={{ marginTop: 12, marginBottom: 8 }}>
-              <a href={homeHref("#contact")} className="growth-cta-btn">
-                <span>EMPEZAR PROYECTO AHORA</span>
-                <span style={{ fontSize: 18 }}>→</span>
-              </a>
+            <div style={{ marginTop: 16, marginBottom: 12 }}>
+              <Btn glossy href={homeHref("#contact")} style={{ width: "100%", justifyContent: "center", fontSize: 15.5, padding: "16px 28px", fontWeight: 700 }}>
+                Empezar proyecto ahora →
+              </Btn>
             </div>
 
             <div className="growth-trust-row">
@@ -4061,9 +4060,11 @@ function PlanCrecimiento() {
         <div className="growth-final-box">
           <h3 className="growth-final-title">¿Listo para dar el salto con el <span className="h-grad">Plan Crecimiento</span>?</h3>
           <p className="growth-final-desc">En 2 semanas tu web estará lista para recibir visitas, transmitir autoridad y convertirlas en clientes.</p>
-          <a href={homeHref("#contact")} className="growth-cta-btn" style={{ padding: "18px 40px", fontSize: 16 }}>
-            <span>Solicitar Plan Crecimiento (750€) →</span>
-          </a>
+          <div style={{ display: "inline-block", margin: "0 auto" }}>
+            <Btn glossy href={homeHref("#contact")} style={{ fontSize: 16.5, padding: "18px 38px", fontWeight: 700 }}>
+              Solicitar Plan Crecimiento (750€) →
+            </Btn>
+          </div>
           <div className="growth-final-trust">
             <span>✓ Pago único sin cuotas ocultas</span>
             <span>✦ Trato directo 1 a 1</span>
@@ -4104,7 +4105,9 @@ function PorHoras() {
           <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
           <h3>¿Necesitas un cambio rápido?</h3>
           <p>Cuéntanos qué necesitas y nos ponemos manos a la obra.</p>
-          <a href={homeHref("#contact")} className="plan-highlight-cta">Solicitar Presupuesto →</a>
+          <Btn glossy href={homeHref("#contact")} style={{ width: "100%", justifyContent: "center" }}>
+            Solicitar Presupuesto →
+          </Btn>
         </div>
         <PlanCard className="plan-span-4">
           <PlanFeatureIcon><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></PlanFeatureIcon>
