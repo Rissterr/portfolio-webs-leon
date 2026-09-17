@@ -926,10 +926,10 @@ const CSS = `
   gap: 12px;
   position: relative;
 }
-.hq__q.tl { justify-content: flex-end; align-items: flex-end; text-align: right; padding-right: 46px; padding-bottom: 46px; }
-.hq__q.tr { justify-content: flex-end; align-items: flex-start; text-align: left;  padding-left: 46px;  padding-bottom: 46px; }
-.hq__q.bl { justify-content: flex-start; align-items: flex-end; text-align: right; padding-right: 46px; padding-top: 46px; }
-.hq__q.br { justify-content: flex-start; align-items: flex-start; text-align: left;  padding-left: 46px;  padding-top: 46px; }
+.hq__q.tl { justify-content: flex-end; align-items: flex-end; text-align: right; padding-right: 56px; padding-bottom: 56px; }
+.hq__q.tr { justify-content: flex-end; align-items: flex-start; text-align: left;  padding-left: 56px;  padding-bottom: 56px; }
+.hq__q.bl { justify-content: flex-start; align-items: flex-end; text-align: right; padding-right: 56px; padding-top: 56px; }
+.hq__q.br { justify-content: flex-start; align-items: flex-start; text-align: left;  padding-left: 56px;  padding-top: 56px; }
 
 .hq__icon {
   width: 46px;
@@ -1001,8 +1001,8 @@ const CSS = `
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
   z-index: 5;
-  width: 110px;
-  height: 110px;
+  width: 175px;
+  height: 175px;
 }
 
 /* Concentric pulse and rotating dashboard rings */
@@ -1020,11 +1020,11 @@ const CSS = `
   --r-dur: 50s;
   animation-direction: reverse;
 }
-.hq__ring:nth-child(1) { width: 160px; height: 160px; --r-dur: 35s; }
-.hq__ring:nth-child(2) { width: 247px; height: 247px; --r-dur: 50s; }
-.hq__ring:nth-child(3) { width: 348px; height: 348px; --r-dur: 70s; }
-.hq__ring:nth-child(4) { width: 464px; height: 464px; --r-dur: 90s; }
-.hq__ring:nth-child(5) { width: 595px; height: 595px; --r-dur: 110s; }
+.hq__ring:nth-child(1) { width: 235px; height: 235px; --r-dur: 35s; }
+.hq__ring:nth-child(2) { width: 330px; height: 330px; --r-dur: 50s; }
+.hq__ring:nth-child(3) { width: 445px; height: 445px; --r-dur: 70s; }
+.hq__ring:nth-child(4) { width: 575px; height: 575px; --r-dur: 90s; }
+.hq__ring:nth-child(5) { width: 715px; height: 715px; --r-dur: 110s; }
 
 @keyframes ringRotate {
   from { transform: translate(-50%,-50%) rotate(0deg); }
@@ -1033,24 +1033,25 @@ const CSS = `
 
 /* Avatar circle with breathing neon glow */
 .hq__ava {
-  width: 110px;
-  height: 110px;
+  width: 175px;
+  height: 175px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid rgba(146,187,255,0.45);
-  box-shadow: 0 0 0 9px rgba(66,123,216,0.12), 0 0 44px rgba(66,123,216,0.35);
+  border: 2.5px solid rgba(146,187,255,0.6);
+  box-shadow: 0 0 0 12px rgba(66,123,216,0.15), 0 0 60px rgba(66,123,216,0.45);
   position: relative;
   z-index: 2;
   animation: avaPulse 6s ease-in-out infinite;
 }
 @keyframes avaPulse {
-  0%, 100% { box-shadow: 0 0 0 9px rgba(66,123,216,0.12), 0 0 44px rgba(66,123,216,0.35); }
-  50% { box-shadow: 0 0 0 14px rgba(66,123,216,0.18), 0 0 65px rgba(66,123,216,0.55); }
+  0%, 100% { box-shadow: 0 0 0 12px rgba(66,123,216,0.15), 0 0 50px rgba(66,123,216,0.45); }
+  50% { box-shadow: 0 0 0 18px rgba(66,123,216,0.22), 0 0 75px rgba(66,123,216,0.65); }
 }
 .hq__ava img { width: 100%; height: 100%; object-fit: cover;
-  filter:grayscale(1); transition:filter .6s ease; }
-@media(hover:hover){ .hq__ava:hover img{ filter:grayscale(0); } }
-@media(hover:none){ .hq__ava img{ filter:grayscale(0); } }
+  filter:grayscale(1) brightness(0.85);
+  transition:filter .6s ease, transform .6s cubic-bezier(.16,1,.3,1); }
+@media(hover:hover){ .hq__ava:hover img{ filter:grayscale(0) brightness(1); transform:scale(1.05); } }
+@media(hover:none){ .hq__ava img{ filter:grayscale(0) brightness(1); } }
 
 /* Scroll-driven rays moving inward along each axis */
 .hq__ray {
