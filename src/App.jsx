@@ -2530,13 +2530,13 @@ function Starfield() {
     const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = width < 768;
 
-    // Google Antigravity Color Palette (suave y sutil)
+    // Google Antigravity Color Palette
     const PALETTE = [
       { c: "#00D4FF", weight: 35 }, // Electric Cyan
       { c: "#8AB4F8", weight: 30 }, // Soft Ice Blue
       { c: "#1A73E8", weight: 20 }, // Antigravity Blue
       { c: "#4285F4", weight: 10 }, // Luminous Blue
-      { c: "#FFFFFF", weight: 5 },  // Micro White Spark
+      { c: "#FFFFFF", weight: 5 },  // White Core Spark
     ];
 
     const pickColor = () => {
@@ -2549,23 +2549,23 @@ function Starfield() {
       return PALETTE[0].c;
     };
 
-    // 3D Spherical/Matrix Lattice Particles (micro-puntos)
-    const count = isReduced ? 40 : isMobile ? 70 : 210;
+    // 3D Spherical/Matrix Lattice Particles (densidad rica y tamaño perfecto)
+    const count = isReduced ? 120 : isMobile ? 220 : 580;
     const particles = [];
     const FOV = 480;
 
     for (let i = 0; i < count; i++) {
       const phi = Math.acos(-1 + (2 * i) / count);
       const theta = Math.sqrt(count * Math.PI) * phi;
-      const sphereRadius = Math.min(width, height) * (0.35 + Math.random() * 0.75);
+      const sphereRadius = Math.min(width, height) * (0.35 + Math.random() * 0.85);
 
-      const ox = (Math.cos(theta) * Math.sin(phi) * sphereRadius) + (Math.random() - 0.5) * 180;
-      const oy = (Math.sin(theta) * Math.sin(phi) * sphereRadius * 0.65) + (Math.random() - 0.5) * 180;
-      const oz = (Math.cos(phi) * sphereRadius * 0.7) + (Math.random() * 300 - 100);
+      const ox = (Math.cos(theta) * Math.sin(phi) * sphereRadius) + (Math.random() - 0.5) * 220;
+      const oy = (Math.sin(theta) * Math.sin(phi) * sphereRadius * 0.7) + (Math.random() - 0.5) * 220;
+      const oz = (Math.cos(phi) * sphereRadius * 0.75) + (Math.random() * 340 - 120);
 
       const color = pickColor();
-      const baseSize = 0.45 + Math.random() * 0.65; // Micro-puntos super finos
-      const baseAlpha = 0.12 + Math.random() * 0.28; // Muy sutil y etéreo
+      const baseSize = 0.85 + Math.random() * 0.95; // Puntos nítidos y perfectamente visibles
+      const baseAlpha = 0.28 + Math.random() * 0.45; // Buena presencia y brillo
 
       particles.push({
         x: ox, y: oy, z: oz,
@@ -2585,8 +2585,8 @@ function Starfield() {
       ctx.clearRect(0, 0, width, height);
 
       if (mouse.active) {
-        mouse.x += (mouse.targetX - mouse.x) * 0.1;
-        mouse.y += (mouse.targetY - mouse.y) * 0.1;
+        mouse.x += (mouse.targetX - mouse.x) * 0.12;
+        mouse.y += (mouse.targetY - mouse.y) * 0.12;
       } else {
         mouse.x += (-2000 - mouse.x) * 0.05;
         mouse.y += (-2000 - mouse.y) * 0.05;
@@ -2602,7 +2602,7 @@ function Starfield() {
         const p = particles[i];
 
         p.phase += p.speed;
-        const waveZ = Math.sin(p.phase + time) * 18;
+        const waveZ = Math.sin(p.phase + time) * 20;
         const currentTargetZ = p.origZ + waveZ;
 
         const currentZ = p.z;
@@ -2616,37 +2616,37 @@ function Starfield() {
           const dx = screenX - mouse.x;
           const dy = screenY - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 170;
+          const maxDist = 210;
 
           if (dist < maxDist && dist > 1) {
-            const force = Math.pow((maxDist - dist) / maxDist, 1.8);
+            const force = Math.pow((maxDist - dist) / maxDist, 1.7);
             const angle = Math.atan2(dy, dx);
-            const swirl = angle + 0.25;
+            const swirl = angle + 0.3;
 
-            const pushMag = force * 24 * (1 + (1 - scale));
+            const pushMag = force * 38 * (1 + (1 - scale));
             const pushX = Math.cos(swirl) * pushMag;
             const pushY = Math.sin(swirl) * pushMag;
 
-            p.vx += pushX * 0.12;
-            p.vy += pushY * 0.12;
-            p.vz += force * 20;
+            p.vx += pushX * 0.14;
+            p.vy += pushY * 0.14;
+            p.vz += force * 28;
           }
         }
 
-        p.vx += (p.origX - p.x) * 0.06;
-        p.vy += (p.origY - p.y) * 0.06;
-        p.vz += (currentTargetZ - p.z) * 0.06;
+        p.vx += (p.origX - p.x) * 0.065;
+        p.vy += (p.origY - p.y) * 0.065;
+        p.vz += (currentTargetZ - p.z) * 0.065;
 
-        p.vx *= 0.86;
-        p.vy *= 0.86;
-        p.vz *= 0.86;
+        p.vx *= 0.85;
+        p.vy *= 0.85;
+        p.vz *= 0.85;
 
         p.x += p.vx;
         p.y += p.vy;
         p.z += p.vz;
 
-        const renderRadius = Math.max(0.4, p.baseSize * scale);
-        const depthAlpha = Math.max(0.06, Math.min(0.45, p.baseAlpha * scale));
+        const renderRadius = Math.max(0.65, p.baseSize * scale * 1.15);
+        const depthAlpha = Math.max(0.12, Math.min(0.85, p.baseAlpha * scale * 1.25));
 
         projected.push({
           sx: screenX,
@@ -2657,7 +2657,7 @@ function Starfield() {
         });
       }
 
-      // Renderizado limpio de micro-puntos sin halos pesados
+      // Renderizado nítido de partículas con presencia
       for (let i = 0; i < projected.length; i++) {
         const pt = projected[i];
         ctx.globalAlpha = pt.alpha;
@@ -2693,7 +2693,7 @@ function Starfield() {
         inset: 0,
         pointerEvents: "none",
         zIndex: 0,
-        opacity: 0.75,
+        opacity: 0.9,
       }}
     />
   );
