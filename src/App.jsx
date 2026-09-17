@@ -2506,7 +2506,7 @@ function Starfield() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Mouse tracking with inertia
+    // Mouse coordinates tracking with smooth damping
     const mouse = {
       x: -2000,
       y: -2000,
@@ -2537,215 +2537,114 @@ function Starfield() {
     const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = width < 768;
 
-    // Google Antigravity Electric Color Palette
-    const PALETTE = [
-      { color: "#00D4FF", weight: 35 }, // Electric Cyan
-      { color: "#8AB4F8", weight: 30 }, // Soft Ice Blue
-      { color: "#1A73E8", weight: 20 }, // Antigravity Core Blue
-      { color: "#4285F4", weight: 10 }, // Bright Royal Blue
-      { color: "#E8F0FE", weight: 5 },  // White Highlight
-    ];
-
-    const pickColor = () => {
-      const r = Math.random() * 100;
-      let acc = 0;
-      for (const p of PALETTE) {
-        acc += p.weight;
-        if (r <= acc) return p.color;
-      }
-      return PALETTE[0].color;
-    };
-
-    // Build the 3D Sphere Lattice with Tangential Capsule Dashes
-    // Ring-based topology (latitudes and longitudes) exactly like Antigravity
-    const sphereRadius = Math.min(width, height) * (isMobile ? 0.65 : 0.46);
-    const numLatitudeRings = isMobile ? 18 : 28;
+    // Generar puntos sutiles distribuidos por toda la pantalla
+    const count = isReduced ? 60 : isMobile ? 90 : 200;
     const points = [];
 
-    for (let r = 0; r < numLatitudeRings; r++) {
-      // phi from -PI/2 * 0.88 to +PI/2 * 0.88
-      const v = (r / (numLatitudeRings - 1)) * 2 - 1; // -1 to 1
-      const phi = Math.asin(v) * 0.92;
-      const ringRadius = sphereRadius * Math.cos(phi);
-      const ringY = sphereRadius * Math.sin(phi);
+    for (let i = 0; i < count; i++) {
+      const origX = Math.random() * width;
+      const origY = Math.random() * height;
+      const baseRadius = isMobile ? 1.0 + Math.random() * 0.8 : 1.2 + Math.random() * 1.1;
+      const baseAlpha = 0.16 + Math.random() * 0.22;
 
-      // Number of dashes in this latitude ring proportional to circumference
-      const circumference = 2 * Math.PI * ringRadius;
-      const step = isMobile ? 36 : 28;
-      const numPointsInRing = Math.max(8, Math.round(circumference / step));
+      // Colores de iluminación Antigravity al activarse
+      const colors = ["#00D4FF", "#8AB4F8", "#4285F4", "#FFFFFF", "#38BDF8"];
+      const activeColor = colors[Math.floor(Math.random() * colors.length)];
 
-      for (let p = 0; p < numPointsInRing; p++) {
-        const theta = (p / numPointsInRing) * Math.PI * 2;
-        
-        // 3D Point on Sphere
-        const ox = ringRadius * Math.sin(theta);
-        const oy = ringY;
-        const oz = ringRadius * Math.cos(theta);
-
-        // Tangent vector along the latitude circle
-        const tx = Math.cos(theta);
-        const ty = 0;
-        const tz = -Math.sin(theta);
-
-        points.push({
-          ox, oy, oz,
-          x: ox, y: oy, z: oz,
-          tx, ty, tz,
-          vx: 0, vy: 0, vz: 0,
-          color: pickColor(),
-          baseLength: (isMobile ? 6 : 8.5) + (Math.random() * 3 - 1.5),
-          baseWidth: isMobile ? 1.8 : 2.4,
-          baseAlpha: 0.35 + Math.random() * 0.45,
-          phase: Math.random() * Math.PI * 2,
-          speed: 0.005 + Math.random() * 0.008,
-        });
-      }
+      points.push({
+        origX,
+        origY,
+        x: origX,
+        y: origY,
+        vx: 0,
+        vy: 0,
+        baseRadius,
+        baseAlpha,
+        activeColor,
+        phase: Math.random() * Math.PI * 2,
+        driftSpeed: 0.003 + Math.random() * 0.006,
+        driftAmpX: 4 + Math.random() * 8,
+        driftAmpY: 4 + Math.random() * 8,
+      });
     }
-
-    let rotY = 0;
-    let rotX = 0.32; // Default tilt towards viewer
-    let smoothMouseX = width / 2;
-    let smoothMouseY = height / 2;
-    const FOV = 580;
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth mouse
+      // Interpolación suave del mouse
       if (mouse.active) {
-        smoothMouseX += (mouse.targetX - smoothMouseX) * 0.08;
-        smoothMouseY += (mouse.targetY - smoothMouseY) * 0.08;
-        mouse.x += (mouse.targetX - mouse.x) * 0.12;
-        mouse.y += (mouse.targetY - mouse.y) * 0.12;
+        mouse.x += (mouse.targetX - mouse.x) * 0.14;
+        mouse.y += (mouse.targetY - mouse.y) * 0.14;
       } else {
-        smoothMouseX += (width / 2 - smoothMouseX) * 0.03;
-        smoothMouseY += (height / 2 - smoothMouseY) * 0.03;
-        mouse.x += (-2000 - mouse.x) * 0.05;
-        mouse.y += (-2000 - mouse.y) * 0.05;
+        mouse.x += (-2000 - mouse.x) * 0.06;
+        mouse.y += (-2000 - mouse.y) * 0.06;
       }
-
-      // 3D Sphere Interactive Rotation
-      if (!isReduced) {
-        rotY += 0.0022; // continuous orbit
-      }
-      const targetRotX = 0.32 - ((smoothMouseY - height / 2) / height) * 0.45;
-      const targetRotY = rotY + ((smoothMouseX - width / 2) / width) * 0.65;
-      rotX += (targetRotX - rotX) * 0.05;
-
-      const cosX = Math.cos(rotX);
-      const sinX = Math.sin(rotX);
-      const cosY = Math.cos(targetRotY);
-      const sinY = Math.sin(targetRotY);
-
-      const cx = width / 2;
-      const cy = height * (isMobile ? 0.48 : 0.5);
-
-      const renderList = [];
 
       for (let i = 0; i < points.length; i++) {
         const pt = points[i];
 
-        // Harmonic micro-wave
-        pt.phase += pt.speed;
-        const wave = Math.sin(pt.phase) * 6;
+        // Micro-deriva ambiental suave
+        pt.phase += pt.driftSpeed;
+        const driftX = Math.cos(pt.phase) * pt.driftAmpX;
+        const driftY = Math.sin(pt.phase) * pt.driftAmpY;
+        const targetX = pt.origX + driftX;
+        const targetY = pt.origY + driftY;
 
-        // Apply 3D Rotation to Base Coordinates
-        const posX = pt.ox;
-        const posY = pt.oy + wave;
-        const posZ = pt.oz;
-
-        // Y rotation
-        const x1 = posX * cosY + posZ * sinY;
-        const y1 = posY;
-        const z1 = -posX * sinY + posZ * cosY;
-
-        // X rotation (tilt)
-        const rx = x1;
-        const ry = y1 * cosX - z1 * sinX;
-        const rz = y1 * sinX + z1 * cosX;
-
-        // Apply 3D Rotation to Tangent Vector
-        const tx1 = pt.tx * cosY + pt.tz * sinY;
-        const ty1 = pt.ty;
-        const tz1 = -pt.tx * sinY + pt.tz * cosY;
-
-        const rtx = tx1;
-        const rty = ty1 * cosX - tz1 * sinX;
-
-        // Perspective projection
-        const scale = FOV / (FOV + rz + 240);
-        if (scale <= 0) continue;
-
-        let screenX = cx + rx * scale;
-        let screenY = cy + ry * scale;
-
-        // Mouse Gravitational Warp & Interaction
+        // Distancia al cursor
+        let proximity = 0;
         if (mouse.active) {
-          const dx = screenX - mouse.x;
-          const dy = screenY - mouse.y;
+          const dx = pt.x - mouse.x;
+          const dy = pt.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 190;
+          const maxDist = 150; // radio de influencia
 
-          if (dist < maxDist && dist > 1) {
-            const force = Math.pow((maxDist - dist) / maxDist, 1.8);
-            const angle = Math.atan2(dy, dx);
-            const push = force * 34 * scale;
+          if (dist < maxDist && dist > 0.5) {
+            // Factor de cercanía (0 a 1)
+            proximity = Math.pow((maxDist - dist) / maxDist, 1.4);
 
-            pt.vx += Math.cos(angle) * push * 0.12;
-            pt.vy += Math.sin(angle) * push * 0.12;
+            // Repulsión suave (se alejan un poquitín)
+            const pushMag = proximity * 28;
+            const pushX = (dx / dist) * pushMag;
+            const pushY = (dy / dist) * pushMag;
+
+            pt.vx += pushX * 0.12;
+            pt.vy += pushY * 0.12;
           }
         }
 
-        // Spring restitution
+        // Retorno elástico a la posición original
+        pt.vx += (targetX - pt.x) * 0.06;
+        pt.vy += (targetY - pt.y) * 0.06;
+
+        // Fricción / amortiguación
         pt.vx *= 0.86;
         pt.vy *= 0.86;
-        screenX += pt.vx;
-        screenY += pt.vy;
 
-        // Tangent 2D Screen Angle
-        const tangentAngle = Math.atan2(rty, rtx);
+        pt.x += pt.vx;
+        pt.y += pt.vy;
 
-        // Dimensions scaled by depth
-        const dashLen = Math.max(3, pt.baseLength * scale);
-        const dashThick = Math.max(1.2, pt.baseWidth * scale);
-
-        // Depth-based luminosity (front points are bright & crisp, back points fade gently)
-        const depthNorm = (rz + sphereRadius) / (sphereRadius * 2); // 0 (front) to 1 (back)
-        const depthAlpha = Math.max(0.08, Math.min(0.92, pt.baseAlpha * (1.25 - depthNorm * 0.85)));
-
-        renderList.push({
-          x: screenX,
-          y: screenY,
-          angle: tangentAngle,
-          length: dashLen,
-          width: dashThick,
-          color: pt.color,
-          alpha: depthAlpha,
-          z: rz,
-        });
-      }
-
-      // Sort by Z for correct depth sorting (back to front)
-      renderList.sort((a, b) => b.z - a.z);
-
-      // Render Capsule / Dash Elements
-      for (let i = 0; i < renderList.length; i++) {
-        const item = renderList[i];
-        ctx.save();
-        ctx.translate(item.x, item.y);
-        ctx.rotate(item.angle);
-        ctx.globalAlpha = item.alpha;
-        ctx.fillStyle = item.color;
+        // Iluminación y color según proximidad al mouse
+        const currentAlpha = Math.min(0.95, pt.baseAlpha + proximity * 0.75);
+        const currentRadius = pt.baseRadius + proximity * 1.2;
 
         ctx.beginPath();
-        const r = item.width / 2;
-        const w = item.length;
-        const h = item.width;
-        // Rounded capsule dash
-        ctx.roundRect(-w / 2, -h / 2, w, h, r);
-        ctx.fill();
+        ctx.arc(pt.x, pt.y, currentRadius, 0, Math.PI * 2);
 
-        ctx.restore();
+        if (proximity > 0.05) {
+          // Iluminado con color Antigravity y glow
+          ctx.globalAlpha = currentAlpha;
+          ctx.fillStyle = pt.activeColor;
+          ctx.shadowBlur = proximity * 8;
+          ctx.shadowColor = pt.activeColor;
+        } else {
+          // Estado de reposo sutil
+          ctx.globalAlpha = currentAlpha;
+          ctx.fillStyle = "#8AB4F8";
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fill();
+        ctx.shadowBlur = 0;
       }
 
       ctx.globalAlpha = 1;
