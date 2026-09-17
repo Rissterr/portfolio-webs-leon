@@ -2174,6 +2174,258 @@ const CSS = `
 .plan-btn-ghost .plan-feat-icon{ width:24px; height:24px; margin:0; background:none; border:none; }
 .plan-btn-ghost .plan-feat-icon svg{ width:16px; height:16px; }
 
+/* ---- Bento & Feature Enhancements for Plan Crecimiento ---- */
+.growth-feat-hero-inner {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+.growth-feat-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.growth-feat-icon-glow {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(0, 132, 255, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00D4FF;
+  flex-shrink: 0;
+  box-shadow: 0 0 18px rgba(0, 132, 255, 0.4);
+}
+.growth-feat-icon-glow svg { width: 24px; height: 24px; }
+.growth-feat-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #C5EBFF;
+  background: rgba(66, 123, 216, 0.28);
+  border: 1px solid rgba(146, 187, 255, 0.35);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.growth-feat-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.growth-feat-pill {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #C5EBFF;
+  background: rgba(146, 187, 255, 0.08);
+  border: 1px solid rgba(146, 187, 255, 0.2);
+  padding: 5px 12px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.growth-mini-widget {
+  background: linear-gradient(180deg, rgba(14, 24, 56, 0.8) 0%, rgba(6, 11, 28, 0.95) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.28);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.growth-mini-widget-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.growth-mini-cal-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.growth-mini-cal-day {
+  flex: 1;
+  text-align: center;
+  padding: 6px 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.growth-mini-cal-day.active {
+  background: #0077FF;
+  border-color: #00D4FF;
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(0, 119, 255, 0.6);
+}
+.growth-mini-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.growth-mini-slot {
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  padding: 6px 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(146, 187, 255, 0.16);
+  border-radius: 6px;
+  color: #C5EBFF;
+}
+.growth-mini-slot.active {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: #00D4FF;
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+.growth-feature-card {
+  padding: 32px;
+}
+.growth-feature-card h3 {
+  font-size: 21px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 14px 0 8px;
+}
+.growth-feature-card p {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.growth-card-preview-bar {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Checklist de Esenciales */
+.growth-essentials-wrap {
+  margin-top: 40px;
+  background: linear-gradient(180deg, rgba(16, 28, 62, 0.65) 0%, rgba(8, 14, 36, 0.85) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.24);
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+}
+.growth-essentials-title {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.growth-essentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.growth-essential-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(146, 187, 255, 0.16);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #E7ECFB;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.growth-essential-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(146, 187, 255, 0.45);
+  background: rgba(255, 255, 255, 0.065);
+}
+.growth-essential-card span.chk {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 132, 255, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.45);
+  color: #00D4FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.35);
+}
+
+/* CTA Final Plan Crecimiento */
+.growth-final-box {
+  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(24, 48, 105, 0.75) 0%, rgba(10, 20, 52, 0.95) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.4);
+  border-radius: 28px;
+  padding: 56px 28px;
+  text-align: center;
+  box-shadow: 0 30px 80px -25px rgba(0, 102, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+}
+.growth-final-box::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00D4FF 50%, transparent);
+  filter: blur(1px);
+  pointer-events: none;
+}
+.growth-final-title {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.growth-final-desc {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 580px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.growth-final-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  font-size: 13px;
+  color: #C5EBFF;
+}
+.growth-final-trust span { display: inline-flex; align-items: center; gap: 6px; }
+
+@media(max-width: 768px) {
+  .growth-feat-hero-inner { grid-template-columns: 1fr; }
+  .growth-essentials-grid { grid-template-columns: 1fr; }
+  .growth-essentials-wrap { padding: 24px 18px; }
+  .growth-final-box { padding: 40px 20px; }
+}
+
 .plan-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:20px; margin-top:16px; }
 .plan-span-4{ grid-column:span 4; } .plan-span-5{ grid-column:span 5; } .plan-span-6{ grid-column:span 6; }
 .plan-span-7{ grid-column:span 7; } .plan-span-8{ grid-column:span 8; } .plan-span-12{ grid-column:span 12; }
@@ -3687,57 +3939,136 @@ function PlanCrecimiento() {
       </div>
 
       {/* SECCIÓN DETALLADA DE CARACTERÍSTICAS */}
-      <section style={{ marginTop: 60 }}>
+      <section style={{ marginTop: 70 }}>
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Funcionalidades Clave</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Todo lo necesario para que tu negocio facture más</h2></Reveal>
-          <Reveal delay={180} className="lead" as="p" style={{margin:"0 auto"}}>Diseñado específicamente para automatizar procesos y generar confianza inmediata en tus visitantes.</Reveal>
+          <Reveal delay={100}><h2 className="display" style={{ marginTop: 14 }}>Todo lo necesario para que tu negocio <span className="h-grad">facture más</span></h2></Reveal>
+          <Reveal delay={180} className="lead" as="p" style={{ margin: "0 auto" }}>Diseñado específicamente para automatizar procesos y generar confianza inmediata en tus visitantes.</Reveal>
         </div>
 
         <div className="plan-grid">
-          <PlanCard className="plan-span-12">
-            <PlanFeatureIcon><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></PlanFeatureIcon>
-            <h3>Sistema de Reservas y Formularios Multi-Paso</h3>
-            <p>Permite que tus clientes elijan servicio, fecha y hora directamente desde el móvil. Sincronización automática con Google Calendar y aviso instantáneo por WhatsApp o correo electrónico.</p>
+          {/* Bento 1: Reservas & Automatización (Span 12) */}
+          <PlanCard className="plan-span-12 growth-feature-card">
+            <div className="growth-feat-hero-inner">
+              <div>
+                <div className="growth-feat-header">
+                  <div className="growth-feat-icon-glow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                  </div>
+                  <span className="growth-feat-badge">✦ Automatización 24/7</span>
+                </div>
+                <h3>Sistema de Reservas y Formularios Multi-Paso</h3>
+                <p>Permite que tus clientes elijan servicio, fecha y hora directamente desde el móvil. Sincronización automática con Google Calendar y aviso instantáneo por WhatsApp o correo electrónico.</p>
+                <div className="growth-feat-pills">
+                  <span className="growth-feat-pill"><span>📅</span> Sincronización con Google Calendar</span>
+                  <span className="growth-feat-pill"><span>💬</span> Notificación instantánea WhatsApp</span>
+                  <span className="growth-feat-pill"><span>⚡</span> Sin fricción ni llamadas manuales</span>
+                </div>
+              </div>
+
+              <div className="growth-mini-widget">
+                <div className="growth-mini-widget-title">
+                  <span>AGENDA ONLINE</span>
+                  <span style={{ color: "#00D4FF", fontSize: 10 }}>● Activo</span>
+                </div>
+                <div className="growth-mini-cal-row">
+                  <div className="growth-mini-cal-day">Lun <b>10</b></div>
+                  <div className="growth-mini-cal-day">Mar <b>11</b></div>
+                  <div className="growth-mini-cal-day">Mié <b>12</b></div>
+                  <div className="growth-mini-cal-day active">Jue <b>13</b></div>
+                  <div className="growth-mini-cal-day">Vie <b>14</b></div>
+                </div>
+                <div className="growth-mini-slots">
+                  <div className="growth-mini-slot">09:30</div>
+                  <div className="growth-mini-slot active">11:00</div>
+                  <div className="growth-mini-slot">12:30</div>
+                  <div className="growth-mini-slot">16:00</div>
+                  <div className="growth-mini-slot">17:30</div>
+                  <div className="growth-mini-slot">19:00</div>
+                </div>
+              </div>
+            </div>
           </PlanCard>
 
-          <PlanCard className="plan-span-6">
-            <PlanFeatureIcon><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></PlanFeatureIcon>
+          {/* Bento 2: Galería de Trabajos (Span 6) */}
+          <PlanCard className="plan-span-6 growth-feature-card">
+            <div className="growth-feat-header">
+              <div className="growth-feat-icon-glow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                </svg>
+              </div>
+              <span className="growth-feat-badge">✦ Impacto Visual</span>
+            </div>
             <h3>Galería de Trabajos & Casos Reales</h3>
             <p>Muestra tu portafolio con un diseño asimétrico tipo Liquid Glass que resalta tus mejores resultados y genera autoridad inmediata.</p>
+            <div className="growth-card-preview-bar">
+              <span style={{ fontSize: 12, color: "#92BBFF", fontWeight: 600 }}>✦ Filtros por categoría</span>
+              <span style={{ fontSize: 12, color: "var(--muted)" }}>Carga WebP ultrarrápida</span>
+            </div>
           </PlanCard>
 
-          <PlanCard className="plan-span-6">
-            <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
+          {/* Bento 3: Testimonios y Reseñas (Span 6) */}
+          <PlanCard className="plan-span-6 growth-feature-card">
+            <div className="growth-feat-header">
+              <div className="growth-feat-icon-glow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                </svg>
+              </div>
+              <span className="growth-feat-badge">✦ Prueba Social</span>
+            </div>
             <h3>Testimonios y Reseñas de Confianza</h3>
             <p>Aumenta la tasa de cierre con pruebas sociales verificadas de clientes de León, logrando que el visitante sienta tranquilidad antes de contactar.</p>
-          </PlanCard>
-
-          <div className="plan-span-12 plan-included-box">
-            <h4>También incluye todo lo esencial</h4>
-            <div className="plan-included-grid">
-              {["Diseño 100% Responsive para móviles","SEO Local en Google y Google Maps","Dominio y Hosting de alta velocidad (1 año)","Integración directa de WhatsApp","Optimización WebP ultrarrápida","Textos y copy orientados a vender"].map((t,i)=>(
-                <div key={i}><span>✓</span>{t}</div>
-              ))}
+            <div className="growth-card-preview-bar">
+              <span style={{ fontSize: 13, color: "#38BDF8", fontWeight: 700 }}>★★★★★ 5.0 en Google</span>
+              <span style={{ fontSize: 12, color: "var(--muted)" }}>Valoraciones verificadas</span>
             </div>
+          </PlanCard>
+        </div>
+
+        {/* Bloque Checklist de Esenciales */}
+        <div className="growth-essentials-wrap">
+          <h3 className="growth-essentials-title">También incluye todo lo esencial para vender desde el día 1</h3>
+          <div className="growth-essentials-grid">
+            {[
+              { t: "Diseño 100% Responsive", d: "Optimizado al milímetro para móviles" },
+              { t: "SEO Local en Google", d: "Aparece cuando busquen tu servicio en León" },
+              { t: "Dominio y Hosting (1 año)", d: "Máxima velocidad NVMe incluida" },
+              { t: "Integración de WhatsApp", d: "Contacto directo a un clic" },
+              { t: "Optimización WebP", d: "Carga instantánea sin esperas" },
+              { t: "Textos y Copy de Venta", d: "Mensajes persuasivos orientados a cierre" }
+            ].map((item, i) => (
+              <div key={i} className="growth-essential-card">
+                <span className="chk">✓</span>
+                <div>
+                  <b style={{ display: "block", color: "#FFFFFF", fontSize: 13.5 }}>{item.t}</b>
+                  <span style={{ fontSize: 11.5, color: "var(--muted)" }}>{item.d}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* LLAMADA A LA ACCIÓN FINAL */}
-      <section style={{ textAlign: "center", marginTop: 40 }}>
-        <div style={{
-          background: "linear-gradient(135deg, rgba(20, 38, 80, 0.7) 0%, rgba(8, 16, 42, 0.9) 100%)",
-          border: "1px solid rgba(146, 187, 255, 0.35)",
-          borderRadius: 24,
-          padding: "48px 24px",
-          boxShadow: "0 20px 60px -20px rgba(0, 102, 255, 0.45)"
-        }}>
-          <h3 style={{ fontFamily: "var(--display)", fontSize: "clamp(26px, 3.5vw, 36px)", color: "#fff", marginBottom: 12 }}>¿Listo para dar el salto con el Plan Crecimiento?</h3>
-          <p style={{ color: "var(--muted)", maxWidth: 540, margin: "0 auto 28px", fontSize: 16 }}>En 2 semanas tu web estará lista para recibir visitas y convertirlas en clientes.</p>
-          <a href={homeHref("#contact")} className="growth-cta-btn">
+      <section>
+        <div className="growth-final-box">
+          <h3 className="growth-final-title">¿Listo para dar el salto con el <span className="h-grad">Plan Crecimiento</span>?</h3>
+          <p className="growth-final-desc">En 2 semanas tu web estará lista para recibir visitas, transmitir autoridad y convertirlas en clientes.</p>
+          <a href={homeHref("#contact")} className="growth-cta-btn" style={{ padding: "18px 40px", fontSize: 16 }}>
             <span>Solicitar Plan Crecimiento (750€) →</span>
           </a>
+          <div className="growth-final-trust">
+            <span>✓ Pago único sin cuotas ocultas</span>
+            <span>✦ Trato directo 1 a 1</span>
+            <span>⚡ Entrega estimada en 2 semanas</span>
+          </div>
         </div>
       </section>
     </PlanShell>
