@@ -676,76 +676,47 @@ const CSS = `
 
 /* ---- comparison ---- */
 .cols{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:48px; position:relative; }
-.col{ border-radius:24px; padding:36px; border:1px solid rgba(146,187,255,.16);
-  position:relative; overflow:visible; isolation:isolate;
+.col{ border-radius:24px; padding:36px; border:1px solid rgba(146,187,255,.14);
+  position:relative; overflow:hidden; isolation:isolate;
+  background:rgba(10,14,34,.7);
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 24px 50px -25px rgba(0,0,0,.6);
   transition:transform .4s cubic-bezier(.16,1,.3,1), border-color .4s, box-shadow .4s; }
-/* crystalline border glint */
-.col::before{ content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; z-index:2; pointer-events:none;
-  background:linear-gradient(120deg, transparent 25%, rgba(146,187,255,.55) 50%, transparent 75%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude;
-  opacity:0.25; transition:opacity .5s; }
-.col:hover{ transform:translateY(-4px); border-color:rgba(146,187,255,.35);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 30px 60px -20px rgba(0,0,0,.7); }
-.col:hover::before{ opacity:1; }
+.col:hover{ transform:translateY(-4px); border-color:rgba(146,187,255,.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 30px 60px -20px rgba(0,0,0,.7); }
 
-/* ---- "Sin mí" column: magenta/pink accent glow bar at bottom + top flare ---- */
+/* ---- "Sin mí" column ---- */
 .col--no{ 
-  background:linear-gradient(180deg, rgba(28,16,36,0.75) 0%, rgba(18,10,24,0.9) 100%); 
-  border-color:rgba(255,80,120,.24);
-  box-shadow:inset 0 1px 0 rgba(255,100,150,.18), 0 24px 50px -20px rgba(255,40,100,.15);
+  background:linear-gradient(180deg, rgba(22,14,30,0.65) 0%, rgba(12,8,20,0.85) 100%); 
+  border-color:rgba(255,80,120,.18);
 }
-.col--no::after{ content:''; position:absolute; bottom:-3px; left:8%; right:8%; height:6px; z-index:3;
-  background:linear-gradient(90deg, transparent, #ff3c8e 30%, #ff6eb4 50%, #ff3c8e 70%, transparent);
-  border-radius:0 0 20px 20px;
-  filter:blur(5px);
-  opacity:0.85; transition:opacity .5s, filter .5s; }
-.col--no:hover::after{ opacity:1; filter:blur(7px); }
-/* extra magenta ambient behind the bar */
-.col--no .glow-accent{ position:absolute; bottom:-25px; left:15%; right:15%; height:50px; z-index:0;
-  background:radial-gradient(ellipse at 50% 100%, rgba(255,60,142,.45), transparent 70%);
-  filter:blur(22px); pointer-events:none; }
-/* top magenta flare */
-.col--no .glow-top-flare{ position:absolute; top:-1px; left:20%; right:20%; height:2px; z-index:3;
-  background:linear-gradient(90deg, transparent, rgba(255,110,180,0.85) 50%, transparent);
-  filter:blur(1px); pointer-events:none; }
+.col--no::after{ content:''; position:absolute; bottom:0; left:15%; right:15%; height:2px; z-index:3;
+  background:linear-gradient(90deg, transparent, #ff3c8e 50%, transparent);
+  box-shadow:0 0 16px 2px rgba(255,60,142,.6);
+  pointer-events:none; }
 
-/* ---- "Conmigo" column: cyan/ice-blue accent glow bar at bottom + left side vertical bar + top flare ---- */
+/* ---- "Conmigo" column ---- */
 .col--yes{ 
-  background:linear-gradient(145deg, rgba(16,35,80,0.8) 0%, rgba(8,18,46,0.92) 100%); 
-  border-color:rgba(146,187,255,.45);
-  box-shadow:inset 0 1px 0 rgba(146,187,255,.3), 0 24px 60px -20px rgba(0,140,255,.25);
+  background:linear-gradient(180deg, rgba(16,28,64,0.7) 0%, rgba(8,14,36,0.85) 100%); 
+  border-color:rgba(146,187,255,.28);
+  box-shadow:inset 0 1px 0 rgba(146,187,255,.25), 0 24px 60px -20px rgba(0,102,255,.3);
 }
-.col--yes::after{ content:''; position:absolute; bottom:-3px; left:8%; right:8%; height:6px; z-index:3;
-  background:linear-gradient(90deg, transparent, #00d4ff 30%, #7eedff 50%, #00d4ff 70%, transparent);
-  border-radius:0 0 20px 20px;
-  filter:blur(5px);
-  opacity:0.9; transition:opacity .5s, filter .5s; }
-.col--yes:hover::after{ opacity:1; filter:blur(7px); }
-/* top cyan flare */
-.col--yes .glow-top-flare{ position:absolute; top:-1px; left:15%; right:15%; height:2px; z-index:3;
-  background:linear-gradient(90deg, transparent, #7eedff 50%, transparent);
-  filter:blur(1px); pointer-events:none; }
+.col--yes::after{ content:''; position:absolute; bottom:0; left:15%; right:15%; height:2px; z-index:3;
+  background:linear-gradient(90deg, transparent, #00D4FF 50%, transparent);
+  box-shadow:0 0 16px 2px rgba(0,212,255,.6);
+  pointer-events:none; }
 /* vertical blue glow bar on the left side */
-.col--yes .glow-side{ position:absolute; top:8%; bottom:8%; left:-2px; width:5px; z-index:3;
-  background:linear-gradient(180deg, transparent, #427BD8 25%, #7eedff 50%, #427BD8 75%, transparent);
-  border-radius:20px 0 0 20px;
-  filter:blur(3.5px);
-  opacity:0.95; transition:opacity .5s; }
-.col--yes:hover .glow-side{ opacity:1; filter:blur(5px); }
-/* ambient glow behind the left bar */
-.col--yes .glow-ambient{ position:absolute; top:10%; bottom:10%; left:-20px; width:60px; z-index:0;
-  background:radial-gradient(ellipse at 0% 50%, rgba(0,212,255,.5), transparent 70%);
-  filter:blur(18px); pointer-events:none; }
+.col--yes .glow-side{ 
+  position:absolute; top:12%; bottom:12%; left:0; width:3px; z-index:3;
+  background:linear-gradient(180deg, transparent, #00D4FF 50%, transparent);
+  box-shadow:0 0 12px 1px rgba(0,212,255,.8);
+  pointer-events:none; }
 
-.col h3{ font-family:var(--display); font-size:21px; margin-bottom:24px; font-weight:700; letter-spacing:-.01em; }
+.col h3{ font-family:var(--display); font-size:21px; margin-bottom:24px; font-weight:700; letter-spacing:-.01em; color:#fff; }
 .row{ display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-top:1px solid rgba(255,255,255,.07); color:var(--muted); font-size:15px; line-height:1.5; }
 .ic{ width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:12px;font-weight:800; }
-.ic--x{ background:rgba(255,70,90,.18); border:1px solid rgba(255,70,90,.38); color:#ff94a2; box-shadow:0 0 10px rgba(255,70,90,.35); }
-.ic--v{ background:rgba(60,210,140,.2); border:1px solid rgba(60,210,140,.45); color:#82f0b4; box-shadow:0 0 14px rgba(98,240,165,.45); }
+.ic--x{ background:rgba(255,70,90,.14); border:1px solid rgba(255,70,90,.3); color:#ff94a2; }
+.ic--v{ background:rgba(0,212,255,.14); border:1px solid rgba(0,212,255,.45); color:#00D4FF; box-shadow:0 0 10px rgba(0,212,255,.35); }
 
 /* ---- section heading ---- */
 .shead{ text-align:center; max-width:760px; margin:0 auto 10px; }
@@ -3105,20 +3076,16 @@ function HomePage() {
         </div>
         <div className="cols">
           <Reveal className="col col--no">
-            <span className="glow-top-flare" />
-            <span className="glow-accent" />
             <h3>Web sin estrategia</h3>
             {["Web bonita pero que no vende ni un euro", "El visitante llega y se va sin comprar ni llamar", "Nadie sabe bien cómo explicar lo que ofreces", "Diseño genérico que no transmite confianza", "Sin CTA claros ni estructura de conversión", "Dinero invertido sin saber si está funcionando"].map((t, i) => (
               <div className="row" key={i}><span className="ic ic--x">✕</span>{t}</div>
             ))}
           </Reveal>
           <Reveal delay={120} className="col col--yes">
-            <span className="glow-top-flare" />
             <span className="glow-side" />
-            <span className="glow-ambient" />
             <h3>Con León Webs</h3>
             {["Web diseñada desde el primer píxel para vender", "Cada sección guía al visitante a contactarte o comprar", "Copy que explica tu valor y convence a tu cliente ideal", "Imagen profesional que genera confianza real", "CTAs estratégicos en cada punto de la página", "Sabes exactamente qué funciona y qué mejorar"].map((t, i) => (
-              <div className="row" key={i} style={{ color: "#dbe4ff" }}><span className="ic ic--v">✓</span>{t}</div>
+              <div className="row" key={i} style={{ color: "#FFFFFF", fontWeight: 500 }}><span className="ic ic--v">✓</span>{t}</div>
             ))}
           </Reveal>
         </div>
