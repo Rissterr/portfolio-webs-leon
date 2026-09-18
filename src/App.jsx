@@ -96,80 +96,48 @@ const CSS = `
   isolation: isolate;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
   cursor: pointer;
   font-family: var(--body);
-  font-weight: 600;
-  font-size: 14.5px;
-  color: #FFFFFF;
-  padding: 13px 26px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+  padding: 14px 26px;
   border-radius: 100px;
   text-decoration: none;
-  background: linear-gradient(135deg, rgba(20, 32, 75, 0.75) 0%, rgba(10, 16, 42, 0.75) 100%);
-  border: 1px solid rgba(146, 187, 255, 0.28);
-  overflow: hidden;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 4px 20px -4px rgba(0, 102, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s ease, border-color 0.22s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  overflow: visible;
+  box-shadow: 0 .6px 1.08px -.83px rgba(0,0,0,.05), 0 2.29px 4.12px -1.67px rgba(0,0,0,.05), 0 10px 18px -2.5px rgba(0,0,0,.05);
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1);
 }
 .btn:hover {
-  transform: translateY(-2px) scale(1.03);
-  border-color: rgba(146, 187, 255, 0.65);
-  box-shadow: 0 8px 30px -4px rgba(0, 153, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: scale(1.02);
 }
 .btn:focus-visible {
   outline: 2px solid #8EC1FF;
   outline-offset: 3px;
 }
-/* Rayo de luz en barrido continuo interactivo */
-.btn::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -90%;
-  width: 60%;
-  height: 200%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.05) 20%,
-    rgba(255, 255, 255, 0.75) 50%,
-    rgba(146, 187, 255, 0.5) 70%,
-    transparent 100%
-  );
-  transform: rotate(26deg);
-  pointer-events: none;
-  z-index: 2;
-  animation: btnSweepAnim 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-@keyframes btnSweepAnim {
-  0% { left: -90%; opacity: 0; }
-  10% { opacity: 1; }
-  45% { left: 140%; opacity: 1; }
-  46%, 100% { left: 140%; opacity: 0; }
-}
-/* (1) Glow detrás del botón */
+/* (1) Glow detrás del botón (difuminado de 15px) */
 .btn__glow {
   position: absolute;
-  inset: -10px;
+  inset: -12px;
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;
-  filter: blur(14px);
-  background: radial-gradient(40% 60% at var(--mx, 50%) var(--my, 50%), rgba(0, 180, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+  filter: blur(15px);
+  background: radial-gradient(35% 50% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
   opacity: var(--hovered, 0);
   transition: opacity 0.3s ease;
 }
-/* (2) Brillo del borde */
+/* (2) Brillo del borde (sweep) */
 .btn__sweep {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(30% 60% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(25% 50% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
   opacity: var(--hovered, 0);
   transition: opacity 0.3s ease;
 }
@@ -178,8 +146,8 @@ const CSS = `
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: transparent;
-  z-index: 1;
+  background: #05071a;
+  z-index: 2;
   pointer-events: none;
 }
 /* (4) Contenido / Texto */
@@ -190,22 +158,41 @@ const CSS = `
   align-items: center;
   gap: 8px;
 }
-/* --- Variante Glossy (Hero y Destacados) --- */
+/* --- Variante Glossy (Botón Blanco/Holográfico del Hero) --- */
 .btn--glossy {
-  color: #070D24;
-  font-weight: 700;
-  background: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: #050505;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
   box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 14px 34px -8px rgba(0, 140, 255, 0.45);
+    0 1px 0 rgba(255, 255, 255, 0.45) inset,
+    0 18px 32px -10px rgba(0, 132, 255, 0.25);
 }
 .btn--glossy .btn__core {
-  inset: 1px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #EAF2FF 100%);
+  inset: 3.5px;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(245, 249, 255, 0.95) 100%);
+  border: 0.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-.btn--glossy .btn__label {
-  color: #070D24;
+.btn--glossy .btn__sweep {
+  opacity: 1;
+  background: conic-gradient(from var(--a) at var(--mx, 50%) 50%, transparent 300deg, rgba(255, 255, 255, 0.95) 330deg, transparent 360deg);
+  animation: spin 4s linear infinite;
+}
+.btn--glossy .btn__bglow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(87% 100% at 50% 100%, rgb(0, 153, 255) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0.65;
+}
+@keyframes spin {
+  0% { --a: 0deg; }
+  100% { --a: 360deg; }
 }
 
 /* ---- nav ---- */
