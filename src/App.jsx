@@ -362,6 +362,183 @@ const CSS = `
   display:inline-flex; align-items:center; gap:6px;
 }
 
+/* ---- 1. barra de garantías de tranquilidad ---- */
+.guarantees-bar {
+  margin-top: 48px;
+  background: linear-gradient(180deg, rgba(20, 36, 75, 0.45) 0%, rgba(10, 18, 42, 0.65) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.22);
+  border-radius: 24px;
+  padding: 24px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 20px 50px -20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(16px);
+}
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+.guarantee-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 132, 255, 0.16);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00D4FF;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px -2px rgba(0, 132, 255, 0.3);
+}
+.guarantee-icon svg { width: 20px; height: 20px; }
+.guarantee-text { display: flex; flex-direction: column; gap: 2px; }
+.guarantee-text b { font-family: var(--display); font-size: 14px; color: #fff; font-weight: 700; line-height: 1.2; }
+.guarantee-text span { font-size: 12px; color: var(--muted); line-height: 1.3; }
+
+@media(max-width: 900px) {
+  .guarantees-bar { grid-template-columns: repeat(2, 1fr); padding: 20px; gap: 16px; }
+}
+@media(max-width: 580px) {
+  .guarantees-bar { grid-template-columns: 1fr; }
+}
+
+/* ---- 2. widget flotante de WhatsApp ---- */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 65;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 12px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, rgba(20, 42, 30, 0.95), rgba(10, 28, 18, 0.95));
+  border: 1px solid rgba(37, 211, 102, 0.45);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: var(--body);
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px -5px rgba(0,0,0,0.8), 0 0 20px rgba(37, 211, 102, 0.35);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.floating-whatsapp:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: rgba(37, 211, 102, 0.75);
+  box-shadow: 0 14px 40px -5px rgba(0,0,0,0.85), 0 0 28px rgba(37, 211, 102, 0.55);
+}
+.floating-whatsapp__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #050716;
+  flex-shrink: 0;
+}
+.floating-whatsapp__icon svg { width: 17px; height: 17px; fill: currentColor; }
+.floating-whatsapp__status {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 0 8px #25D366;
+  margin-right: 4px;
+}
+@media(max-width: 768px) {
+  .floating-whatsapp { bottom: 74px; right: 14px; padding: 8px 14px 8px 10px; font-size: 12px; }
+  .floating-whatsapp__icon { width: 26px; height: 26px; }
+}
+
+/* ---- 3. filtros interactivos de FAQ ---- */
+.faq-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 24px auto 32px;
+  max-width: 600px;
+}
+.faq-filter-btn {
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(146,187,255,0.18);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--body);
+  transition: all 0.25s ease;
+}
+.faq-filter-btn:hover {
+  background: rgba(146,187,255,0.1);
+  color: #FFFFFF;
+}
+.faq-filter-btn.active {
+  background: linear-gradient(135deg, rgba(66,123,216,0.35), rgba(0,212,255,0.25));
+  border-color: #00D4FF;
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 0 14px rgba(0,212,255,0.35);
+}
+
+/* ---- 4. para quién es / sectores ---- */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.audience-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.015) 100%);
+  border: 1px solid rgba(146,187,255,.16);
+  border-radius: 18px;
+  padding: 22px 18px;
+  text-align: center;
+  backdrop-filter: blur(14px);
+  transition: all .3s cubic-bezier(.16,1,.3,1);
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(146,187,255,.45);
+  box-shadow: 0 16px 36px -18px rgba(66,123,216,.4);
+}
+.audience-emoji { font-size: 30px; margin-bottom: 10px; display: block; }
+.audience-card h4 { font-family: var(--display); font-size: 16px; color: #fff; margin-bottom: 6px; }
+.audience-card p { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+@media(max-width: 860px) {
+  .audience-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 480px) {
+  .audience-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- 5. timeline del calculador ---- */
+.calc-timeline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 10px;
+  font-size: 12px;
+  color: #C5EBFF;
+  font-weight: 500;
+}
+
 /* ---- about section ---- */
 .about-section{ position:relative; overflow:hidden; }
 .about-section__bgwrap{
@@ -2557,6 +2734,217 @@ const CSS = `
 @media(max-width:640px){
   .cookie-banner{ left:10px; right:10px; bottom:80px; padding:14px 16px; flex-direction:column; align-items:stretch; text-align:left; }
   .cookie-banner__btn{ width:100%; }
+/* ---- 10 MEJORAS VISUALES Y ESTRUCTURALES ---- */
+/* 1. Barra de Garantías y Tranquilidad */
+.guarantees-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(146,187,255,0.03) 100%);
+  border: 1px solid rgba(146,187,255,0.22);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: 0 16px 40px -10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.guarantee-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.guarantee-icon {
+  font-size: 24px;
+  background: rgba(146,187,255,0.12);
+  border: 1px solid rgba(146,187,255,0.25);
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.guarantee-item strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+.guarantee-item p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
+}
+@media(max-width:960px){
+  .guarantees-bar { grid-template-columns: repeat(2, 1fr); padding: 20px; }
+}
+@media(max-width:580px){
+  .guarantees-bar { grid-template-columns: 1fr; gap: 18px; padding: 18px; }
+}
+
+/* 2. Grid de Sectores y Audiencia */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+.audience-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(14,22,52,0.6) 0%, rgba(8,12,32,0.6) 100%);
+  border: 1px solid rgba(146,187,255,0.14);
+  border-radius: 18px;
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.audience-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(146,187,255,0.35);
+  box-shadow: 0 14px 30px -10px rgba(26,115,232,0.25);
+}
+.audience-card__icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.audience-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+.audience-card p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
+  margin-bottom: 16px;
+}
+.audience-card__tag {
+  align-self: flex-start;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #92BBFF;
+  background: rgba(66,123,216,0.16);
+  border: 1px solid rgba(146,187,255,0.25);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+@media(max-width:960px){
+  .audience-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width:580px){
+  .audience-grid { grid-template-columns: 1fr; }
+}
+
+/* 3. Filtros interactivos de FAQ */
+.faq-filters {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.faq-filter-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(146,187,255,0.15);
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.faq-filter-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(146,187,255,0.3);
+}
+.faq-filter-btn--active {
+  background: linear-gradient(135deg, rgba(66,123,216,0.4) 0%, rgba(146,187,255,0.2) 100%);
+  border-color: #92BBFF;
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(66,123,216,0.3);
+}
+
+/* 4. Timeline y detalles de la calculadora */
+.calc-result__timeline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.25);
+  color: #C5EBFF;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* 5. Botón Flotante WhatsApp */
+.floating-whatsapp {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 10px 25px rgba(37,211,102,0.4);
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+}
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 14px 32px rgba(37,211,102,0.6);
+}
+.floating-whatsapp__pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  opacity: 0.6;
+  animation: waPulse 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes waPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+.floating-whatsapp__tooltip {
+  position: absolute;
+  right: 64px;
+  white-space: nowrap;
+  background: rgba(10,14,35,0.95);
+  color: #FFFFFF;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(146,187,255,0.2);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.floating-whatsapp:hover .floating-whatsapp__tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media(max-width:640px){
+  .floating-whatsapp { bottom: 84px; right: 16px; width: 48px; height: 48px; }
+  .floating-whatsapp__tooltip { display: none; }
 }
 `;
 
@@ -3004,23 +3392,25 @@ const SERVICES_HELP = [
   { k: "04", h: "Atraer, convertir, crecer", p: "Webs que atraen visitantes, los convierten y disparan tu crecimiento." },
 ];
 const FAQS = [
-  { q: "¿Cuánto cuesta exactamente una web y hay costes ocultos?", a: "Nuestros proyectos parten desde 450 € (Plan Arranque) y 750 € (Plan Crecimiento con reservas). El presupuesto que te damos es 100% cerrado: no hay cuotas sorpresa, mensualidades obligatorias ni letras pequeñas." },
-  { q: "¿Cuánto tiempo tardáis en entregar la web lista para funcionar?", a: "Una web corporativa o con reservas suele estar terminada en 1 a 2 semanas. Nos encargamos de la estructura, redacción persuasiva y optimización técnica para que tú no tengas que perder horas ni agobiarte." },
-  { q: "¿Qué necesito tener preparado antes de empezar?", a: "Casi nada. Solo necesitamos saber a qué te dedicas, tus servicios principales y tus datos de contacto. Nosotros redactamos los textos de venta, preparamos las imágenes y estructuramos todo para que venda." },
-  { q: "¿Qué incluye el alojamiento (hosting) y dominio?", a: "Incluimos 1 año gratis de dominio personalizado (.es o .com), hosting ultrarrápido en discos NVMe, certificado de seguridad SSL y cuentas de correo corporativo." },
-  { q: "¿Qué pasa si necesito cambios o ayuda después del lanzamiento?", a: "Dispones de soporte directo por WhatsApp o llamada. Además con nuestro servicio Orbit Care (35 €/h o bolsa mensual) puedes pedirnos cualquier cambio, nueva sección o actualización en cualquier momento." },
+  { cat: "precios", q: "¿Cuánto cuesta exactamente una web y hay costes ocultos?", a: "Nuestros proyectos parten desde 450 € (Plan Arranque) y 750 € (Plan Crecimiento con reservas). El presupuesto que te damos es 100% cerrado: no hay cuotas sorpresa, mensualidades obligatorias ni letras pequeñas." },
+  { cat: "tiempos", q: "¿Cuánto tiempo tardáis en entregar la web lista para funcionar?", a: "Una web corporativa o con reservas suele estar terminada en 1 a 2 semanas. Nos encargamos de la estructura, redacción persuasiva y optimización técnica para que tú no tengas que perder horas ni agobiarte." },
+  { cat: "proceso", q: "¿Qué necesito tener preparado antes de empezar?", a: "Casi nada. Solo necesitamos saber a qué te dedicas, tus servicios principales y tus datos de contacto. Nosotros redactamos los textos de venta, preparamos las imágenes y estructuramos todo para que venda." },
+  { cat: "proceso", q: "¿La web será mía o dependo de vosotros para siempre?", a: "La web es 100% tuya. Te entregamos acceso total como propietario y todos los archivos, sin contratos trampa ni ataduras. Tú decides libremente cómo gestionarla." },
+  { cat: "tecnico", q: "¿Qué incluye el alojamiento (hosting) y dominio?", a: "Incluimos 1 año gratis de dominio personalizado (.es o .com), hosting ultrarrápido en discos NVMe, certificado de seguridad SSL y cuentas de correo corporativo." },
+  { cat: "tecnico", q: "¿Qué pasa si necesito cambios o ayuda después del lanzamiento?", a: "Dispones de 30 días de garantía y soporte directo por WhatsApp. Además con nuestro servicio Orbit Care (35 €/h o bolsa mensual) puedes pedirnos cualquier cambio o actualización cuando lo necesites." },
 ];
 
 /* ---------- page ---------- */
 function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(0);
+  const [faqCategory, setFaqCategory] = useState("all");
   const [menuOpen, setMenuOpen] = useState(false);
   const [calcNeeds, setCalcNeeds] = useState([]);
   const helpSectionRef = useRef(null);
   const rayLRef = useRef(null);
   const rayRRef = useRef(null);
-  const rayTRef = useRef(null);
+  const rayTRRef = useRef(null);
   const rayBRef = useRef(null);
 
   const CALC_ADDERS = { reservas: 150, tienda: 750, ads: 200 };
@@ -3066,7 +3456,7 @@ function HomePage() {
 
       if (rayLRef.current) rayLRef.current.style.setProperty("--ray-offset", offset);
       if (rayRRef.current) rayRRef.current.style.setProperty("--ray-offset", offset);
-      if (rayTRef.current) rayTRef.current.style.setProperty("--ray-offset", offset);
+      if (rayTRRef.current) rayTRRef.current.style.setProperty("--ray-offset", offset);
       if (rayBRef.current) rayBRef.current.style.setProperty("--ray-offset", offset);
     };
 
@@ -3088,12 +3478,11 @@ function HomePage() {
       <style>{CSS}</style>
 
       {/* NAV */}
-
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
         <div className="nav__inner">
           <div className="nav__brand">León Webs</div>
           <div className="nav__links">
-            <a href="#work">Trabajos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
+            <a href="#work">Trabajos</a><a href="#sectores">Sectores</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
           </div>
           <div className="nav__cta"><Btn href="#contact">Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
@@ -3107,6 +3496,7 @@ function HomePage() {
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
           <a href="#work" onClick={() => setMenuOpen(false)}>Trabajos</a>
+          <a href="#sectores" onClick={() => setMenuOpen(false)}>Sectores</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Soluciones</a>
           <a href="#proceso" onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
           <a href="#precios" onClick={() => setMenuOpen(false)}>Planes y Precios</a>
@@ -3142,7 +3532,7 @@ function HomePage() {
         <div className="hero__glow" />
         <div className="hero__interactive-glow" />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Diseño Web & Captación Digital para Negocios</span></Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Diseño Web & Captación Digital para Negocios de León</span></Reveal>
           {/* Strip de proyectos visible solo en móvil, dentro del hero */}
           <div className="hero__strip show-m">
             <div className="marquee" style={{ "--dur": "28s" }}>
@@ -3162,7 +3552,7 @@ function HomePage() {
           </Reveal>
           <Reveal delay={320} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Btn glossy href="#contact">Pedir propuesta sin compromiso →</Btn>
-            <span className="hero__security-note">🔒 Precio cerrado garantizado · ⚡ Respuesta en menos de 24h</span>
+            <span className="hero__security-note">🔒 Precio cerrado garantizado · ⚡ Respuesta en menos de 24h · 📍 Especialistas en León</span>
           </Reveal>
 
           {/* SELECTOR RÁPIDO DE NECESIDAD */}
@@ -3172,7 +3562,7 @@ function HomePage() {
               <span className="emoji">🌐</span> Quiero una web nueva o renovar la mía
             </a>
             <a href="#precios" className="hero__need-pill">
-              <span className="emoji">🛍️</span> Quiero vender productos por internet
+              <span className="emoji">🛍️</span> Quiero vender productos o reservas por internet
             </a>
             <a href="#ads" className="hero__need-pill">
               <span className="emoji">📈</span> Quiero que me encuentren en Google
@@ -3206,6 +3596,40 @@ function HomePage() {
         </Reveal>
       </header>
 
+      {/* 1. BARRA DE GARANTÍAS Y TRANQUILIDAD */}
+      <section className="wrap" style={{ marginTop: "-20px", marginBottom: "40px", position: "relative", zIndex: 10 }}>
+        <div className="guarantees-bar">
+          <div className="guarantee-item">
+            <span className="guarantee-icon">⚡</span>
+            <div>
+              <strong>Entrega en 1–2 semanas</strong>
+              <p>Tu web lista y funcionando sin demoras ni meses de espera.</p>
+            </div>
+          </div>
+          <div className="guarantee-item">
+            <span className="guarantee-icon">🔒</span>
+            <div>
+              <strong>Precio 100% cerrado</strong>
+              <p>Sin mensualidades obligatorias ni sorpresas en la factura.</p>
+            </div>
+          </div>
+          <div className="guarantee-item">
+            <span className="guarantee-icon">🛡️</span>
+            <div>
+              <strong>Garantía de 30 días</strong>
+              <p>Ajustes, retoques y soporte post-lanzamiento incluidos.</p>
+            </div>
+          </div>
+          <div className="guarantee-item">
+            <span className="guarantee-icon">📍</span>
+            <div>
+              <strong>Negocios de León</strong>
+              <p>Trato directo de persona a persona, sin intermediarios.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PROJECT STRIP MARQUEE */}
       <div className="section strip-section" style={{ padding: "30px 0 60px", overflow: "visible" }} id="work">
         <div className="ambient-glow" />
@@ -3231,6 +3655,53 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* 2. SECTORES QUE IMPULSAMOS */}
+      <section className="section wrap" id="sectores" style={{ overflow: "visible" }}>
+        <div className="ambient-glow" />
+        <div className="shead">
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Sectores que impulsamos</span></Reveal>
+          <Reveal delay={100}><h2 className="display">Diseñado a la medida de tu sector</h2></Reveal>
+          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
+            Adaptamos la estructura, el diseño y las llamadas a la acción según cómo compran tus clientes en León.
+          </Reveal>
+        </div>
+        <div className="audience-grid">
+          {[
+            {
+              icon: "🩺",
+              title: "Clínicas, Fisioterapia & Salud",
+              desc: "Transmite máxima confianza profesional, muestra casos reales y permite agendar citas directamente por WhatsApp o sistema web.",
+              tag: "Citas + Confianza"
+            },
+            {
+              icon: "💈",
+              title: "Barberías, Peluquerías & Estética",
+              desc: "Agenda online 24/7 para que tus clientes reserven su hora en 30 segundos mientras tú trabajas sin interrupciones.",
+              tag: "Reservas 24/7"
+            },
+            {
+              icon: "⚖️",
+              title: "Despachos, Asesorías & Consultoría",
+              desc: "Autoridad, solvencia institucional y captación de clientes de alto valor que buscan seguridad y rapidez de contacto.",
+              tag: "Autoridad B2B"
+            },
+            {
+              icon: "🏨",
+              title: "Hoteles, Restaurantes & Comercios",
+              desc: "Menús interactivos, reservas directas sin comisiones de intermediarios y catálogo de venta online local y nacional.",
+              tag: "Venta directa sin comisión"
+            }
+          ].map((item, i) => (
+            <Reveal key={i} delay={i * 80} className="audience-card">
+              <span className="audience-card__icon">{item.icon}</span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <span className="audience-card__tag">{item.tag}</span>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
       {/* COMPARISON */}
       <section className="section wrap" style={{ overflow: "visible" }}>
@@ -3422,7 +3893,7 @@ function HomePage() {
             className="hq__ray hq__ray--r"
           />
           <div
-            ref={rayTRef}
+            ref={rayTRRef}
             className="hq__ray hq__ray--t"
           />
           <div
@@ -3624,25 +4095,57 @@ function HomePage() {
           <div className="calc-result">
             <div className="calc-result__label">Precio estimado</div>
             <div className="calc-result__num">desde <b>{calcTotal.toLocaleString("es-ES")}<span>€</span></b></div>
-            <div className="calc-result__sub">Web base incluida · pago único</div>
-            <a
-              className="price-cta price-cta--pro"
-              href={`mailto:hola@leonwebs.es?subject=${encodeURIComponent("Presupuesto León Webs")}&body=${encodeURIComponent(`Hola, he usado la calculadora y me interesa una web desde ${calcTotal}€.\n\nNecesito: ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas online",tienda:"Tienda online",ads:"Publicidad/Google"}[k])).join(", ") : "Web básica"}.\n\nMi negocio es: `)}`}
-            >
-              Pedir este presupuesto →
-            </a>
+            <div className="calc-result__sub">Web base incluida · pago único sin cuotas</div>
+            <div className="calc-result__timeline">
+              ⏱️ <b>Tiempo estimado:</b> {calcNeeds.includes("tienda") ? "2 a 3 semanas" : "7 a 14 días"}
+            </div>
+            <div style={{ display: "flex", gap: "10px", marginTop: "12px", width: "100%", justifyContent: "center", flexWrap: "wrap" }}>
+              <a
+                className="price-cta price-cta--pro"
+                style={{ flex: 1, minWidth: 200 }}
+                href={`mailto:hola@leonwebs.es?subject=${encodeURIComponent("Presupuesto León Webs")}&body=${encodeURIComponent(`Hola León Webs, he usado la calculadora y me interesa una web desde ${calcTotal}€.\n\nNecesito: ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas online",tienda:"Tienda online",ads:"Publicidad/Google"}[k])).join(", ") : "Web básica"}.\n\nMi negocio es: `)}`}
+              >
+                Pedir por Email →
+              </a>
+              <a
+                className="price-cta"
+                style={{ flex: 1, minWidth: 200, background: "rgba(37, 211, 102, 0.15)", borderColor: "rgba(37, 211, 102, 0.4)", color: "#25D366" }}
+                href={`https://wa.me/34600000000?text=${encodeURIComponent(`Hola León Webs! He calculado mi web en vuestra página (Total: ${calcTotal}€ con ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas",tienda:"Tienda",ads:"Google/SEO"}[k])).join(", ") : "Plan Base"}). Me gustaría hablar de mi proyecto.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                💬 Pedir por WhatsApp →
+              </a>
+            </div>
           </div>
         </Reveal>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ CON FILTROS */}
       <section className="section wrap" id="faq">
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Dudas habituales</span></Reveal>
           <Reveal delay={100}><h2 className="display">Lo que nos preguntan antes de empezar</h2></Reveal>
         </div>
+        <div className="faq-filters">
+          {[
+            { id: "all", label: "Todas las preguntas" },
+            { id: "precios", label: "Precios & Pagos" },
+            { id: "tiempos", label: "Plazos & Entrega" },
+            { id: "proceso", label: "Cómo trabajamos" },
+            { id: "tecnico", label: "Hosting & Soporte" },
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              className={`faq-filter-btn ${faqCategory === cat.id ? "faq-filter-btn--active" : ""}`}
+              onClick={() => { setFaqCategory(cat.id); setOpen(-1); }}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
         <div className="faq">
-          {FAQS.map((f, i) => (
+          {FAQS.filter(f => faqCategory === "all" || f.cat === faqCategory).map((f, i) => (
             <Reveal key={i} delay={i * 50} className={`q ${open === i ? "open" : ""}`}>
               <button className="q__head" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
                 {f.q}<span className="q__ic">{open === i ? "−" : "+"}</span>
@@ -3690,7 +4193,7 @@ function HomePage() {
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href="#work">Trabajos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
+              <a href="#work">Trabajos</a><a href="#sectores">Sectores</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
             </div>
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
@@ -3700,6 +4203,19 @@ function HomePage() {
         </div>
         <div className="wrap" style={{ color: "var(--muted)", fontSize: 13, marginTop: 40, display:"flex", gap:20, flexWrap:"wrap", justifyContent:"space-between", alignItems:"center" }}><span>© {new Date().getFullYear()} León Webs. Todos los derechos reservados.</span><span style={{display:"flex",gap:16}}><Link to="/aviso-legal" style={{color:"var(--muted)"}}>Aviso legal</Link><Link to="/privacidad" style={{color:"var(--muted)"}}>Privacidad</Link><Link to="/cookies" style={{color:"var(--muted)"}}>Cookies</Link></span></div>
       </footer>
+
+      {/* BOTÓN FLOTANTE WHATSAPP */}
+      <a
+        href="https://wa.me/34600000000?text=Hola%20Le%C3%B3n%20Webs%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20una%20web%20para%20mi%20negocio."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="floating-whatsapp"
+        aria-label="Hablar por WhatsApp con León Webs"
+      >
+        <span className="floating-whatsapp__pulse" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 26, height: 26 }}><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span className="floating-whatsapp__tooltip">¿Hablamos? Estamos online ⚡</span>
+      </a>
     </div>
   );
 }
