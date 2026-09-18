@@ -3743,9 +3743,9 @@ function PlanShell({ eyebrow, children }) {
         <div className="nav__inner">
           <div className="nav__brand"><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>León Webs</Link></div>
           <div className="nav__links">
-            <a href={homeHref("#work")}>Trabajos</a><a href={homeHref("#precios")}>Servicios</a><a href={homeHref("#about")}>Nosotros</a><a href={homeHref("#faq")}>FAQ</a>
+            <a href={homeHref("#work")}>Trabajos</a><a href={homeHref("#services")}>Soluciones</a><a href={homeHref("#proceso")}>Cómo trabajamos</a><a href={homeHref("#precios")}>Planes</a><a href={homeHref("#faq")}>FAQ</a>
           </div>
-          <div className="nav__cta"><Btn href={homeHref("#contact")}>Ver cómo escalamos</Btn></div>
+          <div className="nav__cta"><Btn href={homeHref("#contact")}>Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú"><span/><span/><span/></button>
         </div>
       </nav>
@@ -3753,7 +3753,9 @@ function PlanShell({ eyebrow, children }) {
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
           <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
-          <a href={homeHref("#precios")} onClick={() => setMenuOpen(false)}>Servicios</a>
+          <a href={homeHref("#services")} onClick={() => setMenuOpen(false)}>Soluciones</a>
+          <a href={homeHref("#proceso")} onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
+          <a href={homeHref("#precios")} onClick={() => setMenuOpen(false)}>Planes y Precios</a>
           <a href={homeHref("#faq")} onClick={() => setMenuOpen(false)}>FAQ</a>
           <div style={{marginTop:24, width:"80%"}}><Btn glossy href={homeHref("#contact")} onClick={() => setMenuOpen(false)}>Hablamos gratis</Btn></div>
         </div>
