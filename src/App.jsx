@@ -253,8 +253,114 @@ const CSS = `
 
 /* ---- hero ---- */
 .hero{ padding:140px 0 85px; text-align:center; }
-.hero h1{ font-size:clamp(40px,7vw,82px); margin:20px auto 22px; max-width:14ch; }
-.hero .lead{ margin:0 auto 34px; text-align:center; }
+.hero h1{ font-size:clamp(38px,6vw,76px); margin:20px auto 22px; max-width:16ch; }
+.hero .lead{ margin:0 auto 30px; text-align:center; max-width:680px; font-size:18.5px; }
+
+/* ---- hero quick need selector pills ---- */
+.hero__needs{
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+  gap:10px; margin:32px auto 0; max-width:860px;
+}
+.hero__needs-title{
+  width:100%; font-size:12px; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.08em; font-weight:700; margin-bottom:2px;
+}
+.hero__need-pill{
+  display:inline-flex; align-items:center; gap:8px; padding:10px 20px;
+  border-radius:100px; background:rgba(255,255,255,.04);
+  border:1px solid rgba(146,187,255,.2); color:#E2EAFC;
+  font-size:14px; font-weight:500; text-decoration:none;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 8px 24px -12px rgba(0,0,0,.6);
+  transition:all .28s cubic-bezier(.16,1,.3,1);
+}
+.hero__need-pill:hover{
+  background:rgba(146,187,255,.14); border-color:rgba(146,187,255,.5);
+  color:#FFFFFF; transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 12px 28px -10px rgba(0,212,255,.35);
+}
+.hero__need-pill span.emoji{ font-size:16px; line-height:1; }
+.hero__security-note{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12.5px; color:var(--muted); font-weight:500; margin-top:12px;
+}
+
+/* ---- proceso en 3 pasos sencillos ---- */
+.process-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:46px;
+}
+.process-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.015) 100%);
+  border:1px solid rgba(146,187,255,.18); border-radius:22px;
+  padding:32px 26px; position:relative;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 20px 40px -25px rgba(0,0,0,.6);
+  transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .35s ease, box-shadow .35s ease;
+}
+.process-card:hover{
+  transform:translateY(-4px); border-color:rgba(146,187,255,.48);
+  background:linear-gradient(180deg, rgba(146,187,255,.08) 0%, rgba(66,123,216,.02) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 26px 60px -20px rgba(66,123,216,.45);
+}
+.process-header{
+  display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;
+}
+.process-num{
+  font-family:var(--display); font-size:34px; font-weight:800;
+  background:linear-gradient(135deg, #00D4FF 0%, #8AB4F8 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1;
+}
+.process-icon{
+  width:44px; height:44px; border-radius:12px;
+  background:rgba(66,123,216,.14); border:1px solid rgba(146,187,255,.28);
+  display:flex; align-items:center; justify-content:center; color:#00D4FF;
+  box-shadow:0 0 16px -4px rgba(0,212,255,.3);
+}
+.process-icon svg{ width:22px; height:22px; }
+.process-card h3{
+  font-family:var(--display); font-size:20px; font-weight:700; color:#FFFFFF; margin-bottom:10px;
+}
+.process-card p{
+  font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:18px;
+}
+.process-tag{
+  display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:600;
+  color:#92BBFF; background:rgba(66,123,216,.12); border:1px solid rgba(146,187,255,.22);
+  padding:5px 12px; border-radius:100px;
+}
+@media(max-width:860px){
+  .process-grid{ grid-template-columns:1fr; gap:16px; }
+}
+
+/* ---- metric badges en casos ---- */
+.case__metric{
+  position:absolute; top:12px; right:12px; z-index:6; font-size:11px; font-weight:700;
+  padding:4px 10px; border-radius:100px; background:rgba(0,212,255,.15); backdrop-filter:blur(6px);
+  border:1px solid rgba(0,212,255,.45); color:#00D4FF; box-shadow:0 0 12px rgba(0,212,255,.3);
+}
+
+/* ---- contact reassurance actions ---- */
+.contact__actions{
+  display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:24px;
+}
+.contact__whatsapp-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:14px 24px; border-radius:100px;
+  background:rgba(37,211,102,.12); border:1px solid rgba(37,211,102,.35); color:#4EFA8B;
+  font-size:15px; font-weight:600; text-decoration:none;
+  backdrop-filter:blur(10px); transition:all .25s ease;
+}
+.contact__whatsapp-btn:hover{
+  background:rgba(37,211,102,.22); border-color:rgba(37,211,102,.6);
+  box-shadow:0 0 20px -4px rgba(37,211,102,.4); transform:translateY(-2px);
+}
+.contact__whatsapp-btn svg{ width:18px; height:18px; }
+.contact__trust-badges{
+  display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;
+  font-size:12.5px; color:var(--muted); margin-top:8px;
+}
+.contact__trust-badges span{
+  display:inline-flex; align-items:center; gap:6px;
+}
 
 /* ---- about section ---- */
 .about-section{ position:relative; overflow:hidden; }
@@ -2876,12 +2982,12 @@ const PROJECTS = [
   { n: "León Suites",      img: "assets/proj-powerpulse.webp"   },
 ];
 const CASES = [
-  { n: "PowerPulse",       img: "assets/proj-hotel.webp",         url: "#contact", cat: "App móvil & Dashboard",      glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Actualizar IA",    img: "assets/proj-properties.webp",    url: "#contact", cat: "Plataforma SaaS",            glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
-  { n: "Lex León",         img: "assets/proj-novaest.webp",       url: "#contact", cat: "Web corporativa",            glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Nova Estética",    img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Clínica & Salud",            glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "León Properties",  img: "assets/proj-actualizaria.webp",  url: "#contact", cat: "Dashboard inmobiliario",     glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "León Suites",      img: "assets/proj-powerpulse.webp",    url: "#contact", cat: "Hotel boutique",             glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "VIP Barber Shop",   img: "assets/proj-hotel.webp",         url: "#contact", cat: "Barbería & Reservas",     metric: "+40 reservas/mes",        glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Clínica Nova",      img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Clínica & Citas",         metric: "Lista en 10 días",        glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "Hotel Boutique",    img: "assets/proj-powerpulse.webp",    url: "#contact", cat: "Hotel & Reservas",        metric: "+65% reservas directas",  glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "Lex Asesores",      img: "assets/proj-novaest.webp",       url: "#contact", cat: "Despacho & Legal",        metric: "Captación B2B",           glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "León Properties",   img: "assets/proj-actualizaria.webp",  url: "#contact", cat: "Inmobiliaria & Catálogo",  metric: "+120 consultas/mes",      glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "Actualizar IA",     img: "assets/proj-properties.webp",    url: "#contact", cat: "Plataforma SaaS",         metric: "SaaS escalable",          glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
 ];
 const TESTI = [
   { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
@@ -2898,12 +3004,11 @@ const SERVICES_HELP = [
   { k: "04", h: "Atraer, convertir, crecer", p: "Webs que atraen visitantes, los convierten y disparan tu crecimiento." },
 ];
 const FAQS = [
-  { q: "¿Tenéis planes cerrados?", a: "Sí. Tenemos planes pensados para diferentes necesidades y presupuestos, pero también podemos adaptar el proyecto si necesitas algo específico." },
-  { q: "¿Cuánto cuesta una página web?", a: "Nuestros proyectos parten desde 450 €. El precio final depende de las páginas, funcionalidades y necesidades del negocio. También puedes utilizar nuestro calculador para obtener una estimación." },
-  { q: "¿Cuánto tardáis en hacerla?", a: "Una web estándar puede estar lista aproximadamente en 2 semanas. Definimos estructura, contenido y objetivos desde el inicio para mantener el proyecto ágil." },
-  { q: "¿Trabajáis con negocios que ya tienen web?", a: "Sí. Analizamos la web actual, detectamos oportunidades de mejora y planteamos cambios orientados a convertir más visitas en contactos, reservas o ventas." },
-  { q: "¿Os encargáis del mantenimiento?", a: "Sí. Podemos encargarnos de actualizaciones, cambios y mejoras después del lanzamiento para que la web siga evolucionando con el negocio." },
-  { q: "¿Puedo pedir algo personalizado?", a: "Claro. Los planes son un punto de partida. Podemos adaptar el proyecto a las necesidades concretas de cada negocio." },
+  { q: "¿Cuánto cuesta exactamente una web y hay costes ocultos?", a: "Nuestros proyectos parten desde 450 € (Plan Arranque) y 750 € (Plan Crecimiento con reservas). El presupuesto que te damos es 100% cerrado: no hay cuotas sorpresa, mensualidades obligatorias ni letras pequeñas." },
+  { q: "¿Cuánto tiempo tardáis en entregar la web lista para funcionar?", a: "Una web corporativa o con reservas suele estar terminada en 1 a 2 semanas. Nos encargamos de la estructura, redacción persuasiva y optimización técnica para que tú no tengas que perder horas ni agobiarte." },
+  { q: "¿Qué necesito tener preparado antes de empezar?", a: "Casi nada. Solo necesitamos saber a qué te dedicas, tus servicios principales y tus datos de contacto. Nosotros redactamos los textos de venta, preparamos las imágenes y estructuramos todo para que venda." },
+  { q: "¿Qué incluye el alojamiento (hosting) y dominio?", a: "Incluimos 1 año gratis de dominio personalizado (.es o .com), hosting ultrarrápido en discos NVMe, certificado de seguridad SSL y cuentas de correo corporativo." },
+  { q: "¿Qué pasa si necesito cambios o ayuda después del lanzamiento?", a: "Dispones de soporte directo por WhatsApp o llamada. Además con nuestro servicio Orbit Care (35 €/h o bolsa mensual) puedes pedirnos cualquier cambio, nueva sección o actualización en cualquier momento." },
 ];
 
 /* ---------- page ---------- */
@@ -2988,9 +3093,9 @@ function HomePage() {
         <div className="nav__inner">
           <div className="nav__brand">León Webs</div>
           <div className="nav__links">
-            <a href="#work">Trabajos</a><a href="#services">Servicios</a><a href="#about">Nosotros</a><a href="#faq">FAQ</a>
+            <a href="#work">Trabajos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
           </div>
-          <div className="nav__cta"><Btn href="#contact">Ver cómo escalamos</Btn></div>
+          <div className="nav__cta"><Btn href="#contact">Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
             <span/><span/><span/>
           </button>
@@ -3002,8 +3107,9 @@ function HomePage() {
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
           <a href="#work" onClick={() => setMenuOpen(false)}>Trabajos</a>
-          <a href="#services" onClick={() => setMenuOpen(false)}>Servicios</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>Nosotros</a>
+          <a href="#services" onClick={() => setMenuOpen(false)}>Soluciones</a>
+          <a href="#proceso" onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
+          <a href="#precios" onClick={() => setMenuOpen(false)}>Planes y Precios</a>
           <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
           <div style={{marginTop:24, width:"80%"}}><Btn glossy href="#contact" onClick={() => setMenuOpen(false)}>Hablamos gratis</Btn></div>
         </div>
@@ -3036,7 +3142,7 @@ function HomePage() {
         <div className="hero__glow" />
         <div className="hero__interactive-glow" />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Para negocios que YA venden</span></Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Diseño Web & Captación Digital para Negocios</span></Reveal>
           {/* Strip de proyectos visible solo en móvil, dentro del hero */}
           <div className="hero__strip show-m">
             <div className="marquee" style={{ "--dur": "28s" }}>
@@ -3050,10 +3156,30 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <Reveal delay={120}><h1 className="display h-grad">Consigue 3 veces más clientes</h1></Reveal>
-          <Reveal delay={220} className="lead hide-m" as="p">Webs diseñadas para negocios activos en León que quieren escalar. Barbería, clínica, asesoría, hotel; en 2 semanas tu web genera ventas nuevas.</Reveal>
-          <Reveal delay={320}><Btn glossy href="#contact">Ver cómo escalamos</Btn></Reveal>
-          <Reveal delay={400} className="hero__trust">
+          <Reveal delay={120}><h1 className="display h-grad">Diseño web y captación para negocios que quieren más clientes</h1></Reveal>
+          <Reveal delay={220} className="lead hide-m" as="p">
+            Creamos tu página web, tienda online o sistema de reservas listo para vender. Precios cerrados, sin cuotas sorpresa y entregado en 1–2 semanas.
+          </Reveal>
+          <Reveal delay={320} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Btn glossy href="#contact">Pedir propuesta sin compromiso →</Btn>
+            <span className="hero__security-note">🔒 Precio cerrado garantizado · ⚡ Respuesta en menos de 24h</span>
+          </Reveal>
+
+          {/* SELECTOR RÁPIDO DE NECESIDAD */}
+          <Reveal delay={380} className="hero__needs">
+            <div className="hero__needs-title">¿Qué necesita tu negocio hoy?</div>
+            <a href="#precios" className="hero__need-pill">
+              <span className="emoji">🌐</span> Quiero una web nueva o renovar la mía
+            </a>
+            <a href="#precios" className="hero__need-pill">
+              <span className="emoji">🛍️</span> Quiero vender productos por internet
+            </a>
+            <a href="#ads" className="hero__need-pill">
+              <span className="emoji">📈</span> Quiero que me encuentren en Google
+            </a>
+          </Reveal>
+
+          <Reveal delay={440} className="hero__trust">
             <div className="hero__avatars">
               {["C","L","J","A","M"].map((l,i)=><span key={i} className="hero__av">{l}</span>)}
             </div>
@@ -3062,9 +3188,9 @@ function HomePage() {
         </div>
         <Reveal delay={500} className="hero__stats">
           {[
-            { svg:<><path d="M4.5 16.5c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.83-.83 1.24-2.29 1.5-3.5-1.21.26-2.67.67-3.5 1.5z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></>, to:3, prefix:"×", label:"de clientes" },
-            { svg:<><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></>, to:2, suffix:" sem", label:"de plazo" },
-            { svg:<><line x1="4" y1="20" x2="20" y2="4"/><circle cx="6.5" cy="6.5" r="4.5"/><circle cx="17.5" cy="17.5" r="4.5"/></>, to:0, suffix:"€", label:"la llamada" },
+            { svg:<><path d="M4.5 16.5c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.83-.83 1.24-2.29 1.5-3.5-1.21.26-2.67.67-3.5 1.5z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></>, to:3, prefix:"×", label:"más ventas" },
+            { svg:<><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></>, to:2, suffix:" sem", label:"de entrega" },
+            { svg:<><line x1="4" y1="20" x2="20" y2="4"/><circle cx="6.5" cy="6.5" r="4.5"/><circle cx="17.5" cy="17.5" r="4.5"/></>, to:0, suffix:"€", label:"asesoría inicial" },
           ].map(({svg, to, prefix, suffix, label}, i) => (
             <React.Fragment key={i}>
               {i > 0 && <div className="hero__stat-div" />}
@@ -3176,23 +3302,89 @@ function HomePage() {
         </div>
       </section>
 
-      {/* SERVICIOS — resumen real, sin relleno */}
+      {/* SERVICIOS — 3 SOLUCIONES CLARAS */}
       <section className="section wrap" id="services" style={{ overflow: "visible" }}>
         <div className="ambient-glow" />
         <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Nuestros servicios</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Sistemas digitales para vender más</h2></Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Soluciones a tu medida</span></Reveal>
+          <Reveal delay={100}><h2 className="display">Lo que ofrecemos para tu negocio</h2></Reveal>
+          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
+            Todo lo necesario para conseguir clientes sin complicaciones técnicas.
+          </Reveal>
         </div>
-        <div className="svc-grid">
+        <div className="svc-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
           {[
-            { image:"assets/service-web-design.webp", alt:"Portátil mostrando una página web profesional", h:"Diseño Web Estratégico", p:"Arquitectura de conversión, diseño editorial a medida y velocidad <1s para captar clientes desde el primer día." },
-            { image:"assets/service-ecommerce.webp", alt:"Móvil y producto para una tienda online", h:"Tienda Online (E-Commerce)", p:"Catálogo dinámico, pasarelas de pago en 1 clic (Stripe/Bizum) y experiencia de compra sin fricción 24/7." },
-            { image:"assets/service-local-visibility.webp", alt:"Negocio local visible en mapas y buscadores", h:"SEO Local & Google Maps", p:"Posicionamiento en Google y motores de búsqueda con IA para que te encuentren cuando busquen tus servicios." },
-            { image:"assets/service-hourly-support.webp", alt:"Reloj y panel de código para soporte por horas", h:"Orbit Care (Always On)", p:"Mantenimiento proactivo, seguridad, copias y horas mensuales para que tu web evolucione constantemente." },
+            { 
+              image: "assets/service-web-design.webp", 
+              alt: "Portátil mostrando una página web profesional", 
+              h: "Web Corporativa & Autoridad", 
+              p: "Para profesionales, clínicas, despachos y comercios que necesitan proyectar solvencia inmediata, transmitir máxima confianza y captar contactos por formulario o WhatsApp." 
+            },
+            { 
+              image: "assets/service-ecommerce.webp", 
+              alt: "Móvil y producto para una tienda online", 
+              h: "Tienda Online & Reservas 24/7", 
+              p: "Para negocios que venden productos o servicios con agenda de citas automatizada (Stripe / Bizum / Apple Pay) sin necesidad de atender llamadas a mano." 
+            },
+            { 
+              image: "assets/service-local-visibility.webp", 
+              alt: "Negocio local visible en mapas y buscadores", 
+              h: "SEO Local & Orbit Care (Always On)", 
+              p: "Para aparecer en los primeros puestos de Google Maps cuando busquen tus servicios en tu zona y mantener tu web rápida, segura y actualizada todos los meses." 
+            },
           ].map(({image,alt,h,p}, i) => (
             <Reveal key={i} delay={i*80} className="svc-card">
               <img className="svc-card__image" src={image} alt={alt} loading="lazy" />
               <div className="svc-card__body"><h4>{h}</h4><p>{p}</p></div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* CÓMO TRABAJAMOS — PROCESO EN 3 PASOS */}
+      <section className="section wrap" id="proceso" style={{ overflow: "visible" }}>
+        <div className="ambient-glow" />
+        <div className="shead">
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Proceso predecible y sin agobios</span></Reveal>
+          <Reveal delay={100}><h2 className="display">Cómo trabajamos contigo paso a paso</h2></Reveal>
+          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
+            Sin complicaciones técnicas ni sorpresas. Nos encargamos de todo de principio a fin para que tú te centres en tu negocio.
+          </Reveal>
+        </div>
+        <div className="process-grid">
+          {[
+            {
+              num: "01",
+              title: "Hablamos y definimos",
+              desc: "Analizamos tu negocio, tus clientes y tus objetivos. Te entregamos una propuesta clara con precio cerrado y calendario exacto. Sin letra pequeña.",
+              tag: "Día 1 · Planificación clara",
+              icon: <><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></>
+            },
+            {
+              num: "02",
+              title: "Diseñamos y construimos",
+              desc: "Redactamos los textos persuasivos, preparamos las imágenes y programamos tu web con diseño prémium y máxima velocidad. Tú solo revisas y das el visto bueno.",
+              tag: "1–2 Semanas · Desarrollo ágil",
+              icon: <><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></>
+            },
+            {
+              num: "03",
+              title: "Lanzamiento y clientes",
+              desc: "Publicamos tu web con dominio, SSL, Google Maps configurado y lista para captar visitas y ventas. Y nos tienes a 1 WhatsApp de distancia para lo que necesites.",
+              tag: "Entrega · Resultados",
+              icon: <><path d="M4.5 16.5c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.83-.83 1.24-2.29 1.5-3.5-1.21.26-2.67.67-3.5 1.5z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/></>
+            }
+          ].map((item, i) => (
+            <Reveal key={i} delay={i * 90} className="process-card">
+              <div className="process-header">
+                <span className="process-num">{item.num}</span>
+                <span className="process-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{item.icon}</svg>
+                </span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <span className="process-tag">{item.tag}</span>
             </Reveal>
           ))}
         </div>
@@ -3276,7 +3468,8 @@ function HomePage() {
               style={{ "--glare-color": c.glare, "--sweep-color": c.sweep, "--glare-size": "340px" }}>
               <img className="case__img" src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
               {c.cat && <span className="case__cat">{c.cat}</span>}
-              <div className="case__meta"><b>{c.n}</b><span className="case__view">Ver →</span></div>
+              {c.metric && <span className="case__metric">{c.metric}</span>}
+              <div className="case__meta"><b>{c.n}</b><span className="case__view">Ver caso →</span></div>
             </TiltCard>
           ))}
         </div>
@@ -3345,7 +3538,7 @@ function HomePage() {
               cta: "Quiero arrancar →", pro:false, detailHref: "/plan-arranque"
             },
             {
-              label: "Plan Crecimiento", badge: "Más elegido · Recomendado",
+              label: "Plan Crecimiento", badge: "⭐ MÁS RECOMENDADO",
               launch: "Máxima Conversión", old: "1.100€", num: "750", sub: "Pago único · lista en 2 semanas",
               feats: [
                 "Todo lo de Plan Arranque",
@@ -3387,7 +3580,7 @@ function HomePage() {
         </div>
 
         {/* PUBLICIDAD Y GOOGLE */}
-        <Reveal delay={100} className="ads-card">
+        <Reveal delay={100} className="ads-card" id="ads">
           <div className="ads-card__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
@@ -3466,10 +3659,23 @@ function HomePage() {
         <Reveal className="contact-card">
           <div className="hero__glow" style={{ top: "0", opacity: .5 }} />
           <div style={{ position:"relative", textAlign:"center" }}>
-            <div className="eyebrow" style={{ display:"inline-flex", marginBottom:24 }}><span className="dot" /><span>Hablemos</span></div>
-            <h2 className="display h-grad" style={{ fontSize:"clamp(28px,5vw,56px)", marginBottom:20 }}>Escala tu negocio en 2 semanas</h2>
-            <p className="lead" style={{ margin:"0 auto 32px", maxWidth:520 }}>Llamada sin costo. Analizamos tu web y te mostramos exactamente qué te falta para pasar de 5 clientes a 15 clientes al mes.</p>
-            <Btn glossy href="mailto:hola@leonwebs.es">Agendar auditoría →</Btn>
+            <div className="eyebrow" style={{ display:"inline-flex", marginBottom:24 }}><span className="dot" /><span>Hablemos sin compromiso</span></div>
+            <h2 className="display h-grad" style={{ fontSize:"clamp(28px,5vw,56px)", marginBottom:20 }}>Escala tu negocio en 1–2 semanas</h2>
+            <p className="lead" style={{ margin:"0 auto 32px", maxWidth:560 }}>
+              Cuéntanos tu proyecto en una llamada de 15 minutos o por WhatsApp. Analizamos tu caso gratis y te damos un presupuesto cerrado sin sorpresas.
+            </p>
+            <div className="contact__actions">
+              <Btn glossy href="mailto:hola@leonwebs.es?subject=Presupuesto%20Web%20Leon">📅 Agendar llamada gratis →</Btn>
+              <a className="contact__whatsapp-btn" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                💬 Hablar por WhatsApp
+              </a>
+            </div>
+            <div className="contact__trust-badges">
+              <span>🔒 Presupuesto cerrado garantizado</span>
+              <span>⚡ Respuesta en menos de 24h</span>
+              <span>☕ 100% Sin compromiso</span>
+            </div>
           </div>
         </Reveal>
       </section>
@@ -3484,11 +3690,11 @@ function HomePage() {
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href="#work">Trabajos</a><a href="#services">Servicios</a><a href="#about">Nosotros</a><a href="#faq">FAQ</a>
+              <a href="#work">Trabajos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
             </div>
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
-              <a href="mailto:hola@leonwebs.es">hola@leonwebs.es</a><a href="#">Instagram</a><a href="#">LinkedIn</a>
+              <a href="mailto:hola@leonwebs.es">hola@leonwebs.es</a><a href="https://wa.me/34600000000">WhatsApp</a><a href="#">LinkedIn</a>
             </div>
           </div>
         </div>
