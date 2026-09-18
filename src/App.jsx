@@ -202,10 +202,16 @@ const CSS = `
   pointer-events:none; z-index:-1; }
 .nav.scrolled{ top:0; }
 .nav.scrolled::before{ opacity:1; }
-.nav__inner{ display:flex; align-items:center; justify-content:space-between;
-  max-width:1200px; margin:0 auto; padding:16px 24px; }
-.nav.scrolled .nav__inner{ background:rgba(8,11,34,.8); backdrop-filter:blur(16px);
-  border:1px solid var(--line); border-radius:100px; margin:10px auto; max-width:1100px; }
+.nav.scrolled .nav__inner{ 
+  background: rgba(6, 10, 30, 0.72); 
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(146, 187, 255, 0.24); 
+  border-radius: 100px; 
+  margin: 10px auto; 
+  max-width: 1100px; 
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
 .nav__brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-family:var(--display); }
 .nav__ava{ width:34px; height:34px; border-radius:50%; overflow:hidden;
   background:linear-gradient(135deg,#427BD8,#C5EBFF); flex-shrink:0; }
@@ -790,6 +796,309 @@ const CSS = `
 .ads-card__body p{ font-size:13.5px; color:var(--muted); line-height:1.55; margin-bottom:12px; max-width:560px; margin-left:auto; margin-right:auto; }
 .ads-card__feats{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 16px; }
 .ads-card__feats span{ font-size:12.5px; color:#92BBFF; font-weight:500; }
+
+/* ---- Craftsmanship & Design System Showcase ---- */
+.craft-section { margin-top: 50px; margin-bottom: 50px; }
+.craft-card {
+  position: relative;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(20, 40, 110, 0.45) 0%, rgba(6, 10, 30, 0.95) 70%, #030614 100%);
+  border: 1px solid rgba(146, 187, 255, 0.22);
+  border-radius: 32px;
+  padding: 48px 40px 0;
+  overflow: hidden;
+  box-shadow: 
+    0 30px 80px -20px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 60px -20px rgba(66, 123, 216, 0.35);
+}
+.craft-card__ambient {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 280px;
+  background: radial-gradient(ellipse at center, rgba(66, 123, 216, 0.4) 0%, rgba(0, 212, 255, 0.15) 50%, transparent 75%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+.craft-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 28px;
+}
+.craft-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(146, 187, 255, 0.24);
+  color: #92BBFF;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+.craft-pill--dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00D4FF;
+  box-shadow: 0 0 8px #00D4FF;
+}
+.craft-card__emblem {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(66, 123, 216, 0.3) 0%, rgba(0, 212, 255, 0.15) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C5EBFF;
+  box-shadow: 0 8px 20px -5px rgba(66, 123, 216, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.craft-card__head {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto 38px;
+}
+.craft-card__title {
+  font-family: var(--display);
+  font-size: clamp(26px, 3.8vw, 42px);
+  font-weight: 800;
+  line-height: 1.18;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.craft-card__title .grad-accent {
+  background: linear-gradient(135deg, #00D4FF 0%, #92BBFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.craft-card__title .grad-purple {
+  background: linear-gradient(135deg, #A78BFA 0%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.craft-card__sub {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.craft-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 44px;
+}
+.craft-swatches {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.craft-swatch-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(146, 187, 255, 0.16);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s, border-color 0.25s;
+}
+.craft-swatch-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(146, 187, 255, 0.35);
+}
+.craft-swatch-tile {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.5);
+}
+.craft-swatch-tile--accent {
+  background: linear-gradient(135deg, #00D4FF 0%, #3148FF 100%);
+  box-shadow: 0 0 20px rgba(49, 72, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.craft-swatch-tile--primary {
+  background: #061148;
+  border: 1px solid rgba(146, 187, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.craft-swatch-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.craft-swatch-role {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #92BBFF;
+  font-weight: 600;
+}
+.craft-swatch-hex {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.craft-typo-stage {
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.craft-typo-giant {
+  position: absolute;
+  left: 20px;
+  bottom: -15px;
+  font-family: var(--display);
+  font-size: 160px;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: -0.06em;
+  user-select: none;
+  pointer-events: none;
+  text-shadow: 0 0 60px rgba(66, 123, 216, 0.3);
+}
+.craft-typo-glass {
+  position: relative;
+  z-index: 2;
+  max-width: 320px;
+  background: rgba(10, 16, 42, 0.65);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  padding: 22px 24px;
+  box-shadow: 
+    0 20px 50px -15px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 0 30px -10px rgba(0, 212, 255, 0.2);
+}
+.craft-typo-glass h4 {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+}
+.craft-typo-glass p {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.5;
+}
+.craft-blueprint {
+  border-top: 1px dashed rgba(146, 187, 255, 0.2);
+  padding-top: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.craft-blueprint__tag {
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+.craft-blueprint__ruler {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 18px;
+  color: #92BBFF;
+  font-family: monospace;
+  font-size: 11px;
+}
+.craft-blueprint__ruler-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px dashed rgba(146, 187, 255, 0.35);
+  z-index: 0;
+}
+.craft-blueprint__dim {
+  position: relative;
+  z-index: 1;
+  background: #05081c;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(146, 187, 255, 0.2);
+}
+.craft-blueprint__phone {
+  width: 280px;
+  height: 120px;
+  border-top-left-radius: 38px;
+  border-top-right-radius: 38px;
+  border: 2px solid rgba(146, 187, 255, 0.4);
+  border-bottom: none;
+  background: linear-gradient(180deg, #030614 0%, rgba(3, 6, 20, 0.8) 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 -15px 40px -10px rgba(0, 212, 255, 0.25);
+}
+.craft-blueprint__island {
+  width: 76px;
+  height: 18px;
+  background: #000000;
+  border-radius: 12px;
+  margin: 10px auto 0;
+}
+.craft-blueprint__status {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 10px;
+  color: #92BBFF;
+  font-family: monospace;
+  margin-top: -14px;
+}
+.craft-blueprint__guides {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  pointer-events: none;
+}
+.craft-blueprint__guide-line {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.4) 0%, transparent 100%);
+}
+@media (max-width: 768px) {
+  .craft-card { padding: 32px 20px 0; border-radius: 24px; }
+  .craft-grid { grid-template-columns: 1fr; gap: 20px; }
+  .craft-typo-stage { justify-content: center; min-height: 150px; }
+  .craft-typo-giant { font-size: 110px; left: 10px; }
+  .craft-blueprint__ruler { max-width: 280px; font-size: 10px; }
+  .craft-blueprint__phone { width: 240px; }
+}
 
 /* ---- servicios (resumen) ---- */
 .svc-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:44px; }
@@ -3526,6 +3835,99 @@ function ConversionRateWidget() {
   );
 }
 
+function DesignCraftSection() {
+  return (
+    <section className="section wrap craft-section">
+      <Reveal className="craft-card">
+        <div className="craft-card__ambient" />
+        
+        <div className="craft-card__top">
+          <div className="craft-pill">
+            <span className="craft-pill--dot" />
+            <span>Font & Colors</span>
+          </div>
+          <div className="craft-card__emblem">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="craft-card__head">
+          <h2 className="craft-card__title">
+            Visualmente <span className="grad-accent">impecable</span>, ultra rápido y <span className="grad-purple">pensado para vender</span>
+          </h2>
+          <p className="craft-card__sub">
+            Una combinación milimétrica de jerarquía visual, claridad tipográfica y adaptabilidad móvil.
+          </p>
+        </div>
+
+        <div className="craft-grid">
+          {/* Swatches */}
+          <div className="craft-swatches">
+            <div className="craft-swatch-card">
+              <div className="craft-swatch-tile craft-swatch-tile--accent" />
+              <div className="craft-swatch-info">
+                <span className="craft-swatch-role">Accent</span>
+                <span className="craft-swatch-hex">#00D4FF</span>
+              </div>
+            </div>
+            <div className="craft-swatch-card">
+              <div className="craft-swatch-tile craft-swatch-tile--primary" />
+              <div className="craft-swatch-info">
+                <span className="craft-swatch-role">Primary</span>
+                <span className="craft-swatch-hex">#061148</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Typography Preview */}
+          <div className="craft-typo-stage">
+            <div className="craft-typo-giant">Aa</div>
+            <div className="craft-typo-glass">
+              <h4>Outfit & Inter Display</h4>
+              <p>
+                Geometría nítida y proporciones equilibradas para garantizar máxima legibilidad en cualquier dispositivo móvil o pantalla Retina.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Responsive Grid Blueprint */}
+        <div className="craft-blueprint">
+          <div className="craft-pill craft-blueprint__tag">
+            <span className="craft-pill--dot" style={{ background: "#92BBFF", boxShadow: "0 0 8px #92BBFF" }} />
+            <span>Grid & Responsive Spec</span>
+          </div>
+
+          <div className="craft-blueprint__ruler">
+            <div className="craft-blueprint__ruler-line" />
+            <span className="craft-blueprint__dim">16 px</span>
+            <span className="craft-blueprint__dim">358 px Viewport</span>
+            <span className="craft-blueprint__dim">16 px</span>
+          </div>
+
+          <div className="craft-blueprint__phone">
+            <div className="craft-blueprint__island" />
+            <div className="craft-blueprint__status">
+              <span>9:41</span>
+              <span>5G · 100%</span>
+            </div>
+            <div className="craft-blueprint__guides">
+              <div className="craft-blueprint__guide-line" />
+              <div className="craft-blueprint__guide-line" />
+              <div className="craft-blueprint__guide-line" />
+              <div className="craft-blueprint__guide-line" />
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
 function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, pro, delay, detailHref }) {
   return (
     <Reveal delay={delay} className={`price-card ${pro ? "price-card--pro" : ""}`}>
@@ -4123,6 +4525,9 @@ function HomePage() {
         </div>
         </div>
       </section>
+
+      {/* CRAFT & DESIGN SYSTEM SHOWCASE */}
+      <DesignCraftSection />
 
       {/* SERVICIOS — 3 SOLUCIONES CLARAS */}
       <section className="section wrap" id="services" style={{ overflow: "visible" }}>
