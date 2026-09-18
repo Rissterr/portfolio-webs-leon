@@ -654,8 +654,14 @@ const CSS = `
 }
 .price-card--pro{ 
   border-color:rgba(146,187,255,.55); 
-  background:linear-gradient(145deg, rgba(30,52,105,0.72) 0%, rgba(10,18,44,0.85) 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(146,187,255,.2), 0 0 0 1px rgba(146,187,255,.3), 0 26px 70px -20px rgba(66,123,216,.75); 
+  background:linear-gradient(180deg, rgba(16,28,64,0.82) 0%, rgba(8,14,36,0.96) 100%);
+  box-shadow:
+    inset 0 -80px 60px -30px #144CCD,
+    inset 0 -40px 30px -8px rgba(102, 148, 255, 0.5),
+    inset 0 -20px 20px -6px rgba(255, 255, 255, 0.4),
+    inset 0 6px 6px -2px rgba(35, 101, 255, 0.15),
+    0 26px 70px -20px rgba(20, 76, 205, 0.8),
+    0 0 30px -5px rgba(102, 148, 255, 0.35);
 }
 .price-card--pro::before{
   content:''; position:absolute; top:-1px; left:20%; right:20%; height:2px;
@@ -668,13 +674,105 @@ const CSS = `
   filter:blur(12px); z-index:0; pointer-events:none;
 }
 .price-card--pro:hover{
-  border-color:rgba(197,235,255,.85);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.36), 0 0 0 1px rgba(146,187,255,.5), 0 32px 85px -16px rgba(66,123,216,.9);
+  border-color:rgba(197,235,255,.9);
+  box-shadow:
+    inset 0 -90px 70px -25px #144CCD,
+    inset 0 -45px 35px -6px rgba(102, 148, 255, 0.65),
+    inset 0 -22px 22px -4px rgba(255, 255, 255, 0.5),
+    inset 0 8px 8px -2px rgba(35, 101, 255, 0.2),
+    0 34px 90px -15px rgba(20, 76, 205, 0.95),
+    0 0 45px -5px rgba(102, 148, 255, 0.5);
+  transform:translateY(-6px);
 }
 .price-more{ font-size:11.5px; color:#92BBFF; margin-top:8px; font-weight:600; }
 .price-detail-link{ display:block; text-align:center; font-size:12.5px; color:#92BBFF; text-decoration:none;
   margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08); font-weight:600; transition:color .2s; }
 .price-detail-link:hover{ color:#C5EBFF; }
+
+/* Widget de Conversión con brillo interior multicapa (Figma Spec) */
+.conv-widget {
+  background: linear-gradient(180deg, rgba(14, 22, 54, 0.85) 0%, rgba(6, 10, 28, 0.95) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.35);
+  border-radius: 24px;
+  padding: 24px 22px 20px;
+  box-shadow: 
+    inset 0 -80px 60px -30px #144CCD,
+    inset 0 -40px 30px -8px rgba(102, 148, 255, 0.5),
+    inset 0 -20px 20px -6px rgba(255, 255, 255, 0.4),
+    inset 0 6px 6px -2px rgba(35, 101, 255, 0.15),
+    0 24px 60px -20px rgba(0, 0, 0, 0.9),
+    0 0 35px -5px rgba(20, 76, 205, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+.conv-widget__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.conv-widget__pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(146, 187, 255, 0.25);
+  padding: 3px 10px;
+  border-radius: 100px;
+  color: #C5EBFF;
+  font-size: 11px;
+  font-weight: 600;
+}
+.conv-widget__graph {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 0;
+}
+.conv-widget__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.conv-widget__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+.conv-widget__label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.conv-widget__num-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.conv-widget__num {
+  font-family: var(--display);
+  font-size: 38px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.conv-widget__growth {
+  font-size: 20px;
+  color: #10B981;
+  font-weight: 800;
+}
+.conv-widget__sub {
+  font-size: 11.5px;
+  color: #C5EBFF;
+  opacity: 0.85;
+}
 .ads-card{ display:flex; align-items:center; justify-content:center; gap:24px; margin-top:24px; padding:30px 34px;
   background:linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.02) 100%);
   border:1px solid rgba(146,187,255,.22); border-radius:22px;
@@ -987,9 +1085,14 @@ const CSS = `
 
 /* ---- "Conmigo" column ---- */
 .col--yes{ 
-  background:linear-gradient(180deg, rgba(16,28,64,0.7) 0%, rgba(8,14,36,0.85) 100%); 
-  border-color:rgba(146,187,255,.28);
-  box-shadow:inset 0 1px 0 rgba(146,187,255,.25), 0 24px 60px -20px rgba(0,102,255,.3);
+  background:linear-gradient(180deg, rgba(16,28,64,0.78) 0%, rgba(8,14,36,0.96) 100%); 
+  border-color:rgba(146,187,255,.45);
+  box-shadow:
+    inset 0 -80px 60px -30px #144CCD,
+    inset 0 -40px 30px -8px rgba(102, 148, 255, 0.5),
+    inset 0 -20px 20px -6px rgba(255, 255, 255, 0.4),
+    inset 0 6px 6px -2px rgba(35, 101, 255, 0.15),
+    0 24px 60px -20px rgba(0,102,255,.4);
 }
 .col--yes::after{ content:''; position:absolute; bottom:0; left:15%; right:15%; height:2px; z-index:3;
   background:linear-gradient(90deg, transparent, #00D4FF 50%, transparent);
@@ -1048,8 +1151,16 @@ const CSS = `
           mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude;
   opacity:0.25; transition:opacity .5s; }
-.scard:hover{ transform:translateY(-6px); border-color:rgba(146,187,255,.35);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 30px 60px -28px rgba(40,80,170,.55); }
+.scard:hover{ 
+  transform:translateY(-6px); 
+  border-color:rgba(146,187,255,.5);
+  box-shadow:
+    inset 0 -70px 50px -25px #144CCD,
+    inset 0 -35px 25px -8px rgba(102, 148, 255, 0.5),
+    inset 0 -18px 18px -6px rgba(255, 255, 255, 0.35),
+    inset 0 6px 6px -2px rgba(35, 101, 255, 0.15),
+    0 30px 60px -20px rgba(0, 102, 255, 0.5); 
+}
 .scard:hover::before{ opacity:1; }
 .scard h4{ font-family:var(--display); font-size:20px; margin-bottom:8px; }
 .scard p{ color:var(--muted); font-size:14px; line-height:1.55; }
@@ -3367,6 +3478,54 @@ function PilarCard({ pos, h, p, svg }) {
   );
 }
 
+function ConversionRateWidget() {
+  return (
+    <div className="conv-widget">
+      <div className="conv-widget__top">
+        <span>Datos de captación</span>
+        <span className="conv-widget__pill">Mensual ▾</span>
+      </div>
+      <div className="conv-widget__graph">
+        <svg viewBox="0 0 260 100" className="conv-widget__svg">
+          <defs>
+            <linearGradient id="glowLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#427BD8" stopOpacity="0.4" />
+              <stop offset="45%" stopColor="#00D4FF" />
+              <stop offset="60%" stopColor="#92BBFF" />
+              <stop offset="100%" stopColor="#427BD8" stopOpacity="0.3" />
+            </linearGradient>
+            <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#00D4FF" stopOpacity="1" />
+              <stop offset="40%" stopColor="#00D4FF" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#00D4FF" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <line x1="20" y1="25" x2="240" y2="25" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
+          <line x1="20" y1="55" x2="240" y2="55" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
+          <line x1="20" y1="85" x2="240" y2="85" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
+          <path
+            d="M 15 75 Q 60 70 90 60 T 130 18 T 170 70 T 245 78"
+            fill="none"
+            stroke="url(#glowLineGrad)"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+          <circle cx="130" cy="18" r="14" fill="url(#dotGlow)" />
+          <circle cx="130" cy="18" r="5" fill="#FFFFFF" stroke="#00D4FF" strokeWidth="2.5" />
+        </svg>
+      </div>
+      <div className="conv-widget__meta">
+        <span className="conv-widget__label">Tasa de conversión & reservas</span>
+        <div className="conv-widget__num-row">
+          <span className="conv-widget__num">+400%</span>
+          <span className="conv-widget__growth">↗</span>
+        </div>
+        <span className="conv-widget__sub">Incremento en contactos vs web anterior</span>
+      </div>
+    </div>
+  );
+}
+
 function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, pro, delay, detailHref }) {
   return (
     <Reveal delay={delay} className={`price-card ${pro ? "price-card--pro" : ""}`}>
@@ -3915,6 +4074,7 @@ function HomePage() {
             {["Arquitectura pensada desde el primer píxel para vender", "Cada sección guía al cliente a contactarte o reservar", "Copywriting persuasivo que transmite autoridad inmediata", "Velocidad ultrarrápida (<1s) y estética Liquid Glass 3D", "Optimización SEO Local y adaptación a búsquedas con IA", "Acompañamiento proactivo para seguir creciendo"].map((t, i) => (
               <div className="row" key={i} style={{ color: "#FFFFFF", fontWeight: 500 }}><span className="ic ic--v">✓</span>{t}</div>
             ))}
+            <ConversionRateWidget />
           </Reveal>
         </div>
       </section>
