@@ -96,48 +96,80 @@ const CSS = `
   isolation: isolate;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   cursor: pointer;
   font-family: var(--body);
-  font-weight: 500;
-  font-size: 15px;
-  color: #fff;
-  padding: 14px 26px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: #FFFFFF;
+  padding: 13px 26px;
   border-radius: 100px;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.05);
-  border: 0.5px solid rgba(255, 255, 255, 0.08);
-  overflow: visible;
-  box-shadow: 0 .6px 1.08px -.83px rgba(0,0,0,.05), 0 2.29px 4.12px -1.67px rgba(0,0,0,.05), 0 10px 18px -2.5px rgba(0,0,0,.05);
-  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1);
+  background: linear-gradient(135deg, rgba(20, 32, 75, 0.75) 0%, rgba(10, 16, 42, 0.75) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.28);
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px -4px rgba(0, 102, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s ease, border-color 0.22s ease;
 }
 .btn:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(146, 187, 255, 0.65);
+  box-shadow: 0 8px 30px -4px rgba(0, 153, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .btn:focus-visible {
   outline: 2px solid #8EC1FF;
   outline-offset: 3px;
 }
-/* (1) Glow detrás del botón (difuminado de 15px) */
+/* Rayo de luz en barrido continuo interactivo */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -90%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(146, 187, 255, 0.5) 70%,
+    transparent 100%
+  );
+  transform: rotate(26deg);
+  pointer-events: none;
+  z-index: 2;
+  animation: btnSweepAnim 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes btnSweepAnim {
+  0% { left: -90%; opacity: 0; }
+  10% { opacity: 1; }
+  45% { left: 140%; opacity: 1; }
+  46%, 100% { left: 140%; opacity: 0; }
+}
+/* (1) Glow detrás del botón */
 .btn__glow {
   position: absolute;
-  inset: -12px;
+  inset: -10px;
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;
-  filter: blur(15px);
-  background: radial-gradient(35% 50% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+  filter: blur(14px);
+  background: radial-gradient(40% 60% at var(--mx, 50%) var(--my, 50%), rgba(0, 180, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
   opacity: var(--hovered, 0);
   transition: opacity 0.3s ease;
 }
-/* (2) Brillo del borde (sweep) */
+/* (2) Brillo del borde */
 .btn__sweep {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(25% 50% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(30% 60% at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
   opacity: var(--hovered, 0);
   transition: opacity 0.3s ease;
 }
@@ -146,8 +178,8 @@ const CSS = `
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: #05071a;
-  z-index: 2;
+  background: transparent;
+  z-index: 1;
   pointer-events: none;
 }
 /* (4) Contenido / Texto */
@@ -158,52 +190,115 @@ const CSS = `
   align-items: center;
   gap: 8px;
 }
-/* --- Variante Glossy (Botón Blanco/Holográfico del Hero) --- */
+/* --- Variante Glossy (Hero y Destacados) --- */
 .btn--glossy {
-  color: #050505;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  color: #070D24;
+  font-weight: 700;
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.45) inset,
-    0 18px 32px -10px rgba(0, 132, 255, 0.25);
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 14px 34px -8px rgba(0, 140, 255, 0.45);
 }
 .btn--glossy .btn__core {
-  inset: 3.5px;
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(245, 249, 255, 0.95) 100%);
-  border: 0.5px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  inset: 1px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #EAF2FF 100%);
 }
-.btn--glossy .btn__sweep {
-  opacity: 1;
-  background: conic-gradient(from var(--a) at var(--mx, 50%) 50%, transparent 300deg, rgba(255, 255, 255, 0.95) 330deg, transparent 360deg);
-  animation: spin 4s linear infinite;
+.btn--glossy .btn__label {
+  color: #070D24;
 }
-.btn--glossy .btn__bglow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(87% 100% at 50% 100%, rgb(0, 153, 255) 0%, rgba(255, 255, 255, 0) 100%);
-  opacity: 0.65;
+
+/* ---- TOP LIQUID GLASS NEWS TICKER ---- */
+.top-ticker {
+  position: relative;
+  z-index: 60;
+  width: 100%;
+  background: rgba(6, 11, 32, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(146, 187, 255, 0.16);
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
 }
-@keyframes spin {
-  0% { --a: 0deg; }
-  100% { --a: 360deg; }
+.top-ticker__badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  color: #C5EBFF;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-left: 20px;
+  margin-right: 14px;
+  z-index: 2;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.2);
+}
+.top-ticker__badge-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #00D4FF;
+  box-shadow: 0 0 8px #00D4FF, 0 0 14px rgba(0,212,255,0.8);
+  animation: tickerDotPulse 1.8s ease-in-out infinite;
+}
+@keyframes tickerDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+.top-ticker__viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+.top-ticker__track {
+  display: inline-flex;
+  white-space: nowrap;
+  gap: 52px;
+  animation: tickerScroll 34s linear infinite;
+}
+.top-ticker:hover .top-ticker__track {
+  animation-play-state: paused;
+}
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.top-ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #D3E0FD;
+  font-weight: 500;
+}
+.top-ticker__item b {
+  color: #FFFFFF;
+}
+.top-ticker__sep {
+  color: rgba(146, 187, 255, 0.35);
+  margin-left: 4px;
 }
 
 /* ---- nav ---- */
-.nav{ position:fixed; top:0; left:0; right:0; z-index:50; transition:all .3s ease; }
+.nav{ position:fixed; top:36px; left:0; right:0; z-index:50; transition:all .3s ease; }
 .nav::before{ content:''; position:absolute; inset:0; opacity:0; transition:opacity .3s ease;
   background:linear-gradient(to bottom, rgba(5,7,26,.9), rgba(5,7,26,.55) 70%, transparent);
   pointer-events:none; z-index:-1; }
+.nav.scrolled{ top:0; }
 .nav.scrolled::before{ opacity:1; }
 .nav__inner{ display:flex; align-items:center; justify-content:space-between;
   max-width:1200px; margin:0 auto; padding:16px 24px; }
-.nav.scrolled .nav__inner{ background:rgba(8,11,34,.7); backdrop-filter:blur(14px);
+.nav.scrolled .nav__inner{ background:rgba(8,11,34,.8); backdrop-filter:blur(16px);
   border:1px solid var(--line); border-radius:100px; margin:10px auto; max-width:1100px; }
 .nav__brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-family:var(--display); }
 .nav__ava{ width:34px; height:34px; border-radius:50%; overflow:hidden;
@@ -221,37 +316,91 @@ const CSS = `
   filter:blur(8px); pointer-events:none; }
 
 /* ---- hero ---- */
-.hero{ padding:140px 0 85px; text-align:center; }
+.hero{ padding:150px 0 85px; text-align:center; }
 .hero h1{ font-size:clamp(38px,6vw,76px); margin:20px auto 22px; max-width:16ch; }
 .hero .lead{ margin:0 auto 30px; text-align:center; max-width:680px; font-size:18.5px; }
 
-/* ---- hero quick need selector pills ---- */
-.hero__needs{
-  display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
-  gap:10px; margin:32px auto 0; max-width:860px;
+/* ---- HERO SOLUTIONS CARDS (REEMPLAZO EMOJIS) ---- */
+.hero__solutions-grid {
+  margin-top: 36px;
+  max-width: 980px;
+  margin-inline: auto;
 }
-.hero__needs-title{
-  width:100%; font-size:12px; color:var(--muted);
-  text-transform:uppercase; letter-spacing:.08em; font-weight:700; margin-bottom:2px;
+.hero__solutions-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
 }
-.hero__need-pill{
-  display:inline-flex; align-items:center; gap:8px; padding:10px 20px;
-  border-radius:100px; background:rgba(255,255,255,.04);
-  border:1px solid rgba(146,187,255,.2); color:#E2EAFC;
-  font-size:14px; font-weight:500; text-decoration:none;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 8px 24px -12px rgba(0,0,0,.6);
-  transition:all .28s cubic-bezier(.16,1,.3,1);
+.hero__solution-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(20, 30, 70, 0.55) 0%, rgba(10, 15, 40, 0.65) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.2);
+  text-decoration: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
-.hero__need-pill:hover{
-  background:rgba(146,187,255,.14); border-color:rgba(146,187,255,.5);
-  color:#FFFFFF; transform:translateY(-2px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 12px 28px -10px rgba(0,212,255,.35);
+.hero__solution-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(146, 187, 255, 0.55);
+  background: linear-gradient(180deg, rgba(30, 48, 105, 0.65) 0%, rgba(14, 22, 56, 0.75) 100%);
+  box-shadow: 0 16px 36px -10px rgba(0, 102, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.hero__need-pill span.emoji{ font-size:16px; line-height:1; }
-.hero__security-note{
-  display:inline-flex; align-items:center; gap:8px;
-  font-size:12.5px; color:var(--muted); font-weight:500; margin-top:12px;
+.hero__solution-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(66, 123, 216, 0.18);
+  border: 1px solid rgba(146, 187, 255, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00D4FF;
+  margin-bottom: 12px;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+}
+.hero__solution-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.hero__solution-info strong {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+.hero__solution-info span {
+  display: block;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.hero__solution-badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  color: #92BBFF;
+  background: rgba(66, 123, 216, 0.15);
+  border: 1px solid rgba(146, 187, 255, 0.25);
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+@media(max-width:860px){
+  .hero__solutions-cards { grid-template-columns: 1fr; gap: 10px; }
+  .hero__solution-card { padding: 14px 16px; }
+  .nav{ top:0; }
 }
 
 /* ---- proceso en 3 pasos sencillos ---- */
@@ -2911,9 +3060,158 @@ const CSS = `
   opacity: 1;
   transform: translateX(0);
 }
+/* 6. Fusión de Sectores y Proyectos Reales */
+.sector-nav-tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  margin-bottom: 34px;
+}
+.sector-tab-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(146, 187, 255, 0.16);
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+.sector-tab-btn:hover {
+  color: #FFFFFF;
+  background: rgba(146, 187, 255, 0.12);
+  border-color: rgba(146, 187, 255, 0.35);
+}
+.sector-tab-btn--active {
+  background: linear-gradient(135deg, rgba(66, 123, 216, 0.45) 0%, rgba(0, 212, 255, 0.2) 100%);
+  border-color: #92BBFF;
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(66, 123, 216, 0.35);
+}
+.sector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.sector-project-card {
+  background: linear-gradient(180deg, rgba(16, 24, 60, 0.7) 0%, rgba(8, 12, 32, 0.8) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.18);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 16px 36px -15px rgba(0, 0, 0, 0.6);
+}
+.sector-project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(146, 187, 255, 0.45);
+  box-shadow: 0 22px 50px -15px rgba(0, 102, 255, 0.35);
+}
+.sector-project-card__media {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #030616;
+}
+.sector-project-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+.sector-project-card:hover .sector-project-card__media img {
+  transform: scale(1.04);
+}
+.sector-project-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(6, 10, 28, 0.85);
+  border: 1px solid rgba(146, 187, 255, 0.3);
+  color: #C5EBFF;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  backdrop-filter: blur(8px);
+}
+.sector-project-card__body {
+  padding: 22px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.sector-project-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.sector-project-card__header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.sector-project-card__location {
+  font-size: 12px;
+  color: var(--muted);
+}
+.sector-project-card__desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.sector-project-card__result {
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.sector-project-card__metric {
+  font-size: 14px;
+  font-weight: 800;
+  color: #00D4FF;
+}
+.sector-project-card__time {
+  font-size: 11.5px;
+  color: #C5EBFF;
+}
+.sector-project-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(146, 187, 255, 0.22);
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.sector-project-card__cta:hover {
+  background: linear-gradient(135deg, rgba(66, 123, 216, 0.4) 0%, rgba(0, 212, 255, 0.2) 100%);
+  border-color: #92BBFF;
+}
+@media(max-width:960px){
+  .sector-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media(max-width:640px){
-  .floating-whatsapp { bottom: 84px; right: 16px; width: 48px; height: 48px; }
-  .floating-whatsapp__tooltip { display: none; }
+  .sector-grid { grid-template-columns: 1fr; }
 }
 `;
 
@@ -3145,12 +3443,96 @@ const PROJECTS = [
   { n: "Casona El Curueño",     img: "assets/proj-powerpulse.webp"   },
 ];
 const CASES = [
-  { n: "VIP Barber Shop",   img: "assets/proj-hotel.webp",         url: "#contact", cat: "Barbería · León",         metric: "+40 reservas/mes",        glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Clínica Nova",      img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Clínica · Ponferrada",     metric: "Lista en 10 días",        glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "Hotel Rural Boutique", img: "assets/proj-powerpulse.webp", url: "#contact", cat: "Hotel Rural · Astorga",   metric: "+65% reservas directas",  glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
-  { n: "Lex Asesores",      img: "assets/proj-novaest.webp",       url: "#contact", cat: "Asesoría · León",         metric: "Captación B2B",           glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "Inmobiliaria Leonesa", img: "assets/proj-actualizaria.webp", url: "#contact", cat: "Inmobiliaria · León",  metric: "+120 consultas/mes",      glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "Centro Fisioterapia", img: "assets/proj-properties.webp",  url: "#contact", cat: "Salud · León",            metric: "Citas 24/7",              glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { 
+    id: "barberia",
+    n: "VIP Barber Shop",   
+    sector: "Barbería & Estética",
+    loc: "León centro",
+    img: "assets/proj-hotel.webp",         
+    url: "#contact", 
+    tag: "Reservas 24/7 · Bizum",
+    desc: "Agenda online sincronizada con Google Calendar y pagos integrados. Los clientes reservan en 30 segundos sin llamadas.",
+    metric: "+40 reservas/mes",        
+    time: "Entregada en 10 días",
+    cta: "Quiero una web para mi barbería →",
+    glare: "rgba(146,187,255,0.16)", 
+    sweep: "rgba(146,187,255,0.05)" 
+  },
+  { 
+    id: "clinica",
+    n: "Clínica Dental Nova",      
+    sector: "Clínicas & Fisioterapia",
+    loc: "Ponferrada",
+    img: "assets/proj-lexleon.webp",       
+    url: "#contact", 
+    tag: "Citas + Confianza médica",
+    desc: "Presentación de especialidades médicas, cuadro de doctores y botón de cita directa por WhatsApp con ficha de paciente.",
+    metric: "100% citas canalizadas",        
+    time: "Entregada en 12 días",
+    cta: "Quiero una web para mi clínica →",
+    glare: "rgba(255,182,193,0.16)", 
+    sweep: "rgba(255,182,193,0.05)" 
+  },
+  { 
+    id: "hotel",
+    n: "Hotel Rural Casona Real", 
+    sector: "Hoteles & Restaurantes",
+    loc: "Astorga",
+    img: "assets/proj-powerpulse.webp", 
+    url: "#contact", 
+    tag: "Venta directa sin comisiones",
+    desc: "Motor de reservas directas con pasarela segura, galería fotográfica inmersiva y carta digital para el restaurante.",
+    metric: "+65% reservas directas",  
+    time: "Entregada en 14 días",
+    cta: "Quiero una web para mi hotel/restaurante →",
+    glare: "rgba(129,140,248,0.16)", 
+    sweep: "rgba(129,140,248,0.05)" 
+  },
+  { 
+    id: "asesoria",
+    n: "Lex Asesores León",      
+    sector: "Despachos & Asesorías",
+    loc: "León",
+    img: "assets/proj-novaest.webp",       
+    url: "#contact", 
+    tag: "Autoridad B2B & Captación",
+    desc: "Portal corporativo con calculadora de presupuestos para autónomos y empresas, optimizado para posicionamiento local.",
+    metric: "Top 3 en Google León",           
+    time: "Entregada en 9 días",
+    cta: "Quiero una web para mi despacho →",
+    glare: "rgba(245,222,179,0.15)", 
+    sweep: "rgba(245,222,179,0.04)" 
+  },
+  { 
+    id: "inmobiliaria",
+    n: "Inmobiliaria Leonesa", 
+    sector: "Inmobiliarias & Comercios",
+    loc: "León y provincia",
+    img: "assets/proj-actualizaria.webp", 
+    url: "#contact", 
+    tag: "Catálogo interactivo",
+    desc: "Buscador de inmuebles con filtros avanzados, ficha técnica descargable y botón directo de visita por WhatsApp.",
+    metric: "+120 contactos/mes",      
+    time: "Entregada en 14 días",
+    cta: "Quiero una web para mi negocio →",
+    glare: "rgba(52,211,153,0.14)",  
+    sweep: "rgba(52,211,153,0.04)"  
+  },
+  { 
+    id: "clinica",
+    n: "Centro Fisioterapia & Salud", 
+    sector: "Clínicas & Fisioterapia",
+    loc: "León",
+    img: "assets/proj-properties.webp",  
+    url: "#contact", 
+    tag: "Agenda 24/7 + Bonos",
+    desc: "Venta de bonos de sesiones online y reserva de citas con recordatorio automático por SMS para reducir ausencias.",
+    metric: "Citas 24/7 sin llamadas",              
+    time: "Entregada en 8 días",
+    cta: "Quiero una web para mi centro →",
+    glare: "rgba(192,132,252,0.16)", 
+    sweep: "rgba(192,132,252,0.05)" 
+  },
 ];
 const TESTI = [
   { n: "Carlos Morales", r: "Barbería El Cid · León centro", img: "assets/testi-1.webp", t: "Pasamos de apuntar las citas a mano a tener más de 40 reservas automáticas al mes por la web. El trato fue directo y en dos semanas estaba lista." },
@@ -3175,6 +3557,7 @@ const FAQS = [
 
 /* ---------- page ---------- */
 function HomePage() {
+  const [selectedSector, setSelectedSector] = useState("all");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(0);
   const [faqCategory, setFaqCategory] = useState("all");
@@ -3250,12 +3633,26 @@ function HomePage() {
       <div className="grid-overlay__spot" />
       <style>{CSS}</style>
 
+      {/* 0. BARRERA DE NOTICIAS / TOP TICKER LIQUID GLASS */}
+      <div className="top-ticker">
+        <div className="top-ticker__inner">
+          <div className="top-ticker__badge">
+            <span className="top-ticker__badge-dot" />
+            <span>EN DIRECTO</span>
+          </div>
+          <div className="top-ticker__track">
+            <span>✨ Webs y captación para negocios de León · 🔒 Presupuesto 100% cerrado sin costes sorpresa · ⚡ Entrega en 1–2 semanas · 🛡️ 30 días de garantía y soporte directo · 📍 León, Ponferrada, Astorga y provincia · 💬 Trato directo por WhatsApp</span>
+            <span>✨ Webs y captación para negocios de León · 🔒 Presupuesto 100% cerrado sin costes sorpresa · ⚡ Entrega en 1–2 semanas · 🛡️ 30 días de garantía y soporte directo · 📍 León, Ponferrada, Astorga y provincia · 💬 Trato directo por WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
       {/* NAV */}
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
         <div className="nav__inner">
           <div className="nav__brand">León Webs</div>
           <div className="nav__links">
-            <a href="#work">Trabajos</a><a href="#sectores">Sectores</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
+            <a href="#proyectos">Sectores & Casos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
           </div>
           <div className="nav__cta"><Btn href="#contact">Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
@@ -3268,8 +3665,7 @@ function HomePage() {
       {menuOpen && (
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
-          <a href="#work" onClick={() => setMenuOpen(false)}>Trabajos</a>
-          <a href="#sectores" onClick={() => setMenuOpen(false)}>Sectores</a>
+          <a href="#proyectos" onClick={() => setMenuOpen(false)}>Sectores & Casos</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Soluciones</a>
           <a href="#proceso" onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
           <a href="#precios" onClick={() => setMenuOpen(false)}>Planes y Precios</a>
@@ -3328,17 +3724,37 @@ function HomePage() {
             <span className="hero__security-note">🔒 Precio cerrado garantizado · ⚡ Respuesta en menos de 24h · 📍 Especialistas en León</span>
           </Reveal>
 
-          {/* SELECTOR RÁPIDO DE NECESIDAD */}
-          <Reveal delay={380} className="hero__needs">
-            <div className="hero__needs-title">¿Qué necesita tu negocio hoy?</div>
-            <a href="#precios" className="hero__need-pill">
-              <span className="emoji">🌐</span> Quiero una web nueva o renovar la mía
+          {/* SELECTOR RÁPIDO DE NECESIDAD / SOLUCIONES VISUALES */}
+          <Reveal delay={380} className="hero__solutions-cards">
+            <a href="#proyectos" onClick={() => setSelectedSector("all")} className="hero__solution-card">
+              <div className="hero__solution-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              </div>
+              <div className="hero__solution-info">
+                <h4>Web Corporativa</h4>
+                <span>Para clínicas, despachos y negocios que buscan imagen y llamadas</span>
+                <span className="hero__solution-badge">Desde 450€ · Ver ejemplos</span>
+              </div>
             </a>
-            <a href="#precios" className="hero__need-pill">
-              <span className="emoji">🛍️</span> Quiero vender productos o reservas por internet
+            <a href="#proyectos" onClick={() => setSelectedSector("barberia")} className="hero__solution-card">
+              <div className="hero__solution-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+              </div>
+              <div className="hero__solution-info">
+                <h4>Reservas & Citas 24/7</h4>
+                <span>Para barberías, centros de estética y hoteles con agenda online</span>
+                <span className="hero__solution-badge">Desde 750€ · Ver casos</span>
+              </div>
             </a>
-            <a href="#ads" className="hero__need-pill">
-              <span className="emoji">📈</span> Quiero que me encuentren en Google
+            <a href="#ads" className="hero__solution-card">
+              <div className="hero__solution-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><polyline points="11 8 11 11 14 11"/></svg>
+              </div>
+              <div className="hero__solution-info">
+                <h4>Google & SEO Local</h4>
+                <span>Para salir el primero cuando busquen tus servicios en León</span>
+                <span className="hero__solution-badge">Captación directa · Info</span>
+              </div>
             </a>
           </Reveal>
 
@@ -3429,50 +3845,73 @@ function HomePage() {
         </div>
       </div>
 
-      {/* 2. SECTORES QUE IMPULSAMOS */}
-      <section className="section wrap" id="sectores" style={{ overflow: "visible" }}>
+      {/* SECTORES + PROYECTOS FUSIONADOS */}
+      <section className="section wrap" id="proyectos" style={{ overflow: "visible" }}>
+        <div id="sectores" style={{ position: "relative", top: "-90px" }} />
         <div className="ambient-glow" />
         <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Sectores que impulsamos</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Diseñado a la medida de tu sector</h2></Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Sectores que impulsamos & Proyectos reales</span></Reveal>
+          <Reveal delay={100}><h2 className="display">Webs hechas a la medida de tu sector</h2></Reveal>
           <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
-            Adaptamos la estructura, el diseño y las llamadas a la acción según cómo compran tus clientes en León.
+            Elige tu tipo de negocio para ver proyectos reales, resultados comprobados y cómo conseguimos que vendas más en León.
           </Reveal>
         </div>
-        <div className="audience-grid">
+
+        {/* Filter Tabs */}
+        <div className="sector-nav-tabs">
           {[
-            {
-              icon: "🩺",
-              title: "Clínicas, Fisioterapia & Salud",
-              desc: "Transmite máxima confianza profesional, muestra casos reales y permite agendar citas directamente por WhatsApp o sistema web.",
-              tag: "Citas + Confianza"
-            },
-            {
-              icon: "💈",
-              title: "Barberías, Peluquerías & Estética",
-              desc: "Agenda online 24/7 para que tus clientes reserven su hora en 30 segundos mientras tú trabajas sin interrupciones.",
-              tag: "Reservas 24/7"
-            },
-            {
-              icon: "⚖️",
-              title: "Despachos, Asesorías & Consultoría",
-              desc: "Autoridad, solvencia institucional y captación de clientes de alto valor que buscan seguridad y rapidez de contacto.",
-              tag: "Autoridad B2B"
-            },
-            {
-              icon: "🏨",
-              title: "Hoteles, Restaurantes & Comercios",
-              desc: "Menús interactivos, reservas directas sin comisiones de intermediarios y catálogo de venta online local y nacional.",
-              tag: "Venta directa sin comisión"
-            }
-          ].map((item, i) => (
-            <Reveal key={i} delay={i * 80} className="audience-card">
-              <span className="audience-card__icon">{item.icon}</span>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-              <span className="audience-card__tag">{item.tag}</span>
-            </Reveal>
+            { id: "all", label: "✨ Todos los sectores" },
+            { id: "barberia", label: "💈 Barberías & Estética" },
+            { id: "clinica", label: "🩺 Clínicas & Salud" },
+            { id: "asesoria", label: "⚖️ Despachos & Asesorías" },
+            { id: "hotel", label: "🏨 Hoteles & Restauración" },
+            { id: "inmobiliaria", label: "🏢 Inmobiliarias & Comercio" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              className={`sector-tab-btn ${selectedSector === tab.id ? "active" : ""}`}
+              onClick={() => setSelectedSector(tab.id)}
+            >
+              {tab.label}
+            </button>
           ))}
+        </div>
+
+        {/* Filtered Grid */}
+        <div className="sector-grid">
+          {CASES
+            .filter((c) => selectedSector === "all" || c.id === selectedSector)
+            .map((c, i) => (
+              <TiltCard
+                key={i}
+                delay={(i % 3) * 80}
+                className="sector-project-card"
+                style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
+              >
+                <div className="sector-project-card__img-wrap">
+                  <img className="sector-project-card__img" src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
+                  <span className="sector-project-card__tag">{c.tag}</span>
+                  <span className="sector-project-card__sector-pill">{c.sector}</span>
+                </div>
+                <div className="sector-project-card__body">
+                  <div className="sector-project-card__header">
+                    <h3>{c.n}</h3>
+                    <span className="sector-project-card__location">📍 {c.loc}</span>
+                  </div>
+                  <p className="sector-project-card__desc">{c.desc}</p>
+                  <div className="sector-project-card__result">
+                    <div>
+                      <span style={{ fontSize: 11, color: "var(--muted)", display: "block", textTransform: "uppercase", letterSpacing: "0.05em" }}>Resultado clave</span>
+                      <span className="sector-project-card__metric">{c.metric}</span>
+                    </div>
+                    <span className="sector-project-card__time">⚡ {c.time}</span>
+                  </div>
+                  <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
+                    {c.cta}
+                  </a>
+                </div>
+              </TiltCard>
+            ))}
         </div>
       </section>
 
@@ -3699,25 +4138,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CASE STUDIES */}
-      <section className="section wrap" style={{ overflow: "visible" }}>
-        <div className="ambient-glow" />
-        <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Resultados reales</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Proyectos que ya generan clientes</h2></Reveal>
-        </div>
-        <div className="cases">
-          {CASES.map((c, i) => (
-            <TiltCard key={i} delay={(i % 3) * 90} className="case" as="a" href={c.url}
-              style={{ "--glare-color": c.glare, "--sweep-color": c.sweep, "--glare-size": "340px" }}>
-              <img className="case__img" src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
-              {c.cat && <span className="case__cat">{c.cat}</span>}
-              {c.metric && <span className="case__metric">{c.metric}</span>}
-              <div className="case__meta"><b>{c.n}</b><span className="case__view">Ver caso →</span></div>
-            </TiltCard>
-          ))}
-        </div>
-      </section>
 
       {/* TESTIMONIALS */}
       <section className="section">
