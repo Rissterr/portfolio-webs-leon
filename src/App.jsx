@@ -210,61 +210,74 @@ const CSS = `
 
 /* ---- TOP LIQUID GLASS NEWS TICKER ---- */
 .top-ticker {
-  position: relative;
-  z-index: 60;
-  width: 100%;
-  background: rgba(6, 11, 32, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(146, 187, 255, 0.16);
-  padding: 8px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  z-index: 100;
+  background: rgba(5, 7, 24, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(146, 187, 255, 0.12);
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
+  font-family: var(--body);
+}
+.top-ticker__inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 .top-ticker__badge {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(0, 212, 255, 0.12);
-  border: 1px solid rgba(0, 212, 255, 0.35);
+  gap: 6px;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.28);
   color: #C5EBFF;
-  font-size: 11px;
+  font-size: 9.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 4px 12px;
+  padding: 2.5px 8px;
   border-radius: 100px;
-  margin-left: 20px;
-  margin-right: 14px;
+  margin-left: 16px;
+  margin-right: 12px;
   z-index: 2;
-  box-shadow: 0 0 14px rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.15);
 }
 .top-ticker__badge-dot {
-  width: 6.5px;
-  height: 6.5px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: #00D4FF;
-  box-shadow: 0 0 8px #00D4FF, 0 0 14px rgba(0,212,255,0.8);
+  box-shadow: 0 0 6px #00D4FF, 0 0 10px rgba(0,212,255,0.8);
   animation: tickerDotPulse 1.8s ease-in-out infinite;
 }
 @keyframes tickerDotPulse {
   0%, 100% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.35); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 1; }
 }
 .top-ticker__viewport {
   flex: 1;
   overflow: hidden;
   position: relative;
-  mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
 }
 .top-ticker__track {
   display: inline-flex;
+  align-items: center;
   white-space: nowrap;
-  gap: 52px;
-  animation: tickerScroll 34s linear infinite;
+  gap: 32px;
+  animation: tickerScroll 42s linear infinite;
+  will-change: transform;
 }
 .top-ticker:hover .top-ticker__track {
   animation-play-state: paused;
@@ -276,30 +289,49 @@ const CSS = `
 .top-ticker__item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-  color: #D3E0FD;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #BACBEE;
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
-.top-ticker__item b {
-  color: #FFFFFF;
+.top-ticker__icon {
+  width: 13px;
+  height: 13px;
+  color: #00D4FF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
-.top-ticker__sep {
-  color: rgba(146, 187, 255, 0.35);
+.top-ticker__icon svg {
+  width: 100%;
+  height: 100%;
+}
+.top-ticker__dot {
+  color: rgba(146, 187, 255, 0.3);
+  font-size: 11px;
   margin-left: 4px;
 }
 
 /* ---- nav ---- */
-.nav{ position:fixed; top:36px; left:0; right:0; z-index:50; transition:all .3s ease; }
+.nav{ position:fixed; top:32px; left:0; right:0; z-index:50; transition:all .3s cubic-bezier(0.16, 1, 0.3, 1); }
 .nav::before{ content:''; position:absolute; inset:0; opacity:0; transition:opacity .3s ease;
-  background:linear-gradient(to bottom, rgba(5,7,26,.9), rgba(5,7,26,.55) 70%, transparent);
+  background:linear-gradient(to bottom, rgba(5,7,26,.95), rgba(5,7,26,.6) 70%, transparent);
   pointer-events:none; z-index:-1; }
 .nav.scrolled{ top:0; }
 .nav.scrolled::before{ opacity:1; }
 .nav__inner{ display:flex; align-items:center; justify-content:space-between;
-  max-width:1200px; margin:0 auto; padding:16px 24px; }
-.nav.scrolled .nav__inner{ background:rgba(8,11,34,.8); backdrop-filter:blur(16px);
-  border:1px solid var(--line); border-radius:100px; margin:10px auto; max-width:1100px; }
+  max-width:1200px; margin:0 auto; padding:12px 24px; }
+.nav.scrolled .nav__inner{ background:rgba(8,11,34,.88); backdrop-filter:blur(16px);
+  border:1px solid var(--line); border-radius:100px; margin:8px auto; max-width:1100px; padding:10px 24px; }
+@media(max-width:860px){
+  .top-ticker { height: 28px; }
+  .top-ticker__badge { font-size: 8.5px; padding: 2px 6px; margin-left: 10px; margin-right: 8px; }
+  .top-ticker__item { font-size: 10.5px; gap: 4px; }
+  .nav { top: 28px; }
+  .nav.scrolled { top: 0; }
+}
 .nav__brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-family:var(--display); }
 .nav__ava{ width:34px; height:34px; border-radius:50%; overflow:hidden;
   background:linear-gradient(135deg,#427BD8,#C5EBFF); flex-shrink:0; }
@@ -3433,6 +3465,14 @@ function Btn({ glossy = false, children, href = "#", to = null, className = "", 
 }
 
 /* ---------- data ---------- */
+const TICKER_ITEMS = [
+  { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>, label: "Webs de alto impacto en León" },
+  { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>, label: "Presupuesto 100% cerrado" },
+  { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>, label: "Entrega lista en 1–2 semanas" },
+  { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, label: "30 días de garantía y soporte" },
+  { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, label: "León, Ponferrada, Astorga y provincia" },
+  { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, label: "Trato directo por WhatsApp" },
+];
 const BRANDS = ["Barberías & Estética", "Clínicas de Salud", "Fisioterapia", "Despachos & Asesorías", "Hoteles Rurales", "Restaurantes", "Comercio Local", "Talleres & Reformas"];
 const PROJECTS = [
   { n: "Barbería El Cid",       img: "assets/proj-hotel.webp"        },
@@ -3640,9 +3680,16 @@ function HomePage() {
             <span className="top-ticker__badge-dot" />
             <span>EN DIRECTO</span>
           </div>
-          <div className="top-ticker__track">
-            <span>✨ Webs y captación para negocios de León · 🔒 Presupuesto 100% cerrado sin costes sorpresa · ⚡ Entrega en 1–2 semanas · 🛡️ 30 días de garantía y soporte directo · 📍 León, Ponferrada, Astorga y provincia · 💬 Trato directo por WhatsApp</span>
-            <span>✨ Webs y captación para negocios de León · 🔒 Presupuesto 100% cerrado sin costes sorpresa · ⚡ Entrega en 1–2 semanas · 🛡️ 30 días de garantía y soporte directo · 📍 León, Ponferrada, Astorga y provincia · 💬 Trato directo por WhatsApp</span>
+          <div className="top-ticker__viewport">
+            <div className="top-ticker__track">
+              {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+                <span key={i} className="top-ticker__item">
+                  <span className="top-ticker__icon">{item.icon}</span>
+                  <span>{item.label}</span>
+                  <span className="top-ticker__dot">·</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
