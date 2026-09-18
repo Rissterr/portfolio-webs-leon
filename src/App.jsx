@@ -2758,6 +2758,8 @@ const CSS = `
 @media(max-width:640px){
   .cookie-banner{ left:10px; right:10px; bottom:80px; padding:14px 16px; flex-direction:column; align-items:stretch; text-align:left; }
   .cookie-banner__btn{ width:100%; }
+}
+
 /* ---- 10 MEJORAS VISUALES Y ESTRUCTURALES ---- */
 /* 1. Barra de Garantías y Tranquilidad */
 .guarantees-bar {
@@ -2778,7 +2780,6 @@ const CSS = `
   gap: 14px;
 }
 .guarantee-icon {
-  font-size: 24px;
   background: rgba(146,187,255,0.12);
   border: 1px solid rgba(146,187,255,0.25);
   border-radius: 12px;
@@ -2788,6 +2789,12 @@ const CSS = `
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: #00D4FF;
+}
+.guarantee-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #00D4FF;
 }
 .guarantee-item strong {
   display: block;
@@ -2807,6 +2814,35 @@ const CSS = `
 }
 @media(max-width:580px){
   .guarantees-bar { grid-template-columns: 1fr; gap: 18px; padding: 18px; }
+}
+
+/* Hero micro trust badges */
+.hero__trust-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.hero__trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #C5EBFF;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.hero__trust-pill svg {
+  width: 14px;
+  height: 14px;
+  stroke: #00D4FF;
+  flex-shrink: 0;
+}
+.hero__trust-dot {
+  color: rgba(146,187,255,0.4);
+  font-size: 14px;
 }
 
 /* 2. Grid de Sectores y Audiencia */
@@ -2909,6 +2945,27 @@ const CSS = `
   padding: 6px 14px;
   border-radius: 8px;
   margin-bottom: 12px;
+}
+.contact__trust-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  font-size: 13.5px;
+  color: #C5EBFF;
+}
+.contact__trust-badges span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.contact__trust-badges svg {
+  width: 14px;
+  height: 14px;
+  stroke: #00D4FF;
+  flex-shrink: 0;
 }
 
 /* 5. Botón Flotante WhatsApp */
@@ -3020,14 +3077,18 @@ const CSS = `
 }
 .sector-project-card__media {
   position: relative;
+  width: 100%;
   aspect-ratio: 16/10;
   overflow: hidden;
-  background: #030616;
+  background: #060a1e;
+  border-radius: 18px 18px 0 0;
 }
 .sector-project-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
+  display: block;
   transition: transform 0.45s ease;
 }
 .sector-project-card:hover .sector-project-card__media img {
@@ -3037,14 +3098,15 @@ const CSS = `
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(6, 10, 28, 0.85);
-  border: 1px solid rgba(146, 187, 255, 0.3);
+  background: rgba(6, 10, 28, 0.88);
+  border: 1px solid rgba(146, 187, 255, 0.35);
   color: #C5EBFF;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 100px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .sector-project-card__body {
   padding: 22px 20px 24px;
@@ -3052,20 +3114,36 @@ const CSS = `
   flex-direction: column;
   flex: 1;
 }
+.sector-project-card__sector-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00D4FF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
 .sector-project-card__header {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 8px;
 }
 .sector-project-card__header h3 {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 700;
   color: #FFFFFF;
+  line-height: 1.25;
+  margin: 0;
 }
 .sector-project-card__location {
   font-size: 12px;
   color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
 }
 .sector-project-card__desc {
   font-size: 13.5px;
@@ -3084,14 +3162,24 @@ const CSS = `
   justify-content: space-between;
   margin-bottom: 18px;
 }
+.sector-project-card__result-label {
+  font-size: 10.5px;
+  color: var(--muted);
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 .sector-project-card__metric {
   font-size: 14px;
   font-weight: 800;
   color: #00D4FF;
 }
 .sector-project-card__time {
-  font-size: 11.5px;
+  font-size: 12px;
   color: #C5EBFF;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 .sector-project-card__cta {
   display: inline-flex;
@@ -3342,12 +3430,12 @@ function Btn({ glossy = false, children, href = "#", to = null, className = "", 
 /* ---------- data ---------- */
 const BRANDS = ["Barberías & Estética", "Clínicas de Salud", "Fisioterapia", "Despachos & Asesorías", "Hoteles Rurales", "Restaurantes", "Comercio Local", "Talleres & Reformas"];
 const PROJECTS = [
-  { n: "Barbería El Cid",       img: "assets/proj-hotel.webp"        },
-  { n: "Clínica San Marcos",    img: "assets/proj-properties.webp"   },
-  { n: "Lex Asesores León",     img: "assets/proj-novaest.webp"      },
-  { n: "Nova Estética",         img: "assets/proj-lexleon.webp"      },
-  { n: "Inmobiliaria Leonesa",  img: "assets/proj-actualizaria.webp" },
-  { n: "Casona El Curueño",     img: "assets/proj-powerpulse.webp"   },
+  { n: "Hotel Rural Casona Real", img: "assets/proj-hotel.webp"        },
+  { n: "Clínica San Marcos",       img: "assets/proj-properties.webp"   },
+  { n: "Lex Asesores León",        img: "assets/proj-novaest.webp"      },
+  { n: "Clínica Dental Nova",      img: "assets/proj-lexleon.webp"      },
+  { n: "Inmobiliaria Leonesa",     img: "assets/proj-actualizaria.webp" },
+  { n: "VIP Barber Shop",          img: "assets/proj-powerpulse.webp"   },
 ];
 const CASES = [
   { 
@@ -3355,7 +3443,7 @@ const CASES = [
     n: "VIP Barber Shop",   
     sector: "Barbería & Estética",
     loc: "León centro",
-    img: "assets/proj-hotel.webp",         
+    img: "assets/proj-powerpulse.webp",         
     url: "#contact", 
     tag: "Reservas 24/7 · Bizum",
     desc: "Agenda online sincronizada con Google Calendar y pagos integrados. Los clientes reservan en 30 segundos sin llamadas.",
@@ -3385,7 +3473,7 @@ const CASES = [
     n: "Hotel Rural Casona Real", 
     sector: "Hoteles & Restaurantes",
     loc: "Astorga",
-    img: "assets/proj-powerpulse.webp", 
+    img: "assets/proj-hotel.webp", 
     url: "#contact", 
     tag: "Venta directa sin comisiones",
     desc: "Motor de reservas directas con pasarela segura, galería fotográfica inmersiva y carta digital para el restaurante.",
@@ -3615,44 +3703,25 @@ function HomePage() {
           </Reveal>
           <Reveal delay={320} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Btn glossy href="#contact">Pedir propuesta sin compromiso →</Btn>
-            <span className="hero__security-note">🔒 Precio cerrado garantizado · ⚡ Respuesta en menos de 24h · 📍 Especialistas en León</span>
+            <div className="hero__trust-badges">
+              <span className="hero__trust-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>Precio cerrado</span>
+              </span>
+              <span className="hero__trust-dot">•</span>
+              <span className="hero__trust-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Respuesta en menos de 24h</span>
+              </span>
+              <span className="hero__trust-dot">•</span>
+              <span className="hero__trust-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Especialistas en León</span>
+              </span>
+            </div>
           </Reveal>
 
-          {/* SELECTOR RÁPIDO DE NECESIDAD / SOLUCIONES VISUALES */}
-          <Reveal delay={380} className="hero__solutions-cards">
-            <a href="#proyectos" onClick={() => setSelectedSector("all")} className="hero__solution-card">
-              <div className="hero__solution-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-              </div>
-              <div className="hero__solution-info">
-                <h4>Web Corporativa</h4>
-                <span>Para clínicas, despachos y negocios que buscan imagen y llamadas</span>
-                <span className="hero__solution-badge">Desde 450€ · Ver ejemplos</span>
-              </div>
-            </a>
-            <a href="#proyectos" onClick={() => setSelectedSector("barberia")} className="hero__solution-card">
-              <div className="hero__solution-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
-              </div>
-              <div className="hero__solution-info">
-                <h4>Reservas & Citas 24/7</h4>
-                <span>Para barberías, centros de estética y hoteles con agenda online</span>
-                <span className="hero__solution-badge">Desde 750€ · Ver casos</span>
-              </div>
-            </a>
-            <a href="#ads" className="hero__solution-card">
-              <div className="hero__solution-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><polyline points="11 8 11 11 14 11"/></svg>
-              </div>
-              <div className="hero__solution-info">
-                <h4>Google & SEO Local</h4>
-                <span>Para salir el primero cuando busquen tus servicios en León</span>
-                <span className="hero__solution-badge">Captación directa · Info</span>
-              </div>
-            </a>
-          </Reveal>
-
-          <Reveal delay={440} className="hero__trust">
+          <Reveal delay={400} className="hero__trust">
             <div className="hero__avatars">
               {["C","L","J","A","M"].map((l,i)=><span key={i} className="hero__av">{l}</span>)}
             </div>
@@ -3683,28 +3752,36 @@ function HomePage() {
       <section className="wrap" style={{ marginTop: "-20px", marginBottom: "40px", position: "relative", zIndex: 10 }}>
         <div className="guarantees-bar">
           <div className="guarantee-item">
-            <span className="guarantee-icon">⚡</span>
+            <span className="guarantee-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
             <div>
               <strong>Entrega en 1–2 semanas</strong>
               <p>Tu web lista y funcionando sin demoras ni meses de espera.</p>
             </div>
           </div>
           <div className="guarantee-item">
-            <span className="guarantee-icon">🔒</span>
+            <span className="guarantee-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
             <div>
               <strong>Precio 100% cerrado</strong>
               <p>Sin mensualidades obligatorias ni sorpresas en la factura.</p>
             </div>
           </div>
           <div className="guarantee-item">
-            <span className="guarantee-icon">🛡️</span>
+            <span className="guarantee-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
             <div>
               <strong>Garantía de 30 días</strong>
               <p>Ajustes, retoques y soporte post-lanzamiento incluidos.</p>
             </div>
           </div>
           <div className="guarantee-item">
-            <span className="guarantee-icon">📍</span>
+            <span className="guarantee-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
             <div>
               <strong>Negocios de León</strong>
               <p>Trato directo de persona a persona, sin intermediarios.</p>
@@ -3754,16 +3831,16 @@ function HomePage() {
         {/* Filter Tabs */}
         <div className="sector-nav-tabs">
           {[
-            { id: "all", label: "✨ Todos los sectores" },
-            { id: "barberia", label: "💈 Barberías & Estética" },
-            { id: "clinica", label: "🩺 Clínicas & Salud" },
-            { id: "asesoria", label: "⚖️ Despachos & Asesorías" },
-            { id: "hotel", label: "🏨 Hoteles & Restauración" },
-            { id: "inmobiliaria", label: "🏢 Inmobiliarias & Comercio" },
+            { id: "all", label: "Todos los sectores" },
+            { id: "barberia", label: "Barberías & Estética" },
+            { id: "clinica", label: "Clínicas & Salud" },
+            { id: "asesoria", label: "Despachos & Asesorías" },
+            { id: "hotel", label: "Hoteles & Restauración" },
+            { id: "inmobiliaria", label: "Inmobiliarias & Comercio" },
           ].map((tab) => (
             <button
               key={tab.id}
-              className={`sector-tab-btn ${selectedSector === tab.id ? "active" : ""}`}
+              className={`sector-tab-btn ${selectedSector === tab.id ? "sector-tab-btn--active" : ""}`}
               onClick={() => setSelectedSector(tab.id)}
             >
               {tab.label}
@@ -3782,23 +3859,31 @@ function HomePage() {
                 className="sector-project-card"
                 style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
               >
-                <div className="sector-project-card__img-wrap">
-                  <img className="sector-project-card__img" src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
-                  <span className="sector-project-card__tag">{c.tag}</span>
-                  <span className="sector-project-card__sector-pill">{c.sector}</span>
+                <div className="sector-project-card__media">
+                  <img src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
+                  <span className="sector-project-card__badge">{c.tag}</span>
                 </div>
                 <div className="sector-project-card__body">
                   <div className="sector-project-card__header">
-                    <h3>{c.n}</h3>
-                    <span className="sector-project-card__location">📍 {c.loc}</span>
+                    <div>
+                      <span className="sector-project-card__sector-pill">{c.sector}</span>
+                      <h3>{c.n}</h3>
+                    </div>
+                    <span className="sector-project-card__location">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      {c.loc}
+                    </span>
                   </div>
                   <p className="sector-project-card__desc">{c.desc}</p>
                   <div className="sector-project-card__result">
                     <div>
-                      <span style={{ fontSize: 11, color: "var(--muted)", display: "block", textTransform: "uppercase", letterSpacing: "0.05em" }}>Resultado clave</span>
+                      <span className="sector-project-card__result-label">Resultado clave</span>
                       <span className="sector-project-card__metric">{c.metric}</span>
                     </div>
-                    <span className="sector-project-card__time">⚡ {c.time}</span>
+                    <span className="sector-project-card__time">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      {c.time}
+                    </span>
                   </div>
                   <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
                     {c.cta}
@@ -4184,7 +4269,8 @@ function HomePage() {
             <div className="calc-result__num">desde <b>{calcTotal.toLocaleString("es-ES")}<span>€</span></b></div>
             <div className="calc-result__sub">Web base incluida · pago único sin cuotas</div>
             <div className="calc-result__timeline">
-              ⏱️ <b>Tiempo estimado:</b> {calcNeeds.includes("tienda") ? "2 a 3 semanas" : "7 a 14 días"}
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 14, height: 14, display: "inline-block", verticalAlign: "middle", marginRight: 5 }}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <b>Tiempo estimado:</b> {calcNeeds.includes("tienda") ? "2 a 3 semanas" : "7 a 14 días"}
             </div>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px", width: "100%", justifyContent: "center", flexWrap: "wrap" }}>
               <a
@@ -4201,7 +4287,8 @@ function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                💬 Pedir por WhatsApp →
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16, display: "inline-block", verticalAlign: "middle", marginRight: 6 }}><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Pedir por WhatsApp →
               </a>
             </div>
           </div>
@@ -4255,16 +4342,25 @@ function HomePage() {
               Cuéntanos tu proyecto en una llamada de 15 minutos o por WhatsApp. Analizamos tu caso gratis y te damos un presupuesto cerrado sin sorpresas.
             </p>
             <div className="contact__actions">
-              <Btn glossy href="mailto:hola@leonwebs.es?subject=Presupuesto%20Web%20Leon">📅 Agendar llamada gratis →</Btn>
+              <Btn glossy href="mailto:hola@leonwebs.es?subject=Presupuesto%20Web%20Leon">Agendar llamada gratis →</Btn>
               <a className="contact__whatsapp-btn" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                💬 Hablar por WhatsApp
+                Hablar por WhatsApp
               </a>
             </div>
             <div className="contact__trust-badges">
-              <span>🔒 Presupuesto cerrado garantizado</span>
-              <span>⚡ Respuesta en menos de 24h</span>
-              <span>☕ 100% Sin compromiso</span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Presupuesto cerrado garantizado
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Respuesta en menos de 24h
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                100% Sin compromiso
+              </span>
             </div>
           </div>
         </Reveal>
@@ -4301,7 +4397,7 @@ function HomePage() {
       >
         <span className="floating-whatsapp__pulse" />
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 26, height: 26 }}><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        <span className="floating-whatsapp__tooltip">¿Hablamos? Estamos online ⚡</span>
+        <span className="floating-whatsapp__tooltip">¿Hablamos? Estamos online</span>
       </a>
     </div>
   );
