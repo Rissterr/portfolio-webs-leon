@@ -57,68 +57,37 @@ const CSS = `
 }
 
 /* ---- typography ---- */
-.display{ font-family:var(--display); font-weight:700; line-height:1.02; letter-spacing:-.02em; }
-.h-grad{ background: linear-gradient(120deg, #427BD8 0%, #92BBFF 25%, #FFFFFF 50%, #92BBFF 75%, #427BD8 100%);
-  background-size: 200% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
-  animation: textShimmer 8s linear infinite;
-  filter: drop-shadow(0 4px 24px rgba(0,0,0,.55)); }
-@keyframes textShimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: -200% center; }
-}
+.display{ font-family:var(--display); font-weight:700; line-height:1.06; letter-spacing:-.02em; }
+.h-grad{ color: #FFFFFF; font-weight: 700; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
 .eyebrow {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-size: 13.5px;
-  font-weight: 600;
-  padding: 7px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(197, 235, 255, 0.35);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(146, 187, 255, 0.07) 45%, rgba(8, 14, 38, 0.68) 100%);
-  backdrop-filter: blur(20px) saturate(190%);
-  -webkit-backdrop-filter: blur(20px) saturate(190%);
-  box-shadow: 
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.45),
-    inset 0 -1px 0 0 rgba(146, 187, 255, 0.2),
-    0 10px 30px -6px rgba(0, 0, 0, 0.6),
-    0 0 24px -4px rgba(66, 123, 216, 0.4);
-  color: #FFFFFF;
-  letter-spacing: 0.02em;
-  margin-bottom: 6px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(146, 187, 255, 0.2);
+  background: rgba(146, 187, 255, 0.07);
+  color: #92BBFF;
+  margin-bottom: 12px;
+  transition: all 0.25s ease;
 }
 .eyebrow:hover {
-  border-color: rgba(197, 235, 255, 0.65);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(146, 187, 255, 0.12) 45%, rgba(12, 20, 52, 0.75) 100%);
-  box-shadow: 
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.65),
-    inset 0 -1px 0 0 rgba(146, 187, 255, 0.3),
-    0 14px 36px -6px rgba(0, 0, 0, 0.7),
-    0 0 30px -2px rgba(66, 123, 216, 0.6);
-  transform: translateY(-2px);
+  border-color: rgba(146, 187, 255, 0.4);
+  background: rgba(146, 187, 255, 0.12);
 }
 .eyebrow > span:not(.dot) {
-  color: #F0F7FF;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  color: #92BBFF;
 }
 .dot {
-  width: 6.5px;
-  height: 6.5px;
-  border-radius: 50%;
-  background: #00F0FF;
-  box-shadow: 0 0 8px #00F0FF, 0 0 14px rgba(0, 240, 255, 0.7);
-  flex-shrink: 0;
-  display: inline-block;
-  animation: dotPulse 2.4s ease-in-out infinite;
+  display: none;
 }
-@keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 6px #00F0FF, 0 0 10px rgba(0, 240, 255, 0.5); transform: scale(1); opacity: 0.9; }
-  50% { box-shadow: 0 0 14px #00F0FF, 0 0 22px rgba(0, 240, 255, 0.85); transform: scale(1.2); opacity: 1; }
-}
-.kicker{ color:var(--muted); font-size:14px; letter-spacing:.04em; text-transform:uppercase; }
-.lead{ color:var(--muted); font-size:18px; line-height:1.6; max-width:620px; }
+.kicker{ color:var(--muted); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+.lead{ color:var(--muted); font-size:17.5px; line-height:1.65; max-width:620px; }
 
 /* ---- botón píldora cristalino con efectos de luz ---- */
 @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
@@ -2975,201 +2944,7 @@ function useReveal() {
   return ref;
 }
 function Starfield() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animationFrameId;
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    // Mouse coordinates tracking with smooth damping
-    const mouse = {
-      x: -2000,
-      y: -2000,
-      targetX: -2000,
-      targetY: -2000,
-      active: false,
-    };
-    const handleMouseMove = (e) => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
-      mouse.active = true;
-    };
-    const handleTouchMove = (e) => {
-      if (e.touches && e.touches.length > 0) {
-        mouse.targetX = e.touches[0].clientX;
-        mouse.targetY = e.touches[0].clientY;
-        mouse.active = true;
-      }
-    };
-    const handleMouseLeave = () => {
-      mouse.active = false;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("mouseleave", handleMouseLeave);
-
-    const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isMobile = width < 768;
-
-    // Generar puntos sutiles distribuidos por toda la pantalla
-    const count = isReduced ? 60 : isMobile ? 90 : 200;
-    const points = [];
-
-    for (let i = 0; i < count; i++) {
-      const origX = Math.random() * width;
-      const origY = Math.random() * height;
-      const baseRadius = isMobile ? 1.0 + Math.random() * 0.8 : 1.2 + Math.random() * 1.1;
-      const baseAlpha = 0.16 + Math.random() * 0.22;
-
-      // Colores de iluminación Antigravity al activarse
-      const colors = ["#00D4FF", "#8AB4F8", "#4285F4", "#FFFFFF", "#38BDF8"];
-      const activeColor = colors[Math.floor(Math.random() * colors.length)];
-
-      points.push({
-        origX,
-        origY,
-        x: origX,
-        y: origY,
-        vx: 0,
-        vy: 0,
-        baseRadius,
-        baseAlpha,
-        activeColor,
-        phase: Math.random() * Math.PI * 2,
-        driftSpeed: 0.003 + Math.random() * 0.006,
-        driftAmpX: 4 + Math.random() * 8,
-        driftAmpY: 4 + Math.random() * 8,
-      });
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      // Interpolación suave del mouse
-      if (mouse.active) {
-        mouse.x += (mouse.targetX - mouse.x) * 0.14;
-        mouse.y += (mouse.targetY - mouse.y) * 0.14;
-      } else {
-        mouse.x += (-2000 - mouse.x) * 0.06;
-        mouse.y += (-2000 - mouse.y) * 0.06;
-      }
-
-      for (let i = 0; i < points.length; i++) {
-        const pt = points[i];
-
-        // Micro-deriva ambiental suave
-        pt.phase += pt.driftSpeed;
-        const driftX = Math.cos(pt.phase) * pt.driftAmpX;
-        const driftY = Math.sin(pt.phase) * pt.driftAmpY;
-        const targetX = pt.origX + driftX;
-        const targetY = pt.origY + driftY;
-
-        // Distancia al cursor
-        let proximity = 0;
-        if (mouse.active) {
-          const dx = pt.x - mouse.x;
-          const dy = pt.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 150; // radio de influencia
-
-          if (dist < maxDist && dist > 0.5) {
-            // Factor de cercanía (0 a 1)
-            proximity = Math.pow((maxDist - dist) / maxDist, 1.4);
-
-            // Repulsión suave (se alejan un poquitín)
-            const pushMag = proximity * 28;
-            const pushX = (dx / dist) * pushMag;
-            const pushY = (dy / dist) * pushMag;
-
-            pt.vx += pushX * 0.12;
-            pt.vy += pushY * 0.12;
-          }
-        }
-
-        // Retorno elástico a la posición original
-        pt.vx += (targetX - pt.x) * 0.06;
-        pt.vy += (targetY - pt.y) * 0.06;
-
-        // Fricción / amortiguación
-        pt.vx *= 0.86;
-        pt.vy *= 0.86;
-
-        pt.x += pt.vx;
-        pt.y += pt.vy;
-
-        // Iluminación y color según proximidad al mouse
-        const currentAlpha = Math.min(0.95, pt.baseAlpha + proximity * 0.75);
-        const currentRadius = pt.baseRadius + proximity * 1.2;
-
-        ctx.beginPath();
-        ctx.arc(pt.x, pt.y, currentRadius, 0, Math.PI * 2);
-
-        if (proximity > 0.05) {
-          // Iluminado con color Antigravity y glow
-          ctx.globalAlpha = currentAlpha;
-          ctx.fillStyle = pt.activeColor;
-          ctx.shadowBlur = proximity * 8;
-          ctx.shadowColor = pt.activeColor;
-        } else {
-          // Estado de reposo sutil
-          ctx.globalAlpha = currentAlpha;
-          ctx.fillStyle = "#8AB4F8";
-          ctx.shadowBlur = 0;
-        }
-
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-
-      ctx.globalAlpha = 1;
-      animationFrameId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("mouseleave", handleMouseLeave);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "fixed",
-        inset: 0,
-        pointerEvents: "none",
-        zIndex: 0,
-        opacity: 0.95,
-      }}
-    />
-  );
+  return null;
 }
 
 function Reveal({ children, delay = 0, className = "", as: Tag = "div", ...rest }) {
@@ -3360,36 +3135,34 @@ function Btn({ glossy = false, children, href = "#", to = null, className = "", 
 }
 
 /* ---------- data ---------- */
-const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
+const BRANDS = ["Barberías & Estética", "Clínicas de Salud", "Fisioterapia", "Despachos & Asesorías", "Hoteles Rurales", "Restaurantes", "Comercio Local", "Talleres & Reformas"];
 const PROJECTS = [
-  { n: "PowerPulse",       img: "assets/proj-hotel.webp"        },
-  { n: "Actualizar IA",    img: "assets/proj-properties.webp"   },
-  { n: "Lex León",         img: "assets/proj-novaest.webp"      },
-  { n: "Nova Estética",    img: "assets/proj-lexleon.webp"      },
-  { n: "León Properties",  img: "assets/proj-actualizaria.webp" },
-  { n: "León Suites",      img: "assets/proj-powerpulse.webp"   },
+  { n: "Barbería El Cid",       img: "assets/proj-hotel.webp"        },
+  { n: "Clínica San Marcos",    img: "assets/proj-properties.webp"   },
+  { n: "Lex Asesores León",     img: "assets/proj-novaest.webp"      },
+  { n: "Nova Estética",         img: "assets/proj-lexleon.webp"      },
+  { n: "Inmobiliaria Leonesa",  img: "assets/proj-actualizaria.webp" },
+  { n: "Casona El Curueño",     img: "assets/proj-powerpulse.webp"   },
 ];
 const CASES = [
-  { n: "VIP Barber Shop",   img: "assets/proj-hotel.webp",         url: "#contact", cat: "Barbería & Reservas",     metric: "+40 reservas/mes",        glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
-  { n: "Clínica Nova",      img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Clínica & Citas",         metric: "Lista en 10 días",        glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
-  { n: "Hotel Boutique",    img: "assets/proj-powerpulse.webp",    url: "#contact", cat: "Hotel & Reservas",        metric: "+65% reservas directas",  glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
-  { n: "Lex Asesores",      img: "assets/proj-novaest.webp",       url: "#contact", cat: "Despacho & Legal",        metric: "Captación B2B",           glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
-  { n: "León Properties",   img: "assets/proj-actualizaria.webp",  url: "#contact", cat: "Inmobiliaria & Catálogo",  metric: "+120 consultas/mes",      glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
-  { n: "Actualizar IA",     img: "assets/proj-properties.webp",    url: "#contact", cat: "Plataforma SaaS",         metric: "SaaS escalable",          glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
+  { n: "VIP Barber Shop",   img: "assets/proj-hotel.webp",         url: "#contact", cat: "Barbería · León",         metric: "+40 reservas/mes",        glare: "rgba(146,187,255,0.16)", sweep: "rgba(146,187,255,0.05)" },
+  { n: "Clínica Nova",      img: "assets/proj-lexleon.webp",       url: "#contact", cat: "Clínica · Ponferrada",     metric: "Lista en 10 días",        glare: "rgba(255,182,193,0.16)", sweep: "rgba(255,182,193,0.05)" },
+  { n: "Hotel Rural Boutique", img: "assets/proj-powerpulse.webp", url: "#contact", cat: "Hotel Rural · Astorga",   metric: "+65% reservas directas",  glare: "rgba(129,140,248,0.16)", sweep: "rgba(129,140,248,0.05)" },
+  { n: "Lex Asesores",      img: "assets/proj-novaest.webp",       url: "#contact", cat: "Asesoría · León",         metric: "Captación B2B",           glare: "rgba(245,222,179,0.15)", sweep: "rgba(245,222,179,0.04)" },
+  { n: "Inmobiliaria Leonesa", img: "assets/proj-actualizaria.webp", url: "#contact", cat: "Inmobiliaria · León",  metric: "+120 consultas/mes",      glare: "rgba(52,211,153,0.14)",  sweep: "rgba(52,211,153,0.04)"  },
+  { n: "Centro Fisioterapia", img: "assets/proj-properties.webp",  url: "#contact", cat: "Salud · León",            metric: "Citas 24/7",              glare: "rgba(192,132,252,0.16)", sweep: "rgba(192,132,252,0.05)" },
 ];
 const TESTI = [
-  { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
-  { n: "Masam",          r: "Diseñador Senior",            img: null,                    t: "Transformó por completo nuestra web anticuada. Visualmente impactante y la experiencia de usuario es de otro nivel." },
-  { n: "Saleh",          r: "Experto SEO",                  img: null,                    t: "El diseño y las ventas eran nuestro punto débil, y esto cubrió ese hueco. La mejora en nuestras métricas fue real." },
-  { n: "Marco King",     r: "Fundador, Reels Studio",       img: "assets/testi-4.webp",  t: "Atento, comunicativo y resultados excepcionales. No dudaría en volver a colaborar." },
-  { n: "Nadia Clarke",   r: "Tech & IT",                    img: "assets/testi-5.webp",  t: "Maestría con animaciones e interacciones complejas que dieron vida a toda la web." },
-  { n: "Orange",         r: "Vendedor",                     img: null,                    t: "Integró herramientas externas y animaciones personalizadas a la perfección. Atención al detalle impresionante." },
+  { n: "Carlos Morales", r: "Barbería El Cid · León centro", img: "assets/testi-1.webp", t: "Pasamos de apuntar las citas a mano a tener más de 40 reservas automáticas al mes por la web. El trato fue directo y en dos semanas estaba lista." },
+  { n: "Dra. Laura Fernández", r: "Clínica Dental · Ponferrada", img: "assets/testi-4.webp", t: "Nuestra web anterior estaba anticuada. Ahora los pacientes nos encuentran en Google y piden cita por WhatsApp directamente sin complicaciones." },
+  { n: "Javier Vega", r: "Asesoría Vega & Asoc. · León", img: null, t: "Lo mejor fue la claridad: precio cerrado desde el primer día, sin mensualidades obligatorias ni sorpresas técnicas. Muy recomendables." },
+  { n: "Marta Álvarez", r: "Casona Rural El Curueño · Astorga", img: "assets/testi-5.webp", t: "Las reservas directas desde la web nos ahorran un dineral en comisiones de portales. Ha sido la mejor inversión para el negocio." },
 ];
 const SERVICES_HELP = [
-  { k: "01", h: "Atraer, influir, convertir", p: "Estrategias que cautivan y hacen que la voz de tu marca conecte." },
-  { k: "02", h: "Identificar, posicionar, visualizar", p: "Marcas memorables que reflejan tus valores y tu posición en el mercado." },
-  { k: "03", h: "Innovar, cautivar, fidelizar", p: "Apps y productos diseñados para impulsar la interacción y la lealtad." },
-  { k: "04", h: "Atraer, convertir, crecer", p: "Webs que atraen visitantes, los convierten y disparan tu crecimiento." },
+  { k: "01", h: "Diseño claro y profesional", p: "Estructuramos tu web para que quien entre entienda en 5 segundos qué haces." },
+  { k: "02", h: "Textos que generan confianza", p: "Redactamos el contenido de tu web para que convenza y transmita solvencia." },
+  { k: "03", h: "Reservas y contacto directo", p: "Botones a WhatsApp, llamadas directas o sistema de citas automático 24/7." },
+  { k: "04", h: "Posicionamiento en tu zona", p: "Optimizada para aparecer en Google Maps y búsquedas locales de León." },
 ];
 const FAQS = [
   { cat: "precios", q: "¿Cuánto cuesta exactamente una web y hay costes ocultos?", a: "Nuestros proyectos parten desde 450 € (Plan Arranque) y 750 € (Plan Crecimiento con reservas). El presupuesto que te damos es 100% cerrado: no hay cuotas sorpresa, mensualidades obligatorias ni letras pequeñas." },
@@ -3397,7 +3170,7 @@ const FAQS = [
   { cat: "proceso", q: "¿Qué necesito tener preparado antes de empezar?", a: "Casi nada. Solo necesitamos saber a qué te dedicas, tus servicios principales y tus datos de contacto. Nosotros redactamos los textos de venta, preparamos las imágenes y estructuramos todo para que venda." },
   { cat: "proceso", q: "¿La web será mía o dependo de vosotros para siempre?", a: "La web es 100% tuya. Te entregamos acceso total como propietario y todos los archivos, sin contratos trampa ni ataduras. Tú decides libremente cómo gestionarla." },
   { cat: "tecnico", q: "¿Qué incluye el alojamiento (hosting) y dominio?", a: "Incluimos 1 año gratis de dominio personalizado (.es o .com), hosting ultrarrápido en discos NVMe, certificado de seguridad SSL y cuentas de correo corporativo." },
-  { cat: "tecnico", q: "¿Qué pasa si necesito cambios o ayuda después del lanzamiento?", a: "Dispones de 30 días de garantía y soporte directo por WhatsApp. Además con nuestro servicio Orbit Care (35 €/h o bolsa mensual) puedes pedirnos cualquier cambio o actualización cuando lo necesites." },
+  { cat: "tecnico", q: "¿Qué pasa si necesito cambios o ayuda después del lanzamiento?", a: "Dispones de 30 días de garantía y soporte directo por WhatsApp. Además con nuestro servicio de Soporte & Mantenimiento (35 €/h o bolsa mensual) puedes pedirnos cualquier cambio o actualización cuando lo necesites." },
 ];
 
 /* ---------- page ---------- */
@@ -4001,9 +3774,9 @@ function HomePage() {
               launch: "Oferta de lanzamiento", old: "650€", num: "450", sub: "Pago único · lista en 1 semana",
               feats: [
                 "Web corporativa a medida de alta velocidad (<1s)",
-                "Copywriting persuasivo y redacción de valor",
+                "Textos claros orientados a captar clientes",
                 "Optimización SEO Local & Google Maps",
-                "Botón directo a WhatsApp y formulario seguro",
+                "Botón directo a WhatsApp y formulario de contacto",
                 "Hosting NVMe + Dominio y SSL 1 año gratis"
               ],
               cta: "Quiero arrancar →", pro:false, detailHref: "/plan-arranque"
@@ -4013,35 +3786,35 @@ function HomePage() {
               launch: "Máxima Conversión", old: "1.100€", num: "750", sub: "Pago único · lista en 2 semanas",
               feats: [
                 "Todo lo de Plan Arranque",
-                "Hasta 8-10 páginas/landings por servicio",
+                "Hasta 8-10 páginas y secciones de servicios",
                 "Sistema de reservas / citas online automatizado",
-                "Efectos visuales 3D & Liquid Glass interactivos",
-                "Google Analytics 4 y seguimiento de clientes",
-                "Seguimiento y optimización 30 días"
+                "Diseño visual prémium adaptado a móvil y PC",
+                "Estadísticas y seguimiento de visitas",
+                "30 días de ajustes y soporte incluidos"
               ],
               cta: "Quiero crecer →", pro:true, detailHref: "/plan-crecimiento"
             },
             {
               label: "Tienda Online", badge: "Venta Automatizada",
-              launch: "E-Commerce 360", old: "1.800€", num: "1.200", sub: "Pago único · según catálogo",
+              launch: "Comercio Electrónico", old: "1.800€", num: "1.200", sub: "Pago único · según catálogo",
               feats: [
-                "Catálogo dinámico con filtros avanzados",
-                "Pasarelas seguras (Stripe, Bizum, Apple Pay)",
-                "Recuperación automática de carritos",
-                "Facturación y cálculo de envíos en tiempo real",
-                "Panel de control intuitivo + formación"
+                "Catálogo de productos con filtros claros",
+                "Pasarelas seguras (Stripe, Bizum, Tarjeta)",
+                "Avisos automáticos de pedido y stock",
+                "Cálculo de envíos y facturación automática",
+                "Panel de control fácil de usar + formación"
               ],
               cta: "Quiero mi tienda →", pro:false, detailHref: "/tienda-online"
             },
             {
-              label: "Orbit Care", badge: "Always On",
-              launch: "Acompañamiento Continuo", old: null, num: "35", suffix:"€/hora", sub: "Sin permanencia · Flexibilidad total",
+              label: "Soporte & Horas", badge: "Sin Permanencia",
+              launch: "Mantenimiento Web", old: null, num: "35", suffix:"€/hora", sub: "Flexibilidad total · según lo que uses",
               feats: [
-                "Mantenimiento técnico y copias en la nube",
-                "Bolsa de horas para cambios y banners",
-                "Monitorización 24/7 y velocidad continua",
-                "Evolución y optimización SEO mensual",
-                "Facturación transparente por horas"
+                "Mantenimiento técnico y copias de seguridad",
+                "Modificación de textos, fotos y nuevos banners",
+                "Revisión de velocidad y seguridad mensual",
+                "Mejoras de posicionamiento en Google",
+                "Facturación transparente solo por lo trabajado"
               ],
               cta: "Ver soporte →", pro:false, detailHref: "/por-horas"
             },
