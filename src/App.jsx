@@ -522,6 +522,239 @@ const CSS = `
   box-shadow: 0 0 14px rgba(0,212,255,0.35);
 }
 
+/* ---- 6. Carousel de Proyectos por Sector ---- */
+.sector-carousel-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+.sector-nav-tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  margin-bottom: 30px;
+}
+.sector-tab-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(146, 187, 255, 0.16);
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+.sector-tab-btn:hover {
+  color: #FFFFFF;
+  background: rgba(146, 187, 255, 0.12);
+  border-color: rgba(146, 187, 255, 0.35);
+}
+.sector-tab-btn--active {
+  background: linear-gradient(135deg, rgba(66, 123, 216, 0.45) 0%, rgba(0, 212, 255, 0.2) 100%);
+  border-color: #92BBFF;
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(66, 123, 216, 0.35);
+}
+.sector-carousel-track-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 10px 10px 30px;
+  display: flex;
+  gap: 22px;
+}
+.sector-carousel-track-container::-webkit-scrollbar {
+  display: none;
+}
+.sector-project-card {
+  width: 370px;
+  min-width: 370px;
+  max-width: 370px;
+  flex: 0 0 370px;
+  background: linear-gradient(180deg, rgba(16, 24, 60, 0.75) 0%, rgba(8, 12, 32, 0.9) 100%);
+  border: 1px solid rgba(146, 187, 255, 0.2);
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 16px 36px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+.sector-project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(146, 187, 255, 0.55);
+  box-shadow: 0 24px 50px -15px rgba(0, 102, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.sector-project-card__media {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #070B1C;
+  border-bottom: 1px solid rgba(146, 187, 255, 0.15);
+}
+.sector-project-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sector-project-card:hover .sector-project-card__media img {
+  transform: scale(1.05);
+}
+.sector-project-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(6, 10, 28, 0.82);
+  border: 1px solid rgba(146, 187, 255, 0.35);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.sector-project-card__body {
+  padding: 22px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.sector-project-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.sector-project-card__sector-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00D4FF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.sector-project-card__header h3 {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin: 0;
+}
+.sector-project-card__location {
+  font-size: 12px;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.sector-project-card__desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.sector-project-card__result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(66, 123, 216, 0.1);
+  border: 1px solid rgba(146, 187, 255, 0.18);
+  margin-bottom: 18px;
+}
+.sector-project-card__result-label {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.sector-project-card__metric {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #00D4FF;
+}
+.sector-project-card__time {
+  font-size: 12px;
+  color: #C5EBFF;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.sector-project-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(146, 187, 255, 0.22);
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.sector-project-card__cta:hover {
+  background: linear-gradient(135deg, rgba(66, 123, 216, 0.4) 0%, rgba(0, 212, 255, 0.2) 100%);
+  border-color: #92BBFF;
+}
+.sector-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+.sector-carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(146, 187, 255, 0.25);
+  color: #C5EBFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+.sector-carousel-btn:hover {
+  background: rgba(66, 123, 216, 0.35);
+  border-color: #92BBFF;
+  transform: scale(1.06);
+}
+@media(max-width:640px){
+  .sector-project-card { width: 290px; min-width: 290px; max-width: 290px; flex: 0 0 290px; }
+  .sector-project-card__media { height: 160px; }
+  .sector-project-card__body { padding: 16px 14px 18px; }
+  .sector-carousel-track-container { padding: 10px 0 20px; margin: 0; }
+}
+
 /* ---- 4. para quién es / sectores ---- */
 .audience-grid {
   display: grid;
@@ -3532,6 +3765,113 @@ function ConversionRateWidget() {
   );
 }
 
+function SectorProjectsCarousel({ selectedSector }) {
+  const trackRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const filteredCases = CASES.filter((c) => selectedSector === "all" || c.id === selectedSector);
+
+  const checkScroll = () => {
+    if (!trackRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = trackRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  useEffect(() => {
+    checkScroll();
+    const el = trackRef.current;
+    if (el) {
+      el.addEventListener("scroll", checkScroll, { passive: true });
+      return () => el.removeEventListener("scroll", checkScroll);
+    }
+  }, [filteredCases]);
+
+  const scroll = (direction) => {
+    if (!trackRef.current) return;
+    const scrollAmount = 390;
+    trackRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth"
+    });
+  };
+
+  return (
+    <div className="sector-carousel-wrap">
+      <div className="sector-carousel-track-container" ref={trackRef}>
+        {filteredCases.map((c, i) => (
+          <TiltCard
+            key={i}
+            delay={(i % 3) * 80}
+            className="sector-project-card"
+            style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
+          >
+            <div className="sector-project-card__media">
+              <img src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
+              <span className="sector-project-card__badge">{c.tag}</span>
+            </div>
+            <div className="sector-project-card__body">
+              <div className="sector-project-card__header">
+                <div>
+                  <span className="sector-project-card__sector-pill">{c.sector}</span>
+                  <h3>{c.n}</h3>
+                </div>
+                <span className="sector-project-card__location">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  {c.loc}
+                </span>
+              </div>
+              <p className="sector-project-card__desc">{c.desc}</p>
+              <div className="sector-project-card__result">
+                <div>
+                  <span className="sector-project-card__result-label">Resultado clave</span>
+                  <span className="sector-project-card__metric">{c.metric}</span>
+                </div>
+                <span className="sector-project-card__time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  {c.time}
+                </span>
+              </div>
+              <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
+                {c.cta}
+              </a>
+            </div>
+          </TiltCard>
+        ))}
+      </div>
+
+      {filteredCases.length > 2 && (
+        <div className="sector-carousel-controls">
+          <button
+            className="sector-carousel-btn"
+            onClick={() => scroll("left")}
+            aria-label="Anterior proyecto"
+            style={{ opacity: canScrollLeft ? 1 : 0.4, cursor: canScrollLeft ? "pointer" : "default" }}
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <span style={{ fontSize: 13, color: "var(--muted)", fontWeight: 500 }}>
+            Desliza para ver más proyectos
+          </span>
+          <button
+            className="sector-carousel-btn"
+            onClick={() => scroll("right")}
+            aria-label="Siguiente proyecto"
+            style={{ opacity: canScrollRight ? 1 : 0.4, cursor: canScrollRight ? "pointer" : "default" }}
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, pro, delay, detailHref }) {
   return (
     <Reveal delay={delay} className={`price-card ${pro ? "price-card--pro" : ""}`}>
@@ -3955,34 +4295,9 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PROJECT STRIP MARQUEE */}
-      <div className="section strip-section" style={{ padding: "30px 0 60px", overflow: "visible" }} id="work">
-        <div className="ambient-glow" />
-        <div className="marquee marquee--right" style={{ "--dur": "38s" }}>
-          <div className="marquee__track">
-            {[...PROJECTS, ...PROJECTS, ...PROJECTS, ...PROJECTS].map((p, i) => (
-              <div className="shot" key={i}>
-                <img className="shot__img" src={p.img} alt={p.n} loading="lazy" onError={e=>e.target.style.display='none'} />
-                <b>{p.n}</b>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* BRANDS */}
-      <div className="section brands" style={{ padding: "40px 0" }}>
-        <div className="brands__glow" />
-        <Reveal className="kicker" style={{ textAlign: "center", marginBottom: 34, position: "relative" }}>Negocios que ya confían en nosotros</Reveal>
-        <div className="marquee" style={{ "--dur": "34s", position: "relative" }}>
-          <div className="marquee__track" style={{ gap: 56 }}>
-            {[...BRANDS, ...BRANDS].map((b, i) => <div className="brand" key={i}>{b}</div>)}
-          </div>
-        </div>
-      </div>
-
-      {/* SECTORES + PROYECTOS FUSIONADOS */}
-      <section className="section wrap" id="proyectos" style={{ overflow: "visible" }}>
+      {/* SECTORES & CASOS REALES EN CARRUSEL (PROYECTOS) */}
+      <section className="section wrap" id="work" style={{ paddingTop: "20px", paddingBottom: "40px", overflow: "visible" }}>
+        <div id="proyectos" style={{ position: "relative", top: "-100px" }} />
         <div id="sectores" style={{ position: "relative", top: "-90px" }} />
         <div className="ambient-glow" />
         <div className="shead">
@@ -4013,51 +4328,20 @@ function HomePage() {
           ))}
         </div>
 
-        {/* Filtered Grid */}
-        <div className="sector-grid">
-          {CASES
-            .filter((c) => selectedSector === "all" || c.id === selectedSector)
-            .map((c, i) => (
-              <TiltCard
-                key={i}
-                delay={(i % 3) * 80}
-                className="sector-project-card"
-                style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
-              >
-                <div className="sector-project-card__media">
-                  <img src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
-                  <span className="sector-project-card__badge">{c.tag}</span>
-                </div>
-                <div className="sector-project-card__body">
-                  <div className="sector-project-card__header">
-                    <div>
-                      <span className="sector-project-card__sector-pill">{c.sector}</span>
-                      <h3>{c.n}</h3>
-                    </div>
-                    <span className="sector-project-card__location">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      {c.loc}
-                    </span>
-                  </div>
-                  <p className="sector-project-card__desc">{c.desc}</p>
-                  <div className="sector-project-card__result">
-                    <div>
-                      <span className="sector-project-card__result-label">Resultado clave</span>
-                      <span className="sector-project-card__metric">{c.metric}</span>
-                    </div>
-                    <span className="sector-project-card__time">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                      {c.time}
-                    </span>
-                  </div>
-                  <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
-                    {c.cta}
-                  </a>
-                </div>
-              </TiltCard>
-            ))}
-        </div>
+        {/* Carousel con las tarjetas completas */}
+        <SectorProjectsCarousel selectedSector={selectedSector} />
       </section>
+
+      {/* BRANDS */}
+      <div className="section brands" style={{ padding: "40px 0" }}>
+        <div className="brands__glow" />
+        <Reveal className="kicker" style={{ textAlign: "center", marginBottom: 34, position: "relative" }}>Negocios que ya confían en nosotros</Reveal>
+        <div className="marquee" style={{ "--dur": "34s", position: "relative" }}>
+          <div className="marquee__track" style={{ gap: 56 }}>
+            {[...BRANDS, ...BRANDS].map((b, i) => <div className="brand" key={i}>{b}</div>)}
+          </div>
+        </div>
+      </div>
 
       {/* COMPARISON */}
       <section className="section wrap" style={{ overflow: "visible" }}>
