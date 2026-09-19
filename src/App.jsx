@@ -5565,20 +5565,26 @@ function PorHoras() {
             Solicitar Presupuesto →
           </Btn>
         </div>
-        <PlanCard className="plan-span-4">
-          <PlanFeatureIcon><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></PlanFeatureIcon>
-          <h4>Mantenimiento</h4>
-          <p>Actualizaciones de CMS, resolución de bugs, optimización de velocidad y ajustes técnicos.</p>
+        <PlanCard className="plan-span-4 plan-card--with-image">
+          <img className="plan-card__image" src="assets/support-maintenance.jpg" alt="Mantenimiento web y optimización de velocidad" loading="lazy" />
+          <div className="plan-card__content">
+            <h4>Mantenimiento</h4>
+            <p>Actualizaciones de CMS, resolución de bugs, optimización de velocidad y ajustes técnicos.</p>
+          </div>
         </PlanCard>
-        <PlanCard className="plan-span-4">
-          <PlanFeatureIcon><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></PlanFeatureIcon>
-          <h4>Diseño y Contenido</h4>
-          <p>Modificaciones visuales puntuales, copy, rediseño de componentes y nuevos assets.</p>
+        <PlanCard className="plan-span-4 plan-card--with-image">
+          <img className="plan-card__image" src="assets/support-design.jpg" alt="Diseño de interfaz y contenido" loading="lazy" />
+          <div className="plan-card__content">
+            <h4>Diseño y Contenido</h4>
+            <p>Modificaciones visuales puntuales, copy, rediseño de componentes y nuevos assets.</p>
+          </div>
         </PlanCard>
-        <PlanCard className="plan-span-4">
-          <PlanFeatureIcon><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></PlanFeatureIcon>
-          <h4>Nuevas Funciones</h4>
-          <p>Nuevas secciones, integración de APIs ligeras, formularios avanzados o landing pages.</p>
+        <PlanCard className="plan-span-4 plan-card--with-image">
+          <img className="plan-card__image" src="assets/support-features.jpg" alt="Integración de APIs y nuevas funciones" loading="lazy" />
+          <div className="plan-card__content">
+            <h4>Nuevas Funciones</h4>
+            <p>Nuevas secciones, integración de APIs ligeras, formularios avanzados o landing pages.</p>
+          </div>
         </PlanCard>
       </div>
     </PlanShell>
@@ -5604,26 +5610,34 @@ function TiendaOnline() {
       <section>
         <div className="shead" style={{ textAlign: "left", margin: "0 0 32px" }}><h2 className="display" style={{fontSize:28}}>Arquitectura de Conversión</h2><p className="lead">Funcionalidades core diseñadas para maximizar ventas y minimizar fricción.</p></div>
         <div className="plan-grid">
-          <PlanCard className="plan-span-8">
-            <PlanFeatureIcon><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></PlanFeatureIcon>
-            <h3>Catálogo Visual Dinámico</h3>
-            <p>Galerías de productos optimizadas para velocidad de carga y visualización en alta resolución.</p>
+          <PlanCard className="plan-span-8 plan-card--with-image">
+            <img className="plan-card__image" src="assets/ecommerce-catalog.jpg" alt="Catálogo visual dinámico de productos" loading="lazy" />
+            <div className="plan-card__content">
+              <h3>Catálogo Visual Dinámico</h3>
+              <p>Galerías de productos optimizadas para velocidad de carga y visualización en alta resolución.</p>
+            </div>
           </PlanCard>
-          <PlanCard className="plan-span-4">
-            <PlanFeatureIcon><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></PlanFeatureIcon>
-            <h3>Pagos Sin Fricción</h3>
-            <p>Integración nativa con las pasarelas más fiables.</p>
-            <div className="plan-pill-row"><span>Stripe</span><span>Bizum</span><span>Transf.</span></div>
+          <PlanCard className="plan-span-4 plan-card--with-image">
+            <img className="plan-card__image" src="assets/ecommerce-payments.jpg" alt="Pasarelas de pago seguras" loading="lazy" />
+            <div className="plan-card__content">
+              <h3>Pagos Sin Fricción</h3>
+              <p>Integración nativa con las pasarelas más fiables.</p>
+              <div className="plan-pill-row"><span>Stripe</span><span>Bizum</span><span>Transf.</span></div>
+            </div>
           </PlanCard>
-          <PlanCard className="plan-span-4">
-            <PlanFeatureIcon><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></PlanFeatureIcon>
-            <h3>Gestión Centralizada</h3>
-            <p>Panel de control para administrar stock, envíos y comunicación con el cliente.</p>
+          <PlanCard className="plan-span-4 plan-card--with-image">
+            <img className="plan-card__image" src="assets/ecommerce-dashboard.jpg" alt="Panel de gestión centralizada" loading="lazy" />
+            <div className="plan-card__content">
+              <h3>Gestión Centralizada</h3>
+              <p>Panel de control para administrar stock, envíos y comunicación con el cliente.</p>
+            </div>
           </PlanCard>
-          <PlanCard className="plan-span-8">
-            <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
-            <h3>Experiencia de Carrito Fluida</h3>
-            <p>Evitamos el abandono de carritos con un flujo de compra lógico y adaptado a móviles.</p>
+          <PlanCard className="plan-span-8 plan-card--with-image">
+            <img className="plan-card__image" src="assets/ecommerce-cart.jpg" alt="Flujo de compra y carrito optimizado" loading="lazy" />
+            <div className="plan-card__content">
+              <h3>Experiencia de Carrito Fluida</h3>
+              <p>Evitamos el abandono de carritos con un flujo de compra lógico y adaptado a móviles.</p>
+            </div>
           </PlanCard>
         </div>
       </section>
