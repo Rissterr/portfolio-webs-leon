@@ -4093,11 +4093,6 @@ function HomePage() {
   const [faqCategory, setFaqCategory] = useState("all");
   const [menuOpen, setMenuOpen] = useState(false);
   const [calcNeeds, setCalcNeeds] = useState([]);
-  const helpSectionRef = useRef(null);
-  const rayLRef = useRef(null);
-  const rayRRef = useRef(null);
-  const rayTRRef = useRef(null);
-  const rayBRef = useRef(null);
 
   const CALC_ADDERS = { reservas: 150, tienda: 750, ads: 200 };
   const CALC_BASE = 450;
@@ -4126,35 +4121,6 @@ function HomePage() {
     return () => window.removeEventListener("mousemove", handleGlobalMouseMove);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!helpSectionRef.current) return;
-      const rect = helpSectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      const sectionCenter = rect.top + rect.height / 2;
-      const viewportCenter = windowHeight / 2;
-
-      const maxDist = windowHeight / 2;
-      const dist = Math.max(0, Math.min(maxDist, sectionCenter - viewportCenter));
-      const progress = dist / maxDist;
-      const offset = `${progress * 100}%`;
-
-      if (rayLRef.current) rayLRef.current.style.setProperty("--ray-offset", offset);
-      if (rayRRef.current) rayRRef.current.style.setProperty("--ray-offset", offset);
-      if (rayTRRef.current) rayTRRef.current.style.setProperty("--ray-offset", offset);
-      if (rayBRef.current) rayBRef.current.style.setProperty("--ray-offset", offset);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
   return (
     <div className="site">
       <Starfield />
@@ -4169,7 +4135,7 @@ function HomePage() {
         <div className="nav__inner">
           <div className="nav__brand">León Webs</div>
           <div className="nav__links">
-            <a href="#proyectos">Sectores & Casos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
+            <a href="#proyectos">Proyectos</a><a href="#comparativa">Por qué nosotros</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#calculadora">Calculadora</a><a href="#faq">FAQ</a>
           </div>
           <div className="nav__cta"><Btn href="#contact">Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
@@ -4182,10 +4148,11 @@ function HomePage() {
       {menuOpen && (
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
-          <a href="#proyectos" onClick={() => setMenuOpen(false)}>Sectores & Casos</a>
-          <a href="#services" onClick={() => setMenuOpen(false)}>Soluciones</a>
+          <a href="#proyectos" onClick={() => setMenuOpen(false)}>Proyectos</a>
+          <a href="#comparativa" onClick={() => setMenuOpen(false)}>Por qué nosotros</a>
           <a href="#proceso" onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
           <a href="#precios" onClick={() => setMenuOpen(false)}>Planes y Precios</a>
+          <a href="#calculadora" onClick={() => setMenuOpen(false)}>Calculadora</a>
           <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
           <div style={{marginTop:24, width:"80%"}}><Btn glossy href="#contact" onClick={() => setMenuOpen(false)}>Hablamos gratis</Btn></div>
         </div>
@@ -4283,48 +4250,6 @@ function HomePage() {
         </Reveal>
       </header>
 
-      {/* 1. BARRA DE GARANTÍAS Y TRANQUILIDAD */}
-      <section className="wrap" style={{ marginTop: "-20px", marginBottom: "40px", position: "relative", zIndex: 10 }}>
-        <div className="guarantees-bar">
-          <div className="guarantee-item">
-            <span className="guarantee-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            </span>
-            <div>
-              <strong>Entrega en 1–2 semanas</strong>
-              <p>Tu web lista y funcionando sin demoras ni meses de espera.</p>
-            </div>
-          </div>
-          <div className="guarantee-item">
-            <span className="guarantee-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </span>
-            <div>
-              <strong>Precio 100% cerrado</strong>
-              <p>Sin mensualidades obligatorias ni sorpresas en la factura.</p>
-            </div>
-          </div>
-          <div className="guarantee-item">
-            <span className="guarantee-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </span>
-            <div>
-              <strong>Garantía de 30 días</strong>
-              <p>Ajustes, retoques y soporte post-lanzamiento incluidos.</p>
-            </div>
-          </div>
-          <div className="guarantee-item">
-            <span className="guarantee-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            <div>
-              <strong>Negocios de León</strong>
-              <p>Trato directo de persona a persona, sin intermediarios.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTORES & CASOS REALES EN CARRUSEL (PROYECTOS) */}
       <section className="section wrap" id="work" style={{ paddingTop: "20px", paddingBottom: "40px", overflow: "visible" }}>
         <div id="proyectos" style={{ position: "relative", top: "-100px" }} />
@@ -4374,7 +4299,7 @@ function HomePage() {
       </div>
 
       {/* COMPARISON */}
-      <section className="section wrap" style={{ overflow: "visible" }}>
+      <section className="section wrap" id="comparativa" style={{ overflow: "visible" }}>
         <div className="ambient-glow" />
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>No diseñamos webs para rellenar internet</span></Reveal>
@@ -4404,90 +4329,6 @@ function HomePage() {
         <Reveal delay={180} className="conv-proof-wrap">
           <ConversionRateWidget />
         </Reveal>
-      </section>
-
-      {/* ABOUT */}
-      <section className="section about-section" id="about">
-        <div className="about-section__bgwrap">
-          <div className="about-section__glow" />
-          <div className="about-section__horizon" />
-        </div>
-        <div className="wrap">
-        <div className="about__inner">
-          <div className="about__photo hide-m">
-            <img src="assets/avatar-color.webp" alt="León Webs" onError={e=>{e.target.style.display='none'}} />
-          </div>
-          <div className="about__content">
-            <div className="shead" style={{ textAlign:"center", alignItems:"center" }}>
-              <Reveal className="eyebrow" as="div"><span className="dot" /><span>Por qué somos diferentes</span></Reveal>
-              <Reveal delay={100}><h2 className="display">Escalamos negocios que ya funcionan</h2></Reveal>
-            </div>
-            <Reveal delay={150} className="lead" as="p" style={{ margin: "0 0 28px" }}>
-              Trabajamos con negocios que ya generan ingresos: barberías, clínicas, asesorías y comercios locales. Convertimos su web en una herramienta que vende. Resultado real: una barbería en León pasó de 0 a más de 40 reservas online al mes en 6 semanas.
-            </Reveal>
-            <div className="about__cards">
-          {[
-            {
-              svg: <><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></>,
-              t: "Auditoría estratégica",
-              d: "Detectamos exactamente qué frena tu captación de clientes."
-            },
-            {
-              svg: <><path d="M13 10V3L4 14h7v7l9-11h-7z"/></>,
-              t: "Ingeniería orientada a ventas",
-              d: "Cada estructura, sección y botón tiene un propósito comercial."
-            },
-            {
-              svg: <><path d="M9 19V5m0 0L5 9m4-4l4-4"/></>,
-              t: "Acompañamiento Always On",
-              d: "Ajustes y optimización continua basada en datos reales."
-            },
-          ].map(({svg, t, d}, i) => (
-            <AboutCard key={i} delay={i * 90} svg={svg} t={t} d={d} />
-          ))}
-            </div>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      {/* SERVICIOS — 3 SOLUCIONES CLARAS */}
-      <section className="section wrap" id="services" style={{ overflow: "visible" }}>
-        <div className="ambient-glow" />
-        <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Soluciones a tu medida</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Lo que ofrecemos para tu negocio</h2></Reveal>
-          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
-            Todo lo necesario para conseguir clientes sin complicaciones técnicas.
-          </Reveal>
-        </div>
-        <div className="svc-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
-          {[
-            { 
-              image: "assets/service-web-design.webp", 
-              alt: "Portátil mostrando una página web profesional", 
-              h: "Web Corporativa & Autoridad", 
-              p: "Para profesionales, clínicas, despachos y comercios que necesitan proyectar solvencia inmediata, transmitir máxima confianza y captar contactos por formulario o WhatsApp." 
-            },
-            { 
-              image: "assets/service-ecommerce.webp", 
-              alt: "Móvil y producto para una tienda online", 
-              h: "Tienda Online & Reservas 24/7", 
-              p: "Para negocios que venden productos o servicios con agenda de citas automatizada (Stripe / Bizum / Apple Pay) sin necesidad de atender llamadas a mano." 
-            },
-            { 
-              image: "assets/service-local-visibility.webp", 
-              alt: "Negocio local visible en mapas y buscadores", 
-              h: "SEO Local & Orbit Care (Always On)", 
-              p: "Para aparecer en los primeros puestos de Google Maps cuando busquen tus servicios en tu zona y mantener tu web rápida, segura y actualizada todos los meses." 
-            },
-          ].map(({image,alt,h,p}, i) => (
-            <Reveal key={i} delay={i*80} className="svc-card">
-              <img className="svc-card__image" src={image} alt={alt} loading="lazy" />
-              <div className="svc-card__body"><h4>{h}</h4><p>{p}</p></div>
-            </Reveal>
-          ))}
-        </div>
       </section>
 
       {/* CÓMO TRABAJAMOS — PROCESO EN 3 PASOS */}
@@ -4539,72 +4380,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* HOW I HELP — 4-quadrant crosshair layout */}
-      <section className="section" ref={helpSectionRef} id="howhelp" style={{ paddingBlock: "50px" }}>
-        <div className="wrap shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Cómo hacemos que vendas más</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Cuatro pilares para que tu web venda</h2></Reveal>
-        </div>
-
-        {/* crosshair widget */}
-        <div className="hq__wrap">
-          {/* ambient bg glow */}
-          <div className="hq__bg-glow" />
-
-          {/* concentric rings */}
-          <div className="hq__ring" />
-          <div className="hq__ring" />
-          <div className="hq__ring" />
-          <div className="hq__ring" />
-          <div className="hq__ring" />
-
-          {/* axis lines */}
-          <div className="hq__lines" />
-
-          {/* scroll-driven rays */}
-          <div
-            ref={rayLRef}
-            className="hq__ray hq__ray--l"
-          />
-          <div
-            ref={rayRRef}
-            className="hq__ray hq__ray--r"
-          />
-          <div
-            ref={rayTRRef}
-            className="hq__ray hq__ray--t"
-          />
-          <div
-            ref={rayBRef}
-            className="hq__ray hq__ray--b"
-          />
-
-          {/* central hub avatar */}
-          <div className="hq__hub">
-            <div className="hq__ava">
-              <img
-                src="assets/avatar-color.webp"
-                alt="Avatar"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          {/* 4 quadrant text blocks */}
-          <div className="hq__grid">
-            {[
-              { pos:"tl", h:"Web que convierte", p:"Cada sección guía al visitante hacia la venta.", svg:<><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/><path d="M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></> },
-              { pos:"tr", h:"Copy que vende", p:"Palabras que convencen a tu cliente antes de llamarte.", svg:<polygon points="5 3 19 12 5 21 5 3"/> },
-              { pos:"bl", h:"Imagen de confianza", p:"Tu web transmite profesionalidad desde el primer segundo.", svg:<><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/></> },
-              { pos:"br", h:"Estrategia de ventas", p:"No solo la web, también te decimos qué poner y cómo decirlo.", svg:<><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></> },
-            ].map(({pos,h,p,svg}, i) => (
-              <PilarCard key={i} pos={pos} h={h} p={p} svg={svg} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-
       {/* TESTIMONIALS */}
       <section className="section">
         <div className="shead wrap">
@@ -4614,22 +4389,6 @@ function HomePage() {
         <div className="marquee" style={{ "--dur": "42s", marginTop: 40 }}>
           <div className="marquee__track">
             {[...TESTI, ...TESTI].map((t, i) => (
-              <div className="tcard" key={i}>
-                <div className="stars">★★★★★</div>
-                <p>"{t.t}"</p>
-                <div className="who">
-                  <span className="ava">
-                    {t.img ? <img src={t.img} alt={t.n} loading="lazy" onError={e=>{e.target.style.display='none'}} /> : null}
-                  </span>
-                  <div><b>{t.n}</b><span>{t.r}</span></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="marquee marquee--rev testi-row2" style={{ "--dur": "48s", marginTop: 20 }}>
-          <div className="marquee__track">
-            {[...TESTI.slice().reverse(), ...TESTI.slice().reverse()].map((t, i) => (
               <div className="tcard" key={i}>
                 <div className="stars">★★★★★</div>
                 <p>"{t.t}"</p>
@@ -4871,7 +4630,7 @@ function HomePage() {
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href="#work">Trabajos</a><a href="#sectores">Sectores</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
+              <a href="#proyectos">Proyectos</a><a href="#comparativa">Por qué nosotros</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#calculadora">Calculadora</a><a href="#faq">FAQ</a>
             </div>
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
@@ -4937,7 +4696,7 @@ function PlanShell({ eyebrow, children }) {
         <div className="nav__inner">
           <div className="nav__brand"><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>León Webs</Link></div>
           <div className="nav__links">
-            <a href={homeHref("#work")}>Trabajos</a><a href={homeHref("#services")}>Soluciones</a><a href={homeHref("#proceso")}>Cómo trabajamos</a><a href={homeHref("#precios")}>Planes</a><a href={homeHref("#faq")}>FAQ</a>
+            <a href={homeHref("#proyectos")}>Proyectos</a><a href={homeHref("#comparativa")}>Por qué nosotros</a><a href={homeHref("#proceso")}>Cómo trabajamos</a><a href={homeHref("#precios")}>Planes</a><a href={homeHref("#calculadora")}>Calculadora</a><a href={homeHref("#faq")}>FAQ</a>
           </div>
           <div className="nav__cta"><Btn href={homeHref("#contact")}>Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú"><span/><span/><span/></button>
@@ -4947,9 +4706,11 @@ function PlanShell({ eyebrow, children }) {
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
           <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
-          <a href={homeHref("#services")} onClick={() => setMenuOpen(false)}>Soluciones</a>
+          <a href={homeHref("#proyectos")} onClick={() => setMenuOpen(false)}>Proyectos</a>
+          <a href={homeHref("#comparativa")} onClick={() => setMenuOpen(false)}>Por qué nosotros</a>
           <a href={homeHref("#proceso")} onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
           <a href={homeHref("#precios")} onClick={() => setMenuOpen(false)}>Planes y Precios</a>
+          <a href={homeHref("#calculadora")} onClick={() => setMenuOpen(false)}>Calculadora</a>
           <a href={homeHref("#faq")} onClick={() => setMenuOpen(false)}>FAQ</a>
           <div style={{marginTop:24, width:"80%"}}><Btn glossy href={homeHref("#contact")} onClick={() => setMenuOpen(false)}>Hablamos gratis</Btn></div>
         </div>
@@ -4985,11 +4746,11 @@ function PlanShell({ eyebrow, children }) {
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href={homeHref("#work")}>Trabajos</a><a href={homeHref("#precios")}>Servicios</a><a href={homeHref("#about")}>Nosotros</a><a href={homeHref("#faq")}>FAQ</a>
+              <a href={homeHref("#proyectos")}>Proyectos</a><a href={homeHref("#comparativa")}>Por qué nosotros</a><a href={homeHref("#proceso")}>Cómo trabajamos</a><a href={homeHref("#precios")}>Planes</a><a href={homeHref("#calculadora")}>Calculadora</a><a href={homeHref("#faq")}>FAQ</a>
             </div>
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
-              <a href="mailto:hola@leonwebs.es">hola@leonwebs.es</a><a href="#">Instagram</a><a href="#">LinkedIn</a>
+              <a href="mailto:hola@leonwebs.es">hola@leonwebs.es</a><a href="https://wa.me/34600000000">WhatsApp</a><a href="#">LinkedIn</a>
             </div>
           </div>
         </div>
