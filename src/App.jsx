@@ -933,44 +933,55 @@ const CSS = `
   background: linear-gradient(180deg, rgba(14, 22, 54, 0.85) 0%, rgba(6, 10, 28, 0.95) 100%);
   border: 1px solid rgba(146, 187, 255, 0.35);
   border-radius: 24px;
-  padding: 24px 22px 20px;
+  padding: 24px 28px 20px;
   box-shadow: 
-    inset 0 -80px 60px -30px #144CCD,
-    inset 0 -40px 30px -8px rgba(102, 148, 255, 0.5),
-    inset 0 -20px 20px -6px rgba(255, 255, 255, 0.4),
-    inset 0 6px 6px -2px rgba(35, 101, 255, 0.15),
-    0 24px 60px -20px rgba(0, 0, 0, 0.9),
-    0 0 35px -5px rgba(20, 76, 205, 0.4);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -50px 40px -25px rgba(20, 76, 205, 0.4),
+    0 24px 60px -20px rgba(0, 0, 0, 0.8),
+    0 0 35px -5px rgba(20, 76, 205, 0.3);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 16px;
 }
 .conv-widget__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 12px;
 }
 .conv-widget__pill {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(146, 187, 255, 0.25);
-  padding: 3px 10px;
+  padding: 3px 12px;
   border-radius: 100px;
   color: #C5EBFF;
   font-size: 11px;
   font-weight: 600;
 }
+.conv-widget__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  .conv-widget__body {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 28px;
+  }
+}
 .conv-widget__graph {
   width: 100%;
-  height: 90px;
+  height: 95px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 4px 0;
 }
 .conv-widget__svg {
   width: 100%;
@@ -982,33 +993,39 @@ const CSS = `
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 2px;
+  gap: 4px;
+}
+@media (min-width: 640px) {
+  .conv-widget__meta {
+    align-items: flex-start;
+    text-align: left;
+  }
 }
 .conv-widget__label {
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--muted);
   font-weight: 500;
 }
 .conv-widget__num-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 .conv-widget__num {
   font-family: var(--display);
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 .conv-widget__growth {
-  font-size: 20px;
+  font-size: 22px;
   color: #10B981;
   font-weight: 800;
 }
 .conv-widget__sub {
-  font-size: 11.5px;
+  font-size: 12px;
   color: #C5EBFF;
   opacity: 0.85;
 }
@@ -1302,53 +1319,79 @@ const CSS = `
 .brands__glow{ position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%,rgba(40,72,140,.35),transparent 60%); pointer-events:none; }
 
 /* ---- comparison ---- */
-.cols{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:48px; position:relative; }
-.col{ border-radius:24px; padding:36px; border:1px solid rgba(146,187,255,.14);
+.cols{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:44px; position:relative; align-items:stretch; }
+.col{ border-radius:24px; padding:34px 32px; border:1px solid rgba(146,187,255,.14);
   position:relative; overflow:hidden; isolation:isolate;
   background:rgba(10,14,34,.7);
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 24px 50px -25px rgba(0,0,0,.6);
-  transition:transform .4s cubic-bezier(.16,1,.3,1), border-color .4s, box-shadow .4s; }
-.col:hover{ transform:translateY(-4px); border-color:rgba(146,187,255,.3);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 30px 60px -20px rgba(0,0,0,.7); }
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10), 0 20px 45px -20px rgba(0,0,0,.6);
+  transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, box-shadow .35s;
+  display:flex; flex-direction:column; }
+.col:hover{ transform:translateY(-3px); }
 
-/* ---- "Sin mí" column ---- */
+.col-tag {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+.col-tag--no {
+  background: rgba(255, 60, 100, 0.12);
+  border: 1px solid rgba(255, 60, 100, 0.28);
+  color: #ff859d;
+}
+.col-tag--yes {
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  color: #00D4FF;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.2);
+}
+
+/* ---- "Sin estrategia" column ---- */
 .col--no{ 
-  background:linear-gradient(180deg, rgba(22,14,30,0.65) 0%, rgba(12,8,20,0.85) 100%); 
+  background:linear-gradient(180deg, rgba(24,14,24,0.7) 0%, rgba(12,8,16,0.9) 100%); 
   border-color:rgba(255,80,120,.18);
 }
-.col--no::after{ content:''; position:absolute; bottom:0; left:15%; right:15%; height:2px; z-index:3;
-  background:linear-gradient(90deg, transparent, #ff3c8e 50%, transparent);
-  box-shadow:0 0 16px 2px rgba(255,60,142,.6);
-  pointer-events:none; }
-
-/* ---- "Conmigo" column ---- */
-.col--yes{ 
-  background:linear-gradient(180deg, rgba(16,28,64,0.78) 0%, rgba(8,14,36,0.96) 100%); 
-  border-color:rgba(146,187,255,.45);
-  box-shadow:
-    inset 0 -80px 60px -30px #144CCD,
-    inset 0 -40px 30px -8px rgba(102, 148, 255, 0.5),
-    inset 0 -20px 20px -6px rgba(255, 255, 255, 0.4),
-    inset 0 6px 6px -2px rgba(35, 101, 255, 0.15),
-    0 24px 60px -20px rgba(0,102,255,.4);
+.col--no:hover {
+  border-color:rgba(255,80,120,.32);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 24px 50px -20px rgba(255,40,90,.15);
 }
-.col--yes::after{ content:''; position:absolute; bottom:0; left:15%; right:15%; height:2px; z-index:3;
-  background:linear-gradient(90deg, transparent, #00D4FF 50%, transparent);
-  box-shadow:0 0 16px 2px rgba(0,212,255,.6);
-  pointer-events:none; }
-/* vertical blue glow bar on the left side */
-.col--yes .glow-side{ 
-  position:absolute; top:12%; bottom:12%; left:0; width:3px; z-index:3;
-  background:linear-gradient(180deg, transparent, #00D4FF 50%, transparent);
-  box-shadow:0 0 12px 1px rgba(0,212,255,.8);
-  pointer-events:none; }
 
-.col h3{ font-family:var(--display); font-size:21px; margin-bottom:24px; font-weight:700; letter-spacing:-.01em; color:#fff; }
-.row{ display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-top:1px solid rgba(255,255,255,.07); color:var(--muted); font-size:15px; line-height:1.5; }
-.ic{ width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:12px;font-weight:800; }
+/* ---- "Con León Webs" column ---- */
+.col--yes{ 
+  background:linear-gradient(180deg, rgba(16,28,68,0.75) 0%, rgba(8,16,40,0.95) 100%); 
+  border-color:rgba(0,212,255,.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -60px 40px -25px rgba(20, 76, 205, 0.35),
+    0 20px 50px -20px rgba(0, 140, 255, 0.28);
+}
+.col--yes:hover {
+  border-color:rgba(0,212,255,.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -70px 45px -25px rgba(20, 76, 205, 0.5),
+    0 26px 60px -20px rgba(0, 160, 255, 0.4);
+}
+
+.col h3{ font-family:var(--display); font-size:21px; margin-bottom:20px; font-weight:700; letter-spacing:-.01em; color:#fff; line-height:1.25; }
+.col-rows { display:flex; flex-direction:column; width:100%; flex:1; }
+.row{ display:flex; gap:14px; align-items:center; padding:13px 0; border-top:1px solid rgba(255,255,255,.07); color:var(--muted); font-size:14.5px; line-height:1.45; }
+.ic{ width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;font-weight:800; }
 .ic--x{ background:rgba(255,70,90,.14); border:1px solid rgba(255,70,90,.3); color:#ff94a2; }
 .ic--v{ background:rgba(0,212,255,.14); border:1px solid rgba(0,212,255,.45); color:#00D4FF; box-shadow:0 0 10px rgba(0,212,255,.35); }
+
+/* ---- Proof widget wrapper below comparison ---- */
+.conv-proof-wrap {
+  margin-top: 28px;
+  max-width: 680px;
+  margin-inline: auto;
+  width: 100%;
+}
 
 /* ---- section heading ---- */
 .shead{ text-align:center; max-width:760px; margin:0 auto 10px; }
@@ -3721,45 +3764,50 @@ function ConversionRateWidget() {
   return (
     <div className="conv-widget">
       <div className="conv-widget__top">
-        <span>Datos de captación</span>
+        <span style={{ display: "flex", alignItems: "center", gap: 7, fontWeight: 600 }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00D4FF", display: "inline-block", boxShadow: "0 0 8px #00D4FF" }} />
+          Datos de captación & conversión
+        </span>
         <span className="conv-widget__pill">Mensual ▾</span>
       </div>
-      <div className="conv-widget__graph">
-        <svg viewBox="0 0 260 100" className="conv-widget__svg">
-          <defs>
-            <linearGradient id="glowLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#427BD8" stopOpacity="0.4" />
-              <stop offset="45%" stopColor="#00D4FF" />
-              <stop offset="60%" stopColor="#92BBFF" />
-              <stop offset="100%" stopColor="#427BD8" stopOpacity="0.3" />
-            </linearGradient>
-            <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#00D4FF" stopOpacity="1" />
-              <stop offset="40%" stopColor="#00D4FF" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#00D4FF" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <line x1="20" y1="25" x2="240" y2="25" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
-          <line x1="20" y1="55" x2="240" y2="55" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
-          <line x1="20" y1="85" x2="240" y2="85" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
-          <path
-            d="M 15 75 Q 60 70 90 60 T 130 18 T 170 70 T 245 78"
-            fill="none"
-            stroke="url(#glowLineGrad)"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-          />
-          <circle cx="130" cy="18" r="14" fill="url(#dotGlow)" />
-          <circle cx="130" cy="18" r="5" fill="#FFFFFF" stroke="#00D4FF" strokeWidth="2.5" />
-        </svg>
-      </div>
-      <div className="conv-widget__meta">
-        <span className="conv-widget__label">Tasa de conversión & reservas</span>
-        <div className="conv-widget__num-row">
-          <span className="conv-widget__num">+400%</span>
-          <span className="conv-widget__growth">↗</span>
+      <div className="conv-widget__body">
+        <div className="conv-widget__graph">
+          <svg viewBox="0 0 260 100" className="conv-widget__svg">
+            <defs>
+              <linearGradient id="glowLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#427BD8" stopOpacity="0.4" />
+                <stop offset="45%" stopColor="#00D4FF" />
+                <stop offset="60%" stopColor="#92BBFF" />
+                <stop offset="100%" stopColor="#427BD8" stopOpacity="0.3" />
+              </linearGradient>
+              <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#00D4FF" stopOpacity="1" />
+                <stop offset="40%" stopColor="#00D4FF" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#00D4FF" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <line x1="20" y1="25" x2="240" y2="25" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
+            <line x1="20" y1="55" x2="240" y2="55" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
+            <line x1="20" y1="85" x2="240" y2="85" stroke="rgba(146,187,255,0.08)" strokeDasharray="3 3" />
+            <path
+              d="M 15 75 Q 60 70 90 60 T 130 18 T 170 70 T 245 78"
+              fill="none"
+              stroke="url(#glowLineGrad)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+            />
+            <circle cx="130" cy="18" r="14" fill="url(#dotGlow)" />
+            <circle cx="130" cy="18" r="5" fill="#FFFFFF" stroke="#00D4FF" strokeWidth="2.5" />
+          </svg>
         </div>
-        <span className="conv-widget__sub">Incremento en contactos vs web anterior</span>
+        <div className="conv-widget__meta">
+          <span className="conv-widget__label">Tasa de conversión & reservas</span>
+          <div className="conv-widget__num-row">
+            <span className="conv-widget__num">+400%</span>
+            <span className="conv-widget__growth">↗</span>
+          </div>
+          <span className="conv-widget__sub">Incremento en contactos vs web anterior</span>
+        </div>
       </div>
     </div>
   );
@@ -4353,20 +4401,27 @@ function HomePage() {
         </div>
         <div className="cols">
           <Reveal className="col col--no">
+            <span className="col-tag col-tag--no">Sin estrategia</span>
             <h3>Web tradicional sin estrategia</h3>
-            {["Web bonita pero que no genera ni una llamada", "El visitante entra y se va sin comprar ni reservar", "Textos genéricos que nadie lee ni entiende", "Plantillas pesadas que tardan más de 4s en cargar", "Sin llamadas a la acción claras ni embudo de ventas", "Inversión a ciegas sin saber qué está funcionando"].map((t, i) => (
-              <div className="row" key={i}><span className="ic ic--x">✕</span>{t}</div>
-            ))}
+            <div className="col-rows">
+              {["Web bonita pero que no genera ni una llamada", "El visitante entra y se va sin comprar ni reservar", "Textos genéricos que nadie lee ni entiende", "Plantillas pesadas que tardan más de 4s en cargar", "Sin llamadas a la acción claras ni embudo de ventas", "Inversión a ciegas sin saber qué está funcionando"].map((t, i) => (
+                <div className="row" key={i}><span className="ic ic--x">✕</span>{t}</div>
+              ))}
+            </div>
           </Reveal>
           <Reveal delay={120} className="col col--yes">
-            <span className="glow-side" />
+            <span className="col-tag col-tag--yes">Con León Webs</span>
             <h3>Con León Webs (Estrategia + Conversión)</h3>
-            {["Arquitectura pensada desde el primer píxel para vender", "Cada sección guía al cliente a contactarte o reservar", "Copywriting persuasivo que transmite autoridad inmediata", "Velocidad ultrarrápida (<1s) y estética Liquid Glass 3D", "Optimización SEO Local y adaptación a búsquedas con IA", "Acompañamiento proactivo para seguir creciendo"].map((t, i) => (
-              <div className="row" key={i} style={{ color: "#FFFFFF", fontWeight: 500 }}><span className="ic ic--v">✓</span>{t}</div>
-            ))}
-            <ConversionRateWidget />
+            <div className="col-rows">
+              {["Arquitectura pensada desde el primer píxel para vender", "Cada sección guía al cliente a contactarte o reservar", "Copywriting persuasivo que transmite autoridad inmediata", "Velocidad ultrarrápida (<1s) y estética Liquid Glass 3D", "Optimización SEO Local y adaptación a búsquedas con IA", "Acompañamiento proactivo para seguir creciendo"].map((t, i) => (
+                <div className="row" key={i} style={{ color: "#FFFFFF", fontWeight: 500 }}><span className="ic ic--v">✓</span>{t}</div>
+              ))}
+            </div>
           </Reveal>
         </div>
+        <Reveal delay={180} className="conv-proof-wrap">
+          <ConversionRateWidget />
+        </Reveal>
       </section>
 
       {/* ABOUT */}
