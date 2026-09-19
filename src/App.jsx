@@ -797,309 +797,6 @@ const CSS = `
 .ads-card__feats{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 16px; }
 .ads-card__feats span{ font-size:12.5px; color:#92BBFF; font-weight:500; }
 
-/* ---- Craftsmanship & Design System Showcase ---- */
-.craft-section { margin-top: 50px; margin-bottom: 50px; }
-.craft-card {
-  position: relative;
-  background: radial-gradient(120% 120% at 50% 0%, rgba(20, 40, 110, 0.45) 0%, rgba(6, 10, 30, 0.95) 70%, #030614 100%);
-  border: 1px solid rgba(146, 187, 255, 0.22);
-  border-radius: 32px;
-  padding: 48px 40px 0;
-  overflow: hidden;
-  box-shadow: 
-    0 30px 80px -20px rgba(0, 0, 0, 0.8),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 0 60px -20px rgba(66, 123, 216, 0.35);
-}
-.craft-card__ambient {
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 280px;
-  background: radial-gradient(ellipse at center, rgba(66, 123, 216, 0.4) 0%, rgba(0, 212, 255, 0.15) 50%, transparent 75%);
-  filter: blur(50px);
-  pointer-events: none;
-  z-index: 0;
-}
-.craft-card__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 28px;
-}
-.craft-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(146, 187, 255, 0.24);
-  color: #92BBFF;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  backdrop-filter: blur(12px);
-}
-.craft-pill--dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00D4FF;
-  box-shadow: 0 0 8px #00D4FF;
-}
-.craft-card__emblem {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(66, 123, 216, 0.3) 0%, rgba(0, 212, 255, 0.15) 100%);
-  border: 1px solid rgba(146, 187, 255, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #C5EBFF;
-  box-shadow: 0 8px 20px -5px rgba(66, 123, 216, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-.craft-card__head {
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  max-width: 720px;
-  margin: 0 auto 38px;
-}
-.craft-card__title {
-  font-family: var(--display);
-  font-size: clamp(26px, 3.8vw, 42px);
-  font-weight: 800;
-  line-height: 1.18;
-  color: #FFFFFF;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-.craft-card__title .grad-accent {
-  background: linear-gradient(135deg, #00D4FF 0%, #92BBFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.craft-card__title .grad-purple {
-  background: linear-gradient(135deg, #A78BFA 0%, #C084FC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.craft-card__sub {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.5;
-}
-.craft-grid {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 28px;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 44px;
-}
-.craft-swatches {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.craft-swatch-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(146, 187, 255, 0.16);
-  backdrop-filter: blur(14px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: transform 0.25s, border-color 0.25s;
-}
-.craft-swatch-card:hover {
-  transform: translateX(4px);
-  border-color: rgba(146, 187, 255, 0.35);
-}
-.craft-swatch-tile {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  flex-shrink: 0;
-  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.5);
-}
-.craft-swatch-tile--accent {
-  background: linear-gradient(135deg, #00D4FF 0%, #3148FF 100%);
-  box-shadow: 0 0 20px rgba(49, 72, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-.craft-swatch-tile--primary {
-  background: #061148;
-  border: 1px solid rgba(146, 187, 255, 0.25);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-.craft-swatch-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.craft-swatch-role {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #92BBFF;
-  font-weight: 600;
-}
-.craft-swatch-hex {
-  font-family: monospace;
-  font-size: 14px;
-  font-weight: 700;
-  color: #FFFFFF;
-}
-.craft-typo-stage {
-  position: relative;
-  min-height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-.craft-typo-giant {
-  position: absolute;
-  left: 20px;
-  bottom: -15px;
-  font-family: var(--display);
-  font-size: 160px;
-  font-weight: 900;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.95);
-  letter-spacing: -0.06em;
-  user-select: none;
-  pointer-events: none;
-  text-shadow: 0 0 60px rgba(66, 123, 216, 0.3);
-}
-.craft-typo-glass {
-  position: relative;
-  z-index: 2;
-  max-width: 320px;
-  background: rgba(10, 16, 42, 0.65);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 20px;
-  padding: 22px 24px;
-  box-shadow: 
-    0 20px 50px -15px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 0 30px -10px rgba(0, 212, 255, 0.2);
-}
-.craft-typo-glass h4 {
-  font-family: var(--display);
-  font-size: 17px;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 6px;
-}
-.craft-typo-glass p {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.5;
-}
-.craft-blueprint {
-  border-top: 1px dashed rgba(146, 187, 255, 0.2);
-  padding-top: 28px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.craft-blueprint__tag {
-  align-self: flex-start;
-  margin-bottom: 20px;
-}
-.craft-blueprint__ruler {
-  width: 100%;
-  max-width: 440px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  margin-bottom: 18px;
-  color: #92BBFF;
-  font-family: monospace;
-  font-size: 11px;
-}
-.craft-blueprint__ruler-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  border-top: 1px dashed rgba(146, 187, 255, 0.35);
-  z-index: 0;
-}
-.craft-blueprint__dim {
-  position: relative;
-  z-index: 1;
-  background: #05081c;
-  padding: 2px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(146, 187, 255, 0.2);
-}
-.craft-blueprint__phone {
-  width: 280px;
-  height: 120px;
-  border-top-left-radius: 38px;
-  border-top-right-radius: 38px;
-  border: 2px solid rgba(146, 187, 255, 0.4);
-  border-bottom: none;
-  background: linear-gradient(180deg, #030614 0%, rgba(3, 6, 20, 0.8) 100%);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 -15px 40px -10px rgba(0, 212, 255, 0.25);
-}
-.craft-blueprint__island {
-  width: 76px;
-  height: 18px;
-  background: #000000;
-  border-radius: 12px;
-  margin: 10px auto 0;
-}
-.craft-blueprint__status {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  font-size: 10px;
-  color: #92BBFF;
-  font-family: monospace;
-  margin-top: -14px;
-}
-.craft-blueprint__guides {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 16px;
-  pointer-events: none;
-}
-.craft-blueprint__guide-line {
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(0, 212, 255, 0.4) 0%, transparent 100%);
-}
-@media (max-width: 768px) {
-  .craft-card { padding: 32px 20px 0; border-radius: 24px; }
-  .craft-grid { grid-template-columns: 1fr; gap: 20px; }
-  .craft-typo-stage { justify-content: center; min-height: 150px; }
-  .craft-typo-giant { font-size: 110px; left: 10px; }
-  .craft-blueprint__ruler { max-width: 280px; font-size: 10px; }
-  .craft-blueprint__phone { width: 240px; }
-}
-
 /* ---- servicios (resumen) ---- */
 .svc-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:44px; }
 .svc-card{ background:linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.015) 100%);
@@ -3835,99 +3532,6 @@ function ConversionRateWidget() {
   );
 }
 
-function DesignCraftSection() {
-  return (
-    <section className="section wrap craft-section">
-      <Reveal className="craft-card">
-        <div className="craft-card__ambient" />
-        
-        <div className="craft-card__top">
-          <div className="craft-pill">
-            <span className="craft-pill--dot" />
-            <span>Font & Colors</span>
-          </div>
-          <div className="craft-card__emblem">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="12 2 2 7 12 12 22 7 12 2" />
-              <polyline points="2 17 12 22 22 17" />
-              <polyline points="2 12 12 17 22 12" />
-            </svg>
-          </div>
-        </div>
-
-        <div className="craft-card__head">
-          <h2 className="craft-card__title">
-            Visualmente <span className="grad-accent">impecable</span>, ultra rápido y <span className="grad-purple">pensado para vender</span>
-          </h2>
-          <p className="craft-card__sub">
-            Una combinación milimétrica de jerarquía visual, claridad tipográfica y adaptabilidad móvil.
-          </p>
-        </div>
-
-        <div className="craft-grid">
-          {/* Swatches */}
-          <div className="craft-swatches">
-            <div className="craft-swatch-card">
-              <div className="craft-swatch-tile craft-swatch-tile--accent" />
-              <div className="craft-swatch-info">
-                <span className="craft-swatch-role">Accent</span>
-                <span className="craft-swatch-hex">#00D4FF</span>
-              </div>
-            </div>
-            <div className="craft-swatch-card">
-              <div className="craft-swatch-tile craft-swatch-tile--primary" />
-              <div className="craft-swatch-info">
-                <span className="craft-swatch-role">Primary</span>
-                <span className="craft-swatch-hex">#061148</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Typography Preview */}
-          <div className="craft-typo-stage">
-            <div className="craft-typo-giant">Aa</div>
-            <div className="craft-typo-glass">
-              <h4>Outfit & Inter Display</h4>
-              <p>
-                Geometría nítida y proporciones equilibradas para garantizar máxima legibilidad en cualquier dispositivo móvil o pantalla Retina.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Responsive Grid Blueprint */}
-        <div className="craft-blueprint">
-          <div className="craft-pill craft-blueprint__tag">
-            <span className="craft-pill--dot" style={{ background: "#92BBFF", boxShadow: "0 0 8px #92BBFF" }} />
-            <span>Grid & Responsive Spec</span>
-          </div>
-
-          <div className="craft-blueprint__ruler">
-            <div className="craft-blueprint__ruler-line" />
-            <span className="craft-blueprint__dim">16 px</span>
-            <span className="craft-blueprint__dim">358 px Viewport</span>
-            <span className="craft-blueprint__dim">16 px</span>
-          </div>
-
-          <div className="craft-blueprint__phone">
-            <div className="craft-blueprint__island" />
-            <div className="craft-blueprint__status">
-              <span>9:41</span>
-              <span>5G · 100%</span>
-            </div>
-            <div className="craft-blueprint__guides">
-              <div className="craft-blueprint__guide-line" />
-              <div className="craft-blueprint__guide-line" />
-              <div className="craft-blueprint__guide-line" />
-              <div className="craft-blueprint__guide-line" />
-            </div>
-          </div>
-        </div>
-      </Reveal>
-    </section>
-  );
-}
-
 function ServiceCard({ label, badge, launch, old, num, suffix, sub, feats, cta, pro, delay, detailHref }) {
   return (
     <Reveal delay={delay} className={`price-card ${pro ? "price-card--pro" : ""}`}>
@@ -4113,6 +3717,7 @@ const FAQS = [
 
 /* ---------- page ---------- */
 function HomePage() {
+  const [selectedSector, setSelectedSector] = useState("all");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(0);
   const [faqCategory, setFaqCategory] = useState("all");
@@ -4194,7 +3799,7 @@ function HomePage() {
         <div className="nav__inner">
           <div className="nav__brand">León Webs</div>
           <div className="nav__links">
-            <a href="#work">Proyectos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
+            <a href="#proyectos">Sectores & Casos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
           </div>
           <div className="nav__cta"><Btn href="#contact">Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
@@ -4207,7 +3812,7 @@ function HomePage() {
       {menuOpen && (
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
-          <a href="#work" onClick={() => setMenuOpen(false)}>Proyectos</a>
+          <a href="#proyectos" onClick={() => setMenuOpen(false)}>Sectores & Casos</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Soluciones</a>
           <a href="#proceso" onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
           <a href="#precios" onClick={() => setMenuOpen(false)}>Planes y Precios</a>
@@ -4352,7 +3957,6 @@ function HomePage() {
 
       {/* PROJECT STRIP MARQUEE */}
       <div className="section strip-section" style={{ padding: "30px 0 60px", overflow: "visible" }} id="work">
-        <div id="proyectos" style={{ position: "relative", top: "-100px" }} />
         <div className="ambient-glow" />
         <div className="marquee marquee--right" style={{ "--dur": "38s" }}>
           <div className="marquee__track">
@@ -4376,6 +3980,84 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* SECTORES + PROYECTOS FUSIONADOS */}
+      <section className="section wrap" id="proyectos" style={{ overflow: "visible" }}>
+        <div id="sectores" style={{ position: "relative", top: "-90px" }} />
+        <div className="ambient-glow" />
+        <div className="shead">
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Sectores que impulsamos & Proyectos reales</span></Reveal>
+          <Reveal delay={100}><h2 className="display">Webs hechas a la medida de tu sector</h2></Reveal>
+          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
+            Elige tu tipo de negocio para ver proyectos reales, resultados comprobados y cómo conseguimos que vendas más en León.
+          </Reveal>
+        </div>
+
+        {/* Filter Tabs */}
+        <div className="sector-nav-tabs">
+          {[
+            { id: "all", label: "Todos los sectores" },
+            { id: "barberia", label: "Barberías & Estética" },
+            { id: "clinica", label: "Clínicas & Salud" },
+            { id: "asesoria", label: "Despachos & Asesorías" },
+            { id: "hotel", label: "Hoteles & Restauración" },
+            { id: "inmobiliaria", label: "Inmobiliarias & Comercio" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              className={`sector-tab-btn ${selectedSector === tab.id ? "sector-tab-btn--active" : ""}`}
+              onClick={() => setSelectedSector(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Filtered Grid */}
+        <div className="sector-grid">
+          {CASES
+            .filter((c) => selectedSector === "all" || c.id === selectedSector)
+            .map((c, i) => (
+              <TiltCard
+                key={i}
+                delay={(i % 3) * 80}
+                className="sector-project-card"
+                style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
+              >
+                <div className="sector-project-card__media">
+                  <img src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
+                  <span className="sector-project-card__badge">{c.tag}</span>
+                </div>
+                <div className="sector-project-card__body">
+                  <div className="sector-project-card__header">
+                    <div>
+                      <span className="sector-project-card__sector-pill">{c.sector}</span>
+                      <h3>{c.n}</h3>
+                    </div>
+                    <span className="sector-project-card__location">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      {c.loc}
+                    </span>
+                  </div>
+                  <p className="sector-project-card__desc">{c.desc}</p>
+                  <div className="sector-project-card__result">
+                    <div>
+                      <span className="sector-project-card__result-label">Resultado clave</span>
+                      <span className="sector-project-card__metric">{c.metric}</span>
+                    </div>
+                    <span className="sector-project-card__time">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      {c.time}
+                    </span>
+                  </div>
+                  <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
+                    {c.cta}
+                  </a>
+                </div>
+              </TiltCard>
+            ))}
+        </div>
+      </section>
 
       {/* COMPARISON */}
       <section className="section wrap" style={{ overflow: "visible" }}>
@@ -4447,9 +4129,6 @@ function HomePage() {
         </div>
         </div>
       </section>
-
-      {/* CRAFT & DESIGN SYSTEM SHOWCASE */}
-      <DesignCraftSection />
 
       {/* SERVICIOS — 3 SOLUCIONES CLARAS */}
       <section className="section wrap" id="services" style={{ overflow: "visible" }}>
