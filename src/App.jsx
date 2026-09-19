@@ -4113,7 +4113,6 @@ const FAQS = [
 
 /* ---------- page ---------- */
 function HomePage() {
-  const [selectedSector, setSelectedSector] = useState("all");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(0);
   const [faqCategory, setFaqCategory] = useState("all");
@@ -4195,7 +4194,7 @@ function HomePage() {
         <div className="nav__inner">
           <div className="nav__brand">León Webs</div>
           <div className="nav__links">
-            <a href="#proyectos">Sectores & Casos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
+            <a href="#work">Proyectos</a><a href="#services">Soluciones</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#faq">FAQ</a>
           </div>
           <div className="nav__cta"><Btn href="#contact">Hablemos gratis</Btn></div>
           <button className="nav__burger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
@@ -4208,7 +4207,7 @@ function HomePage() {
       {menuOpen && (
         <div className="nav__mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
-          <a href="#proyectos" onClick={() => setMenuOpen(false)}>Sectores & Casos</a>
+          <a href="#work" onClick={() => setMenuOpen(false)}>Proyectos</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Soluciones</a>
           <a href="#proceso" onClick={() => setMenuOpen(false)}>Cómo trabajamos</a>
           <a href="#precios" onClick={() => setMenuOpen(false)}>Planes y Precios</a>
@@ -4353,6 +4352,7 @@ function HomePage() {
 
       {/* PROJECT STRIP MARQUEE */}
       <div className="section strip-section" style={{ padding: "30px 0 60px", overflow: "visible" }} id="work">
+        <div id="proyectos" style={{ position: "relative", top: "-100px" }} />
         <div className="ambient-glow" />
         <div className="marquee marquee--right" style={{ "--dur": "38s" }}>
           <div className="marquee__track">
@@ -4376,84 +4376,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* SECTORES + PROYECTOS FUSIONADOS */}
-      <section className="section wrap" id="proyectos" style={{ overflow: "visible" }}>
-        <div id="sectores" style={{ position: "relative", top: "-90px" }} />
-        <div className="ambient-glow" />
-        <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Sectores que impulsamos & Proyectos reales</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Webs hechas a la medida de tu sector</h2></Reveal>
-          <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
-            Elige tu tipo de negocio para ver proyectos reales, resultados comprobados y cómo conseguimos que vendas más en León.
-          </Reveal>
-        </div>
-
-        {/* Filter Tabs */}
-        <div className="sector-nav-tabs">
-          {[
-            { id: "all", label: "Todos los sectores" },
-            { id: "barberia", label: "Barberías & Estética" },
-            { id: "clinica", label: "Clínicas & Salud" },
-            { id: "asesoria", label: "Despachos & Asesorías" },
-            { id: "hotel", label: "Hoteles & Restauración" },
-            { id: "inmobiliaria", label: "Inmobiliarias & Comercio" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              className={`sector-tab-btn ${selectedSector === tab.id ? "sector-tab-btn--active" : ""}`}
-              onClick={() => setSelectedSector(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Filtered Grid */}
-        <div className="sector-grid">
-          {CASES
-            .filter((c) => selectedSector === "all" || c.id === selectedSector)
-            .map((c, i) => (
-              <TiltCard
-                key={i}
-                delay={(i % 3) * 80}
-                className="sector-project-card"
-                style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
-              >
-                <div className="sector-project-card__media">
-                  <img src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
-                  <span className="sector-project-card__badge">{c.tag}</span>
-                </div>
-                <div className="sector-project-card__body">
-                  <div className="sector-project-card__header">
-                    <div>
-                      <span className="sector-project-card__sector-pill">{c.sector}</span>
-                      <h3>{c.n}</h3>
-                    </div>
-                    <span className="sector-project-card__location">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      {c.loc}
-                    </span>
-                  </div>
-                  <p className="sector-project-card__desc">{c.desc}</p>
-                  <div className="sector-project-card__result">
-                    <div>
-                      <span className="sector-project-card__result-label">Resultado clave</span>
-                      <span className="sector-project-card__metric">{c.metric}</span>
-                    </div>
-                    <span className="sector-project-card__time">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                      {c.time}
-                    </span>
-                  </div>
-                  <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
-                    {c.cta}
-                  </a>
-                </div>
-              </TiltCard>
-            ))}
-        </div>
-      </section>
 
       {/* COMPARISON */}
       <section className="section wrap" style={{ overflow: "visible" }}>
