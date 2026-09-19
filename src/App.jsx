@@ -1076,15 +1076,18 @@ const CSS = `
 .svc-card p{ font-size:13.5px; color:var(--muted); line-height:1.55; }
 
 /* ---- calculadora ---- */
-.calc-card{ margin-top:40px; display:grid; grid-template-columns:1fr 310px; gap:0;
+.calc-card{ margin-top:40px; display:grid; grid-template-columns:1fr 340px; gap:0;
   background:linear-gradient(135deg, rgba(255,255,255,.04) 0%, rgba(15,22,46,.5) 100%); 
   border:1px solid rgba(146,187,255,.24); border-radius:26px;
   backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 0 70px -20px rgba(66,123,216,.38); min-height:400px; }
-.calc-chips{ display:flex; flex-direction:column; gap:14px; padding:38px; }
-.calc-chip{ display:flex; align-items:center; gap:16px; text-align:left; width:100%;
-  padding:16px 22px; border-radius:16px; background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.1); color:#dbe4ff; font-size:15px; font-family:var(--body);
+  overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 0 70px -20px rgba(66,123,216,.38); }
+.calc-chips{ display:flex; flex-direction:column; justify-content:center; gap:12px; padding:32px 34px; }
+.calc-chips__header{ margin-bottom:4px; }
+.calc-chips__badge{ font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#00D4FF; display:inline-block; margin-bottom:4px; }
+.calc-chips__lead{ font-size:13.5px; color:var(--muted); margin:0; }
+.calc-chip{ display:flex; align-items:center; gap:14px; text-align:left; width:100%;
+  padding:14px 18px; border-radius:16px; background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.1); color:#dbe4ff; font-family:var(--body);
   cursor:pointer; transition:border-color .25s ease, background .25s ease, transform .2s ease, box-shadow .25s ease; }
 .calc-chip:hover{ border-color:rgba(146,187,255,.4); background:rgba(255,255,255,.06); transform:translateX(3px); }
 .calc-chip--on{ 
@@ -1099,21 +1102,25 @@ const CSS = `
   border-color:transparent; color:#05071A; font-weight:800;
   box-shadow:0 0 12px rgba(146,187,255,.6);
 }
+.calc-chip__info{ display:flex; flex-direction:column; gap:2px; }
+.calc-chip__title{ font-size:14.5px; font-weight:600; color:#FFFFFF; line-height:1.3; }
+.calc-chip__desc{ font-size:12px; color:var(--muted); line-height:1.4; }
 .calc-result{ 
   background:linear-gradient(180deg, rgba(66,123,216,.14) 0%, rgba(30,55,115,.22) 100%); 
   border-left:1px solid rgba(146,187,255,.22);
-  padding:38px 30px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%;
+  padding:32px 26px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%;
   position:relative;
 }
 .calc-result::before{
   content:''; position:absolute; inset:0; pointer-events:none;
   background:radial-gradient(circle at 50% 40%, rgba(146,187,255,.18), transparent 70%);
 }
-.calc-result__label{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; font-weight:600; }
-.calc-result__num{ font-family:var(--display); font-size:20px; color:#fff; filter:drop-shadow(0 2px 16px rgba(146,187,255,.35)); }
-.calc-result__num b{ font-size:46px; display:block; line-height:1.1; font-weight:800; }
+.calc-result__label{ font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px; font-weight:600; }
+.calc-result__num{ font-family:var(--display); font-size:18px; color:#fff; filter:drop-shadow(0 2px 16px rgba(146,187,255,.35)); }
+.calc-result__num b{ font-size:44px; display:block; line-height:1.1; font-weight:800; }
 .calc-result__num span{ font-size:24px; color:#92BBFF; }
-.calc-result__sub{ font-size:12.5px; color:var(--muted); margin:10px 0 24px; }
+.calc-result__sub{ font-size:12px; color:var(--muted); margin:8px 0 16px; }
+.calc-result__timeline{ font-size:12px; color:#C5EBFF; background:rgba(0,212,255,.08); border:1px solid rgba(0,212,255,.22); padding:5px 12px; border-radius:100px; margin-bottom:12px; }
 .calc-result .price-cta{ margin-top:0; width:100%; }
 .ads-card .price-cta{ margin-top:0; }
 .price-badge{ position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#3574e8,#82b4ff); color:#fff; font-size:11px; font-weight:700; padding:5px 16px; border-radius:999px; white-space:nowrap; box-shadow:0 4px 16px rgba(53,116,232,.5), inset 0 1px 0 rgba(255,255,255,.4); }
@@ -4771,13 +4778,21 @@ function HomePage() {
         </div>
         <Reveal delay={200} className="calc-card">
           <div className="calc-chips">
+            <div className="calc-chips__header">
+              <span className="calc-chips__badge">Personaliza tu proyecto</span>
+              <p className="calc-chips__lead">Selecciona los módulos que necesita tu negocio:</p>
+            </div>
             {[
-              { k:"reservas", label:"Reservas o citas online" },
-              { k:"tienda", label:"Vender productos online" },
-              { k:"ads", label:"Aparecer en Google / publicidad" },
-            ].map(({k,label}) => (
+              { k:"reservas", label:"Reservas o citas online", desc:"Calendario interactivo con avisos por WhatsApp y sincronización con Google Calendar." },
+              { k:"tienda", label:"Vender productos online", desc:"Catálogo dinámico, pasarelas de pago (Stripe/Bizum) y gestión de pedidos." },
+              { k:"ads", label:"Aparecer en Google / publicidad", desc:"Posicionamiento SEO Local, Google My Business y campañas orientadas a llamadas." },
+            ].map(({k,label,desc}) => (
               <button key={k} className={`calc-chip ${calcNeeds.includes(k) ? "calc-chip--on" : ""}`} onClick={() => toggleNeed(k)}>
-                <span className="calc-chip__check">{calcNeeds.includes(k) ? "✓" : "+"}</span>{label}
+                <span className="calc-chip__check">{calcNeeds.includes(k) ? "✓" : "+"}</span>
+                <div className="calc-chip__info">
+                  <span className="calc-chip__title">{label}</span>
+                  <span className="calc-chip__desc">{desc}</span>
+                </div>
               </button>
             ))}
           </div>
