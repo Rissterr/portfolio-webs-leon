@@ -570,18 +570,29 @@ const CSS = `
   color: #FFFFFF;
   box-shadow: 0 0 20px rgba(66, 123, 216, 0.35);
 }
-.sector-carousel-track-container {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 10px 10px 30px;
-  display: flex;
-  gap: 22px;
+.sector-carousel-wrap {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden;
+  padding: 10px 0 10px;
 }
-.sector-carousel-track-container::-webkit-scrollbar {
-  display: none;
+.marquee--projects {
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0 20px;
+  mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+}
+.marquee--projects .marquee__track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee var(--dur, 38s) linear infinite;
+}
+.marquee--projects:hover .marquee__track {
+  animation-play-state: paused;
 }
 .sector-project-card {
   width: 370px;
@@ -3833,108 +3844,60 @@ function ConversionRateWidget() {
 }
 
 function SectorProjectsCarousel({ selectedSector }) {
-  const trackRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
   const filteredCases = CASES.filter((c) => selectedSector === "all" || c.id === selectedSector);
 
-  const checkScroll = () => {
-    if (!trackRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = trackRef.current;
-    setCanScrollLeft(scrollLeft > 10);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-  };
-
-  useEffect(() => {
-    checkScroll();
-    const el = trackRef.current;
-    if (el) {
-      el.addEventListener("scroll", checkScroll, { passive: true });
-      return () => el.removeEventListener("scroll", checkScroll);
-    }
-  }, [filteredCases]);
-
-  const scroll = (direction) => {
-    if (!trackRef.current) return;
-    const scrollAmount = 390;
-    trackRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth"
-    });
-  };
+  // Repetir los elementos para que el bucle continuo del carrusel marquee sea fluido e infinito
+  const displayItems = filteredCases.length <= 2 
+    ? [...filteredCases, ...filteredCases, ...filteredCases, ...filteredCases]
+    : [...filteredCases, ...filteredCases];
 
   return (
     <div className="sector-carousel-wrap">
-      <div className="sector-carousel-track-container" ref={trackRef}>
-        {filteredCases.map((c, i) => (
-          <TiltCard
-            key={i}
-            delay={(i % 3) * 80}
-            className="sector-project-card"
-            style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
-          >
-            <div className="sector-project-card__media">
-              <img src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
-              <span className="sector-project-card__badge">{c.tag}</span>
-            </div>
-            <div className="sector-project-card__body">
-              <div className="sector-project-card__header">
-                <div>
-                  <span className="sector-project-card__sector-pill">{c.sector}</span>
-                  <h3>{c.n}</h3>
-                </div>
-                <span className="sector-project-card__location">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  {c.loc}
-                </span>
+      <div
+        className="marquee marquee--projects"
+        style={{ "--dur": `${Math.max(28, displayItems.length * 6.5)}s` }}
+      >
+        <div className="marquee__track" style={{ gap: 24 }}>
+          {displayItems.map((c, i) => (
+            <div
+              key={`${c.n}-${i}`}
+              className="sector-project-card"
+              style={{ "--glare-color": c.glare, "--sweep-color": c.sweep }}
+            >
+              <div className="sector-project-card__media">
+                <img src={c.img} alt={c.n} loading="lazy" onError={e=>e.target.style.display='none'} />
+                <span className="sector-project-card__badge">{c.tag}</span>
               </div>
-              <p className="sector-project-card__desc">{c.desc}</p>
-              <div className="sector-project-card__result">
-                <div>
-                  <span className="sector-project-card__result-label">Resultado clave</span>
-                  <span className="sector-project-card__metric">{c.metric}</span>
+              <div className="sector-project-card__body">
+                <div className="sector-project-card__header">
+                  <div>
+                    <span className="sector-project-card__sector-pill">{c.sector}</span>
+                    <h3>{c.n}</h3>
+                  </div>
+                  <span className="sector-project-card__location">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {c.loc}
+                  </span>
                 </div>
-                <span className="sector-project-card__time">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  {c.time}
-                </span>
+                <p className="sector-project-card__desc">{c.desc}</p>
+                <div className="sector-project-card__result">
+                  <div>
+                    <span className="sector-project-card__result-label">Resultado clave</span>
+                    <span className="sector-project-card__metric">{c.metric}</span>
+                  </div>
+                  <span className="sector-project-card__time">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    {c.time}
+                  </span>
+                </div>
+                <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
+                  {c.cta}
+                </a>
               </div>
-              <a href={`https://wa.me/34600000000?text=Hola!%20He%20visto%20el%20proyecto%20de%20${encodeURIComponent(c.n)}%20y%20me%20gustar%C3%ADa%20hacer%20algo%20parecido%20para%20mi%20negocio.`} target="_blank" rel="noopener noreferrer" className="sector-project-card__cta">
-                {c.cta}
-              </a>
             </div>
-          </TiltCard>
-        ))}
-      </div>
-
-      {filteredCases.length > 2 && (
-        <div className="sector-carousel-controls">
-          <button
-            className="sector-carousel-btn"
-            onClick={() => scroll("left")}
-            aria-label="Anterior proyecto"
-            style={{ opacity: canScrollLeft ? 1 : 0.4, cursor: canScrollLeft ? "pointer" : "default" }}
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-          <span style={{ fontSize: 13, color: "var(--muted)", fontWeight: 500 }}>
-            Desliza para ver más proyectos
-          </span>
-          <button
-            className="sector-carousel-btn"
-            onClick={() => scroll("right")}
-            aria-label="Siguiente proyecto"
-            style={{ opacity: canScrollRight ? 1 : 0.4, cursor: canScrollRight ? "pointer" : "default" }}
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }
