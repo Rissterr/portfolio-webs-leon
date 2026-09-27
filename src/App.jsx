@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 
 /* ============================================================
    PORTFOLIO — recreación fiel de iqtidartara.framer.website
@@ -389,18 +389,17 @@ const CSS = `
   box-shadow:inset 0 1px 0 rgba(255,255,255,.10), 0 24px 50px -30px rgba(0,0,0,.8);
   transition:transform .4s cubic-bezier(.16,1,.3,1), border-color .4s, box-shadow .4s; }
 .card__sweep {
-  display: none;
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(350px circle at var(--mx, 50%) var(--my, 50%), rgba(142, 193, 255, 0.10), transparent 70%);
+  z-index: 11;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), var(--sweep-color, rgba(142, 193, 255, 0.07)), transparent 65%);
   opacity: var(--hovered, 0);
-  transition: opacity 0.5s ease;
+  transition: opacity 0.4s ease;
 }
 /* crystalline edge: visible at rest, full on hover */
-.scard::before{ content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; z-index:3; pointer-events:none;
+.scard::before{ content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; z-index:15; pointer-events:none;
   background:linear-gradient(120deg, transparent 25%, rgba(146,187,255,.55) 50%, transparent 75%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -781,7 +780,7 @@ const CSS = `
 .case:hover{ transform:translateY(-4px); border-color:rgba(146,187,255,.4);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 26px 50px -22px rgba(40,80,170,.5); }
 /* crystalline glint on case cards — visible at rest, full on hover */
-.case::before{ content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; z-index:4; pointer-events:none;
+.case::before{ content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; z-index:15; pointer-events:none;
   background:linear-gradient(115deg, transparent 25%, rgba(197,235,255,.6) 50%, transparent 75%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -927,8 +926,8 @@ const CSS = `
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 5;
-    background: radial-gradient(circle var(--glare-size, 180px) at var(--mx, 50%) var(--my, 50%), var(--glare-color, rgba(146, 187, 255, 0.12)), transparent 75%);
+    z-index: 12;
+    background: radial-gradient(circle var(--glare-size, 280px) at var(--mx, 50%) var(--my, 50%), var(--glare-color, rgba(146, 187, 255, 0.22)), transparent 70%);
     mix-blend-mode: screen;
     border-radius: inherit;
     opacity: 0;
@@ -1447,30 +1446,24 @@ function Btn({ glossy = false, children, href = "#", className = "", ...rest }) 
 /* ---------- data ---------- */
 const BRANDS = ["Reactive", "Minexa.ai", "SmileJoy", "JuPay", "Designify", "OrbitX", "PowerPulse", "WireFox", "Univit", "LifeLink", "Q-Taro"];
 const PROJECTS = [
-  { n: "UpdateAI",     img: "/assets/shot-1.png"  },
-  { n: "WireFox VPN",  img: "/assets/shot-2.png"  },
-  { n: "JuPay",        img: "/assets/shot-3.png"  },
-  { n: "Reset Method", img: "/assets/shot-4.png"  },
-  { n: "SmileJoy",     img: "/assets/shot-5.png"  },
-  { n: "Properta",     img: "/assets/shot-6.png"  },
-  { n: "Kania Media",  img: "/assets/shot-7.png"  },
-  { n: "Bullyproof",   img: "/assets/shot-8.png"  },
-  { n: "PowerPulse",   img: "/assets/shot-9.png"  },
-  { n: "Minexa.ai",    img: "/assets/shot-10.png" },
+  { n: "PowerPulse",       img: "/assets/proj-powerpulse.png"   },
+  { n: "Actualizar IA",    img: "/assets/proj-actualizaria.png" },
+  { n: "Lex León",         img: "/assets/proj-lexleon.png"      },
+  { n: "Nova Estética",    img: "/assets/proj-novaest.png"      },
+  { n: "León Properties",  img: "/assets/proj-properties.png"  },
+  { n: "León Suites",      img: "/assets/proj-hotel.png"        },
+  { n: "PowerPulse",       img: "/assets/proj-powerpulse.png"   },
+  { n: "Actualizar IA",    img: "/assets/proj-actualizaria.png" },
+  { n: "Lex León",         img: "/assets/proj-lexleon.png"      },
+  { n: "Nova Estética",    img: "/assets/proj-novaest.png"      },
 ];
 const CASES = [
-  { n: "UpdateAI",      img: "/assets/case-updateai.jpg",    url: "#" },
-  { n: "Wirefox VPN",   img: "/assets/case-wirefox.jpg",     url: "#" },
-  { n: "JuPay",         img: "/assets/case-jupay.png",       url: "#" },
-  { n: "Reset Method",  img: "/assets/case-reset.png",       url: "#" },
-  { n: "SmileJoy",      img: "/assets/case-smilejoy.png",    url: "#" },
-  { n: "Properta",      img: "/assets/case-properta.png",    url: "#" },
-  { n: "Biz Launch",    img: "/assets/case-bizlaunch.png",   url: "#" },
-  { n: "Kania Media",   img: "/assets/case-kania.jpg",       url: "#" },
-  { n: "Bullyproof",    img: "/assets/case-bullyproof.png",  url: "#" },
-  { n: "Power Pulse",   img: "/assets/case-powerpulse.png",  url: "#" },
-  { n: "NAC",           img: "/assets/case-nac.png",         url: "#" },
-  { n: "Minexa AI",     img: "/assets/case-minexa.png",      url: "#" },
+  { n: "VIP Barber Shop León",       img: "/assets/proj-powerpulse.png",  url: "https://vipbarbershopleon.com", cat: "Barbería & Citas Online",   glare: "rgba(146, 187, 255, 0.16)" },
+  { n: "Farmacia Sirera",            img: "/assets/proj-novaest.png",     url: "https://farmacia-sirera.surge.sh", cat: "Salud & Farmacia",       glare: "rgba(255, 182, 193, 0.16)" },
+  { n: "MALOA POKE León",            img: "/assets/proj-hotel.png",       url: "#", cat: "Restauración & Pedidos",   glare: "rgba(129, 140, 248, 0.16)" },
+  { n: "Reformas León",              img: "/assets/proj-lexleon.png",     url: "#", cat: "Construcción & Reformas",   glare: "rgba(245, 222, 179, 0.15)" },
+  { n: "Obsess Burger",              img: "/assets/proj-actualizaria.png",url: "#", cat: "Hostelería & Carta Digital", glare: "rgba(192, 132, 252, 0.16)" },
+  { n: "Romper para Ser",            img: "/assets/proj-properties.png",  url: "#", cat: "Web Personal & Formación", glare: "rgba(52, 211, 153, 0.14)" },
 ];
 const TESTI = [
   { n: "Josh Schachter", r: "Fundador y CEO, UpdateAI",    img: "/assets/testi-1.webp", t: "Convirtió mi visión en una web impresionante que superó mis expectativas. Su dominio del diseño es muy poco común." },
@@ -1496,8 +1489,16 @@ const FAQS = [
 ];
 
 /* ---------- page ---------- */
+const trackEvent = (eventName, payload = {}) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", eventName, payload);
+  }
+  console.log("[Analytics Event]", eventName, payload);
+};
+
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [pricingTab, setPricingTab] = useState("express");
   const [open, setOpen] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(1);
   const [heroHovered, setHeroHovered] = useState(false);
@@ -1552,9 +1553,9 @@ export default function App() {
       {/* NAV */}
       <nav className={"nav " + (scrolled ? "scrolled" : "")}>
         <div className="nav__inner">
-          <div className="nav__brand"><span className="nav__ava"><img src="/assets/avatar.png" alt="avatar" /></span> Iqtidar Tara</div>
+          <div className="nav__brand"><span className="nav__ava"><img src="/assets/avatar.png" alt="avatar" /></span> León Webs</div>
           <div className="nav__links">
-            <a href="#work">Proyectos</a><a href="#services">Servicios</a><a href="#about">Sobre mí</a><a href="#precios">Precios</a><a href="#faq">FAQ</a>
+            <a href="#work">Proyectos</a><a href="#services">Servicios</a><a href="#about">Sobre nosotros</a><a href="#precios">Precios</a><a href="#faq">FAQ</a>
           </div>
           <div className="nav__cta"><Btn href="#contact">Reserva una llamada</Btn></div>
         </div>
@@ -1571,10 +1572,10 @@ export default function App() {
         <div className="hero__glow" />
         <div className="hero__interactive-glow" />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>¿Tienes tiempo? ¿Tienes ideas? Vamos a construir.</span></Reveal>
-          <Reveal delay={120}><h1 className="display h-grad">Ayudo a startups a diseñar y desarrollar productos y webs</h1></Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Agencia de diseño web y posicionamiento local en León</span></Reveal>
+          <Reveal delay={120}><h1 className="display h-grad">Páginas web que consiguen clientes reales para tu negocio en León</h1></Reveal>
           <Reveal delay={220} className="lead" as="p">No necesitas solo un diseño bonito. Entrego visuales impactantes, copy persuasivo y desarrollo impecable — listo para llevar tu proyecto al siguiente nivel.</Reveal>
-          <Reveal delay={320}><Btn glossy href="#contact">Reserva una llamada GRATIS de 30 minutos</Btn></Reveal>
+          <Reveal delay={320}><Btn glossy href="#contact">Pedir presupuesto por WhatsApp</Btn></Reveal>
         </div>
       </header>
 
@@ -1616,7 +1617,7 @@ export default function App() {
           <TiltCard className="col col--no" delay={0}>
             <span className="glow-side" />
             <span className="glow-accent" />
-            <h3>Sin mí</h3>
+            <h3>Sin León Webs</h3>
             {["Proyectos fragmentados por experiencia limitada y dispersa", "Poca visión de marketing que perjudica la conversión", "Coste alto y gestión compleja entre varios contratos", "Calidad irregular y plazos incumplidos", "Foco diluido entre muchos clientes", "Investigación superficial y soluciones genéricas"].map((t, i) => (
               <div className="row" key={i}><span className="ic ic--x">✕</span>{t}</div>
             ))}
@@ -1624,7 +1625,7 @@ export default function App() {
           <TiltCard className="col col--yes" delay={120}>
             <span className="glow-side" />
             <span className="glow-ambient" />
-            <h3>Conmigo</h3>
+            <h3>Con León Webs</h3>
             {["Copy, diseño y desarrollo en un proceso cohesivo", "Trabajo orientado a marketing que impulsa la conversión", "Servicio integral que ahorra tiempo y dinero", "Historial probado de entregas de alto impacto", "Foco total: un proyecto a la vez", "Investigación profunda y a medida, alineada con tus objetivos"].map((t, i) => (
               <div className="row" key={i} style={{ color: "#dbe4ff" }}><span className="ic ic--v">✓</span>{t}</div>
             ))}
@@ -1639,8 +1640,8 @@ export default function App() {
           {/* Left side: Main text and stats */}
           <div className="about-left">
             <div className="shead">
-              <Reveal className="eyebrow" as="div"><span className="dot" /><span>¿Quién soy?</span></Reveal>
-              <Reveal delay={100}><h2 className="display h-grad">El maestro de las soluciones digitales de alto impacto</h2></Reveal>
+              <Reveal className="eyebrow" as="div"><span className="dot" /><span>¿Quiénes somos?</span></Reveal>
+              <Reveal delay={100}><h2 className="display h-grad">Tu partner digital de confianza en León</h2></Reveal>
             </div>
             <Reveal delay={150} className="lead" as="p">
               Soy copywriter, diseñador y desarrollador. Convierto ideas en experiencias digitales que convierten — para fundadores independientes, agencias y startups con inversión.
@@ -1713,7 +1714,7 @@ export default function App() {
           <Reveal delay={100}><h2 className="display">Así te ayudo a hacer crecer tu marca y tu negocio</h2></Reveal>
         </div>
         <div className="bento">
-          <TiltCard className="scard col-3" delay={0}>
+          <TiltCard className="scard col-3" delay={0} style={{"--glare-color":"rgba(200,60,255,0.28)","--sweep-color":"rgba(180,40,255,0.07)"}}>
             <div className="ntable">
               <div className="ntable__bar"><span className="home" /> Proyectos / Minexa.ai</div>
               <div className="ntable__title">Minexa.ai</div>
@@ -1724,7 +1725,7 @@ export default function App() {
             </div>
             <h4>Copywriting</h4><p>Narrativas convincentes que generan interacción y convierten palabras en acción.</p>
           </TiltCard>
-          <TiltCard className="scard col-3" delay={80}>
+          <TiltCard className="scard col-3" delay={80} style={{"--glare-color":"rgba(66,140,255,0.30)","--sweep-color":"rgba(66,140,255,0.08)"}}>
             <div className="webfan">
               <div className="frame f1"><span className="vlabel">v1 · Home</span></div>
               <div className="frame f2"><span className="vlabel">v2 · Home</span></div>
@@ -1740,7 +1741,7 @@ export default function App() {
             </div>
             <h4>Diseño Web</h4><p>Webs y landing pages impresionantes y usables que convierten clics en clientes.</p>
           </TiltCard>
-          <TiltCard className="scard col-2" delay={0}>
+          <TiltCard className="scard col-2" delay={0} style={{"--glare-color":"rgba(255,40,130,0.30)","--sweep-color":"rgba(255,40,130,0.08)"}}>
             <div className="phones">
               <div className="phone p1"><span className="scr">00:00</span></div>
               <div className="phone p2"><span className="scr">22:46</span></div>
@@ -1748,7 +1749,7 @@ export default function App() {
             </div>
             <h4>Diseño de Producto</h4><p>Productos intuitivos que conectan y elevan la retención.</p>
           </TiltCard>
-          <TiltCard className="scard col-2" delay={80}>
+          <TiltCard className="scard col-2" delay={80} style={{"--glare-color":"rgba(0,210,180,0.28)","--sweep-color":"rgba(0,210,180,0.07)"}}>
             <div className="editor">
               <div className="editor__bar"><i /><i /><i /><span className="editor__tag">▲ Framer</span></div>
               <div className="code">
@@ -1760,7 +1761,7 @@ export default function App() {
             </div>
             <h4>Desarrollo</h4><p>Desarrollos robustos y escalables con el stack más moderno — entregados sin fricciones.</p>
           </TiltCard>
-          <TiltCard className="scard col-2" delay={160}>
+          <TiltCard className="scard col-2" delay={160} style={{"--glare-color":"rgba(255,185,50,0.28)","--sweep-color":"rgba(255,185,50,0.07)"}}>
             <div className="brandviz">
               <span className="big">Aa</span>
               <div className="swatches">
@@ -1771,7 +1772,7 @@ export default function App() {
             </div>
             <h4>Branding</h4><p>Identidades cohesivas que vuelven tu marca inolvidable.</p>
           </TiltCard>
-          <TiltCard className="scard col-6" delay={0} style={{ minHeight: 220 }}>
+          <TiltCard className="scard col-6" delay={0} style={{ minHeight: 220, "--glare-color":"rgba(66,140,255,0.25)","--sweep-color":"rgba(66,140,255,0.06)","--glare-size":"380px" }}>
             <div className="motionviz">
               <div className="mscale">
                 {[18, 30, 46, 64, 82, 100, 82, 64, 46, 30, 18].map((h, i) => (
@@ -1895,7 +1896,7 @@ export default function App() {
         </div>
         <div className="cases">
           {CASES.map((c, i) => (
-            <TiltCard key={i} delay={(i % 3) * 90} className="case" as="a" href={c.url} target="_blank" rel="noopener noreferrer">
+            <TiltCard key={i} delay={(i % 3) * 90} className="case" as="a" href={c.url} target="_blank" rel="noopener noreferrer" style={{ "--glare-color": c.glare }}>
               <img className="case__img" src={c.img} alt={c.n} loading="lazy" />
               <div className="case__meta"><b>{c.n}</b><span className="case__view">View</span></div>
             </TiltCard>
@@ -1944,123 +1945,346 @@ export default function App() {
       </section>
 
       {/* PRICING */}
+      
+      {/* PRICING & COMMERCIAL INTEGRATION (FASE 7) */}
       <section className="section wrap" id="precios" style={{ overflow: "visible" }}>
         <div className="ambient-glow" />
         <div className="shead">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Inversión Inteligente</span></Reveal>
-          <Reveal delay={100}><h2 className="display h-grad">Tarifas claras, orientadas al retorno</h2></Reveal>
-          <Reveal delay={180} className="lead" as="p" style={{ margin: "0 auto" }}>Sin sorpresas ni cargos ocultos. Planes diseñados para adaptarse a la fase de crecimiento de tu negocio local.</Reveal>
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Tarifas Transparentes & Planes</span></Reveal>
+          <Reveal delay={100}><h2 className="display h-grad">Webs profesionales para negocios locales, sin precios de agencia</h2></Reveal>
+          <Reveal delay={180} className="lead" as="p" style={{ margin: "0 auto", maxWidth: "680px" }}>
+            Elige entre la rapidez de <strong>León Webs Express</strong> o la máxima personalización de <strong>León Webs A Medida</strong>.
+          </Reveal>
         </div>
 
-        <div className="pricing-grid">
-          {/* Plan 1: Diagnóstico */}
-          <TiltCard className="pcard" delay={0}>
-            <div>
-              <div className="pcard__header">
-                <span className="pcard__num">PLAN 01</span>
-                <h3 className="pcard__title">Diagnóstico</h3>
-                <p className="pcard__desc">100% reembolsable si contratas tu web. Analizamos velocidad, SEO local en León y fugas de clientes.</p>
-                <div className="pcard__price-row">
-                  <span className="pcard__price">€299</span>
-                  <span className="pcard__period">/ pago único</span>
+        {/* TAB SWITCHER */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginBottom: "40px", flexWrap: "wrap" }}>
+          <button
+            onClick={() => {
+              setPricingTab("express");
+              trackEvent("express_view");
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: "30px",
+              border: pricingTab === "express" ? "1px solid #92BBFF" : "1px solid rgba(255,255,255,0.1)",
+              background: pricingTab === "express" ? "linear-gradient(135deg, rgba(146,187,255,0.2) 0%, rgba(99,102,241,0.2) 100%)" : "rgba(255,255,255,0.03)",
+              color: pricingTab === "express" ? "#FFFFFF" : "#A1A1AA",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              boxShadow: pricingTab === "express" ? "0 0 20px rgba(146,187,255,0.2)" : "none"
+            }}
+          >
+            ⚡ León Webs Express (Rápido & Precio Cerrado)
+          </button>
+
+          <button
+            onClick={() => {
+              setPricingTab("custom");
+              trackEvent("custom_click");
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: "30px",
+              border: pricingTab === "custom" ? "1px solid #92BBFF" : "1px solid rgba(255,255,255,0.1)",
+              background: pricingTab === "custom" ? "linear-gradient(135deg, rgba(146,187,255,0.2) 0%, rgba(99,102,241,0.2) 100%)" : "rgba(255,255,255,0.03)",
+              color: pricingTab === "custom" ? "#FFFFFF" : "#A1A1AA",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              boxShadow: pricingTab === "custom" ? "0 0 20px rgba(146,187,255,0.2)" : "none"
+            }}
+          >
+            🎯 León Webs A Medida (Proyectos Estratégicos)
+          </button>
+        </div>
+
+        {/* EXPRESS PLANS GRID */}
+        {pricingTab === "express" && (
+          <div className="pricing-grid">
+            {/* PLAN ONE */}
+            <TiltCard className="pcard" delay={0}>
+              <div>
+                <div className="pcard__header">
+                  <span className="pcard__num">WEB ONE</span>
+                  <h3 className="pcard__title">Web One</h3>
+                  <p className="pcard__desc">Presencia profesional compacta en una sola página optimizada. Ideal para servicios individuales y autónomos.</p>
+                  <div className="pcard__price-row">
+                    <span className="pcard__price">€179</span>
+                    <span className="pcard__period">/ pago único</span>
+                  </div>
                 </div>
+
+                <ul className="pcard__features">
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>1 Página (Landing compacta ultra-rápida)</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Diseño responsive 100% móvil</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Formulario de contacto + Botón WhatsApp</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>SEO básico inicial</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>1 ronda de revisión incluida</span></li>
+                </ul>
               </div>
+              <Btn href="#contact" onClick={() => trackEvent("plan_one_click")} className="w-full">Pedir Web One</Btn>
+            </TiltCard>
 
-              <ul className="pcard__features">
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Análisis de velocidad y experiencia móvil</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Estudio de competencia en León</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Auditoría de SEO Local y Maps</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span style={{ color: "#92BBFF", fontWeight: "600" }}>Garantía de reembolso total</span>
-                </li>
-              </ul>
-            </div>
-            <Btn href="#contact" className="w-full">Reservar Auditoría</Btn>
-          </TiltCard>
-
-          {/* Plan 2: Crecimiento */}
-          <TiltCard className="pcard pcard--recommended" delay={100} style={{ borderColor: "rgba(146, 187, 255, 0.3)" }}>
-            <div className="pcard__badge">MÁS RECOMENDADO</div>
-            <div>
-              <div className="pcard__header">
-                <span className="pcard__num" style={{ color: "#C5EBFF" }}>PLAN 02</span>
-                <h3 className="pcard__title">Crecimiento</h3>
-                <p className="pcard__desc">Tu web premium de alto rendimiento con SEO continuo. Ideal para dominar León sin gran desembolso inicial.</p>
-                <div className="pcard__price-row">
-                  <span className="pcard__price">€349</span>
-                  <span className="pcard__period">/ mes</span>
+            {/* PLAN LOCAL (RECOMENDADO) */}
+            <TiltCard className="pcard pcard--recommended" delay={100} style={{ borderColor: "rgba(146, 187, 255, 0.4)", boxShadow: "0 0 30px rgba(146,187,255,0.15)" }}>
+              <div className="pcard__badge">RECOMENDADO NEGOCIOS LOCALES</div>
+              <div>
+                <div className="pcard__header">
+                  <span className="pcard__num" style={{ color: "#C5EBFF" }}>WEB LOCAL</span>
+                  <h3 className="pcard__title">Web Local</h3>
+                  <p className="pcard__desc">Tu web completa multipágina orientada a conseguir clientes en León desde Google.</p>
+                  <div className="pcard__price-row">
+                    <span className="pcard__price">€299</span>
+                    <span className="pcard__period">/ pago único</span>
+                  </div>
                 </div>
-                <span className="pcard__period-sub">(+€999 cuota de alta)</span>
+
+                <ul className="pcard__features">
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>3 a 5 páginas / secciones completas</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Sección de servicios y portfolio de trabajos</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>SEO Local enfocado a León y Google Maps</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Configuración técnica de analítica base</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span style={{ color: "#92BBFF", fontWeight: "600" }}>Opción favorita de comercios en León</span></li>
+                </ul>
               </div>
+              <Btn glossy href="#contact" onClick={() => trackEvent("plan_local_click")} className="w-full">Elegir Web Local</Btn>
+            </TiltCard>
 
-              <ul className="pcard__features">
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Sitio web premium completo y optimizado</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Hosting ultra-veloz y soporte técnico 24/7</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>2 horas/mes de SEO Local y mantenimiento</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Actualizaciones ilimitadas de contenidos</span>
-                </li>
-              </ul>
-            </div>
-            <Btn glossy href="#contact" className="w-full">Suscribirse al Plan</Btn>
-          </TiltCard>
-
-          {/* Plan 3: Premium */}
-          <TiltCard className="pcard" delay={200}>
-            <div>
-              <div className="pcard__header">
-                <span className="pcard__num">PLAN 03</span>
-                <h3 className="pcard__title">Premium</h3>
-                <p className="pcard__desc">Propiedad absoluta del código desde el primer día con integraciones avanzadas y SEO de élite.</p>
-                <div className="pcard__price-row">
-                  <span className="pcard__period" style={{ marginLeft: 0, marginRight: 8, fontSize: 16 }}>desde</span>
-                  <span className="pcard__price">€2.999</span>
+            {/* PLAN LOCAL+ */}
+            <TiltCard className="pcard" delay={200}>
+              <div>
+                <div className="pcard__header">
+                  <span className="pcard__num">WEB LOCAL+</span>
+                  <h3 className="pcard__title">Web Local+</h3>
+                  <p className="pcard__desc">Para empresas que quieren posicionar múltiples servicios o zonas en León con analítica avanzada.</p>
+                  <div className="pcard__price-row">
+                    <span className="pcard__period" style={{ marginLeft: 0, marginRight: 6, fontSize: 16 }}>desde</span>
+                    <span className="pcard__price">€349</span>
+                    <span className="pcard__period">/ pago único</span>
+                  </div>
                 </div>
-              </div>
 
-              <ul className="pcard__features">
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Sitio web a medida y propiedad del código</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Copywriting persuasivo y estudio de marca</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Integración de reservas, citas o e-commerce</span>
-                </li>
-                <li className="pcard__feature">
-                  <span className="ic ic--v">✓</span>
-                  <span>Optimización SEO inicial exhaustiva</span>
-                </li>
-              </ul>
+                <ul className="pcard__features">
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Hasta 8 páginas de servicios detallados</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>SEO Local avanzado y mapa de palabras clave</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Google Analytics 4 configurado</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>2 rondas de revisión incluidas</span></li>
+                </ul>
+              </div>
+              <Btn href="#contact" onClick={() => trackEvent("plan_local_plus_click")} className="w-full">Elegir Web Local+</Btn>
+            </TiltCard>
+          </div>
+        )}
+
+        {/* CUSTOM PLANS GRID */}
+        {pricingTab === "custom" && (
+          <div className="pricing-grid">
+            {/* PLAN BÁSICO A MEDIDA */}
+            <TiltCard className="pcard" delay={0}>
+              <div>
+                <div className="pcard__header">
+                  <span className="pcard__num">A MEDIDA 01</span>
+                  <h3 className="pcard__title">Básico A Medida</h3>
+                  <p className="pcard__desc">Web corporativa con diseño exclusivo adaptado a la identidad gráfica de tu empresa.</p>
+                  <div className="pcard__price-row">
+                    <span className="pcard__price">€450</span>
+                    <span className="pcard__period">/ proyecto</span>
+                  </div>
+                </div>
+
+                <ul className="pcard__features">
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Diseño único a partir de branding</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Arquitectura personalizada de contenidos</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Panel o gestión administrable opcional</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Soporte de lanzamiento directo</span></li>
+                </ul>
+              </div>
+              <Btn href="#contact" onClick={() => trackEvent("custom_click", { plan: "basico" })} className="w-full">Consultar A Medida</Btn>
+            </TiltCard>
+
+            {/* PLAN AVANZADO + SEO */}
+            <TiltCard className="pcard pcard--recommended" delay={100} style={{ borderColor: "rgba(146, 187, 255, 0.4)", boxShadow: "0 0 30px rgba(146,187,255,0.15)" }}>
+              <div className="pcard__badge">MÁXIMO IMPACTO</div>
+              <div>
+                <div className="pcard__header">
+                  <span className="pcard__num" style={{ color: "#C5EBFF" }}>A MEDIDA 02</span>
+                  <h3 className="pcard__title">Avanzado + SEO</h3>
+                  <p className="pcard__desc">Proyecto estratégico completo con copywriting de conversión y estudio SEO profundo.</p>
+                  <div className="pcard__price-row">
+                    <span className="pcard__price">€750</span>
+                    <span className="pcard__period">/ proyecto</span>
+                  </div>
+                </div>
+
+                <ul className="pcard__features">
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Estudio exhaustivo de palabras clave y competencia</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Copywriting persuasivo orientado a ventas</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Embudos de contacto y captación optimizados</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Informes y seguimiento post-lanzamiento</span></li>
+                </ul>
+              </div>
+              <Btn glossy href="#contact" onClick={() => trackEvent("custom_click", { plan: "avanzado" })} className="w-full">Solicitar Propuesta</Btn>
+            </TiltCard>
+
+            {/* PLAN TIENDA / ESPECIAL */}
+            <TiltCard className="pcard" delay={200}>
+              <div>
+                <div className="pcard__header">
+                  <span className="pcard__num">A MEDIDA 03</span>
+                  <h3 className="pcard__title">Tienda / Especial</h3>
+                  <p className="pcard__desc">Desarrollos e-commerce, sistemas de reserva online o integraciones de software a medida.</p>
+                  <div className="pcard__price-row">
+                    <span className="pcard__period" style={{ marginLeft: 0, marginRight: 6, fontSize: 16 }}>desde</span>
+                    <span className="pcard__price">€1.500</span>
+                  </div>
+                </div>
+
+                <ul className="pcard__features">
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Catálogo online con catálogo de productos</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Pasarela de pago y gestión de pedidos</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Integraciones API / CRM de terceros</span></li>
+                  <li className="pcard__feature"><span className="ic ic--v">✓</span><span>Desarrollo técnico 100% a medida</span></li>
+                </ul>
+              </div>
+              <Btn href="#contact" onClick={() => trackEvent("custom_click", { plan: "tienda" })} className="w-full">Presupuesto A Medida</Btn>
+            </TiltCard>
+          </div>
+        )}
+
+        {/* ENRUTADOR: ¿CUÁL NECESITO? */}
+        <div style={{ marginTop: "60px", background: "rgba(255,255,255,0.02)", borderRadius: "20px", border: "1px solid rgba(255,255,255,0.08)", padding: "32px 24px" }}>
+          <h3 style={{ textAlign: "center", fontSize: "22px", fontWeight: "700", marginBottom: "24px", color: "#FFFFFF" }}>¿Cuál plan se adapta a tu negocio?</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "20px" }}>
+            <div style={{ background: "rgba(255,255,255,0.03)", padding: "18px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ color: "#92BBFF", fontWeight: "700", marginBottom: "8px" }}>Web One (179 €)</div>
+              <div style={{ fontSize: "14px", color: "#A1A1AA" }}>¿Solo necesitas presencia rápida y elegante para enviar a tus clientes?</div>
             </div>
-            <Btn href="#contact" className="w-full">Adquirir Plan</Btn>
-          </TiltCard>
+            <div style={{ background: "rgba(255,255,255,0.03)", padding: "18px", borderRadius: "12px", border: "1px solid #92BBFF" }}>
+              <div style={{ color: "#92BBFF", fontWeight: "700", marginBottom: "8px" }}>Web Local (299 €) ⭐</div>
+              <div style={{ fontSize: "14px", color: "#A1A1AA" }}>¿Quieres conseguir clientes en León desde búsquedas en Google y Google Maps?</div>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.03)", padding: "18px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ color: "#92BBFF", fontWeight: "700", marginBottom: "8px" }}>Web Local+ (Desde 349 €)</div>
+              <div style={{ fontSize: "14px", color: "#A1A1AA" }}>¿Tienes varios servicios especializados y necesitas posicionar cada uno por separado?</div>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.03)", padding: "18px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ color: "#92BBFF", fontWeight: "700", marginBottom: "8px" }}>A Medida (450 €+)</div>
+              <div style={{ fontSize: "14px", color: "#A1A1AA" }}>¿Necesitas funciones complejas, venta online, diseño a medida o integraciones especiales?</div>
+            </div>
+          </div>
+        </div>
+
+        {/* CÓMO FUNCIONA EN 4 PASOS */}
+        <div style={{ marginTop: "60px", textAlign: "center" }}>
+          <h3 style={{ fontSize: "24px", fontWeight: "700", marginBottom: "12px", color: "#FFFFFF" }}>Cómo trabajamos juntos</h3>
+          <p style={{ color: "#A1A1AA", marginBottom: "36px" }}>Un proceso transparente de 4 pasos para lanzar tu web sin dolores de cabeza.</p>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px" }}>
+            <div style={{ textAlign: "left", background: "rgba(255,255,255,0.02)", padding: "20px", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(146,187,255,0.15)", color: "#92BBFF", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "700", marginBottom: "12px" }}>1</div>
+              <h4 style={{ color: "#FFF", fontSize: "16px", fontWeight: "600", marginBottom: "6px" }}>Eliges plan</h4>
+              <p style={{ color: "#A1A1AA", fontSize: "13px" }}>Seleccionas la solución que mejor se adapta a la fase de tu negocio.</p>
+            </div>
+            <div style={{ textAlign: "left", background: "rgba(255,255,255,0.02)", padding: "20px", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(146,187,255,0.15)", color: "#92BBFF", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "700", marginBottom: "12px" }}>2</div>
+              <h4 style={{ color: "#FFF", fontSize: "16px", fontWeight: "600", marginBottom: "6px" }}>Nos cuentas tu negocio</h4>
+              <p style={{ color: "#A1A1AA", fontSize: "13px" }}>Nos facilitas tus datos básicos, textos o ideas clave mediante un breve formulario.</p>
+            </div>
+            <div style={{ textAlign: "left", background: "rgba(255,255,255,0.02)", padding: "20px", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(146,187,255,0.15)", color: "#92BBFF", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "700", marginBottom: "12px" }}>3</div>
+              <h4 style={{ color: "#FFF", fontSize: "16px", fontWeight: "600", marginBottom: "6px" }}>Preparamos la web</h4>
+              <p style={{ color: "#A1A1AA", fontSize: "13px" }}>Diseñamos y optimizamos tu sitio con máxima velocidad y SEO local.</p>
+            </div>
+            <div style={{ textAlign: "left", background: "rgba(255,255,255,0.02)", padding: "20px", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(146,187,255,0.15)", color: "#92BBFF", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "700", marginBottom: "12px" }}>4</div>
+              <h4 style={{ color: "#FFF", fontSize: "16px", fontWeight: "600", marginBottom: "6px" }}>Revisas y aprobamos</h4>
+              <p style={{ color: "#A1A1AA", fontSize: "13px" }}>Ajustamos juntos el resultado y publicamos tu web en tu propio dominio.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* TABLA COMPARATIVA DE PLANES */}
+        <div style={{ marginTop: "60px" }}>
+          <h3 style={{ textAlign: "center", fontSize: "22px", fontWeight: "700", marginBottom: "24px", color: "#FFFFFF" }}>Comparativa detallada de características</h3>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left", fontSize: "14px", color: "#E4E4E7" }}>
+              <thead>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+                  <th style={{ padding: "14px 16px", color: "#A1A1AA" }}>Característica</th>
+                  <th style={{ padding: "14px 16px", color: "#92BBFF" }}>Web One (179 €)</th>
+                  <th style={{ padding: "14px 16px", color: "#92BBFF", background: "rgba(146,187,255,0.08)" }}>Web Local (299 €) ⭐</th>
+                  <th style={{ padding: "14px 16px", color: "#92BBFF" }}>Web Local+ (Desde 349 €)</th>
+                  <th style={{ padding: "14px 16px", color: "#92BBFF" }}>A Medida (450 €+)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                  <td style={{ padding: "12px 16px", fontWeight: "600" }}>Estructura de páginas</td>
+                  <td style={{ padding: "12px 16px" }}>1 Página (Landing)</td>
+                  <td style={{ padding: "12px 16px", background: "rgba(146,187,255,0.04)" }}>3 - 5 Páginas</td>
+                  <td style={{ padding: "12px 16px" }}>5 - 8 Páginas</td>
+                  <td style={{ padding: "12px 16px" }}>A Medida Libre</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                  <td style={{ padding: "12px 16px", fontWeight: "600" }}>SEO Local León</td>
+                  <td style={{ padding: "12px 16px" }}>Básico</td>
+                  <td style={{ padding: "12px 16px", background: "rgba(146,187,255,0.04)" }}>Optimizado + Maps</td>
+                  <td style={{ padding: "12px 16px" }}>Avanzado Multi-servicio</td>
+                  <td style={{ padding: "12px 16px" }}>Estudio Exhaustivo</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                  <td style={{ padding: "12px 16px", fontWeight: "600" }}>Adaptación Móvil</td>
+                  <td style={{ padding: "12px 16px" }}>100% Responsive</td>
+                  <td style={{ padding: "12px 16px", background: "rgba(146,187,255,0.04)" }}>100% Responsive</td>
+                  <td style={{ padding: "12px 16px" }}>100% Responsive</td>
+                  <td style={{ padding: "12px 16px" }}>100% Responsive</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                  <td style={{ padding: "12px 16px", fontWeight: "600" }}>Contacto & WhatsApp</td>
+                  <td style={{ padding: "12px 16px" }}>✓ Directo</td>
+                  <td style={{ padding: "12px 16px", background: "rgba(146,187,255,0.04)" }}>✓ Directo</td>
+                  <td style={{ padding: "12px 16px" }}>✓ Directo</td>
+                  <td style={{ padding: "12px 16px" }}>✓ Formularios CRM</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                  <td style={{ padding: "12px 16px", fontWeight: "600" }}>Mantenimiento Opcional</td>
+                  <td style={{ padding: "12px 16px" }}>Care (79 €/año)</td>
+                  <td style={{ padding: "12px 16px", background: "rgba(146,187,255,0.04)" }}>Care (79 €/año)</td>
+                  <td style={{ padding: "12px 16px" }}>Care+ (14.90 €/mes)</td>
+                  <td style={{ padding: "12px 16px" }}>A Medida</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* PLANES DE MANTENIMIENTO OPCIONAL (CARE) */}
+        <div style={{ marginTop: "60px", background: "rgba(255,255,255,0.02)", borderRadius: "20px", border: "1px solid rgba(255,255,255,0.06)", padding: "32px 24px" }}>
+          <h4 style={{ textAlign: "center", fontSize: "18px", fontWeight: "700", marginBottom: "8px", color: "#FFFFFF" }}>Planes de Mantenimiento Tranquilidad (Opcionales)</h4>
+          <p style={{ textAlign: "center", color: "#A1A1AA", fontSize: "14px", marginBottom: "24px" }}>Mantén tu web siempre rápida, segura y actualizada sin preocuparte por aspectos técnicos.</p>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
+            <div style={{ background: "rgba(255,255,255,0.02)", padding: "16px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ fontWeight: "700", color: "#FFF" }}>Care Base</div>
+              <div style={{ fontSize: "18px", fontWeight: "700", color: "#92BBFF", margin: "4px 0" }}>79 € <span style={{ fontSize: "12px", color: "#A1A1AA" }}>/ año</span></div>
+              <div style={{ fontSize: "12px", color: "#A1A1AA" }}>Hosting ultrarrápido, renovación de dominio y certificado SSL.</div>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.02)", padding: "16px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ fontWeight: "700", color: "#FFF" }}>Care+</div>
+              <div style={{ fontSize: "18px", fontWeight: "700", color: "#92BBFF", margin: "4px 0" }}>14,90 € <span style={{ fontSize: "12px", color: "#A1A1AA" }}>/ mes</span></div>
+              <div style={{ fontSize: "12px", color: "#A1A1AA" }}>Care Base + 1 hora/mes de cambios o actualización de contenidos.</div>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.02)", padding: "16px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ fontWeight: "700", color: "#FFF" }}>Growth Local</div>
+              <div style={{ fontSize: "18px", fontWeight: "700", color: "#92BBFF", margin: "4px 0" }}>34,90 € <span style={{ fontSize: "12px", color: "#A1A1AA" }}>/ mes</span></div>
+              <div style={{ fontSize: "12px", color: "#A1A1AA" }}>Care+ con seguimiento de SEO Local continuo y ficha Google Business.</div>
+            </div>
+          </div>
         </div>
       </section>
+
 
       {/* FAQ */}
       <section className="section wrap" id="faq">
@@ -2084,8 +2308,8 @@ export default function App() {
       <section className="section wrap" id="contact" style={{ textAlign: "center" }}>
         <div className="hero__glow" style={{ top: "0", opacity: .6 }} />
         <Reveal style={{ position: "relative" }}>
-          <h2 className="display h-grad" style={{ fontSize: "clamp(32px,5vw,60px)", marginBottom: 20 }}>¿Tienes tiempo? ¿Tienes ideas? Vamos a construir.</h2>
-          <Btn glossy href="#">Reserva una llamada GRATIS de 30 minutos</Btn>
+          <h2 className="display h-grad" style={{ fontSize: "clamp(32px,5vw,60px)", marginBottom: 20 }}>¿Listo para que tu negocio empiece a conseguir clientes en internet?</h2>
+          <Btn glossy href="#">Pedir presupuesto por WhatsApp</Btn>
         </Reveal>
       </section>
 
@@ -2093,13 +2317,13 @@ export default function App() {
       <footer className="footer">
         <div className="wrap footer__grid">
           <div style={{ maxWidth: 280 }}>
-            <div className="nav__brand" style={{ marginBottom: 12 }}><span className="nav__ava"><img src="/assets/avatar.png" alt="avatar" /></span> Iqtidar Tara</div>
-            <p style={{ color: "var(--muted)", fontSize: 14, lineHeight: 1.6 }}>Diseñador, copywriter y desarrollador. Ayudo a startups a lanzar productos impactantes.</p>
+            <div className="nav__brand" style={{ marginBottom: 12 }}><span className="nav__ava"><img src="/assets/avatar.png" alt="avatar" /></span> León Webs</div>
+            <p style={{ color: "var(--muted)", fontSize: 14, lineHeight: 1.6 }}>Agencia de diseño web, posicionamiento en Google y soluciones digitales para autónomos y pymes en León.</p>
           </div>
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href="#work">Proyectos</a><a href="#services">Servicios</a><a href="#about">Sobre mí</a><a href="#precios">Precios</a><a href="#faq">FAQ</a>
+              <a href="#work">Proyectos</a><a href="#services">Servicios</a><a href="#about">Sobre nosotros</a><a href="#precios">Precios</a><a href="#faq">FAQ</a>
             </div>
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Redes</div>
