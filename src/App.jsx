@@ -195,6 +195,18 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
   0% { --a: 0deg; }
   100% { --a: 360deg; }
 }
+/* --- Variante WhatsApp (mismo look glossy, fondo verde) --- */
+.btn--glossy.btn--whatsapp{ color:#fff; }
+.btn--glossy.btn--whatsapp .btn__core{
+  background: linear-gradient(180deg, #2FE372 0%, #1DAE55 100%);
+  border-color: rgba(255,255,255,.5);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.5);
+}
+.btn--glossy.btn--whatsapp .btn__bglow{
+  background: radial-gradient(87% 100% at 50% 100%, rgb(16, 133, 66) 0%, rgba(255,255,255,0) 100%);
+}
 
 /* ---- nav ---- */
 .nav{ position:fixed; top:0; left:0; right:0; z-index:100; padding:12px 20px; transition:all .3s ease; pointer-events:none; }
@@ -4884,7 +4896,8 @@ function HomePage() {
               </Btn>
               <Btn
                 glossy
-                style={{ flex: 1, minWidth: 200, justifyContent: "center", color: "#0d9155" }}
+                className="btn--whatsapp"
+                style={{ flex: 1, minWidth: 200, justifyContent: "center" }}
                 href={`https://wa.me/34600000000?text=${encodeURIComponent(`Hola León Webs! He calculado mi web en vuestra página (Total: ${calcTotal}€ con ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas",tienda:"Tienda",ads:"Google/SEO"}[k])).join(", ") : "Plan Base"}). Me gustaría hablar de mi proyecto.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
