@@ -2381,9 +2381,9 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
   background-image:radial-gradient(rgba(146,187,255,.14) 1px, transparent 1px);
   background-size:16px 16px; opacity:.5; }
 .plan-card--with-image:hover .plan-card__icon-panel{ transform:scale(1.018); border-color:rgba(146,187,255,.32); }
-.plan-card__icon-panel svg{ position:relative; z-index:1; width:44px; height:44px; color:#92BBFF;
-  filter:drop-shadow(0 6px 18px rgba(66,123,216,.45)); }
-@media(max-width:640px){ .plan-card__icon-panel{ height:126px; } .plan-card__icon-panel svg{ width:36px; height:36px; } }
+.plan-card__icon-panel svg{ position:relative; z-index:1; width:auto; height:104px; max-width:82%; color:#92BBFF;
+  filter:drop-shadow(0 10px 22px rgba(66,123,216,.4)); }
+@media(max-width:640px){ .plan-card__icon-panel{ height:126px; } .plan-card__icon-panel svg{ height:82px; } }
 .plan-card__content{ padding:22px 20px 18px; }
 .plan-card__content h3{ margin-bottom:9px; }
 .plan-card--template .plan-card__image{ height:auto; aspect-ratio:2.46/1; }
@@ -5804,7 +5804,22 @@ function PorHoras() {
         </div>
         <PlanCard className="plan-span-4 plan-card--with-image">
           <div className="plan-card__icon-panel" role="img" aria-label="Mantenimiento web y optimización de velocidad">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.77z"/></svg>
+            <svg viewBox="0 0 200 100" fill="none">
+              <rect x="16" y="16" width="92" height="62" rx="8" fill="rgba(146,187,255,.07)" stroke="rgba(146,187,255,.32)" strokeWidth="1.4"/>
+              <circle cx="26" cy="26" r="2.2" fill="rgba(255,255,255,.35)"/>
+              <circle cx="33" cy="26" r="2.2" fill="rgba(255,255,255,.22)"/>
+              <rect x="26" y="38" width="68" height="6" rx="3" fill="rgba(146,187,255,.5)"/>
+              <rect x="26" y="50" width="46" height="6" rx="3" fill="rgba(146,187,255,.26)"/>
+              <circle cx="62" cy="66" r="9" fill="none" stroke="#3fd68a" strokeWidth="2.4"/>
+              <path d="M57.5 66l3 3 6-6.5" stroke="#3fd68a" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+              <g stroke="#92BBFF" strokeWidth="3" strokeLinecap="round">
+                <circle cx="148" cy="30" r="9" fill="none"/>
+                <line x1="148" y1="30" x2="148" y2="16"/>
+                <line x1="148" y1="30" x2="161" y2="41"/>
+              </g>
+              <rect x="120" y="52" width="56" height="30" rx="8" fill="rgba(146,187,255,.09)" stroke="rgba(146,187,255,.3)" strokeWidth="1.4"/>
+              <path d="M132 68l6 6 12-13" stroke="#92BBFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
           <div className="plan-card__content">
             <h4>Mantenimiento</h4>
@@ -5813,7 +5828,21 @@ function PorHoras() {
         </PlanCard>
         <PlanCard className="plan-span-4 plan-card--with-image">
           <div className="plan-card__icon-panel" role="img" aria-label="Diseño de interfaz y contenido">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22a1 1 0 01-1-1v-1a2 2 0 012-2h1a2 2 0 002-2 2 2 0 012-2h1.5a2.5 2.5 0 002.5-2.5C22 6.6 17.5 2 12 2 6.5 2 2 6.5 2 12s4.5 10 10 10z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/></svg>
+            <svg viewBox="0 0 200 100" fill="none">
+              <rect x="16" y="14" width="90" height="66" rx="8" fill="rgba(146,187,255,.07)" stroke="rgba(146,187,255,.32)" strokeWidth="1.4"/>
+              <rect x="26" y="24" width="70" height="24" rx="5" fill="rgba(146,187,255,.16)"/>
+              <rect x="26" y="53" width="30" height="6" rx="3" fill="rgba(146,187,255,.42)"/>
+              <rect x="60" y="53" width="36" height="6" rx="3" fill="rgba(146,187,255,.22)"/>
+              <rect x="26" y="64" width="46" height="6" rx="3" fill="rgba(146,187,255,.22)"/>
+              <g transform="translate(126,20)">
+                <path d="M37 25c0 10-9 18-19 18-3 0-4-2-4-4s2-3 2-5-2-3-4-3H7c-3 0-6-3-6-8C1 12 10 2 22 2c9 0 15 7 15 14v9z"
+                  fill="rgba(146,187,255,.1)" stroke="rgba(146,187,255,.4)" strokeWidth="1.4"/>
+                <circle cx="9" cy="12" r="2.6" fill="#ff8fb3"/>
+                <circle cx="20" cy="7" r="2.6" fill="#ffd166"/>
+                <circle cx="31" cy="12" r="2.6" fill="#3fd68a"/>
+                <circle cx="10" cy="24" r="2.6" fill="#92BBFF"/>
+              </g>
+            </svg>
           </div>
           <div className="plan-card__content">
             <h4>Diseño y Contenido</h4>
@@ -5822,7 +5851,16 @@ function PorHoras() {
         </PlanCard>
         <PlanCard className="plan-span-4 plan-card--with-image">
           <div className="plan-card__icon-panel" role="img" aria-label="Integración de APIs y nuevas funciones">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L4.09 12.97A1 1 0 004.86 14.7H11l-1 7.3L19.91 11.03A1 1 0 0019.14 9.3H13l1-7.3z"/></svg>
+            <svg viewBox="0 0 200 100" fill="none">
+              <rect x="16" y="30" width="34" height="34" rx="8" fill="rgba(146,187,255,.1)" stroke="rgba(146,187,255,.35)" strokeWidth="1.4"/>
+              <rect x="60" y="18" width="34" height="34" rx="8" fill="rgba(146,187,255,.1)" stroke="rgba(146,187,255,.35)" strokeWidth="1.4"/>
+              <rect x="60" y="60" width="34" height="34" rx="8" fill="rgba(146,187,255,.1)" stroke="rgba(146,187,255,.35)" strokeWidth="1.4"/>
+              <path d="M50 47L60 35M50 47L60 77" stroke="rgba(146,187,255,.4)" strokeWidth="1.6" strokeDasharray="3 4"/>
+              <g transform="translate(126,16)">
+                <path d="M28 2L4 34.6A2.4 2.4 0 006 38.4h14l-2.6 24.6L42 26.2A2.4 2.4 0 0040.1 22.5H26.5L28 2z"
+                  fill="#ffd166" stroke="#ffd166" strokeWidth="1"/>
+              </g>
+            </svg>
           </div>
           <div className="plan-card__content">
             <h4>Nuevas Funciones</h4>
@@ -5855,7 +5893,16 @@ function TiendaOnline() {
         <div className="plan-grid">
           <PlanCard className="plan-span-8 plan-card--with-image">
             <div className="plan-card__icon-panel" role="img" aria-label="Catálogo visual dinámico de productos">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <svg viewBox="0 0 260 100" fill="none">
+                {[0,1,2,3].map(i => (
+                  <g key={i} transform={`translate(${16 + i*60},14)`}>
+                    <rect width="50" height="50" rx="8" fill="rgba(146,187,255,.09)" stroke="rgba(146,187,255,.32)" strokeWidth="1.4"/>
+                    <circle cx="25" cy="22" r="9" fill="rgba(146,187,255,.28)"/>
+                    <rect x="10" y="58" width="30" height="5" rx="2.5" fill="rgba(146,187,255,.4)"/>
+                    <rect x="10" y="68" width="18" height="5" rx="2.5" fill="rgba(146,187,255,.22)"/>
+                  </g>
+                ))}
+              </svg>
             </div>
             <div className="plan-card__content">
               <h3>Catálogo Visual Dinámico</h3>
@@ -5864,7 +5911,17 @@ function TiendaOnline() {
           </PlanCard>
           <PlanCard className="plan-span-4 plan-card--with-image">
             <div className="plan-card__icon-panel" role="img" aria-label="Pasarelas de pago seguras">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg>
+              <svg viewBox="0 0 200 100" fill="none">
+                <g transform="translate(20,30) rotate(-8)">
+                  <rect width="76" height="46" rx="9" fill="rgba(146,187,255,.12)" stroke="rgba(146,187,255,.4)" strokeWidth="1.6"/>
+                  <rect y="12" width="76" height="9" fill="rgba(146,187,255,.5)"/>
+                  <rect x="10" y="32" width="24" height="6" rx="3" fill="rgba(255,255,255,.5)"/>
+                </g>
+                <g transform="translate(120,20)">
+                  <circle cx="30" cy="30" r="26" fill="rgba(63,214,138,.1)" stroke="#3fd68a" strokeWidth="2"/>
+                  <path d="M18 30l8 8 18-19" stroke="#3fd68a" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </g>
+              </svg>
             </div>
             <div className="plan-card__content">
               <h3>Pagos Sin Fricción</h3>
@@ -5874,7 +5931,17 @@ function TiendaOnline() {
           </PlanCard>
           <PlanCard className="plan-span-4 plan-card--with-image">
             <div className="plan-card__icon-panel" role="img" aria-label="Panel de gestión centralizada">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="21" x2="5" y2="11"/><line x1="12" y1="21" x2="12" y2="6"/><line x1="19" y1="21" x2="19" y2="14"/></svg>
+              <svg viewBox="0 0 200 100" fill="none">
+                <rect x="16" y="14" width="168" height="72" rx="10" fill="rgba(146,187,255,.06)" stroke="rgba(146,187,255,.3)" strokeWidth="1.4"/>
+                <circle cx="30" cy="26" r="2.4" fill="rgba(255,255,255,.35)"/>
+                <circle cx="38" cy="26" r="2.4" fill="rgba(255,255,255,.22)"/>
+                <rect x="30" y="40" width="20" height="34" rx="3" fill="rgba(146,187,255,.28)"/>
+                <rect x="58" y="52" width="20" height="22" rx="3" fill="rgba(146,187,255,.42)"/>
+                <rect x="86" y="34" width="20" height="40" rx="3" fill="#3fd68a" opacity=".7"/>
+                <rect x="114" y="46" width="20" height="28" rx="3" fill="rgba(146,187,255,.28)"/>
+                <path d="M30 44l28-6 28 10 28-16" stroke="#92BBFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity=".8"/>
+                <rect x="150" y="34" width="24" height="40" rx="6" fill="rgba(146,187,255,.1)" stroke="rgba(146,187,255,.35)" strokeWidth="1.2"/>
+              </svg>
             </div>
             <div className="plan-card__content">
               <h3>Gestión Centralizada</h3>
@@ -5883,7 +5950,16 @@ function TiendaOnline() {
           </PlanCard>
           <PlanCard className="plan-span-8 plan-card--with-image">
             <div className="plan-card__icon-panel" role="img" aria-label="Flujo de compra y carrito optimizado">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.4a2 2 0 002 1.6h8.4a2 2 0 002-1.6L21 8H6"/></svg>
+              <svg viewBox="0 0 200 100" fill="none">
+                <g stroke="#92BBFF" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" fill="none">
+                  <path d="M20 26h14l12 46h64l12-38H46"/>
+                  <circle cx="58" cy="82" r="6" fill="#0d1730" strokeWidth="2.4"/>
+                  <circle cx="98" cy="82" r="6" fill="#0d1730" strokeWidth="2.4"/>
+                </g>
+                <rect x="130" y="18" width="30" height="30" rx="7" fill="rgba(146,187,255,.14)" stroke="rgba(146,187,255,.4)" strokeWidth="1.4"/>
+                <rect x="164" y="30" width="24" height="24" rx="6" fill="rgba(63,214,138,.16)" stroke="#3fd68a" strokeWidth="1.4"/>
+                <path d="M112 46l10-8 8 8" stroke="#ffd166" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
             <div className="plan-card__content">
               <h3>Experiencia de Carrito Fluida</h3>
