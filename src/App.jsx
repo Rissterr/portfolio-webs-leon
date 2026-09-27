@@ -46,7 +46,7 @@ const CSS = `
 }
 @media(hover:none){ .grid-overlay__spot{ display:none; } }
 .wrap{ max-width:1200px; margin:0 auto; padding-inline:24px; }
-.section{ padding-block:110px; position:relative; z-index:2; }
+.section{ padding-block:46px; position:relative; z-index:2; }
 
 /* ---- reveal (whileInView equivalent) ---- */
 .reveal{ opacity:0; transform:translateY(28px);
@@ -57,7 +57,8 @@ const CSS = `
 }
 
 /* ---- typography ---- */
-.display{ font-family:var(--display); font-weight:700; line-height:1.06; letter-spacing:-.02em; }
+h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
+.display{ font-family:var(--display); font-weight:700; line-height:1.12; letter-spacing:-.02em; color: #FFFFFF; }
 .h-grad{ color: #FFFFFF; font-weight: 700; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
 .eyebrow {
   position: relative;
@@ -73,7 +74,7 @@ const CSS = `
   border: 1px solid rgba(146, 187, 255, 0.2);
   background: rgba(146, 187, 255, 0.07);
   color: #92BBFF;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   transition: all 0.25s ease;
 }
 .eyebrow:hover {
@@ -87,7 +88,7 @@ const CSS = `
   display: none;
 }
 .kicker{ color:var(--muted); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
-.lead{ color:var(--muted); font-size:17.5px; line-height:1.65; max-width:620px; }
+.lead{ color:var(--muted); font-size:16px; line-height:1.55; max-width:620px; }
 
 /* ---- botón píldora cristalino con efectos de luz ---- */
 @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
@@ -208,20 +209,20 @@ const CSS = `
   justify-content:space-between;
   gap:20px;
   padding:10px 24px;
-  background:rgba(8, 14, 38, 0.72); 
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid rgba(146, 187, 255, 0.24); 
+  background:rgba(6, 10, 26, 0.32); 
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid rgba(255, 255, 255, 0.05); 
   border-radius:100px; 
   margin:0 auto; 
   max-width:1040px; 
-  box-shadow:0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow:0 12px 32px -10px rgba(0, 0, 0, 0.45);
   transition:background .3s, border-color .3s, box-shadow .3s;
 }
 .nav.scrolled .nav__inner{ 
-  background:rgba(6, 10, 30, 0.9); 
-  border-color:rgba(146, 187, 255, 0.35);
-  box-shadow:0 20px 48px -10px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background:rgba(6, 10, 26, 0.78); 
+  border-color:rgba(255, 255, 255, 0.08);
+  box-shadow:0 18px 44px -10px rgba(0, 0, 0, 0.75);
 }
 .nav__brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-family:var(--display); font-size:17px; color:#fff; white-space:nowrap; flex-shrink:0; }
 .nav__ava{ width:32px; height:32px; border-radius:50%; overflow:hidden;
@@ -239,9 +240,99 @@ const CSS = `
   filter:blur(6px); pointer-events:none; }
 
 /* ---- hero ---- */
-.hero{ padding:150px 0 85px; text-align:center; }
-.hero h1{ font-size:clamp(38px,6vw,76px); margin:20px auto 22px; max-width:16ch; }
-.hero .lead{ margin:0 auto 30px; text-align:center; max-width:680px; font-size:18.5px; }
+.hero{ 
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 95px 20px 75px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+.hero h1{ 
+  font-size: clamp(32px, 4.4vw, 58px); 
+  margin: 14px auto 14px; 
+  max-width: 17ch; 
+  line-height: 1.12; 
+  letter-spacing: -0.02em; 
+}
+.hero .lead{ 
+  margin: 0 auto 20px; 
+  text-align: center; 
+  max-width: 640px; 
+  font-size: 16.5px; 
+  line-height: 1.5; 
+}
+
+/* Indicador sutil de scroll hacia abajo */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: rgba(146, 187, 255, 0.55);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+.hero__scroll-indicator:hover {
+  color: #00D4FF;
+  transform: translateX(-50%) translateY(4px);
+}
+.hero__scroll-mouse {
+  width: 20px;
+  height: 32px;
+  border: 1.5px solid rgba(146, 187, 255, 0.35);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+  transition: border-color 0.3s;
+}
+.hero__scroll-indicator:hover .hero__scroll-mouse {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.35);
+}
+.hero__scroll-wheel {
+  width: 3px;
+  height: 6px;
+  background: #00D4FF;
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  box-shadow: 0 0 8px #00D4FF;
+  animation: scrollWheelAnim 2s infinite ease-in-out;
+}
+@keyframes scrollWheelAnim {
+  0% { transform: translateY(0); opacity: 1; }
+  60% { transform: translateY(8px); opacity: 0.15; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.hero__scroll-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero__scroll-chevron svg {
+  width: 15px;
+  height: 15px;
+  animation: chevronBob 2s infinite ease-in-out;
+}
+@keyframes chevronBob {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(4px); opacity: 1; color: #00D4FF; }
+}
 
 /* ---- HERO SOLUTIONS CARDS (REEMPLAZO EMOJIS) ---- */
 .hero__solutions-grid {
@@ -328,7 +419,7 @@ const CSS = `
 
 /* ---- proceso en 3 pasos sencillos ---- */
 .process-grid{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:46px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:26px;
 }
 .process-card{
   background:linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.015) 100%);
@@ -506,7 +597,7 @@ const CSS = `
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
-  margin: 24px auto 32px;
+  margin: 14px auto 20px;
   max-width: 600px;
 }
 .faq-filter-btn {
@@ -534,18 +625,13 @@ const CSS = `
 }
 
 /* ---- 6. Carousel de Proyectos por Sector ---- */
-.sector-carousel-wrap {
-  position: relative;
-  width: 100%;
-  margin-top: 10px;
-}
 .sector-nav-tabs {
   display: flex;
   gap: 8px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 24px;
-  margin-bottom: 30px;
+  margin-top: 18px;
+  margin-bottom: 20px;
 }
 .sector-tab-btn {
   background: rgba(255, 255, 255, 0.04);
@@ -553,7 +639,7 @@ const CSS = `
   color: var(--muted);
   font-size: 13.5px;
   font-weight: 600;
-  padding: 9px 18px;
+  padding: 8px 18px;
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -576,7 +662,7 @@ const CSS = `
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   overflow: hidden;
-  padding: 10px 0 10px;
+  padding: 4px 0 10px;
 }
 .marquee--projects {
   overflow: hidden;
@@ -894,7 +980,7 @@ const CSS = `
 .hq__q--open .hq__p{ display:block !important; }
 
 /* ---- precios ---- */
-.pricing{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:48px; }
+.pricing{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:26px; }
 .pricing--4{ grid-template-columns:repeat(4,1fr); }
 .price-card{ 
   background:linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.02) 100%); 
@@ -1140,7 +1226,7 @@ const CSS = `
   letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:100px;
   background:rgba(255,180,0,.14); border:1px solid rgba(255,180,0,.4); color:#FFCB6B; margin-bottom:8px; }
 .price-old{ font-size:15px; color:var(--muted); text-decoration:line-through; margin-bottom:4px; }
-.contact-card{ position:relative; overflow:hidden; border-radius:30px; padding:68px 52px;
+.contact-card{ position:relative; overflow:hidden; border-radius:30px; padding:48px 44px;
   background:linear-gradient(135deg, rgba(255,255,255,.05) 0%, rgba(20,28,62,.65) 100%); 
   border:1px solid rgba(146,187,255,.26);
   backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
@@ -1348,8 +1434,8 @@ const CSS = `
 .brands__glow{ position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%,rgba(40,72,140,.35),transparent 60%); pointer-events:none; }
 
 /* ---- comparison ---- */
-.cols{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:44px; position:relative; align-items:stretch; }
-.col{ border-radius:24px; padding:34px 32px; border:1px solid rgba(146,187,255,.14);
+.cols{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:24px; position:relative; align-items:stretch; }
+.col{ border-radius:24px; padding:30px 28px; border:1px solid rgba(146,187,255,.14);
   position:relative; overflow:hidden; isolation:isolate;
   background:rgba(10,14,34,.7);
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
@@ -1360,24 +1446,36 @@ const CSS = `
 
 .col-tag {
   align-self: flex-start;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
+  letter-spacing: 0.07em;
+  padding: 8px 18px;
   border-radius: 100px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+  transition: all 0.3s ease;
 }
 .col-tag--no {
-  background: rgba(255, 60, 100, 0.12);
-  border: 1px solid rgba(255, 60, 100, 0.28);
-  color: #ff859d;
+  background: linear-gradient(180deg, rgba(255, 75, 110, 0.22) 0%, rgba(140, 20, 50, 0.3) 100%);
+  border: 1.5px solid rgba(255, 90, 130, 0.45);
+  color: #FFA3B5;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 16px -2px rgba(255, 50, 90, 0.25);
 }
 .col-tag--yes {
-  background: rgba(0, 212, 255, 0.12);
-  border: 1px solid rgba(0, 212, 255, 0.35);
-  color: #00D4FF;
-  box-shadow: 0 0 14px rgba(0, 212, 255, 0.2);
+  background: linear-gradient(180deg, rgba(0, 180, 255, 0.22) 0%, rgba(14, 75, 180, 0.32) 100%);
+  border: 1.5px solid rgba(0, 212, 255, 0.52);
+  color: #C5EBFF;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 4px 18px -2px rgba(0, 180, 255, 0.32);
 }
 
 /* ---- "Sin estrategia" column ---- */
@@ -1416,16 +1514,16 @@ const CSS = `
 
 /* ---- Proof widget wrapper below comparison ---- */
 .conv-proof-wrap {
-  margin-top: 28px;
+  margin-top: 18px;
   max-width: 680px;
   margin-inline: auto;
   width: 100%;
 }
 
 /* ---- section heading ---- */
-.shead{ text-align:center; max-width:760px; margin:0 auto 10px; }
-.shead h2{ font-family:var(--display); font-weight:700; font-size:clamp(30px,4.4vw,52px);
-  letter-spacing:-.02em; line-height:1.05; margin:16px 0; }
+.shead{ text-align:center; max-width:760px; margin:0 auto 4px; }
+.shead h2{ font-family:var(--display); font-weight:700; font-size:clamp(28px,3.8vw,44px);
+  letter-spacing:-.02em; line-height:1.15; margin:8px 0 10px; color:#FFFFFF; }
 
 /* ---- bento services ---- */
 .bento{ display:grid; grid-template-columns:repeat(6,1fr); gap:20px; margin-top:52px; }
@@ -1915,7 +2013,7 @@ const CSS = `
 .q__ic{ flex:none; width:26px; height:26px; display:grid; place-items:center; transition:transform .3s, color .3s; }
 .q.open .q__ic{ color:#92BBFF; transform:scale(1.1); }
 .q__body p{ color:var(--muted); padding:0 22px 22px; font-size:15px; line-height:1.6; margin:0; }
-.faq__cta{ text-align:center; margin-top:28px; color:var(--muted); font-size:15px; }
+.faq__cta{ text-align:center; margin-top:16px; margin-bottom:0; color:var(--muted); font-size:14.5px; }
 .faq__cta a{ color:#92BBFF; text-decoration:none; border-bottom:1px solid rgba(146,187,255,.4); transition:color .2s, border-color .2s; }
 .faq__cta a:hover{ color:#fff; border-color:#fff; }
 
@@ -2261,6 +2359,19 @@ const CSS = `
 .plan-card__image{ display:block; width:100%; height:152px; object-fit:cover; object-position:center; border-radius:12px;
   border:1px solid rgba(174,213,255,.16); background:#070b1c; filter:saturate(.82) contrast(1.03); transition:filter .4s ease,transform .5s cubic-bezier(.16,1,.3,1); }
 .plan-card--with-image:hover .plan-card__image{ filter:saturate(1.04) contrast(1.06) brightness(1.05); transform:scale(1.018); }
+.plan-card__icon-panel{ display:flex; align-items:center; justify-content:center; width:100%; height:152px; border-radius:12px;
+  border:1px solid rgba(174,213,255,.16); position:relative; overflow:hidden;
+  background:
+    radial-gradient(120% 140% at 15% 0%, rgba(66,123,216,.35), transparent 60%),
+    linear-gradient(160deg, #0d1730 0%, #070b1c 100%);
+  transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .4s; }
+.plan-card__icon-panel::before{ content:''; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(146,187,255,.14) 1px, transparent 1px);
+  background-size:16px 16px; opacity:.5; }
+.plan-card--with-image:hover .plan-card__icon-panel{ transform:scale(1.018); border-color:rgba(146,187,255,.32); }
+.plan-card__icon-panel svg{ position:relative; z-index:1; width:44px; height:44px; color:#92BBFF;
+  filter:drop-shadow(0 6px 18px rgba(66,123,216,.45)); }
+@media(max-width:640px){ .plan-card__icon-panel{ height:126px; } .plan-card__icon-panel svg{ width:36px; height:36px; } }
 .plan-card__content{ padding:22px 20px 18px; }
 .plan-card__content h3{ margin-bottom:9px; }
 .plan-card--template .plan-card__image{ height:auto; aspect-ratio:2.46/1; }
@@ -2466,17 +2577,18 @@ const CSS = `
 .growth-trust-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .growth-trust-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--txt);
   font-weight: 500;
+  white-space: nowrap;
 }
 .growth-trust-item span.ic-chk {
   width: 18px;
@@ -2503,46 +2615,162 @@ const CSS = `
 }
 .growth-note-top {
   position: absolute;
-  top: -36px;
-  right: 20%;
-  font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
-  font-style: italic;
-  font-size: 19px;
+  top: -34px;
+  right: 18%;
+  font-family: var(--display), inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: #38BDF8;
+  background: rgba(8, 16, 40, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 6px 14px;
+  border-radius: 100px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   pointer-events: none;
   z-index: 10;
-  text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 14px rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(14px);
 }
-.growth-note-top svg { width: 24px; height: 24px; color: #38BDF8; }
+.growth-note-top svg { width: 14px; height: 14px; color: #38BDF8; }
 
 .growth-mockup-stage {
   position: relative;
   width: 100%;
   perspective: 1200px;
 }
+
+/* Brillo ambiental detrás de los mockups */
+.growth-mockup-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px; height: 380px;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0, 132, 255, 0.28) 0%, rgba(0, 212, 255, 0.12) 40%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+  animation: glowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes levitateTablet {
+  0%, 100% {
+    transform: rotateY(-6deg) rotateX(4deg) translateY(0px);
+  }
+  50% {
+    transform: rotateY(-5deg) rotateX(3deg) translateY(-8px);
+  }
+}
+
+@keyframes levitatePhone {
+  0%, 100% {
+    transform: rotateY(-3deg) rotateX(2deg) translateY(0px);
+  }
+  50% {
+    transform: rotateY(-2deg) rotateX(1deg) translateY(-12px);
+  }
+}
+
 .growth-tablet {
   width: 92%;
   background: #090d20;
-  border: 3px solid #1c264a;
+  border: 2.5px solid rgba(146, 187, 255, 0.35);
   border-radius: 24px;
-  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85), 0 0 50px -10px rgba(0, 102, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow: 
+    0 35px 80px -20px rgba(0, 0, 0, 0.9), 
+    0 0 50px -10px rgba(0, 102, 255, 0.35), 
+    inset 0 1px 0 rgba(255,255,255,0.3);
   overflow: hidden;
   position: relative;
-  transform: rotateY(-6deg) rotateX(4deg);
-  transition: transform 0.5s cubic-bezier(.16,1,.3,1);
+  z-index: 1;
+  animation: levitateTablet 7s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 .growth-tablet:hover {
-  transform: rotateY(-2deg) rotateX(2deg) translateY(-4px);
+  transform: rotateY(-2deg) rotateX(2deg) translateY(-8px) scale(1.01) !important;
+  border-color: rgba(146, 187, 255, 0.6);
+  box-shadow: 
+    0 45px 95px -20px rgba(0, 0, 0, 0.95), 
+    0 0 65px -5px rgba(0, 132, 255, 0.5), 
+    inset 0 1px 0 rgba(255,255,255,0.4);
 }
+
+.tablet-browser-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: rgba(8, 12, 30, 0.95);
+  border-bottom: 1px solid rgba(146, 187, 255, 0.16);
+}
+.tablet-dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.tablet-dots .dot-circle {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dot--red { background: #FF5F56; }
+.dot--amber { background: #FFBD2E; }
+.dot--green { background: #27C93F; }
+
+.tablet-url {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(146, 187, 255, 0.18);
+  border-radius: 100px;
+  padding: 2px 10px;
+  font-size: 9.5px;
+  color: #92BBFF;
+  font-family: ui-monospace, monospace;
+}
+.tablet-status-online {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  color: #38BDF8;
+  font-weight: 600;
+}
+.status-ping {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00D4FF;
+  box-shadow: 0 0 8px #00D4FF;
+  animation: pingDot 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes pingDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(0, 212, 255, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
+}
+
+.device-screen-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 60%);
+  z-index: 10;
+}
+
 .tablet-screen {
   background: linear-gradient(180deg, #0e152f 0%, #080c1e 100%);
   padding: 16px 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  position: relative;
 }
 .tablet-nav {
   display: flex;
@@ -2556,73 +2784,123 @@ const CSS = `
 .tablet-cta { font-size: 9px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 3px 8px; color: #fff; }
 
 .tablet-hero-box {
-  background: radial-gradient(circle at 50% 30%, rgba(30, 60, 130, 0.35), transparent 70%), rgba(255,255,255,0.02);
-  border: 1px solid rgba(146, 187, 255, 0.15);
+  background: radial-gradient(circle at 20% 30%, rgba(30, 60, 130, 0.4), transparent 70%), rgba(255,255,255,0.02);
+  border: 1px solid rgba(146, 187, 255, 0.18);
   border-radius: 14px;
-  padding: 20px 16px;
+  padding: 16px 14px;
   text-align: left;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: 58%;
 }
 .tablet-pill {
   align-self: flex-start;
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 700;
   color: #92BBFF;
   background: rgba(66, 123, 216, 0.2);
   border: 1px solid rgba(146, 187, 255, 0.3);
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 100px;
 }
-.tablet-hero-box h4 { font-family: var(--display); font-size: 18px; color: #fff; margin: 0; font-weight: 700; line-height: 1.2; }
-.tablet-hero-box p { font-size: 11px; color: var(--muted); margin: 0; line-height: 1.4; max-width: 240px; }
+.tablet-hero-box h4 { font-family: var(--display); font-size: 14.5px; color: #fff; margin: 0; font-weight: 700; line-height: 1.22; }
+.tablet-hero-box p { font-size: 10px; color: var(--muted); margin: 0; line-height: 1.35; max-width: 195px; }
 .tablet-btn-small {
   align-self: flex-start;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
-  background: #0084FF;
+  background: linear-gradient(135deg, #0084FF 0%, #005ae0 100%);
   color: #fff;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 100px;
-  padding: 6px 14px;
-  margin-top: 4px;
+  padding: 5px 12px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(0, 132, 255, 0.4);
 }
 .tablet-metrics {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
+  gap: 16px;
+  padding-top: 8px;
   border-top: 1px solid rgba(255,255,255,0.06);
+  max-width: 58%;
 }
 .tablet-metric-item { display: flex; flex-direction: column; gap: 2px; }
 .tablet-metric-item b { font-size: 12px; color: #fff; font-family: var(--display); }
-.tablet-metric-item span { font-size: 8.5px; color: var(--muted); }
+.tablet-metric-item span { font-size: 8px; color: var(--muted); }
 
 /* Phone Mockup */
 .growth-phone {
   position: absolute;
   right: -10px;
   bottom: -24px;
-  width: 215px;
+  width: 224px;
   background: #050716;
-  border: 3.5px solid #25335e;
-  border-radius: 28px;
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.95), 0 0 40px -5px rgba(0, 132, 255, 0.45);
+  border: 3.5px solid #1c2642;
+  border-radius: 32px;
+  box-shadow: 
+    0 35px 85px -12px rgba(0, 0, 0, 0.98), 
+    0 0 50px -5px rgba(0, 132, 255, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+  outline: 1px solid rgba(146, 187, 255, 0.35);
   overflow: hidden;
   z-index: 5;
-  transform: rotateY(-3deg) rotateX(2deg);
-  transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+  animation: levitatePhone 6s ease-in-out infinite;
+  animation-delay: -2.5s;
+  transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 .growth-phone:hover {
-  transform: translateY(-6px) scale(1.03);
+  transform: translateY(-10px) scale(1.04) !important;
+  outline-color: rgba(0, 212, 255, 0.85);
+  box-shadow: 
+    0 45px 100px -10px rgba(0, 0, 0, 0.98), 
+    0 0 70px 0 rgba(0, 212, 255, 0.65),
+    inset 0 1px 0 rgba(255,255,255,0.5);
 }
+
+.phone-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px 2px;
+  background: #000;
+  color: #fff;
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+}
+.phone-clock {
+  font-size: 8.5px;
+  font-weight: 700;
+  font-family: ui-monospace, monospace;
+  color: #fff;
+}
+.phone-signals {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255,255,255,0.85);
+}
+.phone-notch {
+  width: 50px;
+  height: 12px;
+  background: #0a0a0f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+}
+.phone-speaker { width: 18px; height: 2.5px; border-radius: 2px; background: #222; }
+.phone-camera { width: 4.5px; height: 4.5px; border-radius: 50%; background: #0c1a35; border: 0.5px solid rgba(0, 212, 255, 0.4); }
+
 .phone-screen {
-  padding: 14px 12px 16px;
+  padding: 12px 12px 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   background: linear-gradient(180deg, #0c1228 0%, #050816 100%);
+  position: relative;
 }
 .phone-header {
   font-size: 10px;
@@ -2631,7 +2909,7 @@ const CSS = `
   font-family: var(--display);
   text-align: center;
   border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding-bottom: 6px;
+  padding-bottom: 4px;
 }
 .phone-card {
   background: rgba(255,255,255,0.04);
@@ -2641,6 +2919,20 @@ const CSS = `
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+.phone-sync-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 8px;
+  font-weight: 700;
+  color: #38BDF8;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  padding: 2px 7px;
+  border-radius: 100px;
+  margin-bottom: 2px;
+  width: fit-content;
 }
 .phone-card-title { font-size: 11px; font-weight: 700; color: #fff; }
 .phone-card-sub { font-size: 9px; color: var(--muted); line-height: 1.3; }
@@ -2662,9 +2954,14 @@ const CSS = `
 }
 .phone-day b { font-size: 9px; color: #dbe4ff; }
 .phone-day.active {
-  background: #0084FF;
+  background: linear-gradient(135deg, #0084FF 0%, #0055D4 100%);
   color: #fff;
-  box-shadow: 0 0 10px rgba(0, 132, 255, 0.6);
+  box-shadow: 0 0 14px rgba(0, 132, 255, 0.8), inset 0 1px 0 rgba(255,255,255,0.4);
+  animation: pulseActiveDay 3s infinite ease-in-out;
+}
+@keyframes pulseActiveDay {
+  0%, 100% { box-shadow: 0 0 12px rgba(0, 132, 255, 0.7); }
+  50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.95); }
 }
 .phone-day.active b { color: #fff; }
 .phone-times {
@@ -2680,19 +2977,31 @@ const CSS = `
   border-radius: 5px;
   padding: 3px;
   text-align: center;
+  transition: all 0.2s ease;
 }
-.phone-time:first-child { border-color: rgba(0, 132, 255, 0.5); background: rgba(0, 132, 255, 0.15); }
+.phone-time:first-child { 
+  border-color: rgba(0, 212, 255, 0.6); 
+  background: rgba(0, 132, 255, 0.2); 
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.35);
+}
 .phone-btn {
-  background: #0084FF;
+  background: linear-gradient(135deg, #0084FF 0%, #005ae0 100%);
   color: #fff;
   font-size: 10.5px;
   font-weight: 700;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 100px;
   padding: 7px;
   width: 100%;
-  box-shadow: 0 4px 14px rgba(0, 132, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 132, 255, 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
   cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.phone-btn:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
 }
 .phone-secure { font-size: 7.5px; color: var(--muted); text-align: center; }
 
@@ -2705,14 +3014,7 @@ const CSS = `
   align-items: stretch;
 }
 .growth-arrow-svg {
-  position: absolute;
-  right: -20px;
-  top: -40px;
-  width: 160px;
-  height: 240px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.85;
+  display: none;
 }
 .growth-stat-card {
   position: relative;
@@ -2728,11 +3030,20 @@ const CSS = `
   box-shadow: 0 16px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -8px rgba(0, 132, 255, 0.25), inset 0 1px 0 rgba(255,255,255,0.14);
   backdrop-filter: blur(16px);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 .growth-stat-card:hover {
   transform: translateX(4px) translateY(-2px);
-  border-color: rgba(146, 187, 255, 0.5);
-  box-shadow: 0 20px 50px -12px rgba(0, 132, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 0 20px 50px -12px rgba(0, 132, 255, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.growth-sparkline {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  width: 82px;
+  height: 26px;
+  pointer-events: none;
 }
 .growth-stat-header {
   display: flex;
@@ -2756,6 +3067,7 @@ const CSS = `
   color: #38BDF8;
   line-height: 1.1;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 14px rgba(0, 212, 255, 0.4);
 }
 .growth-stat-desc {
   font-size: 12px;
@@ -2763,19 +3075,59 @@ const CSS = `
   line-height: 1.3;
 }
 
-.growth-note-bot {
-  font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
-  font-style: italic;
-  font-size: 18px;
-  color: #38BDF8;
+/* Stat trend bar inside stat cards */
+.growth-stat-trend {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 6px;
-  align-self: flex-start;
-  text-shadow: 0 0 12px rgba(0, 212, 255, 0.35);
+  margin-top: 4px;
+  max-width: 60%;
 }
-.growth-note-bot svg { width: 22px; height: 22px; color: #38BDF8; }
+.growth-stat-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.growth-stat-bar::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: var(--progress, 75%);
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0077FF, #00D4FF);
+  box-shadow: 0 0 8px #00D4FF;
+}
+.growth-stat-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #00D4FF;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.growth-note-bot {
+  font-family: var(--display), inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #38BDF8;
+  background: rgba(8, 16, 40, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 6px 14px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  align-self: flex-start;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 14px rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(14px);
+}
+.growth-note-bot svg { width: 14px; height: 14px; color: #38BDF8; }
 
 /* Barra de 5 Pilares Inferior */
 .growth-pillars-bar {
@@ -2783,18 +3135,38 @@ const CSS = `
   background: linear-gradient(180deg, rgba(20, 36, 75, 0.55) 0%, rgba(10, 18, 42, 0.75) 100%);
   border: 1px solid rgba(146, 187, 255, 0.25);
   border-radius: 24px;
-  padding: 24px 30px;
+  padding: 20px 24px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 16px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 20px 50px -20px rgba(0,0,0,0.6);
   backdrop-filter: blur(16px);
 }
 .growth-pillar-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-align: left;
+  transition: all 0.3s ease;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(146, 187, 255, 0.12);
+}
+.growth-pillar-item:hover {
+  transform: translateY(-3px);
+  background: rgba(0, 132, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.35);
+  box-shadow: 0 10px 24px -6px rgba(0, 132, 255, 0.3);
+}
+.growth-pillar-item:hover {
+  transform: translateY(-3px);
+}
+.growth-pillar-item:hover .growth-pillar-icon {
+  background: rgba(0, 212, 255, 0.25);
+  border-color: #00D4FF;
+  box-shadow: 0 0 22px rgba(0, 212, 255, 0.6);
+  transform: scale(1.06);
 }
 .growth-pillar-icon {
   width: 44px;
@@ -2808,6 +3180,7 @@ const CSS = `
   color: #00D4FF;
   flex-shrink: 0;
   box-shadow: 0 0 14px -2px rgba(0, 132, 255, 0.35);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .growth-pillar-icon svg { width: 20px; height: 20px; }
 .growth-pillar-text { display: flex; flex-direction: column; gap: 2px; }
@@ -3552,9 +3925,10 @@ const CSS = `
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 8px;
+  min-height: 48px;
 }
 .sector-project-card__header h3 {
-  font-size: 19px;
+  font-size: 18.5px;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.25;
@@ -3571,9 +3945,9 @@ const CSS = `
 .sector-project-card__desc {
   font-size: 13.5px;
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.45;
   margin-bottom: 16px;
-  flex: 1;
+  min-height: 40px;
 }
 .sector-project-card__result {
   background: rgba(0, 212, 255, 0.08);
@@ -3583,7 +3957,9 @@ const CSS = `
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-top: auto;
+  margin-bottom: 16px;
+  gap: 10px;
 }
 .sector-project-card__result-label {
   font-size: 10.5px;
@@ -3603,6 +3979,8 @@ const CSS = `
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .sector-project-card__cta {
   display: inline-flex;
@@ -3615,9 +3993,10 @@ const CSS = `
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(146, 187, 255, 0.22);
   color: #FFFFFF;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
   transition: all 0.25s ease;
 }
 .sector-project-card__cta:hover {
@@ -3965,12 +4344,12 @@ function Btn({ glossy = false, children, href = "#", to = null, className = "", 
 /* ---------- data ---------- */
 const BRANDS = ["Barberías & Estética", "Clínicas de Salud", "Fisioterapia", "Despachos & Asesorías", "Hoteles Rurales", "Restaurantes", "Comercio Local", "Talleres & Reformas"];
 const PROJECTS = [
-  { n: "Hotel Rural Casona Real", img: "assets/proj-hotel.webp"        },
-  { n: "Clínica San Marcos",       img: "assets/proj-properties.webp"   },
-  { n: "Lex Asesores León",        img: "assets/proj-novaest.webp"      },
-  { n: "Clínica Dental Nova",      img: "assets/proj-lexleon.webp"      },
-  { n: "Inmobiliaria Leonesa",     img: "assets/proj-actualizaria.webp" },
-  { n: "VIP Barber Shop",          img: "assets/proj-powerpulse.webp"   },
+  { n: "Hotel León Suites",           img: "assets/proj-powerpulse.webp"     },
+  { n: "PowerPulse Fitness & Salud",  img: "assets/proj-hotel.webp"          },
+  { n: "Lex León Abogados",           img: "assets/proj-novaest.webp"        },
+  { n: "Nova Estética & Salud",       img: "assets/proj-lexleon.webp"        },
+  { n: "Inmobiliaria León Properties",img: "assets/proj-actualizaria.webp"   },
+  { n: "VIP Barber Shop",             img: "assets/plan-arranque-ejemplo.webp" },
 ];
 const CASES = [
   { 
@@ -3978,88 +4357,88 @@ const CASES = [
     n: "VIP Barber Shop",   
     sector: "Barbería & Estética",
     loc: "León centro",
-    img: "assets/proj-powerpulse.webp",         
+    img: "assets/plan-arranque-ejemplo.webp",         
     url: "#contact", 
     tag: "Reservas 24/7 · Bizum",
-    desc: "Agenda online sincronizada con Google Calendar y pagos integrados. Los clientes reservan en 30 segundos sin llamadas.",
+    desc: "Reservas directas en 30 segundos sin llamadas y sincronizadas con el móvil.",
     metric: "+40 reservas/mes",        
     time: "Entregada en 10 días",
-    cta: "Quiero una web para mi barbería →",
+    cta: "Pedir web para barbería →",
     glare: "rgba(146,187,255,0.16)", 
     sweep: "rgba(146,187,255,0.05)" 
   },
   { 
     id: "clinica",
-    n: "Clínica Dental Nova",      
-    sector: "Clínicas & Fisioterapia",
+    n: "Nova Estética & Salud",      
+    sector: "Clínicas & Salud",
     loc: "Ponferrada",
     img: "assets/proj-lexleon.webp",       
     url: "#contact", 
     tag: "Citas + Confianza médica",
-    desc: "Presentación de especialidades médicas, cuadro de doctores y botón de cita directa por WhatsApp con ficha de paciente.",
+    desc: "Tratamientos, cuadro médico y botón directo de citas por WhatsApp.",
     metric: "100% citas canalizadas",        
     time: "Entregada en 12 días",
-    cta: "Quiero una web para mi clínica →",
+    cta: "Pedir web para clínica →",
     glare: "rgba(255,182,193,0.16)", 
     sweep: "rgba(255,182,193,0.05)" 
   },
   { 
     id: "hotel",
-    n: "Hotel Rural Casona Real", 
+    n: "Hotel León Suites", 
     sector: "Hoteles & Restaurantes",
     loc: "Astorga",
-    img: "assets/proj-hotel.webp", 
+    img: "assets/proj-powerpulse.webp", 
     url: "#contact", 
     tag: "Venta directa sin comisiones",
-    desc: "Motor de reservas directas con pasarela segura, galería fotográfica inmersiva y carta digital para el restaurante.",
+    desc: "Reservas directas sin comisiones de Booking y fotos de habitaciones.",
     metric: "+65% reservas directas",  
     time: "Entregada en 14 días",
-    cta: "Quiero una web para mi hotel/restaurante →",
+    cta: "Pedir web para hotel →",
     glare: "rgba(129,140,248,0.16)", 
     sweep: "rgba(129,140,248,0.05)" 
   },
   { 
     id: "asesoria",
-    n: "Lex Asesores León",      
+    n: "Lex León Abogados",      
     sector: "Despachos & Asesorías",
     loc: "León",
     img: "assets/proj-novaest.webp",       
     url: "#contact", 
-    tag: "Autoridad B2B & Captación",
-    desc: "Portal corporativo con calculadora de presupuestos para autónomos y empresas, optimizado para posicionamiento local.",
+    tag: "Autoridad B2B & Clientes",
+    desc: "Presupuesto online en 1 minuto y posicionamiento directo en Google León.",
     metric: "Top 3 en Google León",           
     time: "Entregada en 9 días",
-    cta: "Quiero una web para mi despacho →",
+    cta: "Pedir web para despacho →",
     glare: "rgba(245,222,179,0.15)", 
     sweep: "rgba(245,222,179,0.04)" 
   },
   { 
     id: "inmobiliaria",
-    n: "Inmobiliaria Leonesa", 
+    n: "Inmobiliaria León Properties", 
     sector: "Inmobiliarias & Comercios",
     loc: "León y provincia",
     img: "assets/proj-actualizaria.webp", 
     url: "#contact", 
     tag: "Catálogo interactivo",
-    desc: "Buscador de inmuebles con filtros avanzados, ficha técnica descargable y botón directo de visita por WhatsApp.",
+    desc: "Buscador de viviendas, fotos claras y contacto directo para cada visita.",
     metric: "+120 contactos/mes",      
     time: "Entregada en 14 días",
-    cta: "Quiero una web para mi negocio →",
+    cta: "Pedir web inmobiliaria →",
     glare: "rgba(52,211,153,0.14)",  
     sweep: "rgba(52,211,153,0.04)"  
   },
   { 
     id: "clinica",
-    n: "Centro Fisioterapia & Salud", 
-    sector: "Clínicas & Fisioterapia",
+    n: "PowerPulse Fitness & Salud", 
+    sector: "Fitness & Fisioterapia",
     loc: "León",
-    img: "assets/proj-properties.webp",  
+    img: "assets/proj-hotel.webp",  
     url: "#contact", 
-    tag: "Agenda 24/7 + Bonos",
-    desc: "Venta de bonos de sesiones online y reserva de citas con recordatorio automático por SMS para reducir ausencias.",
-    metric: "Citas 24/7 sin llamadas",              
+    tag: "Altas y Clases 24/7",
+    desc: "Horarios de clases, cuotas y altas de socios online desde el primer día.",
+    metric: "Socios y citas 24/7",              
     time: "Entregada en 8 días",
-    cta: "Quiero una web para mi centro →",
+    cta: "Pedir web para fitness →",
     glare: "rgba(192,132,252,0.16)", 
     sweep: "rgba(192,132,252,0.05)" 
   },
@@ -4230,34 +4609,27 @@ function HomePage() {
             <span className="hero__trust-txt"><b>+12 negocios</b> en León ya confían</span>
           </Reveal>
         </div>
-        <Reveal delay={500} className="hero__stats">
-          {[
-            { svg:<><path d="M4.5 16.5c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.83-.83 1.24-2.29 1.5-3.5-1.21.26-2.67.67-3.5 1.5z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></>, to:3, prefix:"×", label:"más ventas" },
-            { svg:<><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></>, to:2, suffix:" sem", label:"de entrega" },
-            { svg:<><line x1="4" y1="20" x2="20" y2="4"/><circle cx="6.5" cy="6.5" r="4.5"/><circle cx="17.5" cy="17.5" r="4.5"/></>, to:0, suffix:"€", label:"asesoría inicial" },
-          ].map(({svg, to, prefix, suffix, label}, i) => (
-            <React.Fragment key={i}>
-              {i > 0 && <div className="hero__stat-div" />}
-              <div className="hero__stat">
-                <span className="hero__stat-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{svg}</svg>
-                </span>
-                <span className="hero__stat-n"><Counter to={to} prefix={prefix} suffix={suffix} /></span>
-                <span className="hero__stat-l">{label}</span>
-              </div>
-            </React.Fragment>
-          ))}
-        </Reveal>
+
+        <a href="#proyectos" className="hero__scroll-indicator" aria-label="Deslizar hacia abajo">
+          <div className="hero__scroll-mouse">
+            <div className="hero__scroll-wheel" />
+          </div>
+          <div className="hero__scroll-chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+        </a>
       </header>
 
       {/* SECTORES & CASOS REALES EN CARRUSEL (PROYECTOS) */}
-      <section className="section wrap" id="work" style={{ paddingTop: "20px", paddingBottom: "40px", overflow: "visible" }}>
+      <section className="section wrap" id="work" style={{ paddingTop: "0px", paddingBottom: "25px", overflow: "visible" }}>
         <div id="proyectos" style={{ position: "relative", top: "-100px" }} />
         <div id="sectores" style={{ position: "relative", top: "-90px" }} />
         <div className="ambient-glow" />
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Sectores que impulsamos & Proyectos reales</span></Reveal>
-          <Reveal delay={100}><h2 className="display">Webs hechas a la medida de tu sector</h2></Reveal>
+          <Reveal delay={100}><h2 className="display">Webs hechas a la medida de <span className="h-grad">tu sector</span></h2></Reveal>
           <Reveal delay={160} className="lead hide-m" as="p" style={{ margin: "0 auto" }}>
             Elige tu tipo de negocio para ver proyectos reales, resultados comprobados y cómo conseguimos que vendas más en León.
           </Reveal>
@@ -4288,9 +4660,9 @@ function HomePage() {
       </section>
 
       {/* BRANDS */}
-      <div className="section brands" style={{ padding: "40px 0" }}>
+      <div className="brands" style={{ padding: "16px 0 20px" }}>
         <div className="brands__glow" />
-        <Reveal className="kicker" style={{ textAlign: "center", marginBottom: 34, position: "relative" }}>Negocios que ya confían en nosotros</Reveal>
+        <Reveal className="kicker" style={{ textAlign: "center", marginBottom: 18, position: "relative" }}>Negocios que ya confían en nosotros</Reveal>
         <div className="marquee" style={{ "--dur": "34s", position: "relative" }}>
           <div className="marquee__track" style={{ gap: 56 }}>
             {[...BRANDS, ...BRANDS].map((b, i) => <div className="brand" key={i}>{b}</div>)}
@@ -4299,7 +4671,7 @@ function HomePage() {
       </div>
 
       {/* COMPARISON */}
-      <section className="section wrap" id="comparativa" style={{ overflow: "visible" }}>
+      <section className="section wrap" id="comparativa" style={{ paddingTop: "16px", overflow: "visible" }}>
         <div className="ambient-glow" />
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>No diseñamos webs para rellenar internet</span></Reveal>
@@ -4377,30 +4749,6 @@ function HomePage() {
               <span className="process-tag">{item.tag}</span>
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="section">
-        <div className="shead wrap">
-          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Clientes que ya venden más</span></Reveal>
-          <Reveal delay={100} className="hide-m"><h2 className="display">Lo que dicen los que ya lo comprobaron</h2></Reveal>
-        </div>
-        <div className="marquee" style={{ "--dur": "42s", marginTop: 40 }}>
-          <div className="marquee__track">
-            {[...TESTI, ...TESTI].map((t, i) => (
-              <div className="tcard" key={i}>
-                <div className="stars">★★★★★</div>
-                <p>"{t.t}"</p>
-                <div className="who">
-                  <span className="ava">
-                    {t.img ? <img src={t.img} alt={t.n} loading="lazy" onError={e=>{e.target.style.display='none'}} /> : null}
-                  </span>
-                  <div><b>{t.n}</b><span>{t.r}</span></div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -4527,30 +4875,54 @@ function HomePage() {
               <b>Tiempo estimado:</b> {calcNeeds.includes("tienda") ? "2 a 3 semanas" : "7 a 14 días"}
             </div>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px", width: "100%", justifyContent: "center", flexWrap: "wrap" }}>
-              <a
-                className="price-cta price-cta--pro"
-                style={{ flex: 1, minWidth: 200 }}
+              <Btn
+                glossy
+                style={{ flex: 1, minWidth: 200, justifyContent: "center" }}
                 href={`mailto:hola@leonwebs.es?subject=${encodeURIComponent("Presupuesto León Webs")}&body=${encodeURIComponent(`Hola León Webs, he usado la calculadora y me interesa una web desde ${calcTotal}€.\n\nNecesito: ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas online",tienda:"Tienda online",ads:"Publicidad/Google"}[k])).join(", ") : "Web básica"}.\n\nMi negocio es: `)}`}
               >
                 Pedir por Email →
-              </a>
-              <a
-                className="price-cta"
-                style={{ flex: 1, minWidth: 200, background: "rgba(37, 211, 102, 0.15)", borderColor: "rgba(37, 211, 102, 0.4)", color: "#25D366" }}
+              </Btn>
+              <Btn
+                glossy
+                style={{ flex: 1, minWidth: 200, justifyContent: "center", color: "#0d9155" }}
                 href={`https://wa.me/34600000000?text=${encodeURIComponent(`Hola León Webs! He calculado mi web en vuestra página (Total: ${calcTotal}€ con ${calcNeeds.length ? calcNeeds.map(k=>({reservas:"Reservas",tienda:"Tienda",ads:"Google/SEO"}[k])).join(", ") : "Plan Base"}). Me gustaría hablar de mi proyecto.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16, display: "inline-block", verticalAlign: "middle", marginRight: 6 }}><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
                 Pedir por WhatsApp →
-              </a>
+              </Btn>
             </div>
           </div>
         </Reveal>
       </section>
 
+      {/* TESTIMONIALS */}
+      <section className="section" style={{ paddingTop: "30px", paddingBottom: "36px" }}>
+        <div className="shead wrap">
+          <Reveal className="eyebrow" as="div"><span className="dot" /><span>Clientes que ya venden más</span></Reveal>
+          <Reveal delay={100} className="hide-m"><h2 className="display">Lo que dicen los que ya lo comprobaron</h2></Reveal>
+        </div>
+        <div className="marquee" style={{ "--dur": "42s", marginTop: 22 }}>
+          <div className="marquee__track">
+            {[...TESTI, ...TESTI].map((t, i) => (
+              <div className="tcard" key={i}>
+                <div className="stars">★★★★★</div>
+                <p>"{t.t}"</p>
+                <div className="who">
+                  <span className="ava">
+                    {t.img ? <img src={t.img} alt={t.n} loading="lazy" onError={e=>{e.target.style.display='none'}} /> : null}
+                  </span>
+                  <div><b>{t.n}</b><span>{t.r}</span></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ CON FILTROS */}
-      <section className="section wrap" id="faq">
+      <section className="section wrap" id="faq" style={{ paddingTop: "24px", paddingBottom: "16px" }}>
         <div className="shead">
           <Reveal className="eyebrow" as="div"><span className="dot" /><span>Dudas habituales</span></Reveal>
           <Reveal delay={100}><h2 className="display">Lo que nos preguntan antes de empezar</h2></Reveal>
@@ -4586,13 +4958,13 @@ function HomePage() {
       </section>
 
       {/* CONTACT CTA */}
-      <section className="section wrap" id="contact">
+      <section className="section wrap" id="contact" style={{ paddingTop: "10px", paddingBottom: "32px" }}>
         <Reveal className="contact-card">
           <div className="hero__glow" style={{ top: "0", opacity: .5 }} />
           <div style={{ position:"relative", textAlign:"center" }}>
-            <div className="eyebrow" style={{ display:"inline-flex", marginBottom:24 }}><span className="dot" /><span>Hablemos sin compromiso</span></div>
-            <h2 className="display h-grad" style={{ fontSize:"clamp(28px,5vw,56px)", marginBottom:20 }}>Escala tu negocio en 1–2 semanas</h2>
-            <p className="lead" style={{ margin:"0 auto 32px", maxWidth:560 }}>
+            <div className="eyebrow" style={{ display:"inline-flex", marginBottom:16 }}><span className="dot" /><span>Hablemos sin compromiso</span></div>
+            <h2 className="display h-grad" style={{ fontSize:"clamp(28px,5vw,52px)", marginBottom:14 }}>Escala tu negocio en 1–2 semanas</h2>
+            <p className="lead" style={{ margin:"0 auto 24px", maxWidth:560 }}>
               Cuéntanos tu proyecto en una llamada de 15 minutos o por WhatsApp. Analizamos tu caso gratis y te damos un presupuesto cerrado sin sorpresas.
             </p>
             <div className="contact__actions">
@@ -4771,28 +5143,86 @@ function PlanFeatureIcon({ children }) {
 function PlanArranque() {
   return (
     <PlanShell>
-      <section className="plan-hero">
-        <div className="plan-hero__text">
-          <div className="eyebrow"><span className="dot" /><span>Ideal para empezar</span></div>
-          <h1 className="display h-grad">Plan Arranque</h1>
-          <p className="lead">Lanza tu presencia digital en una semana. Una solución completa, profesional y optimizada para convertir visitantes en clientes, sin complicaciones técnicas.</p>
-          <PlanCard className="plan-price-pill" style={{ width: "fit-content" }}>
-            <div className="plan-price-pill__num">450<span>€</span></div>
-            <div className="plan-price-pill__meta"><span>✓ Pago único</span><span>Sin suscripciones</span></div>
-          </PlanCard>
-          <div className="plan-cta-row">
-            <Btn glossy href={homeHref("#contact")}>Contratar ahora →</Btn>
-            <a className="plan-btn-ghost" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
-              <PlanFeatureIcon><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></PlanFeatureIcon>
+      <section className="plan-hero" style={{ alignItems: "center", gap: "48px" }}>
+        <div className="plan-hero__text" style={{ gap: "18px" }}>
+          <span className="growth-kicker">✦ IDEAL PARA EMPEZAR · LANZAMIENTO RÁPIDO</span>
+          <h1 className="growth-title">Plan <span className="h-grad">Arranque</span></h1>
+          <p className="growth-subtitle">Tu primera web profesional lista para captar clientes en 1 semana.</p>
+          <p className="growth-desc">Una solución completa, ágil y optimizada para convertir visitantes en llamadas y reservas, sin complicaciones técnicas ni costes ocultos.</p>
+
+          <div className="growth-meta-row" style={{ margin: "6px 0" }}>
+            <div className="growth-meta-card">
+              <div className="growth-meta-top">
+                <span className="growth-meta-badge">Pago único</span>
+                <div className="growth-meta-icon-mini">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                    <line x1="7" y1="7" x2="7.01" y2="7"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="growth-meta-body">
+                <b>450 €</b>
+                <span className="sub">Sin cuotas sorpresa ni mensualidades obligatorias.</span>
+              </div>
+            </div>
+
+            <div className="growth-meta-card">
+              <div className="growth-meta-top">
+                <span className="growth-meta-badge">Fast Track</span>
+                <div className="growth-meta-icon-mini">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="growth-meta-body">
+                <b>Lista en 1 semana</b>
+                <span className="sub">Tu negocio online, rápido y listo para vender.</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="plan-cta-row" style={{ marginTop: "4px" }}>
+            <Btn glossy href={homeHref("#contact")} style={{ padding: "15px 28px", fontSize: "15px", fontWeight: 700 }}>
+              Contratar ahora →
+            </Btn>
+            <a 
+              className="plan-btn-ghost" 
+              style={{ background: "rgba(37, 211, 102, 0.12)", borderColor: "rgba(37, 211, 102, 0.35)", color: "#25D366" }}
+              href="https://wa.me/34600000000?text=Hola!%20Me%20interesa%20el%20Plan%20Arranque%20de%20450%E2%82%AC" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17, marginRight: 6 }}><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
               Consultar por WhatsApp
             </a>
           </div>
+
+          <div className="growth-trust-row" style={{ marginTop: "6px" }}>
+            <div className="growth-trust-item">
+              <span className="ic-chk">✓</span>
+              <span>Hosting y dominio 1 año gratis</span>
+            </div>
+            <div className="growth-trust-item">
+              <span className="ic-chk">✓</span>
+              <span>100% Precio cerrado</span>
+            </div>
+            <div className="growth-trust-item">
+              <span className="ic-chk">✓</span>
+              <span>Trato directo 1 a 1</span>
+            </div>
+          </div>
         </div>
-        <div className="plan-hero__shot">
+
+        <div className="plan-hero__shot" style={{ borderRadius: "24px", border: "2px solid rgba(146, 187, 255, 0.22)", boxShadow: "0 24px 60px -20px rgba(0, 102, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2)" }}>
           <img src="assets/plan-arranque-ejemplo.webp" alt="Ejemplo de web entregada — VIP Barber Shop León" loading="lazy" />
-          <div className="plan-hero__shot-badge">
-            <PlanFeatureIcon><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></PlanFeatureIcon>
-            <span>Entrega en 1 semana</span>
+          <div className="plan-hero__shot-badge" style={{ background: "rgba(6, 10, 28, 0.85)", border: "1px solid rgba(146, 187, 255, 0.35)", color: "#FFFFFF", boxShadow: "0 8px 24px rgba(0, 0, 0, 0.5)" }}>
+            <span style={{ color: "#00D4FF", display: "inline-flex", alignItems: "center" }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 14, height: 14, marginRight: 6 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
+            <span>Web real entregada en 1 semana</span>
           </div>
         </div>
       </section>
@@ -4826,26 +5256,6 @@ function PlanCrecimiento() {
   return (
     <PlanShell>
       <div className="growth-showcase-wrap">
-        {/* Micro-Nav Superior */}
-        <div className="growth-top-bar">
-          <div className="growth-top-brand">
-            <div className="growth-top-logo">
-              <span className="badge-lw">LW</span>
-              <span>León Webs</span>
-            </div>
-            <span className="growth-top-slogan">Webs que hacen crecer negocios</span>
-          </div>
-          <div className="growth-top-steps">
-            <span>IDEAS</span>
-            <span>|</span>
-            <span>PLAN</span>
-            <span>|</span>
-            <span>ACCIÓN</span>
-            <span>|</span>
-            <span className="active-step">RESULTADOS</span>
-          </div>
-        </div>
-
         {/* Hero Principal en 3 Columnas */}
         <div className="growth-grid">
           {/* COLUMNA IZQUIERDA */}
@@ -4914,16 +5324,39 @@ function PlanCrecimiento() {
           {/* COLUMNA CENTRAL: MOCKUPS */}
           <div className="growth-center">
             <div className="growth-note-top">
+              <span className="status-ping" style={{ width: 5, height: 5 }} />
               <span>Una web que trabaja para ti</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
               </svg>
             </div>
 
             <div className="growth-mockup-stage">
+              <div className="growth-mockup-glow" />
+
               {/* TABLET */}
               <div className="growth-tablet">
+                <div className="device-screen-glare" />
+                <div className="tablet-browser-bar">
+                  <div className="tablet-dots">
+                    <span className="dot-circle dot--red" />
+                    <span className="dot-circle dot--amber" />
+                    <span className="dot-circle dot--green" />
+                  </div>
+                  <div className="tablet-url">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    <span>leonwebs.es/crecimiento</span>
+                  </div>
+                  <div className="tablet-status-online">
+                    <span className="status-ping" />
+                    <span>En vivo</span>
+                  </div>
+                </div>
+
                 <div className="tablet-screen">
                   <div className="tablet-nav">
                     <div className="tablet-logo">LW León Webs</div>
@@ -4962,9 +5395,30 @@ function PlanCrecimiento() {
 
               {/* PHONE MOCKUP EN PRIMER PLANO */}
               <div className="growth-phone">
+                <div className="device-screen-glare" />
+                <div className="phone-top-bar">
+                  <span className="phone-clock">09:41</span>
+                  <div className="phone-notch">
+                    <span className="phone-speaker" />
+                    <span className="phone-camera" />
+                  </div>
+                  <div className="phone-signals">
+                    <svg width="10" height="9" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/>
+                    </svg>
+                    <svg width="12" height="8" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="2" y="7" width="16" height="10" rx="2"/>
+                      <path d="M20 11v2"/>
+                    </svg>
+                  </div>
+                </div>
                 <div className="phone-screen">
                   <div className="phone-header">LW León Webs</div>
                   <div className="phone-card">
+                    <div className="phone-sync-badge">
+                      <span className="status-ping" />
+                      <span>En tiempo real</span>
+                    </div>
                     <div className="phone-card-title">Reserva tu cita</div>
                     <div className="phone-card-sub">Elige la fecha y hora que mejor te venga.</div>
                     <div className="phone-days">
@@ -4992,17 +5446,6 @@ function PlanCrecimiento() {
 
           {/* COLUMNA DERECHA: MÉTRICAS Y GRÁFICO */}
           <div className="growth-right">
-            <svg className="growth-arrow-svg" viewBox="0 0 100 160" fill="none">
-              <path d="M10 140 Q 40 80 85 20" stroke="url(#growthGrad)" strokeWidth="4" strokeLinecap="round" />
-              <path d="M65 15 L 90 18 L 85 45" fill="none" stroke="#00D4FF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-              <defs>
-                <linearGradient id="growthGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(0, 132, 255, 0.2)" />
-                  <stop offset="100%" stopColor="#00D4FF" />
-                </linearGradient>
-              </defs>
-            </svg>
-
             <div className="growth-stat-card">
               <div className="growth-stat-header">
                 <span className="growth-stat-title">Tráfico cualificado</span>
@@ -5016,6 +5459,20 @@ function PlanCrecimiento() {
               </div>
               <span className="growth-stat-num">+120%</span>
               <span className="growth-stat-desc">Más visitas cualificadas</span>
+              <div className="growth-stat-trend">
+                <div className="growth-stat-bar" style={{ "--progress": "85%" }} />
+                <span className="growth-stat-badge">↗ Alto impacto</span>
+              </div>
+              <svg className="growth-sparkline" viewBox="0 0 100 28" fill="none">
+                <path d="M0 24 Q 25 22 50 14 T 100 4" stroke="#00D4FF" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                <path d="M0 24 Q 25 22 50 14 T 100 4 L 100 28 L 0 28 Z" fill="url(#sparkGrad1)" opacity="0.25" />
+                <defs>
+                  <linearGradient id="sparkGrad1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#00D4FF" />
+                    <stop offset="100%" stopColor="#00D4FF" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
 
             <div className="growth-stat-card">
@@ -5032,6 +5489,20 @@ function PlanCrecimiento() {
               </div>
               <span className="growth-stat-num">+70%</span>
               <span className="growth-stat-desc">Más clientes potenciales</span>
+              <div className="growth-stat-trend">
+                <div className="growth-stat-bar" style={{ "--progress": "70%" }} />
+                <span className="growth-stat-badge">↗ 2.4x conversión</span>
+              </div>
+              <svg className="growth-sparkline" viewBox="0 0 100 28" fill="none">
+                <path d="M0 25 Q 30 20 65 10 T 100 3" stroke="#00D4FF" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                <path d="M0 25 Q 30 20 65 10 T 100 3 L 100 28 L 0 28 Z" fill="url(#sparkGrad2)" opacity="0.25" />
+                <defs>
+                  <linearGradient id="sparkGrad2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#00D4FF" />
+                    <stop offset="100%" stopColor="#00D4FF" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
 
             <div className="growth-stat-card">
@@ -5048,12 +5519,26 @@ function PlanCrecimiento() {
               </div>
               <span className="growth-stat-num">+45%</span>
               <span className="growth-stat-desc">Más reservas automáticas</span>
+              <div className="growth-stat-trend">
+                <div className="growth-stat-bar" style={{ "--progress": "55%" }} />
+                <span className="growth-stat-badge">⚡ 100% automático</span>
+              </div>
+              <svg className="growth-sparkline" viewBox="0 0 100 28" fill="none">
+                <path d="M0 24 Q 35 18 70 8 T 100 2" stroke="#00D4FF" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                <path d="M0 24 Q 35 18 70 8 T 100 2 L 100 28 L 0 28 Z" fill="url(#sparkGrad3)" opacity="0.25" />
+                <defs>
+                  <linearGradient id="sparkGrad3" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#00D4FF" />
+                    <stop offset="100%" stopColor="#00D4FF" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
 
             <div className="growth-note-bot">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="19" x2="12" y2="5"/>
-                <polyline points="5 12 12 5 19 12"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
               </svg>
               <span>Tu negocio también puede crecer así</span>
             </div>
@@ -5305,21 +5790,27 @@ function PorHoras() {
           </Btn>
         </div>
         <PlanCard className="plan-span-4 plan-card--with-image">
-          <img className="plan-card__image" src="assets/support-maintenance.jpg" alt="Mantenimiento web y optimización de velocidad" loading="lazy" />
+          <div className="plan-card__icon-panel" role="img" aria-label="Mantenimiento web y optimización de velocidad">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.77z"/></svg>
+          </div>
           <div className="plan-card__content">
             <h4>Mantenimiento</h4>
             <p>Actualizaciones de CMS, resolución de bugs, optimización de velocidad y ajustes técnicos.</p>
           </div>
         </PlanCard>
         <PlanCard className="plan-span-4 plan-card--with-image">
-          <img className="plan-card__image" src="assets/support-design.jpg" alt="Diseño de interfaz y contenido" loading="lazy" />
+          <div className="plan-card__icon-panel" role="img" aria-label="Diseño de interfaz y contenido">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22a1 1 0 01-1-1v-1a2 2 0 012-2h1a2 2 0 002-2 2 2 0 012-2h1.5a2.5 2.5 0 002.5-2.5C22 6.6 17.5 2 12 2 6.5 2 2 6.5 2 12s4.5 10 10 10z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/></svg>
+          </div>
           <div className="plan-card__content">
             <h4>Diseño y Contenido</h4>
             <p>Modificaciones visuales puntuales, copy, rediseño de componentes y nuevos assets.</p>
           </div>
         </PlanCard>
         <PlanCard className="plan-span-4 plan-card--with-image">
-          <img className="plan-card__image" src="assets/support-features.jpg" alt="Integración de APIs y nuevas funciones" loading="lazy" />
+          <div className="plan-card__icon-panel" role="img" aria-label="Integración de APIs y nuevas funciones">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L4.09 12.97A1 1 0 004.86 14.7H11l-1 7.3L19.91 11.03A1 1 0 0019.14 9.3H13l1-7.3z"/></svg>
+          </div>
           <div className="plan-card__content">
             <h4>Nuevas Funciones</h4>
             <p>Nuevas secciones, integración de APIs ligeras, formularios avanzados o landing pages.</p>
@@ -5350,14 +5841,18 @@ function TiendaOnline() {
         <div className="shead" style={{ textAlign: "left", margin: "0 0 32px" }}><h2 className="display" style={{fontSize:28}}>Arquitectura de Conversión</h2><p className="lead">Funcionalidades core diseñadas para maximizar ventas y minimizar fricción.</p></div>
         <div className="plan-grid">
           <PlanCard className="plan-span-8 plan-card--with-image">
-            <img className="plan-card__image" src="assets/ecommerce-catalog.jpg" alt="Catálogo visual dinámico de productos" loading="lazy" />
+            <div className="plan-card__icon-panel" role="img" aria-label="Catálogo visual dinámico de productos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            </div>
             <div className="plan-card__content">
               <h3>Catálogo Visual Dinámico</h3>
               <p>Galerías de productos optimizadas para velocidad de carga y visualización en alta resolución.</p>
             </div>
           </PlanCard>
           <PlanCard className="plan-span-4 plan-card--with-image">
-            <img className="plan-card__image" src="assets/ecommerce-payments.jpg" alt="Pasarelas de pago seguras" loading="lazy" />
+            <div className="plan-card__icon-panel" role="img" aria-label="Pasarelas de pago seguras">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg>
+            </div>
             <div className="plan-card__content">
               <h3>Pagos Sin Fricción</h3>
               <p>Integración nativa con las pasarelas más fiables.</p>
@@ -5365,14 +5860,18 @@ function TiendaOnline() {
             </div>
           </PlanCard>
           <PlanCard className="plan-span-4 plan-card--with-image">
-            <img className="plan-card__image" src="assets/ecommerce-dashboard.jpg" alt="Panel de gestión centralizada" loading="lazy" />
+            <div className="plan-card__icon-panel" role="img" aria-label="Panel de gestión centralizada">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="21" x2="5" y2="11"/><line x1="12" y1="21" x2="12" y2="6"/><line x1="19" y1="21" x2="19" y2="14"/></svg>
+            </div>
             <div className="plan-card__content">
               <h3>Gestión Centralizada</h3>
               <p>Panel de control para administrar stock, envíos y comunicación con el cliente.</p>
             </div>
           </PlanCard>
           <PlanCard className="plan-span-8 plan-card--with-image">
-            <img className="plan-card__image" src="assets/ecommerce-cart.jpg" alt="Flujo de compra y carrito optimizado" loading="lazy" />
+            <div className="plan-card__icon-panel" role="img" aria-label="Flujo de compra y carrito optimizado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.4a2 2 0 002 1.6h8.4a2 2 0 002-1.6L21 8H6"/></svg>
+            </div>
             <div className="plan-card__content">
               <h3>Experiencia de Carrito Fluida</h3>
               <p>Evitamos el abandono de carritos con un flujo de compra lógico y adaptado a móviles.</p>
