@@ -4989,10 +4989,10 @@ function HomePage() {
             </p>
             <div className="contact__actions">
               <Btn glossy href="mailto:hola@leonwebs.es?subject=Presupuesto%20Web%20Leon">Agendar llamada gratis →</Btn>
-              <a className="contact__whatsapp-btn" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <Btn glossy className="btn--whatsapp" href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18, marginRight: 4 }}><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
                 Hablar por WhatsApp
-              </a>
+              </Btn>
             </div>
             <div className="contact__trust-badges">
               <span>
