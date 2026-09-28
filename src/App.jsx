@@ -3312,8 +3312,15 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
   padding: 18px;
   box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
-.growth-mini-widget--img { padding: 0; overflow: visible; background: none; border: none; box-shadow: none; }
-.growth-mini-widget--img img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 0; }
+.growth-mini-widget--bgimg {
+  background:
+    linear-gradient(180deg, rgba(10, 17, 42, 0.18) 0%, rgba(6, 11, 28, 0.35) 100%),
+    url('assets/widget-reservas-bg.webp');
+  background-size: cover;
+  background-position: center;
+  min-height: 260px;
+}
+@media(max-width:640px){ .growth-mini-widget--bgimg{ min-height: 200px; } }
 .growth-mini-widget-title {
   font-size: 12px;
   font-weight: 700;
@@ -5673,9 +5680,7 @@ function PlanCrecimiento() {
                 </div>
               </div>
 
-              <div className="growth-mini-widget growth-mini-widget--img">
-                <img src="assets/widget-reservas-bg.webp" alt="Sistema de reservas online con confirmación automática por WhatsApp" loading="lazy" />
-              </div>
+              <div className="growth-mini-widget growth-mini-widget--bgimg" role="img" aria-label="Sistema de reservas online con confirmación automática por WhatsApp" />
             </div>
           </PlanCard>
 
