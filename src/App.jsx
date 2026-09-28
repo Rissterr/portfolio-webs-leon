@@ -3306,7 +3306,11 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
   gap: 6px;
 }
 .growth-mini-widget {
-  background: linear-gradient(180deg, rgba(14, 24, 56, 0.8) 0%, rgba(6, 11, 28, 0.95) 100%);
+  background:
+    linear-gradient(180deg, rgba(10, 17, 42, 0.86) 0%, rgba(6, 11, 28, 0.96) 100%),
+    url('assets/widget-reservas-bg.webp');
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(146, 187, 255, 0.28);
   border-radius: 16px;
   padding: 18px;
@@ -4449,7 +4453,7 @@ const CASES = [
     sweep: "rgba(52,211,153,0.04)"  
   },
   {
-    id: "fitness",
+    id: "clinica",
     n: "PowerPulse Fitness & Salud",
     sector: "Fitness & Fisioterapia",
     loc: "León",
