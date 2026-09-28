@@ -3306,16 +3306,14 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
   gap: 6px;
 }
 .growth-mini-widget {
-  background:
-    linear-gradient(180deg, rgba(10, 17, 42, 0.86) 0%, rgba(6, 11, 28, 0.96) 100%),
-    url('assets/widget-reservas-bg.webp');
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(180deg, rgba(14, 24, 56, 0.8) 0%, rgba(6, 11, 28, 0.95) 100%);
   border: 1px solid rgba(146, 187, 255, 0.28);
   border-radius: 16px;
   padding: 18px;
   box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
+.growth-mini-widget--img { padding: 0; overflow: hidden; }
+.growth-mini-widget--img img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
 .growth-mini-widget-title {
   font-size: 12px;
   font-weight: 700;
@@ -5675,26 +5673,8 @@ function PlanCrecimiento() {
                 </div>
               </div>
 
-              <div className="growth-mini-widget">
-                <div className="growth-mini-widget-title">
-                  <span>AGENDA ONLINE</span>
-                  <span style={{ color: "#00D4FF", fontSize: 10 }}>● Activo</span>
-                </div>
-                <div className="growth-mini-cal-row">
-                  <div className="growth-mini-cal-day">Lun <b>10</b></div>
-                  <div className="growth-mini-cal-day">Mar <b>11</b></div>
-                  <div className="growth-mini-cal-day">Mié <b>12</b></div>
-                  <div className="growth-mini-cal-day active">Jue <b>13</b></div>
-                  <div className="growth-mini-cal-day">Vie <b>14</b></div>
-                </div>
-                <div className="growth-mini-slots">
-                  <div className="growth-mini-slot">09:30</div>
-                  <div className="growth-mini-slot active">11:00</div>
-                  <div className="growth-mini-slot">12:30</div>
-                  <div className="growth-mini-slot">16:00</div>
-                  <div className="growth-mini-slot">17:30</div>
-                  <div className="growth-mini-slot">19:00</div>
-                </div>
+              <div className="growth-mini-widget growth-mini-widget--img">
+                <img src="assets/widget-reservas-bg.webp" alt="Sistema de reservas online con confirmación automática por WhatsApp" loading="lazy" />
               </div>
             </div>
           </PlanCard>
