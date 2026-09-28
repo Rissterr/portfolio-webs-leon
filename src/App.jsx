@@ -3314,7 +3314,7 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
 }
 .growth-feature-card--bgimg {
   background:
-    linear-gradient(90deg, rgba(6,9,24,.94) 0%, rgba(6,9,24,.86) 38%, rgba(6,9,24,.35) 65%, rgba(6,9,24,.15) 100%),
+    linear-gradient(90deg, rgba(6,9,24,.96) 0%, rgba(6,9,24,.9) 34%, rgba(6,9,24,.55) 58%, rgba(6,9,24,.1) 88%, rgba(6,9,24,0) 100%),
     url('assets/widget-reservas-bg.webp') !important;
   background-size: cover !important;
   background-position: center right !important;
@@ -3322,7 +3322,7 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
 @media(max-width:900px){
   .growth-feature-card--bgimg {
     background:
-      linear-gradient(180deg, rgba(6,9,24,.55) 0%, rgba(6,9,24,.94) 70%),
+      linear-gradient(180deg, rgba(6,9,24,.6) 0%, rgba(6,9,24,.95) 68%),
       url('assets/widget-reservas-bg.webp') !important;
     background-size: cover !important;
     background-position: center !important;
