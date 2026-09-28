@@ -3312,15 +3312,22 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
   padding: 18px;
   box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
-.growth-mini-widget--bgimg {
+.growth-feature-card--bgimg {
   background:
-    linear-gradient(180deg, rgba(10, 17, 42, 0.18) 0%, rgba(6, 11, 28, 0.35) 100%),
-    url('assets/widget-reservas-bg.webp');
-  background-size: cover;
-  background-position: center;
-  min-height: 260px;
+    linear-gradient(90deg, rgba(6,9,24,.94) 0%, rgba(6,9,24,.86) 38%, rgba(6,9,24,.35) 65%, rgba(6,9,24,.15) 100%),
+    url('assets/widget-reservas-bg.webp') !important;
+  background-size: cover !important;
+  background-position: center right !important;
 }
-@media(max-width:640px){ .growth-mini-widget--bgimg{ min-height: 200px; } }
+@media(max-width:900px){
+  .growth-feature-card--bgimg {
+    background:
+      linear-gradient(180deg, rgba(6,9,24,.55) 0%, rgba(6,9,24,.94) 70%),
+      url('assets/widget-reservas-bg.webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+}
 .growth-mini-widget-title {
   font-size: 12px;
   font-weight: 700;
@@ -5657,7 +5664,7 @@ function PlanCrecimiento() {
 
         <div className="plan-grid">
           {/* Bento 1: Reservas & Automatización (Span 12) */}
-          <PlanCard className="plan-span-12 growth-feature-card">
+          <PlanCard className="plan-span-12 growth-feature-card growth-feature-card--bgimg">
             <div className="growth-feat-hero-inner">
               <div>
                 <div className="growth-feat-header">
@@ -5680,7 +5687,7 @@ function PlanCrecimiento() {
                 </div>
               </div>
 
-              <div className="growth-mini-widget growth-mini-widget--bgimg" role="img" aria-label="Sistema de reservas online con confirmación automática por WhatsApp" />
+              <div />
             </div>
           </PlanCard>
 
