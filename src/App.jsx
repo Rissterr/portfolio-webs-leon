@@ -4243,10 +4243,12 @@ function ConversionRateWidget() {
 
 function SectorProjectsCarousel({ selectedSector }) {
   const filteredCases = CASES.filter((c) => selectedSector === "all" || c.id === selectedSector);
+  // Al filtrar por un sector concreto hay pocos proyectos: se muestran una sola vez, sin
+  // duplicarlos ni animar el carrusel (la animación en bucle solo tiene sentido con "Todos los sectores").
+  const isSingle = selectedSector !== "all";
 
-  // Repetir los elementos para que el bucle continuo del carrusel marquee sea fluido e infinito
-  const displayItems = filteredCases.length <= 2 
-    ? [...filteredCases, ...filteredCases, ...filteredCases, ...filteredCases]
+  const displayItems = isSingle
+    ? filteredCases
     : [...filteredCases, ...filteredCases];
 
   return (
@@ -4255,7 +4257,7 @@ function SectorProjectsCarousel({ selectedSector }) {
         className="marquee marquee--projects"
         style={{ "--dur": `${Math.max(28, displayItems.length * 6.5)}s` }}
       >
-        <div className="marquee__track" style={{ gap: 24 }}>
+        <div className="marquee__track" style={{ gap: 24, ...(isSingle ? { animation: "none", width: "100%", justifyContent: "center" } : {}) }}>
           {displayItems.map((c, i) => (
             <div
               key={`${c.n}-${i}`}
@@ -4446,9 +4448,9 @@ const CASES = [
     glare: "rgba(52,211,153,0.14)",  
     sweep: "rgba(52,211,153,0.04)"  
   },
-  { 
-    id: "clinica",
-    n: "PowerPulse Fitness & Salud", 
+  {
+    id: "fitness",
+    n: "PowerPulse Fitness & Salud",
     sector: "Fitness & Fisioterapia",
     loc: "León",
     img: "assets/proj-hotel.webp",  
