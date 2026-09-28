@@ -2013,8 +2013,8 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
 .ava img{ width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ---- faq ---- */
-.faq{ max-width:1040px; margin:32px auto 0; column-count:2; column-gap:20px; }
-.q{ border:1px solid var(--line); border-radius:14px; margin-bottom:12px; overflow:hidden; break-inside:avoid;
+.faq{ max-width:1040px; margin:32px auto 0; display:grid; grid-template-columns:1fr 1fr; gap:16px 20px; align-items:start; }
+.q{ border:1px solid var(--line); border-radius:14px; margin-bottom:0; overflow:hidden;
   background:var(--card); position:relative; isolation:isolate;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
   transition:border-color .4s, box-shadow .4s; }
@@ -5021,7 +5021,7 @@ function HomePage() {
           </div>
           <div className="foot-cols">
             <div>
-              <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
+              <div className="kicker" style={{ marginBottom: 10, textAlign: "center" }}>Menú</div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 32 }}>
                 <div><a href="#proyectos">Proyectos</a><a href="#comparativa">Por qué nosotros</a><a href="#proceso">Cómo trabajamos</a></div>
                 <div><a href="#precios">Planes</a><a href="#calculadora">Calculadora</a><a href="#faq">FAQ</a></div>
@@ -5136,7 +5136,7 @@ function PlanShell({ eyebrow, children }) {
           </div>
           <div className="foot-cols">
             <div>
-              <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
+              <div className="kicker" style={{ marginBottom: 10, textAlign: "center" }}>Menú</div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 32 }}>
                 <div><a href={homeHref("#proyectos")}>Proyectos</a><a href={homeHref("#comparativa")}>Por qué nosotros</a><a href={homeHref("#proceso")}>Cómo trabajamos</a></div>
                 <div><a href={homeHref("#precios")}>Planes</a><a href={homeHref("#calculadora")}>Calculadora</a><a href={homeHref("#faq")}>FAQ</a></div>
@@ -5206,16 +5206,17 @@ function PlanArranque() {
             <Btn glossy href={homeHref("#contact")} style={{ padding: "15px 28px", fontSize: "15px", fontWeight: 700 }}>
               Contratar ahora →
             </Btn>
-            <a 
-              className="plan-btn-ghost" 
-              style={{ background: "rgba(37, 211, 102, 0.12)", borderColor: "rgba(37, 211, 102, 0.35)", color: "#25D366" }}
-              href="https://wa.me/34600000000?text=Hola!%20Me%20interesa%20el%20Plan%20Arranque%20de%20450%E2%82%AC" 
-              target="_blank" 
+            <Btn
+              glossy
+              className="btn--whatsapp"
+              style={{ padding: "15px 28px", fontSize: "15px", fontWeight: 700 }}
+              href="https://wa.me/34600000000?text=Hola!%20Me%20interesa%20el%20Plan%20Arranque%20de%20450%E2%82%AC"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17, marginRight: 6 }}><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
               Consultar por WhatsApp
-            </a>
+            </Btn>
           </div>
 
           <div className="growth-trust-row" style={{ marginTop: "6px" }}>
