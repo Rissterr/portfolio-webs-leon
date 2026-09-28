@@ -1491,13 +1491,20 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
 }
 
 /* ---- "Sin estrategia" column ---- */
-.col--no{ 
-  background:linear-gradient(180deg, rgba(24,14,24,0.7) 0%, rgba(12,8,16,0.9) 100%); 
-  border-color:rgba(255,80,120,.18);
+.col--no{
+  background:linear-gradient(180deg, rgba(24,14,24,0.7) 0%, rgba(12,8,16,0.9) 100%);
+  border-color:rgba(255,80,120,.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -60px 40px -25px rgba(205, 20, 76, 0.35),
+    0 20px 50px -20px rgba(255, 0, 90, 0.28);
 }
 .col--no:hover {
-  border-color:rgba(255,80,120,.32);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 24px 50px -20px rgba(255,40,90,.15);
+  border-color:rgba(255,80,120,.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -70px 45px -25px rgba(205, 20, 76, 0.5),
+    0 26px 60px -20px rgba(255, 20, 100, 0.4);
 }
 
 /* ---- "Con León Webs" column ---- */
@@ -2006,8 +2013,8 @@ h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
 .ava img{ width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ---- faq ---- */
-.faq{ max-width:780px; margin:32px auto 0; }
-.q{ border:1px solid var(--line); border-radius:14px; margin-bottom:12px; overflow:hidden;
+.faq{ max-width:1040px; margin:32px auto 0; column-count:2; column-gap:20px; }
+.q{ border:1px solid var(--line); border-radius:14px; margin-bottom:12px; overflow:hidden; break-inside:avoid;
   background:var(--card); position:relative; isolation:isolate;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
   transition:border-color .4s, box-shadow .4s; }
@@ -5015,11 +5022,10 @@ function HomePage() {
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href="#proyectos">Proyectos</a><a href="#comparativa">Por qué nosotros</a><a href="#proceso">Cómo trabajamos</a><a href="#precios">Planes</a><a href="#calculadora">Calculadora</a><a href="#faq">FAQ</a>
-            </div>
-            <div>
-              <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
-              <a href="mailto:hola@leonwebs.es">hola@leonwebs.es</a><a href="https://wa.me/34600000000">WhatsApp</a><a href="#">LinkedIn</a>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 32 }}>
+                <div><a href="#proyectos">Proyectos</a><a href="#comparativa">Por qué nosotros</a><a href="#proceso">Cómo trabajamos</a></div>
+                <div><a href="#precios">Planes</a><a href="#calculadora">Calculadora</a><a href="#faq">FAQ</a></div>
+              </div>
             </div>
           </div>
         </div>
@@ -5131,11 +5137,10 @@ function PlanShell({ eyebrow, children }) {
           <div className="foot-cols">
             <div>
               <div className="kicker" style={{ marginBottom: 10 }}>Menú</div>
-              <a href={homeHref("#proyectos")}>Proyectos</a><a href={homeHref("#comparativa")}>Por qué nosotros</a><a href={homeHref("#proceso")}>Cómo trabajamos</a><a href={homeHref("#precios")}>Planes</a><a href={homeHref("#calculadora")}>Calculadora</a><a href={homeHref("#faq")}>FAQ</a>
-            </div>
-            <div>
-              <div className="kicker" style={{ marginBottom: 10 }}>Contacto</div>
-              <a href="mailto:hola@leonwebs.es">hola@leonwebs.es</a><a href="https://wa.me/34600000000">WhatsApp</a><a href="#">LinkedIn</a>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 32 }}>
+                <div><a href={homeHref("#proyectos")}>Proyectos</a><a href={homeHref("#comparativa")}>Por qué nosotros</a><a href={homeHref("#proceso")}>Cómo trabajamos</a></div>
+                <div><a href={homeHref("#precios")}>Planes</a><a href={homeHref("#calculadora")}>Calculadora</a><a href={homeHref("#faq")}>FAQ</a></div>
+              </div>
             </div>
           </div>
         </div>
